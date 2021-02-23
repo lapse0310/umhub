@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">UMHUB</string>
+    <string name="slogan">One-stop-shop for all university students\' needs!</string>
+    <string name="proceed">Click here to proceed</string>
+    <string name="logo">Logo</string>
+
 </resources>
