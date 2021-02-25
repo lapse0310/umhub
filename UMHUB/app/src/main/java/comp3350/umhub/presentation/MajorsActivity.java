@@ -14,9 +14,10 @@ import android.widget.TextView;
 import java.util.List;
 
 import comp3350.umhub.R;
-import comp3350.umhub.business.AccessMajors;
+import comp3350.umhub.application.Services;
 import comp3350.umhub.business.IAccessMajors;
 import comp3350.umhub.objects.Major;
+
 
 public class MajorsActivity extends AppCompatActivity {
     private List<Major> majorList;
@@ -28,7 +29,7 @@ public class MajorsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_majors);
 
-        IAccessMajors accessMajors = new AccessMajors();
+        IAccessMajors accessMajors = Services.getAccessMajors();
 
         try
         {
@@ -67,7 +68,7 @@ public class MajorsActivity extends AppCompatActivity {
 
     }
 
-
+    //DSO
     public static Major getMajorSelected(){
         return majorSelected;
     }

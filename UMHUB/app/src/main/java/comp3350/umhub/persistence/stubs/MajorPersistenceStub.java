@@ -19,6 +19,7 @@ public class MajorPersistenceStub implements IMajorPersistence {
         majors.add(new Major("Mathematics"));
         majors.add(new Major("Philosophy"));
         majors.add(new Major("Social Work"));
+        majors.add(new Major("Social Work"));
 
     }
 

@@ -23,24 +23,6 @@ public class AccessMajors implements IAccessMajors{
         return Collections.unmodifiableList(majors);
     }
 
-//    public Major getSequential(){
-//        String result = null;
-//        if(majors==null){
-//            majors = majorPersistence.getMajorsSequential();
-//            currentMajor = 0;
-//        }
-//        if(currentMajor<majors.size()){
-//            major = (Major) majors.get(currentMajor);
-//            currentMajor++;
-//        }
-//        else{
-//            majors=null;
-//            major = null;
-//            currentMajor = 0;
-//        }
-//        return major;
-//    }
-
     public Major getMajorSelected(){
         return MajorsActivity.getMajorSelected();
     }
