@@ -2,6 +2,9 @@ package comp3350.umhub.tests.objects;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.Program;
@@ -24,20 +27,20 @@ public class MajorTest {
         course2 = new Course("Databases:Concepts and Usage", "COMP 3380", "Course to get you started in databases", "Computer Science");
         program = new Program("Bachelor of Science Major - Computer Science");
 
-        Course[] courseArr = new Course[2];
-        courseArr[0] = course1;
-        courseArr[1] = course2;
+        List<Course> courseList = new ArrayList<>();
+        courseList.add(course1);
+        courseList.add(course2);
 
-        Program[] progArr = new Program[1];
-        progArr[0] = program;
+        List<Program> programList = new ArrayList<>();
+        programList.add(program);
 
 
-        major = new Major("Computer Science", progArr, courseArr);
+        major = new Major("Computer Science", programList, courseList);
 
         assertNotNull(major);
         assertTrue("Computer Science".equals(major.getName()));
-        assertTrue(progArr.equals(major.getPrograms()));
-        assertTrue(courseArr.equals(major.getCourses()));
+        assertTrue(programList.equals(major.getPrograms()));
+        assertTrue(courseList.equals(major.getCourses()));
 
         System.out.println("Finished testMajor");
     }
