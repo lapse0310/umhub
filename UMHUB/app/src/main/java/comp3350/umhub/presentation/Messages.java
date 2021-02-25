@@ -10,7 +10,7 @@ public class Messages {
     public static void fatalError(final Activity owner, String message) {
         AlertDialog alertDialog = new AlertDialog.Builder(owner).create();
 
-        alertDialog.setTitle("Fatal Error"); //        alertDialog.setTitle(owner.getString(R.string.fatalError));
+        alertDialog.setTitle("Fatal Error");
         alertDialog.setMessage(message);
         alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             public void onCancel(DialogInterface dialog) {
@@ -23,7 +23,6 @@ public class Messages {
 
     public static void warning(Activity owner, String message) {
         AlertDialog alertDialog = new AlertDialog.Builder(owner).create();
-        //        alertDialog.setTitle(owner.getString(R.string.warning));
         alertDialog.setTitle("Warning");
         alertDialog.setMessage(message);
 

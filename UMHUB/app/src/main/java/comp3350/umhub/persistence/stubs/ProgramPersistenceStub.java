@@ -5,9 +5,9 @@ import java.util.Collections;
 import java.util.List;
 
 import comp3350.umhub.objects.Program;
-import comp3350.umhub.persistence.ProgramPersistence;
+import comp3350.umhub.persistence.IProgramPersistence;
 
-public class ProgramPersistenceStub implements ProgramPersistence {
+public class ProgramPersistenceStub implements IProgramPersistence {
     List<Program> programs;
 
     public ProgramPersistenceStub(){
