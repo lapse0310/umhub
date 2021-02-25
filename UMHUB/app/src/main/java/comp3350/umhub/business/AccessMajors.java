@@ -6,6 +6,7 @@ import java.util.List;
 import comp3350.umhub.application.Services;
 import comp3350.umhub.objects.Major;
 import comp3350.umhub.persistence.MajorPersistence;
+import comp3350.umhub.presentation.MajorsActivity;
 
 public class AccessMajors {
 
@@ -13,6 +14,7 @@ public class AccessMajors {
     private List<Major> majors;
     private Major major;
     private int currentMajor;
+    private MajorsActivity activity;
 
     public AccessMajors(){
         majorPersistence = Services.getMajorPersistence();
@@ -42,6 +44,10 @@ public class AccessMajors {
             currentMajor = 0;
         }
         return major;
+    }
+
+    public Major getMajorSelected(){
+        return activity.selectedMajor();
     }
 
 }
