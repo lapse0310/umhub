@@ -17,6 +17,12 @@ public class Major {
         this.courses = courses;
     }
 
+    public Major(String name, List<Program> programs){
+        this.name = name;
+        this.programs = programs;
+
+    }
+
     public String getName(){
         return this.name;
     }

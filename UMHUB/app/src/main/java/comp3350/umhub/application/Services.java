@@ -1,15 +1,30 @@
 package comp3350.umhub.application;
 
-import comp3350.umhub.persistence.MajorPersistence;
+import comp3350.umhub.persistence.IMajorPersistence;
 import comp3350.umhub.persistence.stubs.MajorPersistenceStub;
 
-public class Services {
-    private static MajorPersistence majorPersistence = null;
+import comp3350.umhub.business.IAccessMajors;
+import comp3350.umhub.business.AccessMajors;
 
-    public static synchronized MajorPersistence getMajorPersistence(){
+//used to provide an implementation of the interfaces used.
+public class Services {
+    private static IMajorPersistence majorPersistence = null;
+    private static IAccessMajors accessMajors = null;
+
+    public static synchronized IMajorPersistence getMajorPersistence(){
         if(majorPersistence==null){
             majorPersistence = new MajorPersistenceStub();
         }
         return majorPersistence;
     }
+
+    public static synchronized IAccessMajors getAccessMajors(){
+        if(accessMajors==null){
+            accessMajors = new AccessMajors();
+        }
+        return accessMajors;
+    }
+
+
+
 }

@@ -5,9 +5,9 @@ import java.util.Collections;
 import java.util.List;
 
 import comp3350.umhub.objects.Major;
-import comp3350.umhub.persistence.MajorPersistence;
+import comp3350.umhub.persistence.IMajorPersistence;
 
-public class MajorPersistenceStub implements MajorPersistence {
+public class MajorPersistenceStub implements IMajorPersistence {
     private List<Major> majors;
 
     public MajorPersistenceStub(){
@@ -18,6 +18,7 @@ public class MajorPersistenceStub implements MajorPersistence {
         majors.add(new Major("Engineering"));
         majors.add(new Major("Mathematics"));
         majors.add(new Major("Philosophy"));
+        majors.add(new Major("Social Work"));
         majors.add(new Major("Social Work"));
 
     }
