@@ -9,7 +9,21 @@ public class Major {
         this.name = name;
     }
 
+    public Major(String name, Program[] programs, Course[] courses){
+        this.name = name;
+        this.programs = programs;
+        this.courses = courses;
+    }
+
     public String getName(){
         return this.name;
+    }
+
+    public Course[] getCourses() {
+        return courses;
+    }
+
+    public Program[] getPrograms() {
+        return programs;
     }
 }
