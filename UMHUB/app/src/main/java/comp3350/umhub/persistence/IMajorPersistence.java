@@ -5,7 +5,7 @@ import java.util.List;
 import comp3350.umhub.objects.Major;
 
 
-public interface MajorPersistence {
+public interface IMajorPersistence {
     List<Major> getMajorsSequential();
 
 

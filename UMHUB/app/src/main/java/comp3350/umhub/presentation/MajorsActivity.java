@@ -2,25 +2,26 @@ package comp3350.umhub.presentation;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
 
 import comp3350.umhub.R;
-import comp3350.umhub.business.AccessMajors;
+import comp3350.umhub.application.Services;
+import comp3350.umhub.business.IAccessMajors;
 import comp3350.umhub.objects.Major;
 
+
 public class MajorsActivity extends AppCompatActivity {
-    private AccessMajors accessMajors;
     private List<Major> majorList;
-    private ArrayAdapter<Major> majorArrayAdapter;
+    private static Major majorSelected;
 
 
     @Override
@@ -28,13 +29,13 @@ public class MajorsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_majors);
 
-        accessMajors = new AccessMajors();
+        IAccessMajors accessMajors = Services.getAccessMajors();
 
         try
         {
             majorList = accessMajors.getMajors();
-            majorArrayAdapter = new ArrayAdapter<Major>(this, android.R.layout.simple_list_item_activated_2, android.R.id.text1, majorList)
-            {
+            ArrayAdapter<Major> majorArrayAdapter = new ArrayAdapter<Major>(this, android.R.layout.simple_list_item_activated_2, android.R.id.text1, majorList) {
+
                 @Override
                 public View getView(int position, View convertView, ViewGroup parent) {
                     View view = super.getView(position, convertView, parent);
@@ -50,11 +51,25 @@ public class MajorsActivity extends AppCompatActivity {
             final ListView listView = (ListView)findViewById(R.id.listMajors);
             listView.setAdapter(majorArrayAdapter);
 
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    majorSelected = majorList.get(position);
+                    Intent programIntent = new Intent(MajorsActivity.this, ProgramsActivity.class);
+                    startActivity(programIntent);
+                }
+            });
+
         }
         catch (final Exception e)
         {
             //Messages.fatalError(this, e.getMessage());
         }
 
+    }
+
+    //DSO
+    public static Major getMajorSelected(){
+        return majorSelected;
     }
 }
