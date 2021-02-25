@@ -13,3 +13,7 @@ The success of the project is based on several criteria. First is a short term g
 ## Branching strategy
 
 This project follows the Gitflow branching strategy. Different features are worked upon in different branches and then mergerd into the developer branch for testing the project together and then pushed onto the master once it is a stable release.
+
+## Iteration 1 worksheet
+
+[Worksheet](i1_worksheet.md)
