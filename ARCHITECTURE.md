@@ -8,10 +8,10 @@
 |                                               |                                          |                                         |
 |                                               |                                          |   +--------+        IMajorPersistence   |
 |HomeActivity  MajorsActivity  ProgramsActivity | IAccessMajors          Services          |   | stubs  |        IProgramPersistence |
-|                                               |                                          |   +--------+                            |
+|                                               | IAccessPrograms                          |   +--------+                            |
 |                                               | AccessMajors                             |                                         |
-|                                               |                                          |  MajorPersistenceStub                   |
-|                                               |                                          |  ProgramPersistenceStub                 |
+|                                               | AccessPrograms                           |  MajorPersistenceStub                   |
+|                                               | Equals                                   |  ProgramPersistenceStub                 |
 |                                               |                                          |                                         |
 +-----------------------------------------------+------------------------------------------+-----------------------------------------+
 
