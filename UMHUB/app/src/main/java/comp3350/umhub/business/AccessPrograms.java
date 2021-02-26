@@ -1,59 +1,37 @@
+//get the programs from the data layer
 package comp3350.umhub.business;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import comp3350.umhub.application.Services;
 import comp3350.umhub.objects.Program;
 import comp3350.umhub.persistence.IProgramPersistence;
 import comp3350.umhub.presentation.MajorsActivity;
-import comp3350.umhub.presentation.ProgramsActivity;
 
 public class AccessPrograms implements IAccessPrograms {
-    private IProgramPersistence IProgramPersistence;
+    private final IProgramPersistence programPersistence;
     private List<Program> programs;
-    private Program program;
-    private int currentProgram;
 
     public AccessPrograms(){
-        IProgramPersistence = Services.getProgramPersistence();
+        programPersistence = Services.getProgramPersistence();
         programs = null;
-        program = null;
-        currentProgram = 0;
+
     }
 
-    public AccessPrograms(IProgramPersistence programPersistence){
-        IProgramPersistence = programPersistence;
-        programs = null;
-        program = null;
-        currentProgram = 0;
-    }
 
     public List<Program> getPrograms(){
-        programs = IProgramPersistence.getProgramsSequential();
-        return programs;
+        programs = programPersistence.getProgramsSequential();
+        List<Program> programsUnderMajor = new ArrayList<>();
+        for(int i=0; i<programs.size();i++){
+            if(Equals.isEqualMajor(MajorsActivity.getMajorSelected(),programs.get(i).getMajor())){
+                programsUnderMajor.add(programs.get(i));
+            }
+        }
+        return Collections.unmodifiableList(programsUnderMajor);
     }
 
-    @Override
-    public Program getProgramSelected() {
-        return ProgramsActivity.getProgramSelected();
-    }
-
-    public Program getSequential(){
-        if (programs == null){
-            programs = IProgramPersistence.getProgramsSequential();
-            currentProgram = 0;
-        }
-        if (currentProgram < programs.size()){
-            program = (Program) programs.get(currentProgram);
-            currentProgram++;
-        }
-        else {
-            programs = null;
-            program = null;
-            currentProgram = 0;
-        }
-        return program;
-    }
 
 
 }

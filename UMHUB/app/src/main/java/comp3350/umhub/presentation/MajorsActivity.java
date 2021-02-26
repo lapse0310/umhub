@@ -63,7 +63,7 @@ public class MajorsActivity extends AppCompatActivity {
         }
         catch (final Exception e)
         {
-            //Messages.fatalError(this, e.getMessage());
+            Messages.fatalError(this, e.getMessage());
         }
 
     }
