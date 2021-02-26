@@ -1,3 +1,4 @@
+//get all the majors in the data layer
 package comp3350.umhub.business;
 
 import java.util.Collections;
@@ -6,7 +7,6 @@ import java.util.List;
 import comp3350.umhub.application.Services;
 import comp3350.umhub.objects.Major;
 import comp3350.umhub.persistence.IMajorPersistence;
-import comp3350.umhub.presentation.MajorsActivity;
 
 public class AccessMajors implements IAccessMajors{
 
@@ -23,8 +23,6 @@ public class AccessMajors implements IAccessMajors{
         return Collections.unmodifiableList(majors);
     }
 
-    public Major getMajorSelected(){
-        return MajorsActivity.getMajorSelected();
-    }
+
 
 }

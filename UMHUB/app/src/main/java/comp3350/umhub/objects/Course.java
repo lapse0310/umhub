@@ -1,6 +1,5 @@
 package comp3350.umhub.objects;
 
-
 public class Course {
     private String name;
     private String id;
@@ -12,6 +11,10 @@ public class Course {
         this.id = id;
         description = desc;
         this.major = major;
+    }
+
+    public Course(String name){
+        this.name = name;
     }
 
     public String getName() {
