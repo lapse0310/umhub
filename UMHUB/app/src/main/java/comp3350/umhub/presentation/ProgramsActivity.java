@@ -2,9 +2,11 @@ package comp3350.umhub.presentation;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -20,7 +22,7 @@ import comp3350.umhub.objects.Program;
 public class ProgramsActivity extends AppCompatActivity {
 
     private List<Program> programList;
-    private Major majorSelected;
+    private static Program programSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +33,7 @@ public class ProgramsActivity extends AppCompatActivity {
 
         try
         {
-            majorSelected = MajorsActivity.getMajorSelected();
+            Major majorSelected = MajorsActivity.getMajorSelected();
             programList = accessProgram.getPrograms(majorSelected);
             ArrayAdapter<Program> programArrayAdapter = new ArrayAdapter<Program>(this, android.R.layout.simple_list_item_activated_2, android.R.id.text1, programList) {
 
@@ -53,6 +55,15 @@ public class ProgramsActivity extends AppCompatActivity {
             final ListView listView = (ListView)findViewById(R.id.listPrograms);
             listView.setAdapter(programArrayAdapter);
 
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    programSelected = programList.get(position);
+                    Intent courseIntent = new Intent(ProgramsActivity.this, CoursesActivity.class);
+                    startActivity(courseIntent);
+                }
+            });
+
 
         }
         catch (final Exception e)
@@ -60,6 +71,11 @@ public class ProgramsActivity extends AppCompatActivity {
             Messages.fatalError(this, e.getMessage());
         }
 
+    }
+
+    //DSO
+    public static Program getProgramSelected(){
+        return programSelected;
     }
 
 

@@ -23,6 +23,6 @@ public class MajorPersistenceStub implements IMajorPersistence {
 
     @Override
     public List<Major> getMajorsSequential(){
-        return Collections.unmodifiableList(majors) ;
+        return majors ;
     }
 }

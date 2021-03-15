@@ -9,9 +9,6 @@ public class Equals{
         return major1.getName().equals(major2.getName());
     }
     public static boolean isEqualProgram(Program program1, Program program2) {
-        if(!program1.getName().equals(program2.getName())){
-            return false;
-        }
-        return isEqualMajor(program1.getMajor(), program2.getMajor());
+        return program1.getName().equals(program2.getName());
     }
 }
