@@ -38,6 +38,22 @@ public class Services {
         return majorPersistence;
     }
 
+    public static synchronized IMajorPersistence getMajorPersistence(Class c){
+        if(majorPersistence==null){
+            if (IMajorPersistence.class.isAssignableFrom(c)) {
+                try {
+                    majorPersistence = (IMajorPersistence) c.newInstance();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return majorPersistence;
+    }
+
+
     public static synchronized IProgramPersistence getProgramPersistence(){
         if(programPersistence==null){
             programPersistence = new ProgramPersistenceStub();
@@ -54,9 +70,39 @@ public class Services {
         return coursePersistence;
     }
 
+    public static synchronized ICourseReviewPersistence getCourseReviewPersistence(Class c){
+        if(courseReviewPersistence==null){
+            if (ICourseReviewPersistence.class.isAssignableFrom(c)) {
+                try {
+                    courseReviewPersistence = (ICourseReviewPersistence) c.newInstance();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return courseReviewPersistence;
+    }
+
     public static synchronized IAccessMajors getAccessMajors(){
         if(accessMajors==null){
             accessMajors = new AccessMajors();
+        }
+        return accessMajors;
+    }
+
+    public static synchronized IAccessMajors getAccessMajors(Class c){
+        if(accessMajors==null){
+            if (IAccessMajors.class.isAssignableFrom(c)) {
+                try {
+                    accessMajors = (IAccessMajors) c.newInstance();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         return accessMajors;
     }
