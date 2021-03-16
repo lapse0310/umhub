@@ -20,8 +20,13 @@ public class AccessCourseReviews implements IAccessCourseReviews{
     }
 
     @Override
-    public List<CourseReview> getCourseReviews(Course course) {
+    public List<CourseReview> getCourseReviews() {
         courseReviews = courseReviewPersistence.getCourseReviewsSequential();
+        return Collections.unmodifiableList(courseReviews);
+    }
+
+    public List<CourseReview> getCourseReviews(Course course) {
+        courseReviews = courseReviewPersistence.getCourseReviewsSequential(course);
         return Collections.unmodifiableList(courseReviews);
     }
 }

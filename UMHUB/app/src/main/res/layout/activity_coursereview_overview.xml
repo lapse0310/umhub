@@ -8,18 +8,18 @@
 
     <TextView
         android:id="@+id/courseDescription"
-        android:layout_width="374dp"
+        android:layout_width="370dp"
         android:layout_height="164dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="20dp"
         android:text="Course Review overview here"
         app:layout_constraintBottom_toTopOf="@+id/listReviews"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="385dp"
+        android:layout_width="370dp"
         android:layout_height="55dp"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="38dp"
@@ -31,7 +31,7 @@
 
     <ListView
         android:id="@+id/listReviews"
-        android:layout_width="373dp"
+        android:layout_width="370dp"
         android:layout_height="362dp"
         android:layout_marginBottom="96dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,7 +42,7 @@
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="385dp"
+        android:layout_width="370dp"
         android:layout_height="50dp"
         android:text="WRITE A REVIEW"
         app:layout_constraintBottom_toBottomOf="parent"
