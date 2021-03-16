@@ -4,15 +4,18 @@ import org.junit.Test;
 
 import comp3350.umhub.application.Services;
 import comp3350.umhub.business.AccessCourseReviews;
+import comp3350.umhub.business.AccessCourses;
 import comp3350.umhub.business.AccessMajors;
 import comp3350.umhub.business.AccessPrograms;
 import comp3350.umhub.business.IAccessCourseReviews;
+import comp3350.umhub.business.IAccessCourses;
 import comp3350.umhub.business.IAccessMajors;
 import comp3350.umhub.business.IAccessPrograms;
-import comp3350.umhub.objects.Major;
+import comp3350.umhub.persistence.ICoursePersistence;
 import comp3350.umhub.persistence.ICourseReviewPersistence;
 import comp3350.umhub.persistence.IMajorPersistence;
 import comp3350.umhub.persistence.IProgramPersistence;
+import comp3350.umhub.persistence.stubs.CoursePersistenceStub;
 import comp3350.umhub.persistence.stubs.CourseReviewPersistenceStub;
 import comp3350.umhub.persistence.stubs.MajorPersistenceStub;
 import comp3350.umhub.persistence.stubs.ProgramPersistenceStub;
@@ -25,13 +28,13 @@ public class ServicesTest {
 
     @Test
     public void testGetMajorPersistenceStubDefault(){
-        System.out.println("\nStarting test testGetMajorPersistentStubParam");
+        System.out.println("\nStarting test testGetMajorPersistenceStubDefault");
 
         IMajorPersistence majorPersistenceStub = Services.getMajorPersistence();
 
         assertNotNull("Persistence Object is Null",majorPersistenceStub);
         assertTrue("Persistence Object is not of MajorPersistenceStub class",majorPersistenceStub instanceof MajorPersistenceStub);
-        System.out.println("Finished test testGetMajorPersistentStubParam");
+        System.out.println("Finished test testGetMajorPersistenceStubDefault");
 
 
     };
@@ -99,73 +102,125 @@ public class ServicesTest {
     };
 
     @Test
-    public void testAccessMajorsDefault(){
-        System.out.println("\nStarting test testAccessMajorsDefault");
+    public void testGetCoursePersistenceStubDefault(){
+        System.out.println("\nStarting test testGetCoursePersistenceStubDefault");
+
+        ICoursePersistence coursePersistenceStub = Services.getCoursePersistence();
+
+        assertNotNull("Persistence Object is Null",coursePersistenceStub);
+        assertTrue("Persistence Object is not of CoursePersistenceStub class",coursePersistenceStub instanceof CoursePersistenceStub);
+        System.out.println("Finished test testGetCoursePersistenceStubDefault");
+
+
+    };
+
+    @Test
+    public void testGetCoursePersistenceStubParam(){
+        System.out.println("\nStarting test testGetCoursePersistenceStubParam");
+
+        ICoursePersistence coursePersistenceStub = Services.getCoursePersistence(CoursePersistenceStub.class);
+
+        assertNotNull("Persistence Object is Null",coursePersistenceStub);
+        assertTrue("Persistence Object is not of CoursePersistenceStub class",coursePersistenceStub instanceof CoursePersistenceStub);
+        System.out.println("Finished test testGetCoursePersistenceStubParam");
+
+    };
+
+
+
+    @Test
+    public void testGetAccessMajorsDefault(){
+        System.out.println("\nStarting test testGetAccessMajorsDefault");
 
         IAccessMajors accessMajors = Services.getAccessMajors();
 
         assertNotNull("Access Object is Null",accessMajors);
         assertTrue("Access Object is not of AccessMajors class",accessMajors instanceof AccessMajors);
-        System.out.println("Finished test testAccessMajorsDefault");
+        System.out.println("Finished test testGetAccessMajorsDefault");
 
 
     };
 
     @Test
-    public void testAccessMajorsParam(){
-        System.out.println("\nStarting test testAccessMajorsParam");
+    public void testGetAccessMajorsParam(){
+        System.out.println("\nStarting test testGetAccessMajorsParam");
 
         IAccessMajors accessMajors = Services.getAccessMajors(AccessMajors.class);
 
         assertNotNull("Access Object is Null",accessMajors);
         assertTrue("Access Object is not of AccessMajors class",accessMajors instanceof AccessMajors);
-        System.out.println("Finished test testAccessMajorsParam");
+        System.out.println("Finished test testGetAccessMajorsParam");
     };
 
     @Test
-    public void testAccessProgramsDefault(){
-        System.out.println("\nStarting test testAccessProgramsDefault");
+    public void testGetAccessProgramsDefault(){
+        System.out.println("\nStarting test testGetAccessProgramsDefault");
 
         IAccessPrograms accessPrograms = Services.getAccessPrograms();
 
         assertNotNull("Access Object is Null",accessPrograms);
         assertTrue("Access Object is not of AccessPrograms class",accessPrograms instanceof AccessPrograms);
-        System.out.println("Finished test testAccessProgramsDefault");
+        System.out.println("Finished test testGetAccessProgramsDefault");
     };
 
     @Test
-    public void testAccessProgramsParam(){
-        System.out.println("\nStarting test testAccessProgramsParam");
+    public void testGetAccessProgramsParam(){
+        System.out.println("\nStarting test testGetAccessProgramsParam");
 
         IAccessPrograms accessPrograms = Services.getAccessPrograms(AccessPrograms.class);
 
         assertNotNull("Access Object is Null",accessPrograms);
         assertTrue("Access Object is not of AccessPrograms class",accessPrograms instanceof AccessPrograms);
-        System.out.println("Finished test testAccessProgramsParam");
+        System.out.println("Finished test testGetAccessProgramsParam");
     };
 
     @Test
-    public void testAccessCourseReviewsDefault(){
-        System.out.println("\nStarting test testAccessCourseReviewsDefault");
+    public void testGetAccessCourseReviewsDefault(){
+        System.out.println("\nStarting test testGetAccessCourseReviewsDefault");
 
         IAccessCourseReviews accessCourseReviews = Services.getAccessCourseReviews();
 
         assertNotNull("Access Object is Null",accessCourseReviews);
         assertTrue("Access Object is not of AccessCourseReviews class",accessCourseReviews instanceof AccessCourseReviews);
-        System.out.println("Finished test testAccessCourseReviewsDefault");
+        System.out.println("Finished test testGetAccessCourseReviewsDefault");
 
 
     };
 
     @Test
-    public void testAccessCourseReviewsParam(){
-        System.out.println("\nStarting test testAccessCourseReviewsDefault");
+    public void testGetAccessCourseReviewsParam(){
+        System.out.println("\nStarting test testGetAccessCourseReviewsParam");
 
         IAccessCourseReviews accessCourseReviews = Services.getAccessCourseReviews(AccessCourseReviews.class);
 
         assertNotNull("Access Object is Null",accessCourseReviews);
         assertTrue("Access Object is not of AccessCourseReviews class",accessCourseReviews instanceof AccessCourseReviews);
-        System.out.println("Finished test testAccessCourseReviewsDefault");
+        System.out.println("Finished test testGetAccessCourseReviewsParam");
+
+    };
+
+    @Test
+    public void testGetAccessCoursesDefault(){
+        System.out.println("\nStarting test testGetAccessCoursesDefault");
+
+        IAccessCourses accessCourses = Services.getAccessCourses();
+
+        assertNotNull("Access Object is Null",accessCourses);
+        assertTrue("Access Object is not of AccessCourses class",accessCourses instanceof AccessCourses);
+        System.out.println("Finished test testGetAccessCoursesDefault");
+
+
+    };
+
+    @Test
+    public void testGetAccessCoursesParam(){
+        System.out.println("\nStarting test testGetAccessCoursesParam");
+
+        IAccessCourses accessCourses = Services.getAccessCourses(AccessCourses.class);
+
+        assertNotNull("Access Object is Null",accessCourses);
+        assertTrue("Access Object is not of AccessCourses class",accessCourses instanceof AccessCourses);
+        System.out.println("Finished test testGetAccessCoursesParam");
 
     };
 

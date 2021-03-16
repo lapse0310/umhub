@@ -28,8 +28,11 @@ public class CourseReviewsActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_coursereviews);
+        setContentView(R.layout.activity_coursereview_overview);
         IAccessCourseReviews accessCourseReviews = Services.getAccessCourseReviews();
+
+        /*Technical debt - needs fixing */
+        course = Services.getAccessCourses().getCourse("comp3350");
 
         try{
             courseReviewList = accessCourseReviews.getCourseReviews(course);

@@ -16,7 +16,6 @@ import comp3350.umhub.persistence.IMajorPersistence;
 import comp3350.umhub.persistence.ICoursePersistence;
 import comp3350.umhub.persistence.IProgramPersistence;
 import comp3350.umhub.persistence.stubs.CoursePersistenceStub;
-import comp3350.umhub.persistence.stubs.MajorPersistenceStub;
 import comp3350.umhub.persistence.stubs.ProgramPersistenceStub;
 
 public class Services {
@@ -84,6 +83,8 @@ public class Services {
         }
         return courseReviewPersistence;
     }
+       
+
 
     public static synchronized IAccessMajors getAccessMajors(){
         if(accessMajors==null){
