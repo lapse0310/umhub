@@ -2,7 +2,6 @@
 package comp3350.umhub.business;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import comp3350.umhub.application.Services;
@@ -13,9 +12,11 @@ import comp3350.umhub.persistence.IProgramPersistence;
 public class AccessPrograms implements IAccessPrograms {
     private final List<Program> programs;
 
+
     public AccessPrograms(){
         IProgramPersistence programPersistence = Services.getProgramPersistence();
         programs = programPersistence.getProgramsSequential();
+
 
     }
 
@@ -27,7 +28,7 @@ public class AccessPrograms implements IAccessPrograms {
                 programsUnderMajor.add(programs.get(i));
             }
         }
-        return Collections.unmodifiableList(programsUnderMajor);
+        return programsUnderMajor;
     }
 
 
