@@ -25,14 +25,25 @@ public class Services {
     private static IMajorPersistence majorPersistence = null;
     private static IProgramPersistence programPersistence = null;
     private static ICoursePersistence coursePersistence = null;
-    private static ILoginPersistence loginPersistence = null;
-    
 
     public static synchronized IMajorPersistence getMajorPersistence(){
         if(majorPersistence==null){
             majorPersistence = new MajorPersistenceStub();
-            //majorPersistence = new majorPersistenceHSQLDB(Main.getDBPathName());
+        }
+        return majorPersistence;
+    }
 
+    public static synchronized IMajorPersistence getMajorPersistence(Class c){
+        if(majorPersistence==null){
+            if (IMajorPersistence.class.isAssignableFrom(c)) {
+                try {
+                    majorPersistence = (IMajorPersistence) c.newInstance();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         return majorPersistence;
     }
@@ -56,21 +67,27 @@ public class Services {
     public static synchronized IProgramPersistence getProgramPersistence(){
         if(programPersistence==null){
             programPersistence = new ProgramPersistenceStub();
-            //programPersistence = new programPersistenceHSQLDB(Main.getDBPathName());
         }
         return programPersistence;
     }
 
-    public static synchronized ICoursePersistence getCoursePersistence(){
-        if(coursePersistence==null){
-            coursePersistence = new CoursePersistenceStub();
-            //coursePersistence = new coursePersistenceHSQLDB(Main.getDBPathName());
+    public static synchronized IProgramPersistence getProgramPersistence(Class c){
+        if(programPersistence==null){
+            if (IProgramPersistence.class.isAssignableFrom(c)) {
+                try {
+                    programPersistence = (IProgramPersistence) c.newInstance();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         return coursePersistence;
     }
 
-    public static synchronized ICourseReviewPersistence getCourseReviewPersistence(Class c){
         if(courseReviewPersistence==null){
+    public static synchronized ICourseReviewPersistence getCourseReviewPersistence(Class c){
             if (ICourseReviewPersistence.class.isAssignableFrom(c)) {
                 try {
                     courseReviewPersistence = (ICourseReviewPersistence) c.newInstance();
@@ -120,7 +137,7 @@ public class Services {
         if(accessCourses==null){
             accessCourses = new AccessCourses();
         }
-        return accessCourses;
+        return accessPrograms;
     }
     
     public static synchronized ILoginPersistence getLoginPersistence(){

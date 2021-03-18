@@ -12,8 +12,7 @@
         <activity android:name=".presentation.CoursesActivity" />
         <activity android:name=".presentation.ProgramsActivity" />
         <activity android:name=".presentation.MajorsActivity" />
-        <activity android:name=".presentation.HomeActivity"/>
-        <activity android:name=".presentation.LoginActivity">
+        <activity android:name=".presentation.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
