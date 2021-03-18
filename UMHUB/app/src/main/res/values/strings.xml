@@ -5,6 +5,9 @@
     <string name="logo">Logo</string>
     <string name="loginUserName">Enter your username:</string>
     <string name="loginPassword">Enter your password:</string>
-
+    <string name = "table1">Year 1</string>
+    <string name = "table2">Year 2</string>
+    <string name = "table3">Year 3</string>
+    <string name = "table4">Year 4</string>
 
 </resources>
