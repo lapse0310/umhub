@@ -11,7 +11,8 @@
         android:theme="@style/Theme.UMHUB">
         <activity android:name=".presentation.ProgramsActivity"></activity>
         <activity android:name=".presentation.MajorsActivity" />
-        <activity android:name=".presentation.HomeActivity">
+        <activity android:name=".presentation.HomeActivity"/>
+        <activity android:name=".presentation.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
