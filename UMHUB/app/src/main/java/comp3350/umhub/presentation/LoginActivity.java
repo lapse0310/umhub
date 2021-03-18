@@ -69,4 +69,4 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onDestroy(){
         super.onDestroy();
     }
-}
+}//LoginActivity
