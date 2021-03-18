@@ -3,7 +3,6 @@ package comp3350.umhub.presentation;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -183,11 +182,10 @@ public class CoursesActivity extends AppCompatActivity {
     }
 
     //DSO
-    public static Course getCourseSelected(){
+    public static Course getProgramSelected(){
         return courseSelected;
     }
 
 
 }
-
 

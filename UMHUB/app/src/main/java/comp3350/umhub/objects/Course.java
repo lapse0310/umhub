@@ -14,7 +14,7 @@ public class Course {
         this.id = id;
     }
 
-    public Course(String name, String id, String desc, int year){
+    public Course(String name, String id, String desc, String year){
         this.name = name;
         this.id = id;
         description = desc;
@@ -53,7 +53,7 @@ public class Course {
         return id;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
@@ -65,5 +65,12 @@ public class Course {
         return programs;
     }
 
+    public boolean equals(Program other){
+        return this.name.equalsIgnoreCase(other.getName());
+    }
+
+    public boolean equals(Course other){
+        return this.name.equalsIgnoreCase(other.getId());
+    }
 
 }

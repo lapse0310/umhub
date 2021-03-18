@@ -33,8 +33,6 @@ public class Services {
     private static IMajorPersistence majorPersistence = null;
     private static IProgramPersistence programPersistence = null;
     private static ICoursePersistence coursePersistence = null;
-    private static ILoginPersistence loginPersistence = null;
-    
 
     public static synchronized IMajorPersistence getMajorPersistence(){
         if(majorPersistence==null){
@@ -126,7 +124,7 @@ public class Services {
         if(accessCourses==null){
             accessCourses = new AccessCourses();
         }
-        return accessCourses;
+        return accessPrograms;
     }
     
     public static synchronized ILoginPersistence getLoginPersistence(){
