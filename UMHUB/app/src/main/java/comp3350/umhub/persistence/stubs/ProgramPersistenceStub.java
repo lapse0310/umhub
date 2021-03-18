@@ -35,7 +35,17 @@ public class ProgramPersistenceStub implements IProgramPersistence {
     }
 
     @Override
+<<<<<<< Updated upstream
     public List<Program> getProgramsSequential() {
-        return programs;
+        return Collections.unmodifiableList(programs);
+=======
+    public List<Program> getProgramSequential() {
+        return null;
+    }
+
+    @Override
+    public List<Program> getProgramRandom(Program currentProgram) {
+        return null;
+>>>>>>> Stashed changes
     }
 }
