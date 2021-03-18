@@ -8,8 +8,12 @@ import comp3350.umhub.business.AccessMajors;
 import comp3350.umhub.business.IAccessPrograms;
 import comp3350.umhub.business.AccessPrograms;
 
-import comp3350.umhub.persistence.ICoursePersistence;
+
+import comp3350.umhub.persistence.ILoginPersistence;
+import comp3350.umhub.persistence.stubs.LoginPersistenceStub;
+
 import comp3350.umhub.persistence.IMajorPersistence;
+import comp3350.umhub.persistence.ICoursePersistence;
 import comp3350.umhub.persistence.IProgramPersistence;
 import comp3350.umhub.persistence.stubs.CoursePersistenceStub;
 import comp3350.umhub.persistence.stubs.MajorPersistenceStub;
@@ -22,10 +26,14 @@ public class Services {
     private static IMajorPersistence majorPersistence = null;
     private static IProgramPersistence programPersistence = null;
     private static ICoursePersistence coursePersistence = null;
+    private static ILoginPersistence loginPersistence = null;
+    
 
     public static synchronized IMajorPersistence getMajorPersistence(){
         if(majorPersistence==null){
             majorPersistence = new MajorPersistenceStub();
+            //majorPersistence = new majorPersistenceHSQLDB(Main.getDBPathName());
+
         }
         return majorPersistence;
     }
@@ -33,6 +41,7 @@ public class Services {
     public static synchronized IProgramPersistence getProgramPersistence(){
         if(programPersistence==null){
             programPersistence = new ProgramPersistenceStub();
+            //programPersistence = new programPersistenceHSQLDB(Main.getDBPathName());
         }
         return programPersistence;
     }
@@ -40,6 +49,7 @@ public class Services {
     public static synchronized ICoursePersistence getCoursePersistence(){
         if(coursePersistence==null){
             coursePersistence = new CoursePersistenceStub();
+            //coursePersistence = new coursePersistenceHSQLDB(Main.getDBPathName());
         }
         return coursePersistence;
     }
@@ -58,10 +68,18 @@ public class Services {
         return accessPrograms;
     }
 
+    
     public static synchronized IAccessCourses getAccessCourses(){
         if(accessCourses==null){
             accessCourses = new AccessCourses();
         }
         return accessCourses;
+    }
+    
+    public static synchronized ILoginPersistence getLoginPersistence(){
+        if(loginPersistence==null){
+            loginPersistence = new LoginPersistenceStub();
+        }
+        return loginPersistence;
     }
 }
