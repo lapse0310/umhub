@@ -1,6 +1,7 @@
 //checks if two majors or programs are equal
 package comp3350.umhub.business;
 
+import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.Program;
 
@@ -9,9 +10,10 @@ public class Equals{
         return major1.getName().equals(major2.getName());
     }
     public static boolean isEqualProgram(Program program1, Program program2) {
-        if(!program1.getName().equals(program2.getName())){
-            return false;
-        }
-        return isEqualMajor(program1.getMajor(), program2.getMajor());
+        return program1.getName().equals(program2.getName());
+    }
+
+    public static boolean isEqualCourse(Course course1, Course course2){
+        return course1.getId().equals(course2.getId());
     }
 }
