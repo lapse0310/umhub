@@ -25,4 +25,9 @@ public class MajorPersistenceStub implements IMajorPersistence {
     public List<Major> getMajorsSequential(){
         return majors ;
     }
+
+    @Override
+    public List<Major> getMajorRandom(Major currentMajor) {
+        return null;
+    }
 }
