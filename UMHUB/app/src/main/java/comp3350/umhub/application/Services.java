@@ -7,7 +7,9 @@ import comp3350.umhub.business.AccessMajors;
 import comp3350.umhub.business.IAccessPrograms;
 import comp3350.umhub.business.AccessPrograms;
 
+import comp3350.umhub.persistence.ILoginPersistence;
 import comp3350.umhub.persistence.IMajorPersistence;
+import comp3350.umhub.persistence.stubs.LoginPersistenceStub;
 import comp3350.umhub.persistence.stubs.MajorPersistenceStub;
 
 import comp3350.umhub.persistence.IProgramPersistence;
@@ -18,6 +20,7 @@ public class Services {
     private static IAccessPrograms accessPrograms = null;
     private static IMajorPersistence majorPersistence = null;
     private static IProgramPersistence programPersistence = null;
+    private static ILoginPersistence loginPersistence = null;
 
     public static synchronized IMajorPersistence getMajorPersistence(){
         if(majorPersistence==null){
@@ -45,5 +48,12 @@ public class Services {
             accessPrograms = new AccessPrograms();
         }
         return accessPrograms;
+    }
+
+    public static synchronized ILoginPersistence getLoginPersistence(){
+        if(loginPersistence==null){
+            loginPersistence = new LoginPersistenceStub();
+        }
+        return loginPersistence;
     }
 }
