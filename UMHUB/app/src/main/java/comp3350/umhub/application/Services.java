@@ -26,6 +26,8 @@ public class Services {
     public static synchronized IMajorPersistence getMajorPersistence(){
         if(majorPersistence==null){
             majorPersistence = new MajorPersistenceStub();
+            //majorPersistence = new majorPersistenceHSQLDB(Main.getDBPathName());
+
         }
         return majorPersistence;
     }
@@ -33,6 +35,7 @@ public class Services {
     public static synchronized IProgramPersistence getProgramPersistence(){
         if(programPersistence==null){
             programPersistence = new ProgramPersistenceStub();
+            //programPersistence = new programPersistenceHSQLDB(Main.getDBPathName());
         }
         return programPersistence;
     }
@@ -40,6 +43,7 @@ public class Services {
     public static synchronized ICoursePersistence getCoursePersistence(){
         if(coursePersistence==null){
             coursePersistence = new CoursePersistenceStub();
+            //coursePersistence = new coursePersistenceHSQLDB(Main.getDBPathName());
         }
         return coursePersistence;
     }
