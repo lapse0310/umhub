@@ -35,4 +35,67 @@ public class AccessCourses implements IAccessCourses{
         }
         return coursesUnderProgram;
     }
+
+    @Override
+    public List<Course> getYear1Courses(Program program) {
+        List<Course> coursesUnderProgram = getCourses(program);
+        List<Course> year1Courses = new ArrayList<>();
+
+        for(int i=0; i<coursesUnderProgram.size();i++){
+            int year = coursesUnderProgram.get(i).getYear();
+            if(year == 1){
+                year1Courses.add(coursesUnderProgram.get(i));
+            }
+        }
+
+        return year1Courses;
+    }
+
+
+
+    @Override
+    public List<Course> getYear2Courses(Program program) {
+        List<Course> coursesUnderProgram = getCourses(program);
+        List<Course> year2Courses = new ArrayList<>();
+
+        for(int i=0; i<coursesUnderProgram.size();i++){
+            int year = coursesUnderProgram.get(i).getYear();
+            if(year == 2){
+                year2Courses.add(coursesUnderProgram.get(i));
+            }
+        }
+
+        return year2Courses;
+    }
+
+    @Override
+    public List<Course> getYear3Courses(Program program) {
+        List<Course> coursesUnderProgram = getCourses(program);
+        List<Course> year3Courses = new ArrayList<>();
+
+        for(int i=0; i<coursesUnderProgram.size();i++){
+            int year = coursesUnderProgram.get(i).getYear();
+            if(year == 3){
+                year3Courses.add(coursesUnderProgram.get(i));
+            }
+        }
+
+        return year3Courses;
+    }
+
+    @Override
+    public List<Course> getYear4Courses(Program program) {
+        List<Course> coursesUnderProgram = getCourses(program);
+        List<Course> year4Courses = new ArrayList<>();
+
+        for(int i=0; i<coursesUnderProgram.size();i++){
+            int year = coursesUnderProgram.get(i).getYear();
+            if(year == 4){
+                year4Courses.add(coursesUnderProgram.get(i));
+            }
+        }
+
+
+        return year4Courses;
+    }
 }

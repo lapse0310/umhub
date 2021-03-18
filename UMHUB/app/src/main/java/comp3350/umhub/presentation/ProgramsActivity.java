@@ -3,6 +3,7 @@ package comp3350.umhub.presentation;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +38,6 @@ public class ProgramsActivity extends AppCompatActivity {
             programList = accessProgram.getPrograms(majorSelected);
             ArrayAdapter<Program> programArrayAdapter = new ArrayAdapter<Program>(this, android.R.layout.simple_list_item_activated_2, android.R.id.text1, programList) {
 
-                // If my major is 'Computer Science', display programs in it using AccessMajors
                 @Override
                 public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -46,6 +46,7 @@ public class ProgramsActivity extends AppCompatActivity {
                     TextView text1 = (TextView) view.findViewById(android.R.id.text1);
 
                     text1.setText(programList.get(position).getName());
+                    text1.setTextColor(Color.BLACK);
 
                     return view;
 
@@ -66,7 +67,7 @@ public class ProgramsActivity extends AppCompatActivity {
 
 
         }
-        catch (final Exception e)
+        catch (final NullPointerException e)
         {
             Messages.fatalError(this, e.getMessage());
         }

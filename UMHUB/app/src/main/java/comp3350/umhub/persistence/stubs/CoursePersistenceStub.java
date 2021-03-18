@@ -24,10 +24,14 @@ public class CoursePersistenceStub implements ICoursePersistence {
         course2List.add(program2);
         course2List.add(program3);
         course2List.add(program4);
-        courses.add(new Course("Software Engineering","COMP 3350","Random description","Year 3",course1List));
-        courses.add(new Course("Operating Systems","COMP 3430","Random description","Year 3",course1List));
-        courses.add(new Course("Calculus 1","MATH 1500","Random description","Year 1",course2List));
-        courses.add(new Course("Calculus 2","MATH 1700","Random description","Year 1",course2List));
+        courses.add(new Course("Software Engineering","COMP 3350","Random description",3,course1List));
+        courses.add(new Course("Operating Systems","COMP 3430","Random description",3,course1List));
+        courses.add(new Course("Calculus 1","MATH 1500","Random description",1,course2List));
+        courses.add(new Course("Calculus 2","MATH 1700","Random description",1,course2List));
+        courses.add(new Course("Object Oriented Programming","COMP 2150","Random description",2,course1List));
+        courses.add(new Course("Programming Practices","COMP 2160","Random description",2,course1List));
+        courses.add(new Course("4000 Level Course","COMP 4170","Random description",4,course1List));
+        courses.add(new Course("Calculus 4","MATH 4700","Random description",4,course2List));
 
 
     }

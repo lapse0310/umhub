@@ -3,24 +3,24 @@ package comp3350.umhub.objects;
 import java.util.List;
 
 public class Course {
-    private final String name;
+    private String name;
     private String id;
     private String description;
-    private String year;
+    private int year;
     private List<Program> programs;
 
-    public Course(String name){
-        this.name = name;
+    public Course(String id){
+        this.id = id;
     }
 
-    public Course(String name, String id, String desc, String year){
+    public Course(String name, String id, String desc, int year){
         this.name = name;
         this.id = id;
         description = desc;
         this.year = year;
     }
 
-    public Course(String name, String id, String desc, String year, List<Program> programs){
+    public Course(String name, String id, String desc, int year, List<Program> programs){
         this.name = name;
         this.id = id;
         description = desc;
@@ -43,7 +43,7 @@ public class Course {
         return id;
     }
 
-    public String getYear() {
+    public int getYear() {
         return year;
     }
 
@@ -51,7 +51,5 @@ public class Course {
         return programs;
     }
 
-    public Boolean equals(Program other){
-        return this.name.equalsIgnoreCase(other.getName());
-    }
+
 }
