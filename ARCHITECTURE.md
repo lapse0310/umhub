@@ -1,25 +1,40 @@
 ```
-+-----------------------------------------------+------------------------------------------+-----------------------------------------+
-|                   UI Layer                    |                Logic Layer               |          Data Layer                     |
-+------------------------------------------------------------------------------------------------------------------------------------+
-|                                               |                                          |                                         |
-|             +-----------------+               |  +-------------+       +--------------+  |         +------------------+            |
-|             |   presentation  |               |  |  business   |       |  application |  |         |   persistence    |            |
-|             +-----------------+               |  +-------------+       +--------------+  |         +------------------+            |
-|                                               |                                          |                                         |
-|                                               |                                          |   +--------+        IMajorPersistence   |
-|HomeActivity  MajorsActivity  ProgramsActivity | IAccessMajors          Services          |   | stubs  |        IProgramPersistence |
-|                                               | IAccessPrograms                          |   +--------+                            |
-|                                               | AccessMajors                             |                                         |
-|                                               | AccessPrograms                           |  MajorPersistenceStub                   |
-|                                               | Equals                                   |  ProgramPersistenceStub                 |
-|                                               |                                          |                                         |
-+-----------------------------------------------+------------------------------------------+-----------------------------------------+
+┌───────────────────────────────────────────┬───────────────────────────────────────────────┬───────────────────────────────────────────────────────────┐
+│       UI LAYER                            │            LOGIC LAYER                        │        DATA LAYER                                         │
+├───────────────────────────────────────────┼───────────────────────────────────────────────┼───────────────────────────────────────────────────────────┤
+│                                           │                                               │                                                           │
+│         ┌────────────────┐                │ ┌────────────────┐            ┌─────────────┐ │     ┌────────────────────────┐                            │
+│         │  PRESENTATION  │                │ │BUSINESS        │            │APPLICATION  │ │     │PERSISTENCE             │                            │
+│         └────────────────┘                │ └────────────────┘            └─────────────┘ │     └────────────────────────┘                            │
+│                                           │                                               │                                                           │
+│      HomeActivity       MajorsActivity    │ IAccessMajors                  Main           │ ┌─────────┐                    IMajorPersistence          │
+│      ProgramsActivity   CoursesActivity   │ IAccessPrograms                Services       │ │STUBS    │                    IProgramPersisten         
+│
+│      Messages           LoginActivity     │ IAccessCourseReviews                          │ └─────────┘                    ICoursePersistence         │
+│      WriteCourseReviewActivity            │ IAccessCourses                                │ MajorPersistenceStub           ILoginPersistence          │
+│      CourseReviewActivity                 │ Login                                         │ ProgramPersistenceStub         ICourseReviewPersistence   │
+│                                           │ AccessCourses                                 │ CourseReviewPersistenceStub                               │
+│                                           │ AccessCourseReviews                           │ CoursePersistenceStub                                     │
+│                                           │ AccessMajors                                  │ LoginPersistenceStub                                      │
+│                                           │ AccessPrograms                                │                                                           │
+│                                           │ Equals                                        │ ┌──────────┐                                              │
+│                                           │                                               │ │ HSQLDB   │                                              │
+│                                           │                                               │ └──────────┘                                              │
+│                                           │                                               │ CoursePersistenceHSQLDB                                   │
+│                                           │                                               │ CourseReviewPersistenceHSQLDB                             │
+│                                           │                                               │ MajorPersistenceHSQLDB                                    │
+│                                           │                                               │ PersistenceException                                      │
+│                                           │                                               │ ProgramPersistenceHSQLDB                                  │
+│                                           │                                               │                                                           │
+│                                           │                                               │                                                           │
+│                                           │                                               │                                                           │
+│                                           │                                               │                                                           │
+└───────────────────────────────────────────┴───────────────────────────────────────────────┴───────────────────────────────────────────────────────────┘
 
-                                                    Domain Specific Objects
+                                                Domain Specific Objects
 
-                                                     Course
-                                                     Major
-                                                     Program
-                                                     Student
-```
+                                          Course             CourseReview
+                                          Major              CourseReviewProfile
+                                          Program            Review
+                                          Student            User
+                                          ```
