@@ -1,7 +1,6 @@
 package comp3350.umhub.business;
 
 import comp3350.umhub.application.Services;
-import comp3350.umhub.objects.User;
 
 public class Login {
 
@@ -10,14 +9,9 @@ public class Login {
         {
             throw new LoginException("Please enter valid credentials!");
         }
-
-
         if(!Services.getLoginPersistence().userExist(info[0],info[1])){
             Services.getLoginPersistence().insertUser(info[0],info[1]);
         }
-
-        User user = new User(info[0],info[1]);
-        Services.setCurrentUser(user);
     }
 
     public class LoginException extends Exception{
