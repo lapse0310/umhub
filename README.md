@@ -21,3 +21,7 @@ This project follows the Gitflow branching strategy. Different features are work
 ## Architecture diagram
 
 [Architecture](ARCHITECTURE.md)
+
+## Iteration 2 worksheet
+
+[Worksheet](i2_worksheet.md)
