@@ -1,5 +1,7 @@
 package comp3350.umhub.objects;
 
+import java.util.List;
+
 public class Program {
     private final String name;
     private Major major;
@@ -9,6 +11,9 @@ public class Program {
     private String programID;
     private String majorID;
 >>>>>>> Stashed changes
+    private List<Course> courses;
+    private String programID;
+    private String majorID;
 
     public Program(String name){
         this.name = name;
@@ -32,6 +37,7 @@ public class Program {
     }
 
 =======
+
     public Program(String programID, String name, String majorID){
         this.programID = programID;
         this.name = name;
@@ -51,6 +57,11 @@ public class Program {
     public List<Course> getCourses() {
         return courses;
 =======
+
+    public List<Course> getCourses() {
+        return courses;
+	}
+
     public String getMajorID() {
         return majorID;
     }

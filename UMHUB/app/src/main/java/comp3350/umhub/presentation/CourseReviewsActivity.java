@@ -6,10 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.List;
 
@@ -19,10 +21,15 @@ import comp3350.umhub.business.IAccessCourseReviews;
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.CourseReview;
 
-public class CourseReviewsActivity extends Activity {
+public class CourseReviewsActivity extends AppCompatActivity {
     private Course course;
     private List<CourseReview> courseReviewList;
     private static CourseReview courseReviewSelected;
+
+    private TextView courseName;
+    private TextView courseDescription;
+    private ListView reviewListView;
+    private Button writeReviewButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,8 +55,19 @@ public class CourseReviewsActivity extends Activity {
                 }
             };
 
-            final ListView listView = (ListView) findViewById(R.id.listReviews);
-            listView.setAdapter(courseReviewArrayAdapter);
+            reviewListView = (ListView) findViewById(R.id.reviewListView);
+            reviewListView.setAdapter(courseReviewArrayAdapter);
+
+//            courseName.setText(course.getName());
+//            courseDescription.setText(course.getDescription());
+
+            courseName = (TextView) findViewById(R.id.courseName);
+            courseName.setText("TEST NAME");
+
+            courseDescription = (TextView) findViewById(R.id.courseDescription);
+            courseDescription.setText("LOREM IPSUM");
+
+
         }
         catch (final Exception e){
             Messages.fatalError(this,e.getMessage());
@@ -63,8 +81,8 @@ public class CourseReviewsActivity extends Activity {
         super.onDestroy();
     }
 
-    public void buttonAllCourseReviewsOnClick(View view){
-        Intent courseReviewIntent = new Intent(CourseReviewsActivity.this, null);
-        CourseReviewsActivity.this.startActivity(courseReviewIntent);
+    public void buttonWriteCourseReviewOnClick(View view){
+        Intent WriteCourseReviewIntent = new Intent(CourseReviewsActivity.this, WriteCourseReviewActivity.class);
+        CourseReviewsActivity.this.startActivity(WriteCourseReviewIntent);
     }
 }

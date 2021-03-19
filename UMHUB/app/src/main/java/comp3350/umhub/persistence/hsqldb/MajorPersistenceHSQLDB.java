@@ -9,15 +9,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.Major;
-import comp3350.umhub.objects.Program;
-import comp3350.umhub.persistence.IProgramPersistence;
+import comp3350.umhub.persistence.IMajorPersistence;
 
-public class ProgramPersistenceHSQLDB implements IProgramPersistence {
+public class MajorPersistenceHSQLDB implements IMajorPersistence {
+
 
     private final String dbPath;
 
-    public ProgramPersistenceHSQLDB(final String dbPath) {
+    public MajorPersistenceHSQLDB(final String dbPath) {
         this.dbPath = dbPath;
     }
 
@@ -25,29 +26,28 @@ public class ProgramPersistenceHSQLDB implements IProgramPersistence {
         return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
     }
 
-    private Program fromResultSet(final ResultSet rs) throws SQLException {
-        final String programID = rs.getString("programID");
-        final String programName = rs.getString("name");
+    private Major fromResultSet(final ResultSet rs) throws SQLException {
         final String majorID = rs.getString("majorID");
-        return new Program(programID,programName,majorID);
+        final String majorName = rs.getString("name");
+        return new Major(majorID,majorName);
     }
 
     @Override
-    public List<Program> getProgramSequential() {
-        final List<Program> programs = new ArrayList<>();
+    public List<Major> getMajorsSequential() {
+        final List<Major> majors = new ArrayList<>();
 
         try (final Connection c = connection()) {
             final Statement st = c.createStatement();
-            final ResultSet rs = st.executeQuery("SELECT * FROM programs");
+            final ResultSet rs = st.executeQuery("SELECT * FROM majors");
             while (rs.next())
             {
-                final Program program = fromResultSet(rs);
-                programs.add(program);
+                final Major major = fromResultSet(rs);
+                majors.add(major);
             }
             rs.close();
             st.close();
 
-            return programs;
+            return majors;
         }
         catch (final SQLException e)
         {
@@ -56,26 +56,27 @@ public class ProgramPersistenceHSQLDB implements IProgramPersistence {
     }
 
     @Override
-    public List<Program> getProgramRandom(Program currentProgram) {
-        final List<Program> programs = new ArrayList<>();
+    public List<Major> getMajorRandom(Major currentMajor) {
+        final List<Major> majors = new ArrayList<>();
 
         try (final Connection c = connection()) {
-            final PreparedStatement st = c.prepareStatement("SELECT * FROM programs WHERE programID=?");
-            st.setString(1, currentProgram.getProgramID());
+            final PreparedStatement st = c.prepareStatement("SELECT * FROM majors WHERE majorID=?");
+            st.setString(1, currentMajor.getId());
 
             final ResultSet rs = st.executeQuery();
             while (rs.next())
             {
-                final Program program = fromResultSet(rs);
-                programs.add(program);
+                final Major major = fromResultSet(rs);
+                majors.add(major);
             }
             rs.close();
             st.close();
 
-            return programs;
+            return majors;
         }
         catch (final SQLException e)
         {
             throw new PersistenceException(e);
         }
-    }}
+    }
+}
