@@ -5,6 +5,7 @@ import java.util.List;
 
 import comp3350.umhub.application.Services;
 import comp3350.umhub.objects.Course;
+import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.Program;
 import comp3350.umhub.persistence.ICoursePersistence;
 
@@ -14,6 +15,7 @@ public class AccessCourses implements IAccessCourses{
     public AccessCourses(){
         ICoursePersistence coursePersistence = Services.getCoursePersistence();
         courses = coursePersistence.getCourseSequential();
+
     }
 
     @Override
@@ -35,19 +37,45 @@ public class AccessCourses implements IAccessCourses{
         return coursesUnderProgram;
     }
 
-    public List<Course> getCourses() {
-        return courses;
-    }
+    @Override
+    public List<Course> getCoursesByYearProgram(Program program, int year) {
+        List<Course> coursesUnderProgram = getCourses(program);
+        List<Course> yearCourses = new ArrayList<>();
 
-
-    public Course getCourse(String id) {
-        Course course = null;
-        for (Course c: courses) {
-            if (c.getId().equals(id)) {
-                course = c;
-                break;
+        for(int i=0; i<coursesUnderProgram.size();i++){
+            int courseYear = coursesUnderProgram.get(i).getYear();
+            if(courseYear == year){
+                yearCourses.add(coursesUnderProgram.get(i));
             }
         }
-        return course;
+
+        return yearCourses;
     }
+
+    @Override
+    public List<Course> getCoursesByMajor(Major major) {
+        List<Course> coursesUnderMajor = new ArrayList<>();
+        for(int i=0; i<courses.size();i++){
+            if(Equals.isEqualMajor(major,courses.get(i).getMajor())){
+                coursesUnderMajor.add(courses.get(i));
+            }
+        }
+        return coursesUnderMajor;
+    }
+
+    @Override
+    public List<Course> getCoursesByYearMajor(Major major, int year) {
+        List<Course> coursesUnderMajor = getCoursesByMajor(major);
+        List<Course> yearCourses = new ArrayList<>();
+
+        for(int i=0; i<coursesUnderMajor.size();i++){
+            int courseYear = coursesUnderMajor.get(i).getYear();
+            if(courseYear == year){
+                yearCourses.add(coursesUnderMajor.get(i));
+            }
+        }
+
+        return yearCourses;
+    }
+
 }

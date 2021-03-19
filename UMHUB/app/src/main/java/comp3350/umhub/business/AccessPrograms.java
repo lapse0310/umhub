@@ -15,7 +15,7 @@ public class AccessPrograms implements IAccessPrograms {
 
     public AccessPrograms(){
         IProgramPersistence programPersistence = Services.getProgramPersistence();
-        programs = programPersistence.getProgramSequential();
+        programs = programPersistence.getProgramsSequential();
 
 
     }
