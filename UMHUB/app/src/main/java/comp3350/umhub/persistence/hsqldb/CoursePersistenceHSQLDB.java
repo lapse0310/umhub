@@ -16,11 +16,11 @@ public class CoursePersistenceHSQLDB implements ICoursePersistence {
         this.dbPath = dbPath;
     }
 
-    private Connection connection() throws SQLException {
+    private synchronized Connection connection() throws SQLException {
         return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
     }
 
-    private Course fromResultSet(final ResultSet rs) throws SQLException {
+    private synchronized Course fromResultSet(final ResultSet rs) throws SQLException {
         final String courseID = rs.getString("courseID");
         final String courseName = rs.getString("name");
         final String desc = rs.getString("desc");
@@ -32,7 +32,7 @@ public class CoursePersistenceHSQLDB implements ICoursePersistence {
 
 
     @Override
-    public List<Course> getCourseSequential() {
+    public synchronized List<Course> getCourseSequential() {
         final List<Course> courses = new ArrayList<>();
 
         try (final Connection c = connection()) {

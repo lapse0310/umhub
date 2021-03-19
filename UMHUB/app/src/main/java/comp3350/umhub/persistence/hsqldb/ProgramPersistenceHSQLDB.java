@@ -21,11 +21,11 @@ public class ProgramPersistenceHSQLDB implements IProgramPersistence {
         this.dbPath = dbPath;
     }
 
-    private Connection connection() throws SQLException {
+    private synchronized Connection connection() throws SQLException {
         return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
     }
 
-    private Program fromResultSet(final ResultSet rs) throws SQLException {
+    private synchronized Program fromResultSet(final ResultSet rs) throws SQLException {
         final String programName = rs.getString("name");
         final String majorName = rs.getString("mName");
         Major newMajor = new Major(majorName);
@@ -33,7 +33,7 @@ public class ProgramPersistenceHSQLDB implements IProgramPersistence {
     }
 
     @Override
-    public List<Program> getProgramSequential() {
+    public synchronized List<Program> getProgramsSequential() {
         final List<Program> programs = new ArrayList<>();
 
         try (final Connection c = connection()) {
