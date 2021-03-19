@@ -46,7 +46,6 @@ public class Services {
         return majorPersistence;
     }
 
-
     public static synchronized IProgramPersistence getProgramPersistence(){
         if(programPersistence==null){
             programPersistence = new ProgramPersistenceStub();
