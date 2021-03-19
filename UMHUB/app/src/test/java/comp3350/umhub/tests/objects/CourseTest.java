@@ -28,7 +28,7 @@ public class CourseTest {
         programList.add(program1);
         programList.add(program2);
 
-        course = new Course("Software Engineering", "COMP 3350", "Course to get you trained in industry standards of coding projects",3, programList);
+        course = new Course("Software Engineering", "COMP 3350", "Course to get you trained in industry standards of coding projects",3, major,programList);
         assertNotNull(course);
         assertTrue("Software Engineering".equals(course.getName()));
         assertTrue("COMP 3350".equals(course.getId()));
