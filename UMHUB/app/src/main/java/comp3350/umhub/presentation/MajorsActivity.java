@@ -3,6 +3,7 @@ package comp3350.umhub.presentation;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,8 +42,8 @@ public class MajorsActivity extends AppCompatActivity {
                     View view = super.getView(position, convertView, parent);
 
                     TextView text1 = (TextView) view.findViewById(android.R.id.text1);
-
                     text1.setText(majorList.get(position).getName());
+                    text1.setTextColor(Color.BLACK);
 
                     return view;
                 }
@@ -61,7 +62,7 @@ public class MajorsActivity extends AppCompatActivity {
             });
 
         }
-        catch (final Exception e)
+        catch (final NullPointerException e)
         {
             Messages.fatalError(this, e.getMessage());
         }
