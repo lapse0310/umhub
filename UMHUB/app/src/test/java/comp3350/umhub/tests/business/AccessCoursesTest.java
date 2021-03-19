@@ -9,6 +9,7 @@ import java.util.List;
 import comp3350.umhub.business.AccessCourses;
 import comp3350.umhub.business.IAccessCourses;
 import comp3350.umhub.objects.Course;
+import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.Program;
 
 import static org.junit.Assert.assertEquals;
@@ -24,9 +25,9 @@ public class AccessCoursesTest {
     }
 
     @Test
-    public void testGetAllCourses(){
+    public void testGetAllCoursesByProgram(){
 
-        System.out.println("\nStarting test AccessPrograms - get all courses");
+        System.out.println("\nStarting test AccessPrograms - get all courses by program");
 
         Course course;
 
@@ -52,51 +53,72 @@ public class AccessCoursesTest {
 
         assert(found);
 
-        System.out.println("Finished test AccessCourses - get all courses");
+        System.out.println("Finished test AccessCourses - get all courses by program");
     }
 
     @Test
-    public void testGetYear1Courses(){
-        System.out.println("Starting test AccessCourses - year 1 courses");
+    public void testGetYearCoursesProgram(){
+        System.out.println("Starting test AccessCourses - get courses by year and program");
         Program program = new Program("Computer Science General");
-        List<Course> courses = accessCourses.getYear1Courses(program);
+        List<Course> courses = accessCourses.getCoursesByYearProgram(program,1);
         for(int i=0; i<courses.size(); i++){
             assertEquals(1,courses.get(i).getYear());
         }
 
-        System.out.println("Finished test AccessCourses - year 1 courses");
-    }
-    @Test
-    public void testGetYear2Courses(){
-        System.out.println("Starting test AccessCourses - year 2 courses");
-        Program program = new Program("Computer Science General");
-        List<Course> courses = accessCourses.getYear2Courses(program);
+        courses = accessCourses.getCoursesByYearProgram(program,2);
         for(int i=0; i<courses.size(); i++){
             assertEquals(2,courses.get(i).getYear());
         }
 
-        System.out.println("Finished test AccessCourses - year 2 courses");
-    }
-    @Test
-    public void testGetYear3Courses(){
-        System.out.println("Starting test AccessCourses - year 3 courses");
-        Program program = new Program("Computer Science General");
-        List<Course> courses = accessCourses.getYear3Courses(program);
+        courses = accessCourses.getCoursesByYearProgram(program,3);
         for(int i=0; i<courses.size(); i++){
             assertEquals(3,courses.get(i).getYear());
         }
 
-        System.out.println("Finished test AccessCourses - year 3 courses");
-    }
-    @Test
-    public void testGetYear4Courses(){
-        System.out.println("Starting test AccessCourses - year 4 courses");
-        Program program = new Program("Computer Science General");
-        List<Course> courses = accessCourses.getYear4Courses(program);
+        courses = accessCourses.getCoursesByYearProgram(program,4);
         for(int i=0; i<courses.size(); i++){
             assertEquals(4,courses.get(i).getYear());
         }
 
-        System.out.println("Finished test AccessCourses - year 4 courses");
+
+        System.out.println("Finished test AccessCourses - get courses by year and program");
     }
+
+    @Test
+    public void testGetAllCoursesByMajor(){
+        System.out.println("\nStarting test AccessCourses - get all courses by major");
+        Major major = new Major("Computer Science");
+        List<Course> courses = accessCourses.getCoursesByMajor(major);
+        for(int i=0; i<courses.size(); i++){
+            assertEquals(major.getName(),courses.get(i).getMajor().getName());
+        }
+        System.out.println("Finished test AccessCourses - get all courses by major");
+    }
+
+    @Test
+    public void testGetCoursesByYearMajor(){
+        System.out.println("\nStarting test AccessCourses - get courses by year and program");
+        Major major = new Major("Mathematics");
+        List<Course> courses = accessCourses.getCoursesByYearMajor(major,1);
+        for(int i=0; i<courses.size();i++){
+            assertEquals(1,courses.get(i).getYear());
+        }
+
+        courses = accessCourses.getCoursesByYearMajor(major,2);
+        for(int i=0; i<courses.size();i++){
+            assertEquals(2,courses.get(i).getYear());
+        }
+
+        courses = accessCourses.getCoursesByYearMajor(major,3);
+        for(int i=0; i<courses.size();i++){
+            assertEquals(3,courses.get(i).getYear());
+        }
+
+        courses = accessCourses.getCoursesByYearMajor(major,4);
+        for(int i=0; i<courses.size();i++){
+            assertEquals(4,courses.get(i).getYear());
+        }
+        System.out.println("Finished test AccessCourses - get courses by year and program");
+    }
+
 }
