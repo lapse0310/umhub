@@ -5,6 +5,7 @@ import java.util.List;
 
 import comp3350.umhub.application.Services;
 import comp3350.umhub.objects.Course;
+import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.Program;
 import comp3350.umhub.persistence.ICoursePersistence;
 
@@ -37,65 +38,44 @@ public class AccessCourses implements IAccessCourses{
     }
 
     @Override
-    public List<Course> getYear1Courses(Program program) {
+    public List<Course> getCoursesByYearProgram(Program program, int year) {
         List<Course> coursesUnderProgram = getCourses(program);
-        List<Course> year1Courses = new ArrayList<>();
+        List<Course> yearCourses = new ArrayList<>();
 
         for(int i=0; i<coursesUnderProgram.size();i++){
-            int year = coursesUnderProgram.get(i).getYear();
-            if(year == 1){
-                year1Courses.add(coursesUnderProgram.get(i));
+            int courseYear = coursesUnderProgram.get(i).getYear();
+            if(courseYear == year){
+                yearCourses.add(coursesUnderProgram.get(i));
             }
         }
 
-        return year1Courses;
-    }
-
-
-
-    @Override
-    public List<Course> getYear2Courses(Program program) {
-        List<Course> coursesUnderProgram = getCourses(program);
-        List<Course> year2Courses = new ArrayList<>();
-
-        for(int i=0; i<coursesUnderProgram.size();i++){
-            int year = coursesUnderProgram.get(i).getYear();
-            if(year == 2){
-                year2Courses.add(coursesUnderProgram.get(i));
-            }
-        }
-
-        return year2Courses;
+        return yearCourses;
     }
 
     @Override
-    public List<Course> getYear3Courses(Program program) {
-        List<Course> coursesUnderProgram = getCourses(program);
-        List<Course> year3Courses = new ArrayList<>();
-
-        for(int i=0; i<coursesUnderProgram.size();i++){
-            int year = coursesUnderProgram.get(i).getYear();
-            if(year == 3){
-                year3Courses.add(coursesUnderProgram.get(i));
+    public List<Course> getCoursesByMajor(Major major) {
+        List<Course> coursesUnderMajor = new ArrayList<>();
+        for(int i=0; i<courses.size();i++){
+            if(Equals.isEqualMajor(major,courses.get(i).getMajor())){
+                coursesUnderMajor.add(courses.get(i));
             }
         }
-
-        return year3Courses;
+        return coursesUnderMajor;
     }
 
     @Override
-    public List<Course> getYear4Courses(Program program) {
-        List<Course> coursesUnderProgram = getCourses(program);
-        List<Course> year4Courses = new ArrayList<>();
+    public List<Course> getCoursesByYearMajor(Major major, int year) {
+        List<Course> coursesUnderProgram = getCoursesByMajor(major);
+        List<Course> yearCourses = new ArrayList<>();
 
         for(int i=0; i<coursesUnderProgram.size();i++){
-            int year = coursesUnderProgram.get(i).getYear();
-            if(year == 4){
-                year4Courses.add(coursesUnderProgram.get(i));
+            int courseYear = coursesUnderProgram.get(i).getYear();
+            if(courseYear == year){
+                yearCourses.add(coursesUnderProgram.get(i));
             }
         }
 
-
-        return year4Courses;
+        return yearCourses;
     }
+
 }

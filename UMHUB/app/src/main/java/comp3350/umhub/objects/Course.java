@@ -7,6 +7,7 @@ public class Course {
     private String id;
     private String description;
     private int year;
+    private Major major;
     private List<Program> programs;
 
     public Course(String id){
@@ -20,11 +21,12 @@ public class Course {
         this.year = year;
     }
 
-    public Course(String name, String id, String desc, int year, List<Program> programs){
+    public Course(String name, String id, String desc, int year, Major major, List<Program> programs){
         this.name = name;
         this.id = id;
         description = desc;
         this.year = year;
+        this.major = major;
         this.programs = programs;
     }
 
@@ -45,6 +47,10 @@ public class Course {
 
     public int getYear() {
         return year;
+    }
+
+    public Major getMajor(){
+        return major;
     }
 
     public List<Program> getPrograms(){

@@ -11,8 +11,19 @@
     android:background="@color/gold"
     tools:context="comp3350.umhub.presentation.ProgramsActivity">
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/brown"
+        android:onClick="buttonCoursesOnClick"
+        android:text="@string/courses"
+        android:textColor="@color/gold">
+
+    </Button>
+
     <ListView
         android:id="@+id/listPrograms"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="-40dp" />
 </RelativeLayout>

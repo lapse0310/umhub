@@ -9,5 +9,6 @@
     <string name = "table2">Year 2</string>
     <string name = "table3">Year 3</string>
     <string name = "table4">Year 4</string>
+    <string name = "courses">All Courses</string>
 
 </resources>

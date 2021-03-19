@@ -17,13 +17,14 @@ import java.util.List;
 import comp3350.umhub.R;
 import comp3350.umhub.application.Services;
 import comp3350.umhub.business.IAccessPrograms;
+import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.Program;
 
 public class ProgramsActivity extends AppCompatActivity {
 
     private List<Program> programList;
-    private static Program programSelected;
+    private static Program programSelected = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,11 +75,15 @@ public class ProgramsActivity extends AppCompatActivity {
 
     }
 
+    public void buttonCoursesOnClick(View view) {
+        Intent majorsIntent = new Intent(ProgramsActivity.this, CoursesActivity.class);
+        ProgramsActivity.this.startActivity(majorsIntent);
+    }
+
     //DSO
     public static Program getProgramSelected(){
         return programSelected;
     }
-
 
 }
 
