@@ -9,6 +9,8 @@
     <string name = "table2">Year 2</string>
     <string name = "table3">Year 3</string>
     <string name = "table4">Year 4</string>
-    <string name = "courses">All Courses</string>
+    <string name = "courses">Click here to view all courses under the major</string>
+    <string name = "programs">List of all the programs under the major</string>
+    <string name = "majors">List of all the majors available</string>
 
 </resources>

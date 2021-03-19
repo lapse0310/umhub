@@ -38,21 +38,21 @@ public class CoursesActivity extends AppCompatActivity {
         if(ProgramsActivity.getProgramSelected()==null){
             //button from programs
             Major majorSelected = MajorsActivity.getMajorSelected();
-
-            System.out.println(majorSelected.getName());
             courseList1 = accessCourses.getCoursesByYearMajor(majorSelected,1);
             courseList2 = accessCourses.getCoursesByYearMajor(majorSelected,2);
             courseList3 = accessCourses.getCoursesByYearMajor(majorSelected,3);
             courseList4 = accessCourses.getCoursesByYearMajor(majorSelected,4);
         }
-        else{
+        else {
+            Program programSelected = ProgramsActivity.getProgramSelected();
+            courseList1 = accessCourses.getCoursesByYearProgram(programSelected, 1);
+            courseList2 = accessCourses.getCoursesByYearProgram(programSelected, 2);
+            courseList3 = accessCourses.getCoursesByYearProgram(programSelected, 3);
+            courseList4 = accessCourses.getCoursesByYearProgram(programSelected, 4);
+        }
             try
             {
-                Program programSelected = ProgramsActivity.getProgramSelected();
-                courseList1 = accessCourses.getCoursesByYearProgram(programSelected,1);
-                courseList2 = accessCourses.getCoursesByYearProgram(programSelected,2);
-                courseList3 = accessCourses.getCoursesByYearProgram(programSelected,3);
-                courseList4 = accessCourses.getCoursesByYearProgram(programSelected,4);
+
 
                 if(courseList1.size()!=0){
                     ArrayAdapter<Course> firstYear = new ArrayAdapter<Course>(this, android.R.layout.simple_list_item_activated_1, android.R.id.text1, courseList1){
@@ -141,8 +141,8 @@ public class CoursesActivity extends AppCompatActivity {
                     });
                 }
 
-                if(courseList4.size()!=0){
-                    ArrayAdapter<Course> fourthYear = new ArrayAdapter<Course>(this, android.R.layout.simple_list_item_activated_1, android.R.id.text1, courseList4){
+                if(courseList4.size()!=0) {
+                    ArrayAdapter<Course> fourthYear = new ArrayAdapter<Course>(this, android.R.layout.simple_list_item_activated_1, android.R.id.text1, courseList4) {
                         public View getView(int position, View convertView, ViewGroup parent) {
 
                             View view = super.getView(position, convertView, parent);
@@ -176,7 +176,7 @@ public class CoursesActivity extends AppCompatActivity {
             {
                 Messages.fatalError(this, e.getMessage());
             }
-        }
+
 
 
 

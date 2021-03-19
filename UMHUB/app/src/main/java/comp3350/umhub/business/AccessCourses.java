@@ -65,13 +65,13 @@ public class AccessCourses implements IAccessCourses{
 
     @Override
     public List<Course> getCoursesByYearMajor(Major major, int year) {
-        List<Course> coursesUnderProgram = getCoursesByMajor(major);
+        List<Course> coursesUnderMajor = getCoursesByMajor(major);
         List<Course> yearCourses = new ArrayList<>();
 
-        for(int i=0; i<coursesUnderProgram.size();i++){
-            int courseYear = coursesUnderProgram.get(i).getYear();
+        for(int i=0; i<coursesUnderMajor.size();i++){
+            int courseYear = coursesUnderMajor.get(i).getYear();
             if(courseYear == year){
-                yearCourses.add(coursesUnderProgram.get(i));
+                yearCourses.add(coursesUnderMajor.get(i));
             }
         }
 
