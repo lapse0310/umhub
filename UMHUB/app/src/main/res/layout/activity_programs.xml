@@ -11,8 +11,30 @@
     android:background="@color/gold"
     tools:context="comp3350.umhub.presentation.ProgramsActivity">
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/brown"
+        android:onClick="buttonCoursesOnClick"
+        android:text="@string/courses"
+        android:textColor="@color/gold">
+
+    </Button>
+
+    <TextView
+        android:id="@+id/textprograms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:gravity="center_horizontal"
+        android:text="@string/programs"
+        android:textAlignment="center"
+        android:textColor="#a52a2a"
+        android:textSize="20sp" />
+
     <ListView
         android:id="@+id/listPrograms"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp" />
 </RelativeLayout>

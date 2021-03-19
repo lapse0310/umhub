@@ -11,8 +11,19 @@
     android:background="#ffd700"
     tools:context="comp3350.umhub.presentation.MajorsActivity">
 
+    <TextView
+        android:id="@+id/textmajors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/majors"
+        android:textAlignment="center"
+        android:textColor="#a52a2a"
+        android:textSize="20sp" />
+
     <ListView
         android:id="@+id/listMajors"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp" />
 </RelativeLayout>

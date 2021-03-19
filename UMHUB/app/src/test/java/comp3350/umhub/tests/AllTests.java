@@ -4,6 +4,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 
+import comp3350.umhub.business.AccessCourses;
 import comp3350.umhub.tests.objects.*;
 import comp3350.umhub.tests.business.*;
 
@@ -17,7 +18,8 @@ import comp3350.umhub.tests.business.*;
         AccessProgramsTest.class,
         EqualsTest.class,
         UsersTest.class,
-        LoginTest.class
+        LoginTest.class,
+        AccessCoursesTest.class
 })
 
 public class AllTests {
