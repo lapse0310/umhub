@@ -7,10 +7,12 @@ import java.util.List;
 import comp3350.umhub.application.Services;
 import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.Program;
+import comp3350.umhub.persistence.IMajorPersistence;
 import comp3350.umhub.persistence.IProgramPersistence;
 
 public class AccessPrograms implements IAccessPrograms {
     private final List<Program> programs;
+    private IProgramPersistence programPersistence;
 
 
     public AccessPrograms(){
@@ -18,6 +20,11 @@ public class AccessPrograms implements IAccessPrograms {
         programs = programPersistence.getProgramsSequential();
 
 
+    }
+
+    public AccessPrograms(final IProgramPersistence persistence){
+        this();
+        programPersistence = persistence;
     }
 
     public List<Program> getPrograms(Major majorSelected){

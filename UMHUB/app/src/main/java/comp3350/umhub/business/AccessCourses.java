@@ -8,14 +8,22 @@ import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.Program;
 import comp3350.umhub.persistence.ICoursePersistence;
+import comp3350.umhub.persistence.IProgramPersistence;
 
 public class AccessCourses implements IAccessCourses{
     private final List<Course> courses;
+    private ICoursePersistence coursePersistence;
+
 
     public AccessCourses(){
         ICoursePersistence coursePersistence = Services.getCoursePersistence();
         courses = coursePersistence.getCourseSequential();
 
+    }
+
+    public AccessCourses( final ICoursePersistence persistence) {
+        this();
+        coursePersistence = persistence;
     }
 
     @Override

@@ -37,6 +37,11 @@ public class CourseReviewsActivity extends AppCompatActivity {
 
         course = CoursesActivity.getCourseSelected();
 
+        System.out.println();
+
+
+
+
         try{
             courseReviewList = accessCourseReviews.getCourseReviews(course);
             ArrayAdapter<CourseReview> courseReviewArrayAdapter = new ArrayAdapter<CourseReview>(this, android.R.layout.simple_list_item_activated_2,android.R.id.text1,courseReviewList) {

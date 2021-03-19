@@ -39,12 +39,15 @@ public class CoursesActivity extends AppCompatActivity {
         if(ProgramsActivity.getProgramSelected()==null){
             //button from programs
             Major majorSelected = MajorsActivity.getMajorSelected();
+
+
             courseList1 = accessCourses.getCoursesByYearMajor(majorSelected,1);
             courseList2 = accessCourses.getCoursesByYearMajor(majorSelected,2);
             courseList3 = accessCourses.getCoursesByYearMajor(majorSelected,3);
             courseList4 = accessCourses.getCoursesByYearMajor(majorSelected,4);
         }
         else {
+
             Program programSelected = ProgramsActivity.getProgramSelected();
             courseList1 = accessCourses.getCoursesByYearProgram(programSelected, 1);
             courseList2 = accessCourses.getCoursesByYearProgram(programSelected, 2);
@@ -78,7 +81,7 @@ public class CoursesActivity extends AppCompatActivity {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             courseSelected = courseList1.get(position);
-                            Intent courseDescription = new Intent(CoursesActivity.this, HomeActivity.class);
+                            Intent courseDescription = new Intent(CoursesActivity.this, CourseReviewsActivity.class);
                             startActivity(courseDescription);
                         }
                     });
@@ -107,7 +110,7 @@ public class CoursesActivity extends AppCompatActivity {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             courseSelected = courseList2.get(position);
-                            Intent courseDescription = new Intent(CoursesActivity.this, HomeActivity.class);
+                            Intent courseDescription = new Intent(CoursesActivity.this, CourseReviewsActivity.class);
                             startActivity(courseDescription);
                         }
                     });
@@ -165,7 +168,7 @@ public class CoursesActivity extends AppCompatActivity {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             courseSelected = courseList4.get(position);
-                            Intent courseDescription = new Intent(CoursesActivity.this, HomeActivity.class);
+                            Intent courseDescription = new Intent(CoursesActivity.this, CourseReviewsActivity.class);
                             startActivity(courseDescription);
                         }
                     });
