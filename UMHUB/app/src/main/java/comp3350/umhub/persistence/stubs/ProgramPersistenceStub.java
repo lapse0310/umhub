@@ -2,6 +2,7 @@ package comp3350.umhub.persistence.stubs;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
 
 import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.Program;
@@ -35,7 +36,13 @@ public class ProgramPersistenceStub implements IProgramPersistence {
     }
 
     @Override
-    public List<Program> getProgramsSequential() {
-        return programs;
+    public List<Program> getProgramSequential() {
+        return Collections.unmodifiableList(programs);
+
+	}
+
+    @Override
+    public List<Program> getProgramRandom(Program currentProgram) {
+        return null;
     }
 }

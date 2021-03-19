@@ -4,7 +4,7 @@ public class CourseReview extends Review{
     Course course;
     String prof;
 
-    public CourseReview(Users user, Course course, String prof, double score, String review){
+    public CourseReview(User user, Course course, String prof, double score, String review){
         this.user = user;
         this.course = course;
         this.prof = prof;
@@ -21,4 +21,3 @@ public class CourseReview extends Review{
         return prof;
     }
 }
-
