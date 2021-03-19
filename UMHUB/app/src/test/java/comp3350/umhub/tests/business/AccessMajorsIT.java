@@ -33,8 +33,7 @@ public class AccessMajorsIT {
     public void getMajorsTest(){
 
         System.out.println("\n Starting Access Majors integration test - getMajors");
-        List<Major> majors = new ArrayList<>();
-        majors = accessMajors.getMajors();
+        List<Major> majors  =accessMajors.getMajors();
 
         assertNotNull("Majors list should not be null", majors);
         assert(majors.size()!=0);

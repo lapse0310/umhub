@@ -1,6 +1,5 @@
 package comp3350.umhub.business;
 
-import java.util.Collections;
 import java.util.List;
 
 import comp3350.umhub.application.Services;
@@ -22,7 +21,7 @@ public class AccessCourseReviews implements IAccessCourseReviews{
     @Override
     public List<CourseReview> getCourseReviews() {
         courseReviews = courseReviewPersistence.getCourseReviewsSequential();
-        return Collections.unmodifiableList(courseReviews);
+        return courseReviews;
     }
 
     @Override
@@ -37,6 +36,6 @@ public class AccessCourseReviews implements IAccessCourseReviews{
 
     public List<CourseReview> getCourseReviews(Course course) {
         courseReviews = courseReviewPersistence.getCourseReviewsSequential(course);
-        return Collections.unmodifiableList(courseReviews);
+        return courseReviews;
     }
 }

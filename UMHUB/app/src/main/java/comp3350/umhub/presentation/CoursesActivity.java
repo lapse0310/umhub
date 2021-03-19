@@ -18,6 +18,7 @@ import comp3350.umhub.R;
 import comp3350.umhub.application.Services;
 import comp3350.umhub.business.IAccessCourses;
 import comp3350.umhub.objects.Course;
+import comp3350.umhub.objects.CourseReview;
 import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.Program;
 
@@ -135,7 +136,7 @@ public class CoursesActivity extends AppCompatActivity {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             courseSelected = courseList3.get(position);
-                            Intent courseDescription = new Intent(CoursesActivity.this, HomeActivity.class);
+                            Intent courseDescription = new Intent(CoursesActivity.this, CourseReviewsActivity.class);
                             startActivity(courseDescription);
                         }
                     });
