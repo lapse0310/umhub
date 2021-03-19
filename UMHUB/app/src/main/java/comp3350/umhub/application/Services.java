@@ -15,6 +15,7 @@ import comp3350.umhub.business.AccessPrograms;
 import comp3350.umhub.objects.User;
 import comp3350.umhub.persistence.ICourseReviewPersistence;
 import comp3350.umhub.persistence.ILoginPersistence;
+import comp3350.umhub.persistence.hsqldb.CourseReviewPersistenceHSQLDB;
 import comp3350.umhub.persistence.stubs.CourseReviewPersistenceStub;
 import comp3350.umhub.persistence.stubs.LoginPersistenceStub;
 
@@ -54,8 +55,8 @@ public class Services {
 
     public static synchronized IMajorPersistence getMajorPersistence(){
         if(majorPersistence==null){
-            //majorPersistence = new MajorPersistenceStub();
-            majorPersistence = new MajorPersistenceHSQLDB(Main.getDBPathName());
+            majorPersistence = new MajorPersistenceStub();
+            //majorPersistence = new MajorPersistenceHSQLDB(Main.getDBPathName());
 
         }
         return majorPersistence;
@@ -63,16 +64,16 @@ public class Services {
 
     public static synchronized IProgramPersistence getProgramPersistence(){
         if(programPersistence==null){
-            //programPersistence = new ProgramPersistenceStub();
-            programPersistence = new ProgramPersistenceHSQLDB(Main.getDBPathName());
+            programPersistence = new ProgramPersistenceStub();
+            //programPersistence = new ProgramPersistenceHSQLDB(Main.getDBPathName());
         }
         return programPersistence;
     }
 
     public static synchronized ICoursePersistence getCoursePersistence(){
         if(coursePersistence==null){
-            //coursePersistence = new CoursePersistenceStub();
-            coursePersistence = new CoursePersistenceHSQLDB(Main.getDBPathName());
+            coursePersistence = new CoursePersistenceStub();
+            //coursePersistence = new CoursePersistenceHSQLDB(Main.getDBPathName());
         }
         return coursePersistence;
     }
@@ -109,8 +110,8 @@ public class Services {
     public static ICourseReviewPersistence getCourseReviewPersistence() {
 
         if(courseReviewPersistence ==null){
-            // courseReviewPersistence = new CourseReviewPersistenceHSQLDB(Main.getDBPathName());
-            courseReviewPersistence = new CourseReviewPersistenceStub();
+            courseReviewPersistence = new CourseReviewPersistenceHSQLDB(Main.getDBPathName());
+            //courseReviewPersistence = new CourseReviewPersistenceStub();
         }
         return courseReviewPersistence;
     }
@@ -118,7 +119,6 @@ public class Services {
     public static IAccessCourseReviews getAccessCourseReviews() {
 
         if(accessCourseReviews ==null){
-            // courseReviewPersistence = new CourseReviewPersistenceHSQLDB(Main.getDBPathName());
             accessCourseReviews = new AccessCourseReviews();
         }
         return accessCourseReviews;
