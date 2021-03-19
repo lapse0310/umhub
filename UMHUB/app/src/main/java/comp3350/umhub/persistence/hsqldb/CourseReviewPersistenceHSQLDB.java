@@ -71,7 +71,7 @@ public class CourseReviewPersistenceHSQLDB implements ICourseReviewPersistence {
     @Override
     public void insertCourseReview(CourseReview courseReview) {
         final String courseID = courseReview.getCourse().getId();
-        final String username = courseReview.getUser().getUid();
+        final String username = courseReview.getUser().getUsername();
         final String reviewString = courseReview.getReview();
         final int score = courseReview.getScore();
         try (final Connection c = connection()) {

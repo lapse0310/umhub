@@ -10,7 +10,7 @@ public abstract class Review {
     }
 
     public String getUid() {
-        return user.getUid();
+        return user.getUsername();
     }
 
     public int getScore() {

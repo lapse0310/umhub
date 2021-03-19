@@ -14,19 +14,16 @@ import comp3350.umhub.business.AccessPrograms;
 
 import comp3350.umhub.objects.User;
 import comp3350.umhub.persistence.ICourseReviewPersistence;
-import comp3350.umhub.persistence.IMajorPersistence;
+import comp3350.umhub.persistence.ILoginPersistence;
 import comp3350.umhub.persistence.stubs.CourseReviewPersistenceStub;
-import comp3350.umhub.persistence.ICoursePersistence;
-import comp3350.umhub.persistence.IMajorPersistence;
-import comp3350.umhub.persistence.hsqldb.CoursePersistenceHSQLDB;
-import comp3350.umhub.persistence.hsqldb.MajorPersistenceHSQLDB;
-import comp3350.umhub.persistence.hsqldb.ProgramPersistenceHSQLDB;
-import comp3350.umhub.persistence.stubs.MajorPersistenceStub;
+import comp3350.umhub.persistence.stubs.LoginPersistenceStub;
 
+import comp3350.umhub.persistence.IMajorPersistence;
 import comp3350.umhub.persistence.ICoursePersistence;
 import comp3350.umhub.persistence.IProgramPersistence;
 
 import comp3350.umhub.persistence.stubs.CoursePersistenceStub;
+import comp3350.umhub.persistence.stubs.MajorPersistenceStub;
 import comp3350.umhub.persistence.stubs.ProgramPersistenceStub;
 
 import comp3350.umhub.persistence.hsqldb.CoursePersistenceHSQLDB;
@@ -35,47 +32,34 @@ import comp3350.umhub.persistence.hsqldb.ProgramPersistenceHSQLDB;
 
 
 public class Services {
+
     private static User currentUser;
     private static IAccessMajors accessMajors = null;
     private static IAccessPrograms accessPrograms = null;
-    private static IAccessCourseReviews accessCourseReviews = null;
+    private static IAccessCourses accessCourses = null;
     private static IMajorPersistence majorPersistence = null;
     private static IProgramPersistence programPersistence = null;
-    private static ICourseReviewPersistence courseReviewPersistence = null;
-    private static IAccessCourses accessCourses = null;
     private static ICoursePersistence coursePersistence = null;
+    private static ILoginPersistence loginPersistence = null;
+    private static ICourseReviewPersistence courseReviewPersistence = null;
+    private static AccessCourseReviews accessCourseReviews;
 
-    public static synchronized User getCurrentUser() {
+    public static User getCurrentUser() {
         return currentUser;
     }
 
-    public static synchronized void setCurrentUser(User newUser) {
-        currentUser = newUser;
+    public static void setCurrentUser(User user){
+        currentUser = user;
     }
 
     public static synchronized IMajorPersistence getMajorPersistence(){
         if(majorPersistence==null){
             //majorPersistence = new MajorPersistenceStub();
             majorPersistence = new MajorPersistenceHSQLDB(Main.getDBPathName());
+
         }
         return majorPersistence;
     }
-
-    public static synchronized IMajorPersistence getMajorPersistence(Class c){
-        if(majorPersistence==null){
-            if (IMajorPersistence.class.isAssignableFrom(c)) {
-                try {
-                    majorPersistence = (IMajorPersistence) c.newInstance();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return majorPersistence;
-    }
-
 
     public static synchronized IProgramPersistence getProgramPersistence(){
         if(programPersistence==null){
@@ -85,65 +69,17 @@ public class Services {
         return programPersistence;
     }
 
-
-    public static synchronized IProgramPersistence getProgramPersistence(Class c){
-        if(programPersistence==null){
-            if (IProgramPersistence.class.isAssignableFrom(c)) {
-                try {
-                    programPersistence = (IProgramPersistence) c.newInstance();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                }
-            }
+    public static synchronized ICoursePersistence getCoursePersistence(){
+        if(coursePersistence==null){
+            //coursePersistence = new CoursePersistenceStub();
+            coursePersistence = new CoursePersistenceHSQLDB(Main.getDBPathName());
         }
-        return programPersistence;
+        return coursePersistence;
     }
-
-    public static synchronized ICourseReviewPersistence getCourseReviewPersistence(){
-        if(courseReviewPersistence==null){
-            courseReviewPersistence = new CourseReviewPersistenceStub();
-        }
-        return courseReviewPersistence;
-    }
-
-    public static synchronized ICourseReviewPersistence getCourseReviewPersistence(Class c){
-        if(courseReviewPersistence==null){
-            if (ICourseReviewPersistence.class.isAssignableFrom(c)) {
-                try {
-                    courseReviewPersistence = (ICourseReviewPersistence) c.newInstance();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return courseReviewPersistence;
-        
-    }
-       
-
 
     public static synchronized IAccessMajors getAccessMajors(){
         if(accessMajors==null){
             accessMajors = new AccessMajors();
-        }
-        return accessMajors;
-    }
-
-    public static synchronized IAccessMajors getAccessMajors(Class c){
-        if(accessMajors==null){
-            if (IAccessMajors.class.isAssignableFrom(c)) {
-                try {
-                    accessMajors = (IAccessMajors) c.newInstance();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                }
-            }
         }
         return accessMajors;
     }
@@ -155,42 +91,6 @@ public class Services {
         return accessPrograms;
     }
 
-    public static synchronized IAccessPrograms getAccessPrograms(Class c){
-        if(accessPrograms==null){
-            if (IAccessPrograms.class.isAssignableFrom(c)) {
-                try {
-                    accessPrograms = (IAccessPrograms) c.newInstance();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return accessPrograms;
-    }
-
-    public static synchronized IAccessCourseReviews getAccessCourseReviews(){
-        if (accessCourseReviews == null){
-            accessCourseReviews = new AccessCourseReviews();
-        }
-        return accessCourseReviews;
-    }
-
-    public static synchronized IAccessCourseReviews getAccessCourseReviews(Class c){
-        if(accessCourseReviews==null){
-            if (IAccessCourseReviews.class.isAssignableFrom(c)) {
-                try {
-                    accessCourseReviews = (IAccessCourseReviews) c.newInstance();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return accessCourseReviews;
-    }
 
     public static synchronized IAccessCourses getAccessCourses(){
         if(accessCourses==null){
@@ -199,40 +99,29 @@ public class Services {
         return accessCourses;
     }
 
-    public static synchronized IAccessCourses getAccessCourses(Class c){
-        if(accessCourses==null){
-            if (IAccessCourses.class.isAssignableFrom(c)) {
-                try {
-                    accessCourses = (IAccessCourses) c.newInstance();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                }
-            }
+    public static synchronized ILoginPersistence getLoginPersistence(){
+        if(loginPersistence==null){
+            loginPersistence = new LoginPersistenceStub();
         }
-        return accessCourses;
+        return loginPersistence;
     }
 
-    public static synchronized ICoursePersistence getCoursePersistence(){
-        if(coursePersistence==null){
-            coursePersistence = new CoursePersistenceHSQLDB(Main.getDBPathName());
+    public static ICourseReviewPersistence getCourseReviewPersistence() {
+
+        if(courseReviewPersistence ==null){
+            // courseReviewPersistence = new CourseReviewPersistenceHSQLDB(Main.getDBPathName());
+            courseReviewPersistence = new CourseReviewPersistenceStub();
         }
-        return coursePersistence;
+        return courseReviewPersistence;
     }
 
-    public static synchronized ICoursePersistence getCoursePersistence(Class c){
-        if(coursePersistence==null){
-            if (ICoursePersistence.class.isAssignableFrom(c)) {
-                try {
-                    coursePersistence = (ICoursePersistence) c.newInstance();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                }
-            }
+    public static IAccessCourseReviews getAccessCourseReviews() {
+
+        if(accessCourseReviews ==null){
+            // courseReviewPersistence = new CourseReviewPersistenceHSQLDB(Main.getDBPathName());
+            accessCourseReviews = new AccessCourseReviews();
         }
-        return coursePersistence;
+        return accessCourseReviews;
+
     }
 }
