@@ -43,11 +43,15 @@ public class EqualsTest {
     @Test
     public void testIsNotEqualProgram(){
         System.out.println("\nStarting test testIsNotEqualProgram");
-        Program program1 = new Program("Test program");
-        Program program2 = new Program("Test wrong program");
-        Program sameProgram = new Program("Test program");
+        Major major1 = new Major("Test major");
+        Major major2 = new Major("Test wrong major");
+        Program program1 = new Program("Test program",major1);
+        Program program2 = new Program("Test wrong program",major1);
         assertFalse(Equals.isEqualProgram(program1,program2));
-        assertTrue(Equals.isEqualProgram(program1, sameProgram));
+
+        Program program3 = new Program("Test program",major2);
+        assertFalse(Equals.isEqualProgram(program1,program3));
+        assertFalse(Equals.isEqualProgram(program2,program3));
         System.out.println("Finished test testIsNotEqualProgram");
 
     }

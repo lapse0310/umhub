@@ -54,31 +54,6 @@ public class CoursePersistenceHSQLDB implements ICoursePersistence {
         }
     }
 
-//    @Override
-//    public List<Course> getCourseRandom(Course currentCourse) {
-//        final List<Course> courses = new ArrayList<>();
-//
-//        try (final Connection c = connection()) {
-//            final PreparedStatement st = c.prepareStatement("SELECT * FROM courses WHERE courseID=?");
-//            st.setString(1, currentCourse.getId());
-//
-//            final ResultSet rs = st.executeQuery();
-//            while (rs.next())
-//            {
-//                final Course course = fromResultSet(rs);
-//                courses.add(course);
-//            }
-//            rs.close();
-//            st.close();
-//
-//            return courses;
-//        }
-//        catch (final SQLException e)
-//        {
-//            throw new PersistenceException(e);
-//        }
-//    }
-
 
 }
 

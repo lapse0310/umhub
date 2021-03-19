@@ -55,29 +55,5 @@ public class ProgramPersistenceHSQLDB implements IProgramPersistence {
         }
     }
 
-//    @Override
-//    public List<Program> getMajorRandom(Program currentProgram) {
-//        final List<Program> programs = new ArrayList<>();
-//
-//        try (final Connection c = connection()) {
-//            final PreparedStatement st = c.prepareStatement("SELECT * FROM programs WHERE programID=?");
-//            st.setString(1, currentProgram.getProgramID());
-//
-//            final ResultSet rs = st.executeQuery();
-//            while (rs.next())
-//            {
-//                final Program program = fromResultSet(rs);
-//                programs.add(program);
-//            }
-//            rs.close();
-//            st.close();
-//
-//            return programs;
-//        }
-//        catch (final SQLException e)
-//        {
-//            throw new PersistenceException(e);
-//        }
-//    }
 }
 

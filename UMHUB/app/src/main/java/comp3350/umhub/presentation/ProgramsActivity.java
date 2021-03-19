@@ -3,7 +3,6 @@ package comp3350.umhub.presentation;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,14 +16,13 @@ import java.util.List;
 import comp3350.umhub.R;
 import comp3350.umhub.application.Services;
 import comp3350.umhub.business.IAccessPrograms;
-import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.Program;
 
 public class ProgramsActivity extends AppCompatActivity {
 
     private List<Program> programList;
-    private static Program programSelected = null;
+    private static Program programSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +37,7 @@ public class ProgramsActivity extends AppCompatActivity {
             programList = accessProgram.getPrograms(majorSelected);
             ArrayAdapter<Program> programArrayAdapter = new ArrayAdapter<Program>(this, android.R.layout.simple_list_item_activated_2, android.R.id.text1, programList) {
 
+                // If my major is 'Computer Science', display programs in it using AccessMajors
                 @Override
                 public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -47,7 +46,6 @@ public class ProgramsActivity extends AppCompatActivity {
                     TextView text1 = (TextView) view.findViewById(android.R.id.text1);
 
                     text1.setText(programList.get(position).getName());
-                    text1.setTextColor(Color.BLACK);
 
                     return view;
 
@@ -68,22 +66,18 @@ public class ProgramsActivity extends AppCompatActivity {
 
 
         }
-        catch (final NullPointerException e)
+        catch (final Exception e)
         {
             Messages.fatalError(this, e.getMessage());
         }
 
     }
 
-    public void buttonCoursesOnClick(View view) {
-        Intent majorsIntent = new Intent(ProgramsActivity.this, CoursesActivity.class);
-        ProgramsActivity.this.startActivity(majorsIntent);
-    }
-
     //DSO
     public static Program getProgramSelected(){
         return programSelected;
     }
+
 
 }
 

@@ -52,29 +52,5 @@ public class MajorPersistenceHSQLDB implements IMajorPersistence {
         }
     }
 
-//    @Override
-//    public List<Major> getMajorRandom(Major currentMajor) {
-//        final List<Major> majors = new ArrayList<>();
-//
-//        try (final Connection c = connection()) {
-//            final PreparedStatement st = c.prepareStatement("SELECT * FROM majors WHERE majorID=?");
-//            st.setString(1, currentMajor.getId());
-//
-//            final ResultSet rs = st.executeQuery();
-//            while (rs.next())
-//            {
-//                final Major major = fromResultSet(rs);
-//                majors.add(major);
-//            }
-//            rs.close();
-//            st.close();
-//
-//            return majors;
-//        }
-//        catch (final SQLException e)
-//        {
-//            throw new PersistenceException(e);
-//        }
-//    }
 }
 
