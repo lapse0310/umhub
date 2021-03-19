@@ -33,7 +33,7 @@ public class AccessCourses implements IAccessCourses{
             List<Program> programList = courses.get(i).getPrograms();
             boolean found = false;
             int count = 0;
-            while(!found && count < programList.size()){
+            while(programList != null && !found && count < programList.size()){
                 if(Equals.isEqualProgram(programSelected,programList.get(count))){
                     coursesUnderProgram.add(courses.get(i));
                     found = true;

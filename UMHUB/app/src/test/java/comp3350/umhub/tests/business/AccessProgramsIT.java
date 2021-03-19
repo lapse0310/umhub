@@ -29,9 +29,9 @@ public class AccessProgramsIT {
     @Before
     public void setUp() throws IOException {
         this.tempDB = TestUtils.copyDB();
-        //final IProgramPersistence persistence = new ProgramPersistenceHSQLDB(this.tempDB.getAbsolutePath().replace(".script", ""));
-        //this.accessPrograms = new AccessPrograms(persistence);
-        this.accessPrograms = (AccessPrograms) Services.getAccessPrograms();
+        final IProgramPersistence persistence = new ProgramPersistenceHSQLDB(this.tempDB.getAbsolutePath().replace(".script", ""));
+        this.accessPrograms = new AccessPrograms(persistence);
+        //this.accessPrograms = (AccessPrograms) Services.getAccessPrograms();
     }
 
     @Test
@@ -43,7 +43,8 @@ public class AccessProgramsIT {
 
         assertNotNull("Majors list should not be null", programs);
         assert(programs.size()!=0);
-        assertTrue("Accounting program 1".equals(programs.get(0).getName()));
+
+        assertTrue("BComm Honors Accounting".equals(programs.get(0).getName()));
 
         System.out.println("Finished Access Programs integration test - getPrograms");
 

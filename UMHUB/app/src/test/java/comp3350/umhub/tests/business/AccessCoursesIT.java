@@ -34,27 +34,10 @@ public class AccessCoursesIT {
         this.accessCourses = new AccessCourses(persistence);
     }
 
-    @Test
-    public void getCoursesByProgramTest(){
-        System.out.println("\n Starting Access Course integration test - getCoursesByProgramTest");
-
-        Program programSelected = new Program("Computer Science Honors, Coop");
-
-        List<Course> courses = new ArrayList<>();
-        courses = accessCourses.getCourses(programSelected);
-
-        assertNotNull("Courses list should not be null", courses);
-        assert(courses.size()!=0);
-        assertTrue("COMP 3350".equals(courses.get(0).getId()));
-
-        System.out.println("Finished Access Course integration test - getCoursesByProgramTest");
-
-    }
-
 
     @Test
     public void getCoursesByMajorTest(){
-        System.out.println("\n Starting Access Course integration test - getCoursesByMajorTest");
+        System.out.println("\nStarting Access Course integration test - getCoursesByMajorTest");
 
         Major major = new Major("Computer Science");
 
@@ -63,7 +46,8 @@ public class AccessCoursesIT {
 
         assertNotNull("Courses list should not be null", courses);
         assert(courses.size()!=0);
-        assertTrue("COMP 3350".equals(courses.get(0).getId()));
+
+        assertTrue("COMP1010".equals(courses.get(0).getName()));
 
         System.out.println("Finished Access Course integration test - getCoursesByMajorTest");
 
