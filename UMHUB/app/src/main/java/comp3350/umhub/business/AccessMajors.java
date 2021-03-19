@@ -18,6 +18,7 @@ public class AccessMajors implements IAccessMajors{
     }
 
     public AccessMajors(final IMajorPersistence persistence){
+        this();
         majorPersistence = persistence;
     }
 
