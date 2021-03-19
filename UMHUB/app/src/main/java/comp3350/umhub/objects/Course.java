@@ -6,16 +6,15 @@ public class Course {
     private String name;
     private String id;
     private String description;
-    private String year;
-    private List<Program> programs;
+    private int year;
     private Major major;
-
+    private List<Program> programs;
 
     public Course(String id){
         this.id = id;
     }
 
-    public Course(String name, String id, String desc, String year){
+    public Course(String name, String id, String desc, int year){
         this.name = name;
         this.id = id;
         description = desc;
@@ -35,6 +34,7 @@ public class Course {
         this.id = id;
         description = desc;
         this.year = year;
+        this.major = major;
         this.programs = programs;
     }
 
@@ -53,20 +53,17 @@ public class Course {
         return id;
     }
 
-    public String getYear() {
+    public int getYear() {
         return year;
+    }
+
+    public Major getMajor(){
+        return major;
     }
 
     public List<Program> getPrograms(){
         return programs;
     }
 
-    public boolean equals(Program other){
-        return this.name.equalsIgnoreCase(other.getName());
-    }
-
-    public boolean equals(Course other){
-        return this.name.equalsIgnoreCase(other.getId());
-    }
 
 }

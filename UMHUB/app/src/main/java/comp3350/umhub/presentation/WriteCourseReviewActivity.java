@@ -57,7 +57,7 @@ public class WriteCourseReviewActivity extends AppCompatActivity {
 
     public void buttonSubmitCourseReviewOnClick(View view){
         String review = reviewEditText.getText().toString();
-        int reviewScore = Double.parseDouble(reviewScoreEditText.getText().toString());
+        int reviewScore = Integer.parseInt(reviewScoreEditText.getText().toString());
 
         CourseReview courseReview = new CourseReview(currentUser,course,reviewScore,review);
         accessCourseReviews.addReview(courseReview);

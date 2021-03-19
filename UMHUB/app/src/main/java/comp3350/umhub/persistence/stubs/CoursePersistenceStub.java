@@ -24,10 +24,10 @@ public class CoursePersistenceStub implements ICoursePersistence {
         course2List.add(program2);
         course2List.add(program3);
         course2List.add(program4);
-        courses.add(new Course("Software Engineering","COMP 3350","Random description","Year 3",course1List));
-        courses.add(new Course("Operating Systems","COMP 3430","Random description","Year 3",course1List));
-        courses.add(new Course("Calculus 1","MATH 1500","Random description","Year 1",course2List));
-        courses.add(new Course("Calculus 2","MATH 1700","Random description","Year 1",course2List));
+        courses.add(new Course("Software Engineering","COMP 3350","Random description",3));
+        courses.add(new Course("Operating Systems","COMP 3430","Random description",3));
+        courses.add(new Course("Calculus 2","MATH 1700","Random description",3));
+
 
 
     }
@@ -36,8 +36,4 @@ public class CoursePersistenceStub implements ICoursePersistence {
         return courses;
     }
 
-    @Override
-    public List<Course> getCourseRandom(Course currentCourse) {
-        return null;
-    }
 }

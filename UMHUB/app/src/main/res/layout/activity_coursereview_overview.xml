@@ -8,49 +8,47 @@
 
     <TextView
         android:id="@+id/courseDescription"
-        android:layout_width="370dp"
-        android:layout_height="164dp"
-        android:layout_marginBottom="20dp"
+        android:layout_width="500dp"
+        android:layout_height="298dp"
+        android:layout_marginTop="40dp"
         android:text="Course Review overview here"
-        app:layout_constraintBottom_toTopOf="@+id/reviewListView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/courseName" />
 
     <TextView
         android:id="@+id/courseName"
-        android:layout_width="370dp"
-        android:layout_height="55dp"
+        android:layout_width="500dp"
+        android:layout_height="48dp"
         android:layout_marginTop="32dp"
-        android:layout_marginBottom="38dp"
         android:text="COURSENAME"
-        app:layout_constraintBottom_toTopOf="@+id/courseDescription"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.444" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/reviewListView"
-        android:layout_width="370dp"
-        android:layout_height="362dp"
-        android:layout_marginBottom="96dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="500dp"
+        android:layout_height="412dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginBottom="21dp"
+        app:layout_constraintBottom_toTopOf="@+id/writeReviewButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/courseDescription">
 
     </ListView>
 
     <Button
         android:id="@+id/writeReviewButton"
-        android:layout_width="370dp"
+        android:layout_width="500dp"
         android:layout_height="50dp"
+        android:layout_marginBottom="24dp"
         android:text="WRITE A REVIEW"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reviewListView"
         tools:onClick="buttonWriteCourseReviewOnClick" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

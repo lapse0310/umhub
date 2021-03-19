@@ -41,18 +41,18 @@ public class CourseReviewPersistenceStub implements ICourseReviewPersistence {
         User u2 = new User("u2");
         User u3 = new User("u3");
         User u4 = new User("u4");
-        courseReviews.add(new CourseReview(u1,comp3350,"Rob",5,"Awesome"));
-        courseReviews.add(new CourseReview(u1,comp3170,"Rob",5,"Nice"));
-        courseReviews.add(new CourseReview(u1,comp3010,"Rob",5,"Awesome"));
-        courseReviews.add(new CourseReview(u2,comp3430,"Rob",5,"Awesome"));
-        courseReviews.add(new CourseReview(u2,comp3170,"Rob",5,"Great"));
-        courseReviews.add(new CourseReview(u2,comp3350,"Rob",5,"Awesome"));
-        courseReviews.add(new CourseReview(u3,comp3350,"Rob",5,"Excellent"));
-        courseReviews.add(new CourseReview(u3,comp3010,"Rob",5,"Loved it"));
-        courseReviews.add(new CourseReview(u3,comp3430,"Rob",5,"Awesome"));
-        courseReviews.add(new CourseReview(u4,comp3010,"Rob",5,"Awesome"));
-        courseReviews.add(new CourseReview(u4,comp3170,"Rob",5,"Awful"));
-        courseReviews.add(new CourseReview(u4,comp3350,"Rob",5,"Awesome"));
+        courseReviews.add(new CourseReview(u1,comp3350,5,"Awesome"));
+        courseReviews.add(new CourseReview(u1,comp3170,5,"Nice"));
+        courseReviews.add(new CourseReview(u1,comp3010,5,"Awesome"));
+        courseReviews.add(new CourseReview(u2,comp3430,5,"Awesome"));
+        courseReviews.add(new CourseReview(u2,comp3170,5,"Great"));
+        courseReviews.add(new CourseReview(u2,comp3350,5,"Awesome"));
+        courseReviews.add(new CourseReview(u3,comp3350,5,"Excellent"));
+        courseReviews.add(new CourseReview(u3,comp3010,5,"Loved it"));
+        courseReviews.add(new CourseReview(u3,comp3430,5,"Awesome"));
+        courseReviews.add(new CourseReview(u4,comp3010,5,"Awesome"));
+        courseReviews.add(new CourseReview(u4,comp3170,5,"Awful"));
+        courseReviews.add(new CourseReview(u4,comp3350,5,"Awesome"));
 
     }
 

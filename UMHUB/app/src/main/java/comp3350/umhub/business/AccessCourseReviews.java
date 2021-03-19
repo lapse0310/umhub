@@ -27,7 +27,12 @@ public class AccessCourseReviews implements IAccessCourseReviews{
 
     @Override
     public void addReview(CourseReview courseReview) {
-
+        if (courseReview != null
+                && courseReview.getUid() != null
+                && courseReview.getCourse() != null
+                && courseReview.getScore() >= 0
+                && courseReview.getScore() <= 5)
+            courseReviewPersistence.insertCourseReview(courseReview);
     }
 
     public List<CourseReview> getCourseReviews(Course course) {
