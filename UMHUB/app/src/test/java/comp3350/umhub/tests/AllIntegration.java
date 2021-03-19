@@ -14,5 +14,5 @@ import comp3350.umhub.tests.business.AccessProgramsIT;
         AccessProgramsIT.class,
         AccessCoursesIT.class,
 })
-public class IntegrationTests {
+public class AllIntegration {
 }
