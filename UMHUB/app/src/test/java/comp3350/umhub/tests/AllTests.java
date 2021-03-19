@@ -15,7 +15,9 @@ import comp3350.umhub.tests.business.*;
         StudentTest.class,
         AccessMajorsTest.class,
         AccessProgramsTest.class,
-        EqualsTest.class
+        EqualsTest.class,
+        UsersTest.class,
+        LoginTest.class
 })
 
 public class AllTests {
