@@ -21,6 +21,14 @@ public class Course {
         this.year = year;
     }
 
+    public Course(String name, String id, String desc, int year, Major major){
+        this.name = name;
+        this.id = id;
+        description = desc;
+        this.year = year;
+        this.major = major;
+    }
+
     public Course(String name, String id, String desc, int year, Major major, List<Program> programs){
         this.name = name;
         this.id = id;
