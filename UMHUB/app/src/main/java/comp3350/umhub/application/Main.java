@@ -9,7 +9,7 @@ public class Main
         System.out.println("All done");
     }
 
-    public static void setDBPathName(final String name) {
+    public static synchronized void setDBPathName(final String name) {
         try {
             Class.forName("org.hsqldb.jdbcDriver").newInstance();
         } catch (InstantiationException e) {
