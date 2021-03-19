@@ -15,6 +15,7 @@ public class AccessCourses implements IAccessCourses{
     public AccessCourses(){
         ICoursePersistence coursePersistence = Services.getCoursePersistence();
         courses = coursePersistence.getCourseSequential();
+
     }
 
     @Override

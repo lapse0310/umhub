@@ -15,16 +15,8 @@ public class Course {
     private String year;
     private List<Program> programs;
 
-    public Course(String name){
-        this.name = name;
-    }
-
-    public Course(String name, String id, String desc, String majorID,String year){
-        this.name = name;
+    public Course(String id){
         this.id = id;
-        description = desc;
-        this.majorID = majorID;
-        this.year = year;
     }
 
     public Course(String name, String id, String desc, String year){
