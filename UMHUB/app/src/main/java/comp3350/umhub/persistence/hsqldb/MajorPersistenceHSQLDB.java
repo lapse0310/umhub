@@ -20,7 +20,7 @@ public class MajorPersistenceHSQLDB implements IMajorPersistence {
         this.dbPath = dbPath;
     }
 
-    private Connection connection() throws SQLException {
+    private synchronized Connection connection() throws SQLException {
         return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
     }
 
@@ -30,12 +30,12 @@ public class MajorPersistenceHSQLDB implements IMajorPersistence {
     }
 
     @Override
-    public List<Major> getMajorsSequential() {
+    public synchronized List<Major> getMajorsSequential() {
         final List<Major> majors = new ArrayList<>();
 
         try (final Connection c = connection()) {
             final Statement st = c.createStatement();
-            final ResultSet rs = st.executeQuery("SELECT * FROM majors");
+            final ResultSet rs = st.executeQuery("SELECT * FROM MAJORS");
             while (rs.next())
             {
                 final Major major = fromResultSet(rs);
