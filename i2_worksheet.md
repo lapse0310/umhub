@@ -9,7 +9,7 @@
 We identified these debts as deliberate and reckless technical debt because we decided to move forward as quickly as possible without giving atention to all the details.
 
 ### SOLID
-There are no major SOLID violations observed but some minor violations could be found [here](https://code.cs.umanitoba.ca/3350-winter-2021-a02/group-7/gaming-hub/-/blob/master/SGSF/app/src/main/java/comp3350/gamehub/guessnumber/GuessTheNumberActivity.java) in A02-group 7's repository.
+The SOLID violation observed could be found [here](https://code.cs.umanitoba.ca/3350-winter-2021-a02/group-7/gaming-hub/-/issues/76) in A02-group 7's repository.
 
 ### Retrospective
 Using the retrospective, we implemented the iteration by dividing tasks more uniformily and used dev tasks to progress in this iteration.
@@ -18,7 +18,7 @@ In iteration 0, we moved some features to this iteration because of time-managem
 We had fairly good planning for this iteration. We just moved [Dark mode](https://code.cs.umanitoba.ca/3350-winter-2021-a01/umhub-7/-/issues/15) feature to iteration 3.
 
 ### Design Patterns
-The design patterns used
+The design patterns used - [Observer Pattern](https://code.cs.umanitoba.ca/3350-winter-2021-a01/umhub-7/-/blob/develop/UMHUB/app/src/main/java/comp3350/umhub/presentation/MajorsActivity.java), where we have used setOnItemClickListener in Adapter View.
 
 ### Iteration 1 feedback fixes
 The issue opened by the grader can be found [here](https://code.cs.umanitoba.ca/3350-winter-2021-a01/umhub-7/-/issues/48).
