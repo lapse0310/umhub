@@ -35,7 +35,6 @@ public class ProgramPersistenceStub implements IProgramPersistence {
     }
 
     @Override
-<<<<<<< Updated upstream
     public List<Program> getProgramsSequential() {
         return programs;
     }

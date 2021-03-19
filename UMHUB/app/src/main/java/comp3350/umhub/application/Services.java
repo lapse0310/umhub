@@ -10,12 +10,7 @@ import comp3350.umhub.business.AccessMajors;
 import comp3350.umhub.business.IAccessPrograms;
 import comp3350.umhub.business.AccessPrograms;
 
-import comp3350.umhub.persistence.ICoursePersistence;
-import comp3350.umhub.persistence.IMajorPersistence;
-import comp3350.umhub.persistence.hsqldb.CoursePersistenceHSQLDB;
-import comp3350.umhub.persistence.hsqldb.MajorPersistenceHSQLDB;
-import comp3350.umhub.persistence.hsqldb.ProgramPersistenceHSQLDB;
-import comp3350.umhub.persistence.stubs.MajorPersistenceStub;
+
 import comp3350.umhub.persistence.ILoginPersistence;
 import comp3350.umhub.persistence.stubs.LoginPersistenceStub;
 
@@ -38,12 +33,15 @@ public class Services {
     private static IAccessCourses accessCourses = null;
     private static IMajorPersistence majorPersistence = null;
     private static IProgramPersistence programPersistence = null;
-    private static ICoursePersistence coursePersistence;
+    private static ICoursePersistence coursePersistence = null;
+    private static ILoginPersistence loginPersistence = null;
+    
 
     public static synchronized IMajorPersistence getMajorPersistence(){
         if(majorPersistence==null){
-            //majorPersistence = new MajorPersistenceStub();
-            majorPersistence = new MajorPersistenceHSQLDB(Main.getDBPathName());
+            majorPersistence = new MajorPersistenceStub();
+            //majorPersistence = new majorPersistenceHSQLDB(Main.getDBPathName());
+
         }
         return majorPersistence;
     }
@@ -51,16 +49,16 @@ public class Services {
 
     public static synchronized IProgramPersistence getProgramPersistence(){
         if(programPersistence==null){
-            //programPersistence = new ProgramPersistenceStub();
-            programPersistence = new ProgramPersistenceHSQLDB(Main.getDBPathName());
+            programPersistence = new ProgramPersistenceStub();
+            //programPersistence = new programPersistenceHSQLDB(Main.getDBPathName());
         }
         return programPersistence;
     }
 
     public static synchronized ICoursePersistence getCoursePersistence(){
         if(coursePersistence==null){
-            //coursePersistence = new CoursePersistenceStub();
-            coursePersistence = new CoursePersistenceHSQLDB(Main.getDBPathName());
+            coursePersistence = new CoursePersistenceStub();
+            //coursePersistence = new coursePersistenceHSQLDB(Main.getDBPathName());
         }
         return coursePersistence;
     }
@@ -68,21 +66,6 @@ public class Services {
     public static synchronized IAccessMajors getAccessMajors(){
         if(accessMajors==null){
             accessMajors = new AccessMajors();
-        }
-        return accessMajors;
-    }
-
-    public static synchronized IAccessMajors getAccessMajors(Class c){
-        if(accessMajors==null){
-            if (IAccessMajors.class.isAssignableFrom(c)) {
-                try {
-                    accessMajors = (IAccessMajors) c.newInstance();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                }
-            }
         }
         return accessMajors;
     }
@@ -99,7 +82,7 @@ public class Services {
         if(accessCourses==null){
             accessCourses = new AccessCourses();
         }
-        return accessPrograms;
+        return accessCourses;
     }
     
     public static synchronized ILoginPersistence getLoginPersistence(){
