@@ -33,7 +33,7 @@ public class CourseTest {
         assertTrue("Software Engineering".equals(course.getName()));
         assertTrue("COMP 3350".equals(course.getId()));
         assertTrue("Course to get you trained in industry standards of coding projects".equals(course.getDescription()));
-        assertTrue("Year 3".equals(course.getYear()));
+        assertEquals(3,course.getYear());
         assertTrue(programList.equals(course.getPrograms()));
         assertTrue(course.getPrograms().contains(program1));
         assertTrue(course.getPrograms().contains(program2));
