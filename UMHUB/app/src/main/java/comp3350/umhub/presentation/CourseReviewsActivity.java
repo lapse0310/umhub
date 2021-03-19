@@ -1,6 +1,5 @@
 package comp3350.umhub.presentation;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -24,12 +23,10 @@ import comp3350.umhub.objects.CourseReview;
 public class CourseReviewsActivity extends AppCompatActivity {
     private Course course;
     private List<CourseReview> courseReviewList;
-    private static CourseReview courseReviewSelected;
 
     private TextView courseName;
     private TextView courseDescription;
     private ListView reviewListView;
-    private Button writeReviewButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,8 +35,7 @@ public class CourseReviewsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_coursereview_overview);
         IAccessCourseReviews accessCourseReviews = Services.getAccessCourseReviews();
 
-        /*Technical debt - needs fixing */
-        course = Services.getAccessCourses().getCourse("comp3350");
+        course = CoursesActivity.getCourseSelected();
 
         try{
             courseReviewList = accessCourseReviews.getCourseReviews(course);
@@ -55,18 +51,16 @@ public class CourseReviewsActivity extends AppCompatActivity {
                 }
             };
 
+
             reviewListView = (ListView) findViewById(R.id.reviewListView);
             reviewListView.setAdapter(courseReviewArrayAdapter);
 
-//            courseName.setText(course.getName());
-//            courseDescription.setText(course.getDescription());
 
             courseName = (TextView) findViewById(R.id.courseName);
-            courseName.setText("TEST NAME");
+            courseName.setText(course.getName());
 
             courseDescription = (TextView) findViewById(R.id.courseDescription);
-            courseDescription.setText("LOREM IPSUM");
-
+            courseDescription.setText(course.getDescription());
 
         }
         catch (final Exception e){

@@ -6,34 +6,22 @@ public class Course {
     private String name;
     private String id;
     private String description;
-<<<<<<< Updated upstream
-    private String major;
-
-    public Course(String name, String id, String desc, String major){
-=======
-    private String majorID;
     private String year;
     private List<Program> programs;
+    private Major major;
+
 
     public Course(String id){
         this.id = id;
     }
 
-    public Course(String name, String id, String desc, String year){
->>>>>>> Stashed changes
-    private int year;
-    private Major major;
-    private List<Program> programs;
 
-    public Course(String name){
-        this.name = name;
-    }
 
-    public Course(String name, String id, String desc, String majorID,String year){
+    public Course(String name, String id, String desc, Major majorID,String year){
         this.name = name;
         this.id = id;
         description = desc;
-        this.majorID = majorID;
+        this.major = majorID;
         this.year = year;
     }
 

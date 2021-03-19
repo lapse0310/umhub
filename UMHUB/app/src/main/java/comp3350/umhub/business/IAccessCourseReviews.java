@@ -9,5 +9,6 @@ import comp3350.umhub.objects.CourseReview;
 public interface IAccessCourseReviews {
     List<CourseReview> getCourseReviews(Course course);
     List<CourseReview> getCourseReviews();
+    void addReview(CourseReview courseReview);
 
 }

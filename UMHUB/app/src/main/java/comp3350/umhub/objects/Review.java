@@ -2,10 +2,8 @@ package comp3350.umhub.objects;
 
 public abstract class Review {
     User user;
-    double score;
+    int score;
     String review;
-    int upVote;
-    int downVote;
 
     public User getUser() {
         return user;
@@ -15,7 +13,7 @@ public abstract class Review {
         return user.getUid();
     }
 
-    public double getScore() {
+    public int getScore() {
         return score;
     }
 
@@ -23,23 +21,4 @@ public abstract class Review {
         return review;
     }
 
-    public int getUpVote() {
-        return upVote;
-    }
-
-    public int getDownVote() {
-        return downVote;
-    }
-
-    public int getReviewPoint() {
-        return upVote - downVote;
-    }
-
-    public void addUpVote() {
-        this.upVote++;
-    }
-
-    public void addDownVote() {
-        this.downVote++;
-    }
 }

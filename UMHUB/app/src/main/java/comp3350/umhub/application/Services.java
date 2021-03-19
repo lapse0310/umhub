@@ -10,6 +10,7 @@ import comp3350.umhub.business.AccessMajors;
 import comp3350.umhub.business.IAccessPrograms;
 import comp3350.umhub.business.AccessPrograms;
 
+import comp3350.umhub.objects.User;
 import comp3350.umhub.persistence.ICourseReviewPersistence;
 import comp3350.umhub.persistence.IMajorPersistence;
 import comp3350.umhub.persistence.stubs.CourseReviewPersistenceStub;
@@ -26,6 +27,7 @@ import comp3350.umhub.persistence.stubs.CoursePersistenceStub;
 import comp3350.umhub.persistence.stubs.ProgramPersistenceStub;
 
 public class Services {
+    private static User currentUser;
     private static IAccessMajors accessMajors = null;
     private static IAccessPrograms accessPrograms = null;
     private static IAccessCourseReviews accessCourseReviews = null;
@@ -34,6 +36,14 @@ public class Services {
     private static ICourseReviewPersistence courseReviewPersistence = null;
     private static IAccessCourses accessCourses = null;
     private static ICoursePersistence coursePersistence = null;
+
+    public static synchronized User getCurrentUser() {
+        return currentUser;
+    }
+
+    public static synchronized void setCurrentUser(User newUser) {
+        currentUser = newUser;
+    }
 
     public static synchronized IMajorPersistence getMajorPersistence(){
         if(majorPersistence==null){

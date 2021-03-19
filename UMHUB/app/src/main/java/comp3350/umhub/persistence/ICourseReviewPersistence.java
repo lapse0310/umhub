@@ -9,6 +9,6 @@ public interface ICourseReviewPersistence {
 
     List<CourseReview> getCourseReviewsSequential();
     List<CourseReview> getCourseReviewsSequential(Course course);
-
+    void insertCourseReview(CourseReview courseReview);
 
 }

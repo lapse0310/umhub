@@ -25,6 +25,11 @@ public class CourseReviewPersistenceStub implements ICourseReviewPersistence {
         return courseReviews1;
     }
 
+    @Override
+    public void insertCourseReview(CourseReview courseReview) {
+
+    }
+
 
     public CourseReviewPersistenceStub(){
         this.courseReviews = new ArrayList<>();

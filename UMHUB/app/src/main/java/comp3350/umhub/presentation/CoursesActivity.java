@@ -71,9 +71,10 @@ public class CoursesActivity extends AppCompatActivity {
     }
 
     //DSO
-    public static Course getProgramSelected(){
+    public static Course getCourseSelected(){
         return courseSelected;
     }
+
 
 
 }
