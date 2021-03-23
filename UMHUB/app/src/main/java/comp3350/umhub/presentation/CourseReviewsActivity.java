@@ -37,10 +37,7 @@ public class CourseReviewsActivity extends AppCompatActivity {
 
         course = CoursesActivity.getCourseSelected();
 
-        System.out.println();
-
-
-
+        System.out.println(course);
 
         try{
             courseReviewList = accessCourseReviews.getCourseReviews(course);

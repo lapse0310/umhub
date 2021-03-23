@@ -38,4 +38,14 @@ public class AccessCourseReviews implements IAccessCourseReviews{
         courseReviews = courseReviewPersistence.getCourseReviewsSequential(course);
         return courseReviews;
     }
+
+    public String toString(){
+        String res = this.getClass().toString() + "\n";
+        if (courseReviews != null){
+            for (CourseReview c: courseReviews) {
+                res += c.toString() + "\n";
+            }
+        }
+        return res;
+    }
 }
