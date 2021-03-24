@@ -41,7 +41,7 @@ public class WriteCourseReviewActivity extends AppCompatActivity {
 
         try{
             reviewEditText = (EditText) findViewById(R.id.reviewEditText);
-            reviewScoreEditText = (EditText) findViewById(R.id.reviewEditText);
+            reviewScoreEditText = (EditText) findViewById(R.id.reviewScoreEditTextNumber);
         }
         catch (final Exception e){
             Messages.fatalError(this,e.getMessage());
@@ -60,6 +60,7 @@ public class WriteCourseReviewActivity extends AppCompatActivity {
         int reviewScore = Integer.parseInt(reviewScoreEditText.getText().toString());
 
         CourseReview courseReview = new CourseReview(currentUser,course,reviewScore,review);
+        System.out.println(courseReview);
         accessCourseReviews.addReview(courseReview);
 
         Intent WriteCourseReviewIntent = new Intent(WriteCourseReviewActivity.this, CourseReviewsActivity.class);
