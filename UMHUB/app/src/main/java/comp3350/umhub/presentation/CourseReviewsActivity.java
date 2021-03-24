@@ -41,7 +41,7 @@ public class CourseReviewsActivity extends AppCompatActivity {
 
         try{
             courseReviewList = accessCourseReviews.getCourseReviews(course);
-            ArrayAdapter<CourseReview> courseReviewArrayAdapter = new ArrayAdapter<CourseReview>(this, android.R.layout.simple_list_item_activated_2,android.R.id.text1,courseReviewList) {
+/*            ArrayAdapter<CourseReview> courseReviewArrayAdapter = new ArrayAdapter<CourseReview>(this, android.R.layout.simple_selectable_list_item,android.R.id.text1,courseReviewList) {
 
                 public View getView(int position, View convertView, ViewGroup parent) {
                     View view = super.getView(position, convertView, parent);
@@ -51,8 +51,9 @@ public class CourseReviewsActivity extends AppCompatActivity {
                     text1.setText(courseReviewList.get(position).getReview());
                     return view;
                 }
-            };
+            };*/
 
+            ReviewAdapter courseReviewArrayAdapter = new ReviewAdapter(this,courseReviewList);
 
             reviewListView = (ListView) findViewById(R.id.reviewListView);
             reviewListView.setAdapter(courseReviewArrayAdapter);

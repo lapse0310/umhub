@@ -23,7 +23,6 @@ import comp3350.umhub.objects.User;
 public class WriteCourseReviewActivity extends AppCompatActivity {
     private User currentUser;
     private Course course;
-    private List<CourseReview> courseReviewList;
 
     IAccessCourseReviews accessCourseReviews;
 
@@ -60,7 +59,6 @@ public class WriteCourseReviewActivity extends AppCompatActivity {
         int reviewScore = Integer.parseInt(reviewScoreEditText.getText().toString());
 
         CourseReview courseReview = new CourseReview(currentUser,course,reviewScore,review);
-        System.out.println(courseReview);
         accessCourseReviews.addReview(courseReview);
 
         Intent WriteCourseReviewIntent = new Intent(WriteCourseReviewActivity.this, CourseReviewsActivity.class);
