@@ -1,8 +1,12 @@
 package comp3350.umhub.tests.business;
 
+import comp3350.umhub.application.Services;
 import comp3350.umhub.business.Login;
+import comp3350.umhub.objects.User;
 
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class LoginTest {
 
@@ -44,6 +48,21 @@ public class LoginTest {
         System.out.println("\nStarting test testValidLogin");
         testLogin = new Login(user4Input);                       /* Test login with valid username,password */
         System.out.println("Finished test testValidLogin");
+    }
+
+    /*May be considered an Integration Test*/
+    @Test
+    public void testCurrentUser() throws Login.LoginException {
+        System.out.println("\nStarting test testCurrentUser");
+        testLogin = new Login(user4Input);
+
+        User user = Services.getCurrentUser();
+        assertNotNull(user);
+        assertTrue("Username must match!", user.getUsername() == user4Input[0]);
+        assertTrue("Password must match!", user.getPassword() == user4Input[1]);
+
+        System.out.println("Finished test testCurrentUser");
+
     }
 
 }

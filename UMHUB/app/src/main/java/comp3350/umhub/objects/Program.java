@@ -22,4 +22,11 @@ public class Program {
         return major;
     }
 
+    @Override
+    public String toString() {
+        return "Program{" +
+                "name='" + name + '\'' +
+                ", major=" + major +
+                '}';
+    }
 }

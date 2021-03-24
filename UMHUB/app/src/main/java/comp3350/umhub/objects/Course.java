@@ -65,5 +65,13 @@ public class Course {
         return programs;
     }
 
-
+    @Override
+    public String toString() {
+        return "Course{" +
+                "name='" + name + '\'' +
+                ", id='" + id + '\'' +
+                ", year=" + year +
+                ", major=" + major +
+                '}';
+    }
 }

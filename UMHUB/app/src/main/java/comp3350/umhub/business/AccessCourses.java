@@ -8,7 +8,6 @@ import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.Program;
 import comp3350.umhub.persistence.ICoursePersistence;
-import comp3350.umhub.persistence.IProgramPersistence;
 
 public class AccessCourses implements IAccessCourses{
     private final List<Course> courses;
@@ -34,7 +33,7 @@ public class AccessCourses implements IAccessCourses{
             boolean found = false;
             int count = 0;
             while(programList != null && !found && count < programList.size()){
-                if(Equals.isEqualProgram(programSelected,programList.get(count))){
+                if(Equals.isEqual(programSelected,programList.get(count))){
                     coursesUnderProgram.add(courses.get(i));
                     found = true;
                 }
@@ -64,7 +63,7 @@ public class AccessCourses implements IAccessCourses{
     public List<Course> getCoursesByMajor(Major major) {
         List<Course> coursesUnderMajor = new ArrayList<>();
         for(int i=0; i<courses.size();i++){
-            if(Equals.isEqualMajor(major,courses.get(i).getMajor())){
+            if(Equals.isEqual(major,courses.get(i).getMajor())){
                 coursesUnderMajor.add(courses.get(i));
             }
         }
