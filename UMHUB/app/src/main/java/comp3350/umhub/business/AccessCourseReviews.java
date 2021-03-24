@@ -8,34 +8,48 @@ import comp3350.umhub.objects.CourseReview;
 import comp3350.umhub.persistence.ICourseReviewPersistence;
 
 
-public class AccessCourseReviews implements IAccessCourseReviews{
+public class AccessCourseReviews implements IAccessCourseReviews {
 
     private final ICourseReviewPersistence courseReviewPersistence;
     private List<CourseReview> courseReviews;
 
-    public AccessCourseReviews(){
+    public AccessCourseReviews() {
         courseReviewPersistence = Services.getCourseReviewPersistence();
-        courseReviews = null;
+        if (courseReviewPersistence != null)
+            courseReviews = courseReviewPersistence.getCourseReviewsSequential();
+    }
+
+    public AccessCourseReviews(ICourseReviewPersistence persistence) {
+        courseReviewPersistence = persistence;
+        if (courseReviewPersistence != null)
+            courseReviews = courseReviewPersistence.getCourseReviewsSequential();
     }
 
     @Override
     public List<CourseReview> getCourseReviews() {
-        courseReviews = courseReviewPersistence.getCourseReviewsSequential();
         return courseReviews;
     }
 
     @Override
     public void addReview(CourseReview courseReview) {
-        if (courseReview != null
-                && courseReview.getUid() != null
-                && courseReview.getCourse() != null
-                && courseReview.getScore() >= 0
-                && courseReview.getScore() <= 5)
+        if (courseReview != null)
             courseReviewPersistence.insertCourseReview(courseReview);
     }
 
     public List<CourseReview> getCourseReviews(Course course) {
-        courseReviews = courseReviewPersistence.getCourseReviewsSequential(course);
-        return courseReviews;
+        List<CourseReview> res = null;
+        if (courseReviewPersistence != null)
+            res = courseReviewPersistence.getCourseReviewsSequential(course);
+        return res;
+    }
+
+    public String toString() {
+        String res = this.getClass().toString() + "\n";
+        if (courseReviews != null) {
+            for (CourseReview c : courseReviews) {
+                res += c.toString() + "\n";
+            }
+        }
+        return res;
     }
 }

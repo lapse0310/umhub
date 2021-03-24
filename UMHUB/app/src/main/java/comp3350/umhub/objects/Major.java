@@ -13,4 +13,10 @@ public class Major {
         return this.name;
     }
 
+    @Override
+    public String toString() {
+        return "Major{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }

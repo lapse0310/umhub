@@ -1,16 +1,18 @@
 package comp3350.umhub.objects;
 
 public abstract class Review {
+    int id;
     User user;
     int score;
     String review;
 
-    public User getUser() {
-        return user;
+
+    public int getId() {
+        return id;
     }
 
-    public String getUid() {
-        return user.getUsername();
+    public User getUser() {
+        return user;
     }
 
     public int getScore() {

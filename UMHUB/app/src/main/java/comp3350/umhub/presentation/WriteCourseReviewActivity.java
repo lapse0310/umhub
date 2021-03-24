@@ -23,7 +23,6 @@ import comp3350.umhub.objects.User;
 public class WriteCourseReviewActivity extends AppCompatActivity {
     private User currentUser;
     private Course course;
-    private List<CourseReview> courseReviewList;
 
     IAccessCourseReviews accessCourseReviews;
 
@@ -41,7 +40,7 @@ public class WriteCourseReviewActivity extends AppCompatActivity {
 
         try{
             reviewEditText = (EditText) findViewById(R.id.reviewEditText);
-            reviewScoreEditText = (EditText) findViewById(R.id.reviewEditText);
+            reviewScoreEditText = (EditText) findViewById(R.id.reviewScoreEditTextNumber);
         }
         catch (final Exception e){
             Messages.fatalError(this,e.getMessage());
