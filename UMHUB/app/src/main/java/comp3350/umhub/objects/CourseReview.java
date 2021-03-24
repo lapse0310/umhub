@@ -37,13 +37,15 @@ public class CourseReview extends Review{
         return id;
     }
 
-    public String toString(){
-        String res = "CourseReview: ";
-        String str1 = "id = " + id + ", ";
-        String str2 = "user = " + getUser().getUsername() + ", ";
-        String str3 = "course = " + getCourse().getId() + ", ";
-        String str4 = "review = " + getReview();
-        return res + str1 + str2 + str3 + str4;
-    }
 
+    @Override
+    public String toString() {
+        return "CourseReview{" +
+                "id=" + id +
+                ", course=" + course.getId() +
+                ", user=" + user.getUsername() +
+                ", score=" + score +
+                ", review='" + review + '\'' +
+                '}';
+    }
 }

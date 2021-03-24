@@ -8,8 +8,8 @@
 
     <EditText
         android:id="@+id/reviewEditText"
-        android:layout_width="500dp"
-        android:layout_height="646dp"
+        android:layout_width="495dp"
+        android:layout_height="611dp"
         android:layout_marginTop="56dp"
         android:ems="10"
         android:gravity="start|top"
@@ -50,6 +50,7 @@
         android:id="@+id/button2"
         android:layout_width="500dp"
         android:layout_height="51dp"
+        android:onClick="buttonSubmitCourseReviewOnClick"
         android:text="SUBMIT A REVIEW"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -7,7 +7,6 @@ import java.util.List;
 import comp3350.umhub.application.Services;
 import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.Program;
-import comp3350.umhub.persistence.IMajorPersistence;
 import comp3350.umhub.persistence.IProgramPersistence;
 
 public class AccessPrograms implements IAccessPrograms {
@@ -31,7 +30,7 @@ public class AccessPrograms implements IAccessPrograms {
 
         List<Program> programsUnderMajor = new ArrayList<>();
         for(int i=0; i<programs.size();i++){
-            if(Equals.isEqualMajor(majorSelected,programs.get(i).getMajor())){
+            if(Equals.isEqual(majorSelected,programs.get(i).getMajor())){
                 programsUnderMajor.add(programs.get(i));
             }
         }

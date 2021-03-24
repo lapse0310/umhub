@@ -11,14 +11,8 @@ public abstract class Review {
         return id;
     }
 
-
-
     public User getUser() {
         return user;
-    }
-
-    public String getUid() {
-        return user.getUsername();
     }
 
     public int getScore() {

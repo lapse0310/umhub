@@ -65,14 +65,13 @@ public class Course {
         return programs;
     }
 
-    public String toString(){
-        String res = "Course: ";
-        res += "id = " + id + ", ";
-        res += "name = " + name + ", ";
-        res += "major = " + major.toString() + ", ";
-        res += "year = " + year + ", ";
-
-        return res;
+    @Override
+    public String toString() {
+        return "Course{" +
+                "name='" + name + '\'' +
+                ", id='" + id + '\'' +
+                ", year=" + year +
+                ", major=" + major +
+                '}';
     }
-
 }

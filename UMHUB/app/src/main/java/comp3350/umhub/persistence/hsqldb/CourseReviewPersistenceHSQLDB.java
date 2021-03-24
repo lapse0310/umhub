@@ -92,11 +92,12 @@ public class CourseReviewPersistenceHSQLDB implements ICourseReviewPersistence {
     }
 
     private CourseReview fromResultSet(final ResultSet rs) throws SQLException {
-        final String courseID = rs.getString("courseID");
+        final int id = rs.getInt("id");
+        final String courseId = rs.getString("courseID");
         final String username = rs.getString("username");
         final String reviewString = rs.getString("review");
         final int score = rs.getInt("score");
-        return new CourseReview(new User("username"), new Course("courseID"), score, reviewString);
+        return new CourseReview(id,new User(username), new Course(courseId), score, reviewString);
     }
 
 
