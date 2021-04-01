@@ -12,7 +12,7 @@ public class ProgramTest {
 
     @Test
     public void testProgram1(){
-        Program program;
+        Program program, program1;
         Major major;
 
         System.out.println("\nStarting testProgram");
@@ -22,6 +22,11 @@ public class ProgramTest {
         assertNotNull(program);
         assertTrue("Bachelor of Science Major - Computer Science".equals(program.getName()));
         assertTrue(program.getMajor().equals(major));
+
+        program1 = new Program("Different program - Computer Science", major);
+        assert(!program.equals(program1));
+        program1 = new Program("Bachelor of Science Major - Computer Science", major);
+        assert(program.equals(program1));
 
         System.out.println("Finished testProgram");
     }

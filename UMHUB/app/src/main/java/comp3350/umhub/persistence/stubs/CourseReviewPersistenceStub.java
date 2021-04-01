@@ -3,7 +3,6 @@ package comp3350.umhub.persistence.stubs;
 import java.util.ArrayList;
 import java.util.List;
 
-import comp3350.umhub.business.Equals;
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.CourseReview;
 import comp3350.umhub.objects.User;
@@ -20,7 +19,7 @@ public class CourseReviewPersistenceStub implements ICourseReviewPersistence {
     public List<CourseReview> getCourseReviewsSequential(Course course) {
         List<CourseReview>  courseReviews1= new ArrayList<>();
         for (CourseReview review : courseReviews) {
-            if (Equals.isEqual(review.getCourse(),course)) courseReviews1.add(review);
+            if (review.getCourse().equals(course)) courseReviews1.add(review);
         }
         return courseReviews1;
     }

@@ -15,7 +15,7 @@ public class MajorTest {
 
     @Test
     public void testMajor1(){
-        Major major;
+        Major major, major1;
 
 
 
@@ -25,6 +25,11 @@ public class MajorTest {
 
         assertNotNull(major);
         assertTrue("Computer Science".equals(major.getName()));
+
+        major1 = new Major("Not computer science");
+        assert(!major.equals(major1));
+        major1 = new Major("Computer Science");
+        assert(major.equals(major1));
 
         System.out.println("Finished testMajor");
     }

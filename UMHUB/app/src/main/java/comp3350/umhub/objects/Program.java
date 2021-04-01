@@ -22,6 +22,11 @@ public class Program {
         return major;
     }
 
+    public boolean equals(Program other)
+    {
+        return this.name.equals(other.name);
+    }
+
     @Override
     public String toString() {
         return "Program{" +

@@ -65,6 +65,10 @@ public class Course {
         return programs;
     }
 
+    public boolean equals(Course other){
+        return this.id.equals(other.id);
+    }
+
     @Override
     public String toString() {
         return "Course{" +
