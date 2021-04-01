@@ -28,4 +28,8 @@ public class User {
     public String getPassword() {
         return password;
     }
+
+    public boolean equals(User other){
+        return this.username.equals(other.username);
+    }
 }

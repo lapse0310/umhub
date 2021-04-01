@@ -37,6 +37,10 @@ public class CourseReview extends Review{
         return id;
     }
 
+    public boolean equals(CourseReview other){
+        return this.getId() == other.getId();
+    }
+
 
     @Override
     public String toString() {

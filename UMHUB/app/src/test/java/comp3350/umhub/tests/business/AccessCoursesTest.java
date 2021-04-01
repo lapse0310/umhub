@@ -11,6 +11,8 @@ import comp3350.umhub.business.IAccessCourses;
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.Program;
+import comp3350.umhub.persistence.ICoursePersistence;
+import comp3350.umhub.persistence.stubs.CoursePersistenceStub;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -21,7 +23,8 @@ public class AccessCoursesTest {
 
     @Before
     public void setUp(){
-        accessCourses = new AccessCourses();
+        ICoursePersistence persistence = new CoursePersistenceStub();
+        accessCourses = new AccessCourses(persistence);
     }
 
     @Test
