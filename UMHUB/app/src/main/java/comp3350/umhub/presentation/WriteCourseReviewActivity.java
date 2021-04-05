@@ -64,4 +64,6 @@ public class WriteCourseReviewActivity extends AppCompatActivity {
         Intent WriteCourseReviewIntent = new Intent(WriteCourseReviewActivity.this, CourseReviewsActivity.class);
         WriteCourseReviewActivity.this.startActivity(WriteCourseReviewIntent);
     }
+
+
 }

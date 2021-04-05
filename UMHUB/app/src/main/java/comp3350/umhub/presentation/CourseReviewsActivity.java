@@ -37,7 +37,7 @@ public class CourseReviewsActivity extends AppCompatActivity {
 
         course = CoursesActivity.getCourseSelected();
 
-        System.out.println(course);
+        //System.out.println(course);
 
         try{
             courseReviewList = accessCourseReviews.getCourseReviews(course);
@@ -81,5 +81,10 @@ public class CourseReviewsActivity extends AppCompatActivity {
     public void buttonWriteCourseReviewOnClick(View view){
         Intent WriteCourseReviewIntent = new Intent(CourseReviewsActivity.this, WriteCourseReviewActivity.class);
         CourseReviewsActivity.this.startActivity(WriteCourseReviewIntent);
+    }
+
+    public void buttonViewTutors(View view){
+        Intent viewTutors = new Intent(CourseReviewsActivity.this, TutorsActivity.class);
+        CourseReviewsActivity.this.startActivity(viewTutors);
     }
 }

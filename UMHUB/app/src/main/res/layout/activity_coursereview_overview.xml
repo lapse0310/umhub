@@ -44,11 +44,23 @@
         android:layout_width="500dp"
         android:layout_height="50dp"
         android:layout_marginBottom="24dp"
+        android:onClick="buttonWriteCourseReviewOnClick"
         android:text="WRITE A REVIEW"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        android:onClick="buttonWriteCourseReviewOnClick" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/viewTutors"
+        android:layout_width="500dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="75dp"
+        android:onClick="buttonViewTutors"
+        android:text="TUTORS FOR THIS COURSE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
