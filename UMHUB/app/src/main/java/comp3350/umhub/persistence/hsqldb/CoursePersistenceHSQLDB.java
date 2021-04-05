@@ -23,7 +23,7 @@ public class CoursePersistenceHSQLDB implements ICoursePersistence {
     private synchronized Course fromResultSet(final ResultSet rs) throws SQLException {
         final String courseID = rs.getString("courseID");
         final String courseName = rs.getString("name");
-        final String desc = rs.getString("desc");
+        final String desc = rs.getString("review");
         final String majorName = rs.getString("mNAme");
         final int year = rs.getInt("year");
         Major newMajor = new Major(majorName);
