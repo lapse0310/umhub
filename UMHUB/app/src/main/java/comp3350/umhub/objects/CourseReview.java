@@ -1,49 +1,36 @@
 package comp3350.umhub.objects;
 
 public class CourseReview extends Review{
-    Course course;
-    static int idCount = 0;
+    String courseId;
 
-    public CourseReview(User user, Course course, int score, String review){
-        this.id = setId();
-        this.user = user;
-        this.course = course;
+    public CourseReview(String userId, String courseId, int score, String review){
+        this._id = 0;
+        this.userId = userId;
+        this.courseId = courseId;
         this.score = score;
         this.review = review;
 
     }
 
-    public CourseReview(int id, User user, Course course, int score, String review){
-        this.id = setId(id);
-        this.user = user;
-        this.course = course;
+    public CourseReview(int id, String userId, String courseId, String review, int score){
+        this._id = id;
+        this.userId = userId;
+        this.courseId = courseId;
         this.score = score;
         this.review = review;
     }
 
-    public Course getCourse() {
-        return course;
-    }
-
-
-
-    public static int setId() {
-        idCount++;
-        return idCount;
-    }
-
-    public static int setId(int id) {
-        if (idCount < id) idCount = id;
-        return id;
+    public String getCourseId() {
+        return courseId;
     }
 
 
     @Override
     public String toString() {
         return "CourseReview{" +
-                "id=" + id +
-                ", course=" + course.getId() +
-                ", user=" + user.getUsername() +
+                "id=" + _id +
+                ", course=" + courseId +
+                ", user=" + userId +
                 ", score=" + score +
                 ", review='" + review + '\'' +
                 '}';

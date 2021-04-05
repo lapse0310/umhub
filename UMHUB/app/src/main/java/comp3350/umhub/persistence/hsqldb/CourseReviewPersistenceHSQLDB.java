@@ -70,8 +70,8 @@ public class CourseReviewPersistenceHSQLDB implements ICourseReviewPersistence {
 
     @Override
     public void insertCourseReview(CourseReview courseReview) {
-        final String courseID = courseReview.getCourse().getId();
-        final String username = courseReview.getUser().getUsername();
+        final String courseID = courseReview.getCourseId();
+        final String username = courseReview.getUser();
         final String reviewString = courseReview.getReview();
         final int score = courseReview.getScore();
         try (final Connection c = connection()) {
@@ -94,10 +94,11 @@ public class CourseReviewPersistenceHSQLDB implements ICourseReviewPersistence {
     private CourseReview fromResultSet(final ResultSet rs) throws SQLException {
         final int id = rs.getInt("id");
         final String courseId = rs.getString("courseID");
-        final String username = rs.getString("username");
-        final String reviewString = rs.getString("review");
+        final String userId = rs.getString("username");
+        final String review = rs.getString("review");
         final int score = rs.getInt("score");
-        return new CourseReview(id,new User(username), new Course(courseId), score, reviewString);
+        //return new CourseReview(id,new User(username), new Course(courseId), score, reviewString); //This looks hideous
+        return new CourseReview(id,userId,courseId,review,score);
     }
 
 

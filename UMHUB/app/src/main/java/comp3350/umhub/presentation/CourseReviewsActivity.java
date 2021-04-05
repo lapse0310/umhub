@@ -94,22 +94,36 @@ public class CourseReviewsActivity extends AppCompatActivity {
 
     final int[] to = new int[] {R.id.review_score, R.id.username, R.id.review};
 
+    Class dbclass ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.fragment_emp_list);
+        //setContentView(R.layout.fragment_emp_list);
+        setContentView(R.layout.activity_coursereview_overview);
 
-        listView = (ListView) findViewById(R.id.list_view);
-        listView.setEmptyView(findViewById(R.id.empty));
+//        listView = (ListView) findViewById(R.id.list_view);
+//        listView.setEmptyView(findViewById(R.id.empty));
+
+
+        listView = (ListView) findViewById(R.id.reviewListView);
 
         courseReviewSQLDB = Services.getCourseReviewSQLDB(this);
+        Cursor cursor = courseReviewSQLDB.fetchSingleCourse(CoursesActivity.getCourseSelected().getId());
         //courseReviewSQLDB = new CourseReviewSQLDB(this);
-        Cursor cursor = courseReviewSQLDB.fetch();
+        //Cursor cursor = courseReviewSQLDB.fetch();
 
+        // This has to go
         adapter = new SimpleCursorAdapter(this, R.layout.activity_view_record, cursor, from, to, 0);
         adapter.notifyDataSetChanged();
         listView.setAdapter(adapter);
+
+        courseName = (TextView) findViewById(R.id.courseName);
+        courseName.setText(CoursesActivity.getCourseSelected().getName());
+
+        courseDescription = (TextView) findViewById(R.id.courseDescription);
+        courseDescription.setText(CoursesActivity.getCourseSelected().getDescription());
 
         // OnCLickListiner For List Items
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -123,11 +137,15 @@ public class CourseReviewsActivity extends AppCompatActivity {
                 String title = usernameTextView.getText().toString();
                 String desc = reviewTextView.getText().toString();
 
-                Intent modify_intent = new Intent(getApplicationContext(), WriteCourseReviewActivity.class);
-                modify_intent.putExtra("username", title);
-                modify_intent.putExtra("review", desc);
-                modify_intent.putExtra("id", id);
-                startActivity(modify_intent);
+
+//                Intent modify_intent = new Intent(getApplicationContext(), SeeCourseReviewActivity.class);
+//                modify_intent.putExtra("username", title);
+//                modify_intent.putExtra("review", desc);
+//                modify_intent.putExtra("id", id);
+
+                System.out.println((Cursor) adapter.getItem(position));
+//                modify_intent.putExtra("reviewId",);
+//                startActivity(modify_intent);
             }
         });
     }
