@@ -31,12 +31,11 @@ public class AccessCourseReviews implements IAccessCourseReviews {
     }
 
     @Override
-    public void addReview(CourseReview courseReview) {
-        if (courseReview != null)
-            courseReviewPersistence.insertCourseReview(courseReview);
+    public void addReview(String courseID, String userID, String review, int reviewScore) {
+        courseReviewPersistence.insert(courseID,userID,review,reviewScore);
     }
 
-    public List<CourseReview> getCourseReviews(Course course) {
+    public List<CourseReview> getCourseReviews(String course) {
         List<CourseReview> res = null;
         if (courseReviewPersistence != null)
             res = courseReviewPersistence.getCourseReviewsSequential(course);

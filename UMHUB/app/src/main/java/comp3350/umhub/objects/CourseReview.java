@@ -3,7 +3,7 @@ package comp3350.umhub.objects;
 public class CourseReview extends Review{
     String courseId;
 
-    public CourseReview(String userId, String courseId, int score, String review){
+    public CourseReview(String courseId , String userId, String review, int score){
         this._id = 0;
         this.userId = userId;
         this.courseId = courseId;
@@ -12,7 +12,7 @@ public class CourseReview extends Review{
 
     }
 
-    public CourseReview(int id, String userId, String courseId, String review, int score){
+    public CourseReview(int id, String courseId , String userId, String review, int score){
         this._id = id;
         this.userId = userId;
         this.courseId = courseId;

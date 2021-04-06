@@ -47,12 +47,12 @@ public class CourseReviewPersistenceHSQLDB implements ICourseReviewPersistence {
     }
 
     @Override
-    public List<CourseReview> getCourseReviewsSequential(Course course) {
+    public List<CourseReview> getCourseReviewsSequential(String courseId) {
         final List<CourseReview> courseReviews = new ArrayList<>();
 
         try (final Connection c = connection()) {
             final PreparedStatement st = c.prepareStatement("SELECT * FROM COURSEREVIEWS WHERE courseID=?");
-            st.setString(1, course.getId());
+            st.setString(1, courseId);
             final ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
@@ -69,18 +69,14 @@ public class CourseReviewPersistenceHSQLDB implements ICourseReviewPersistence {
     }
 
     @Override
-    public void insertCourseReview(CourseReview courseReview) {
-        final String courseID = courseReview.getCourseId();
-        final String username = courseReview.getUser();
-        final String reviewString = courseReview.getReview();
-        final int score = courseReview.getScore();
+    public void insert(String courseID, String userID, String review, int reviewScore) {
         try (final Connection c = connection()) {
 
-            final PreparedStatement st = c.prepareStatement("INSERT INTO COURSEREVIEWS (COURSEID,USERNAME,SCORE,REVIEW) VALUES (?,?,?,?)");
+            final PreparedStatement st = c.prepareStatement("INSERT INTO COURSEREVIEWS (COURSEID,USERNAME,REVIEW,SCORE) VALUES (?,?,?,?)");
             st.setString(1, courseID);
-            st.setString(2, username);
-            st.setInt(3, score);
-            st.setString(4, reviewString);
+            st.setString(2, userID);
+            st.setString(4, review);
+            st.setInt(3, reviewScore);
 
             final ResultSet rs = st.executeQuery();
             rs.close();

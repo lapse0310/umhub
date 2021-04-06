@@ -5,6 +5,9 @@ public abstract class Review {
     String review;
     String userId;
     int score;
+    public static int MAX_REVIEW_SCORE = 5;
+    public static int MIN_REVIEW_SCORE = 0;
+
 
 
     public int getId() {

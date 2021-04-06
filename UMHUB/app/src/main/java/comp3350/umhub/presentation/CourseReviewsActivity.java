@@ -94,8 +94,6 @@ public class CourseReviewsActivity extends AppCompatActivity {
 
     final int[] to = new int[] {R.id.review_score, R.id.username, R.id.review};
 
-    Class dbclass ;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

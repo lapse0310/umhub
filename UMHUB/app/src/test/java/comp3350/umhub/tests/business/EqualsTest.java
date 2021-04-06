@@ -162,12 +162,12 @@ public class EqualsTest {
     public void testIsEqualCourseReviewList(){
         System.out.println("\nStarting test testIsEqualCourseReviewList");
 
-        Course comp2160 = new Course("COMP 2160");
-        User u1 = new User("u1");
+        String comp2160 = "COMP 2160";
+        String u1 = "u1";
         int currId = 1;
-        CourseReview review1 = new CourseReview(currId++, u1,comp2160,5,"First");
-        CourseReview review2 = new CourseReview(currId++, u1,comp2160, 5,"Second");
-        CourseReview review3 = new CourseReview(currId++, u1,comp2160,5,"Third");
+        CourseReview review1 = new CourseReview(currId++, u1,comp2160,"First",5);
+        CourseReview review2 = new CourseReview(currId++, u1,comp2160, "Second",5);
+        CourseReview review3 = new CourseReview(currId++, u1,comp2160,"Third",5);
 
         List<CourseReview> list1 = new ArrayList<>();
         list1.add(review1);
