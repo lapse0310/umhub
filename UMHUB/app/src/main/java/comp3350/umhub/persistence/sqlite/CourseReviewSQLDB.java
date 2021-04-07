@@ -6,12 +6,10 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.umhub.application.Services;
-import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.CourseReview;
 import comp3350.umhub.objects.Utils;
 import comp3350.umhub.persistence.ICourseReviewPersistence;
@@ -24,7 +22,7 @@ public class CourseReviewSQLDB implements ICourseReviewPersistence {
     public static final String SCORE = "SCORE";
     public static final String USERID = "USERID";
 
-    public static String[] COLUMNS = {_ID, COURSEID, USERID, REVIEW, SCORE};
+    public static String[] ALL_COLUMNS = {_ID, COURSEID, USERID, REVIEW, SCORE};
 
     //private DatabaseHelper dbHelper;
     //private Context context;
@@ -62,7 +60,7 @@ public class CourseReviewSQLDB implements ICourseReviewPersistence {
     public List<CourseReview> getCourseReviewsSequential() {
         final List<CourseReview> courseReviews = new ArrayList<>();
         try {
-            Cursor cursor = database.query(TABLE_NAME,COLUMNS,null,null,null,null,null);
+            Cursor cursor = database.query(TABLE_NAME, ALL_COLUMNS,null,null,null,null,null);
             if (cursor != null) {
                 cursor.moveToFirst();
                 do {
@@ -85,7 +83,7 @@ public class CourseReviewSQLDB implements ICourseReviewPersistence {
     public List<CourseReview> getCourseReviewsSequential(String myCourseId) {
         final List<CourseReview> courseReviews = new ArrayList<>();
         try {
-            Cursor cursor = database.query(TABLE_NAME,COLUMNS,COURSEID + "= '" + myCourseId +"'",null,null,null,null);
+            Cursor cursor = database.query(TABLE_NAME, ALL_COLUMNS,COURSEID + "= '" + myCourseId +"'",null,null,null,null);
             if (cursor != null) {
                 cursor.moveToFirst();
                 do {
@@ -113,7 +111,7 @@ public class CourseReviewSQLDB implements ICourseReviewPersistence {
 
 
     public Cursor fetchSingleCourse(String courseID){
-        Cursor cursor = database.query(TABLE_NAME, COLUMNS, COURSEID + " = '" + courseID + "'", null, null, null, null);
+        Cursor cursor = database.query(TABLE_NAME, ALL_COLUMNS, COURSEID + " = '" + courseID + "'", null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
         }
@@ -122,7 +120,7 @@ public class CourseReviewSQLDB implements ICourseReviewPersistence {
 
     public Cursor fetch() {
         //String[] columns = new String[] {_ID};
-        Cursor cursor = database.query(TABLE_NAME, COLUMNS, null, null, null, null, null);
+        Cursor cursor = database.query(TABLE_NAME, ALL_COLUMNS, null, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
         }

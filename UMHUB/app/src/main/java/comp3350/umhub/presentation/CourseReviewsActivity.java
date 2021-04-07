@@ -2,11 +2,14 @@ package comp3350.umhub.presentation;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
@@ -23,13 +26,90 @@ import comp3350.umhub.persistence.sqlite.CourseReviewSQLDB;
 
 public class CourseReviewsActivity extends AppCompatActivity {
     private Course course;
-    private List<CourseReview> courseReviewList;
-
     private TextView courseName;
     private TextView courseDescription;
-    private ListView reviewListView;
+    private ListView listView;
+    private CourseReviewSQLDB courseReviewSQLDB;
+    private List<CourseReview> courseReviewList;
 
-/*    @Override
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_coursereview_overview);
+
+        courseReviewSQLDB = Services.getCourseReviewSQLDB(this);
+        courseReviewList = courseReviewSQLDB.getCourseReviewsSequential(CoursesActivity.getCourseSelected().getId());
+
+        courseName = (TextView) findViewById(R.id.courseName);
+        courseName.setText(CoursesActivity.getCourseSelected().getName());
+
+        courseDescription = (TextView) findViewById(R.id.courseDescription);
+        courseDescription.setText(CoursesActivity.getCourseSelected().getDescription());
+
+        listView = (ListView) findViewById(R.id.reviewListView);
+        // listView.setEmptyView(findViewById(R.id.empty));
+
+        ReviewAdapter adapter = new ReviewAdapter(this,courseReviewList);
+        adapter.notifyDataSetChanged();
+        listView.setAdapter(adapter);
+
+        // OnCLickListiner For List Items
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
+/*                TextView idTextView = (TextView) view.findViewById(R.id.id);
+                TextView titleTextView = (TextView) view.findViewById(R.id.title);
+                TextView descTextView = (TextView) view.findViewById(R.id.desc);
+
+                String id = idTextView.getText().toString();
+                String title = titleTextView.getText().toString();
+                String desc = descTextView.getText().toString();
+
+                Intent modify_intent = new Intent(getApplicationContext(), ModifyCourseReviewActivity.class);
+                modify_intent.putExtra("title", title);
+                modify_intent.putExtra("desc", desc);
+                modify_intent.putExtra("id", id);
+
+                startActivity(modify_intent);*/
+            }
+        });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        if (id == R.id.add_record) {
+
+            Intent add_mem = new Intent(this, WriteCourseReviewActivity.class);
+            add_mem.putExtra("courseID",CoursesActivity.getCourseSelected().getId());
+            startActivity(add_mem);
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void buttonWriteCourseReviewOnClick(View view){
+        Intent WriteCourseReviewIntent = new Intent(CourseReviewsActivity.this, WriteCourseReviewActivity.class);
+        CourseReviewsActivity.this.startActivity(WriteCourseReviewIntent);
+    }
+
+
+
+
+    /*    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -73,98 +153,4 @@ public class CourseReviewsActivity extends AppCompatActivity {
 
 
     }*/
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
-
-    public void buttonWriteCourseReviewOnClick(View view){
-        Intent WriteCourseReviewIntent = new Intent(CourseReviewsActivity.this, WriteCourseReviewActivity.class);
-        CourseReviewsActivity.this.startActivity(WriteCourseReviewIntent);
-    }
-
-    private CourseReviewSQLDB courseReviewSQLDB;
-
-    private ListView listView;
-
-    private SimpleCursorAdapter adapter;
-
-    final String[] from = new String[] {CourseReviewSQLDB.SCORE,CourseReviewSQLDB.USERID,CourseReviewSQLDB.REVIEW};
-
-    final int[] to = new int[] {R.id.review_score, R.id.username, R.id.review};
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        //setContentView(R.layout.fragment_emp_list);
-        setContentView(R.layout.activity_coursereview_overview);
-
-//        listView = (ListView) findViewById(R.id.list_view);
-//        listView.setEmptyView(findViewById(R.id.empty));
-
-
-        listView = (ListView) findViewById(R.id.reviewListView);
-
-        courseReviewSQLDB = Services.getCourseReviewSQLDB(this);
-        Cursor cursor = courseReviewSQLDB.fetchSingleCourse(CoursesActivity.getCourseSelected().getId());
-        //courseReviewSQLDB = new CourseReviewSQLDB(this);
-        //Cursor cursor = courseReviewSQLDB.fetch();
-
-        // This has to go
-        adapter = new SimpleCursorAdapter(this, R.layout.activity_view_record, cursor, from, to, 0);
-        adapter.notifyDataSetChanged();
-        listView.setAdapter(adapter);
-
-        courseName = (TextView) findViewById(R.id.courseName);
-        courseName.setText(CoursesActivity.getCourseSelected().getName());
-
-        courseDescription = (TextView) findViewById(R.id.courseDescription);
-        courseDescription.setText(CoursesActivity.getCourseSelected().getDescription());
-
-        // OnCLickListiner For List Items
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
-                TextView reviewScoreTextView = (TextView) view.findViewById(R.id.review_score);
-                TextView usernameTextView = (TextView) view.findViewById(R.id.username);
-                TextView reviewTextView = (TextView) view.findViewById(R.id.review);
-
-                String id = reviewScoreTextView.getText().toString();
-                String title = usernameTextView.getText().toString();
-                String desc = reviewTextView.getText().toString();
-
-
-//                Intent modify_intent = new Intent(getApplicationContext(), SeeCourseReviewActivity.class);
-//                modify_intent.putExtra("username", title);
-//                modify_intent.putExtra("review", desc);
-//                modify_intent.putExtra("id", id);
-
-                System.out.println((Cursor) adapter.getItem(position));
-//                modify_intent.putExtra("reviewId",);
-//                startActivity(modify_intent);
-            }
-        });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-        if (id == R.id.add_record) {
-
-            Intent add_mem = new Intent(this, WriteCourseReviewActivity.class);
-            add_mem.putExtra("courseID",CoursesActivity.getCourseSelected().getId());
-            startActivity(add_mem);
-
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }
