@@ -12,7 +12,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_centerInParent="true"
-        android:layout_marginTop="182dp"
+        android:layout_marginTop="225dp"
         android:layout_marginEnd="22dp"
         android:layout_marginRight="22dp"
         android:ems="10"
@@ -28,31 +28,13 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:layout_marginEnd="21dp"
-        android:layout_marginRight="21dp"
-        android:layout_marginBottom="381dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginBottom="329dp"
         android:ems="10"
         android:hint="@string/loginPassword"
         android:inputType="textPassword"
         android:textColorHint="#010510" />
-
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="98dp"
-        android:layout_height="73dp"
-        android:layout_alignWithParentIfMissing="true"
-        android:layout_alignParentStart="false"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="false"
-        android:layout_marginStart="161dp"
-        android:layout_marginLeft="233dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginRight="80dp"
-        android:layout_marginBottom="275dp"
-        android:text="Login" />
 
     <Button
         android:id="@+id/btnSignUp"
@@ -61,20 +43,23 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="76dp"
-        android:layout_marginRight="76dp"
-        android:layout_marginBottom="122dp"
+        android:layout_marginEnd="74dp"
+        android:layout_marginRight="74dp"
+        android:layout_marginBottom="216dp"
         android:text="Sign Up" />
 
     <TextView
-        android:id="@+id/header2"
-        android:layout_width="wrap_content"
-        android:layout_height="32dp"
+        android:id="@+id/heading"
+        android:layout_width="172dp"
+        android:layout_height="68dp"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="77dp"
-        android:layout_marginRight="77dp"
-        android:layout_marginBottom="189dp"
-        android:text="@string/header2" />
+        android:layout_marginTop="122dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
+        android:text="@string/header"
+        android:textColorLink="#22153E"
+        android:textSize="30sp" />
+
 </RelativeLayout>

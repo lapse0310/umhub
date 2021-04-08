@@ -12,20 +12,17 @@ import comp3350.umhub.business.AccessMajors;
 import comp3350.umhub.business.IAccessPrograms;
 import comp3350.umhub.business.AccessPrograms;
 
-import comp3350.umhub.objects.User;
+import comp3350.umhub.business.ILogin;
+import comp3350.umhub.business.Login;
+import comp3350.umhub.objects.Users;
 import comp3350.umhub.persistence.ICourseReviewPersistence;
 import comp3350.umhub.persistence.ILoginPersistence;
 import comp3350.umhub.persistence.hsqldb.CourseReviewPersistenceHSQLDB;
-import comp3350.umhub.persistence.stubs.CourseReviewPersistenceStub;
 import comp3350.umhub.persistence.stubs.LoginPersistenceStub;
 
 import comp3350.umhub.persistence.IMajorPersistence;
 import comp3350.umhub.persistence.ICoursePersistence;
 import comp3350.umhub.persistence.IProgramPersistence;
-
-import comp3350.umhub.persistence.stubs.CoursePersistenceStub;
-import comp3350.umhub.persistence.stubs.MajorPersistenceStub;
-import comp3350.umhub.persistence.stubs.ProgramPersistenceStub;
 
 import comp3350.umhub.persistence.hsqldb.CoursePersistenceHSQLDB;
 import comp3350.umhub.persistence.hsqldb.MajorPersistenceHSQLDB;
@@ -34,7 +31,7 @@ import comp3350.umhub.persistence.hsqldb.ProgramPersistenceHSQLDB;
 
 public class Services {
 
-    private static User currentUser;
+    private static Users currentUser;
     private static IAccessMajors accessMajors = null;
     private static IAccessPrograms accessPrograms = null;
     private static IAccessCourses accessCourses = null;
@@ -44,12 +41,13 @@ public class Services {
     private static ILoginPersistence loginPersistence = null;
     private static ICourseReviewPersistence courseReviewPersistence = null;
     private static AccessCourseReviews accessCourseReviews;
+    private static ILogin userLogin = null;
 
-    public static User getCurrentUser() {
+    public static Users getCurrentUser() {
         return currentUser;
     }
 
-    public static void setCurrentUser(User user){
+    public static void setCurrentUser(Users user){
         currentUser = user;
     }
 
@@ -123,5 +121,12 @@ public class Services {
         }
         return accessCourseReviews;
 
+    }
+
+    public static synchronized ILogin userLogin(){
+        if(userLogin == null){
+            userLogin = new Login();
+        }
+        return userLogin;
     }
 }

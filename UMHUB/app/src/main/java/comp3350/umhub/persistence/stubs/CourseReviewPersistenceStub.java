@@ -5,8 +5,7 @@ import java.util.List;
 
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.CourseReview;
-import comp3350.umhub.objects.Major;
-import comp3350.umhub.objects.User;
+import comp3350.umhub.objects.Users;
 import comp3350.umhub.persistence.ICourseReviewPersistence;
 
 public class CourseReviewPersistenceStub implements ICourseReviewPersistence {
@@ -37,10 +36,10 @@ public class CourseReviewPersistenceStub implements ICourseReviewPersistence {
         Course comp3170 = new Course("comp3170");
         Course comp3430 = new Course("comp3430");
         Course comp3010 = new Course("comp3430");
-        User u1 = new User("u1");
-        User u2 = new User("u2");
-        User u3 = new User("u3");
-        User u4 = new User("u4");
+        Users u1 = new Users("u1");
+        Users u2 = new Users("u2");
+        Users u3 = new Users("u3");
+        Users u4 = new Users("u4");
         courseReviews.add(new CourseReview(u1,comp3350,5,"Awesome"));
         courseReviews.add(new CourseReview(u1,comp3170,5,"Nice"));
         courseReviews.add(new CourseReview(u1,comp3010,5,"Awesome"));

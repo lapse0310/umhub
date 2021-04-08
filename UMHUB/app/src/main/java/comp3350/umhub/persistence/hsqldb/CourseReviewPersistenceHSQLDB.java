@@ -11,7 +11,7 @@ import java.util.List;
 
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.CourseReview;
-import comp3350.umhub.objects.User;
+import comp3350.umhub.objects.Users;
 import comp3350.umhub.persistence.ICourseReviewPersistence;
 
 public class CourseReviewPersistenceHSQLDB implements ICourseReviewPersistence {
@@ -71,7 +71,7 @@ public class CourseReviewPersistenceHSQLDB implements ICourseReviewPersistence {
     @Override
     public void insertCourseReview(CourseReview courseReview) {
         final String courseID = courseReview.getCourse().getId();
-        final String username = courseReview.getUser().getUsername();
+        final String username = courseReview.getUser().getUserName();
         final String reviewString = courseReview.getReview();
         final int score = courseReview.getScore();
         try (final Connection c = connection()) {
@@ -96,7 +96,7 @@ public class CourseReviewPersistenceHSQLDB implements ICourseReviewPersistence {
         final String username = rs.getString("username");
         final String reviewString = rs.getString("review");
         final int score = rs.getInt("score");
-        return new CourseReview(new User("username"), new Course("courseID"), score, reviewString);
+        return new CourseReview(new Users("username"), new Course("courseID"), score, reviewString);
     }
 
 

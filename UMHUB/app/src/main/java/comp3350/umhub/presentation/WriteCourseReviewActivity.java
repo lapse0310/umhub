@@ -3,8 +3,6 @@ package comp3350.umhub.presentation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 
 
@@ -18,10 +16,10 @@ import comp3350.umhub.application.Services;
 import comp3350.umhub.business.IAccessCourseReviews;
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.CourseReview;
-import comp3350.umhub.objects.User;
+import comp3350.umhub.objects.Users;
 
 public class WriteCourseReviewActivity extends AppCompatActivity {
-    private User currentUser;
+    private Users currentUser;
     private Course course;
     private List<CourseReview> courseReviewList;
 

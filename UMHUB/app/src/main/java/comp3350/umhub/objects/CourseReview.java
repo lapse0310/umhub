@@ -3,7 +3,7 @@ package comp3350.umhub.objects;
 public class CourseReview extends Review{
     Course course;
 
-    public CourseReview(User user, Course course, int score, String review){
+    public CourseReview(Users user, Course course, int score, String review){
         this.user = user;
         this.course = course;
         this.score = score;
