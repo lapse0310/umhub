@@ -25,7 +25,7 @@ import comp3350.umhub.objects.CourseReview;
 import comp3350.umhub.persistence.sqlite.CourseReviewSQLDB;
 
 public class CourseReviewsActivity extends AppCompatActivity {
-    private Course course;
+    private Course courseSelected;
     private TextView courseName;
     private TextView courseDescription;
     private ListView listView;
@@ -38,14 +38,17 @@ public class CourseReviewsActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_coursereview_overview);
 
+        courseSelected = CoursesActivity.getCourseSelected();
+        setTitle(courseSelected.getId());
+
         courseReviewSQLDB = Services.getCourseReviewSQLDB(this);
-        courseReviewList = courseReviewSQLDB.getCourseReviewsSequential(CoursesActivity.getCourseSelected().getId());
+        courseReviewList = courseReviewSQLDB.getCourseReviewsSequential(courseSelected.getId());
 
         courseName = (TextView) findViewById(R.id.courseName);
-        courseName.setText(CoursesActivity.getCourseSelected().getName());
+        courseName.setText(courseSelected.getName());
 
         courseDescription = (TextView) findViewById(R.id.courseDescription);
-        courseDescription.setText(CoursesActivity.getCourseSelected().getDescription());
+        courseDescription.setText(courseSelected.getDescription());
 
         listView = (ListView) findViewById(R.id.reviewListView);
         listView.setEmptyView(findViewById(R.id.empty));
@@ -58,20 +61,11 @@ public class CourseReviewsActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
-/*                TextView idTextView = (TextView) view.findViewById(R.id.id);
-                TextView titleTextView = (TextView) view.findViewById(R.id.title);
-                TextView descTextView = (TextView) view.findViewById(R.id.desc);
+                CourseReview c = courseReviewList.get(position);
 
-                String id = idTextView.getText().toString();
-                String title = titleTextView.getText().toString();
-                String desc = descTextView.getText().toString();
-
-                Intent modify_intent = new Intent(getApplicationContext(), ModifyCourseReviewActivity.class);
-                modify_intent.putExtra("title", title);
-                modify_intent.putExtra("desc", desc);
-                modify_intent.putExtra("id", id);
-
-                startActivity(modify_intent);*/
+                Intent modify_intent = new Intent(getApplicationContext(), SeeCourseReviewActivity.class);
+                modify_intent.putExtra("id", c.getId());
+                startActivity(modify_intent);
             }
         });
     }

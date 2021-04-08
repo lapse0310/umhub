@@ -14,7 +14,7 @@ import comp3350.umhub.objects.CourseReview;
 import comp3350.umhub.objects.User;
 import comp3350.umhub.persistence.ICourseReviewPersistence;
 
-public class CourseReviewPersistenceHSQLDB implements ICourseReviewPersistence {
+public class CourseReviewPersistenceHSQLDB {
 
     private final String dbPath;
 
@@ -26,7 +26,10 @@ public class CourseReviewPersistenceHSQLDB implements ICourseReviewPersistence {
         return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
     }
 
-    @Override
+    public CourseReview getCourseReview(int id) {
+        return null;
+    }
+
     public List<CourseReview> getCourseReviewsSequential() {
         final List<CourseReview> courseReviews = new ArrayList<>();
 
@@ -46,7 +49,6 @@ public class CourseReviewPersistenceHSQLDB implements ICourseReviewPersistence {
         }
     }
 
-    @Override
     public List<CourseReview> getCourseReviewsSequential(String courseId) {
         final List<CourseReview> courseReviews = new ArrayList<>();
 
@@ -68,7 +70,6 @@ public class CourseReviewPersistenceHSQLDB implements ICourseReviewPersistence {
         }
     }
 
-    @Override
     public void insert(String courseID, String userID, String review, int reviewScore) {
         try (final Connection c = connection()) {
 

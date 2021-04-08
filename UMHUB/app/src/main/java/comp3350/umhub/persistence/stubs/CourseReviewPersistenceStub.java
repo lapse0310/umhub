@@ -14,6 +14,18 @@ public class CourseReviewPersistenceStub implements ICourseReviewPersistence {
     List<CourseReview> courseReviews;
 
     @Override
+    public CourseReview getCourseReview(int id) {
+        CourseReview courseReview = null;
+        for (CourseReview review : courseReviews) {
+            if (review.getId() == id){
+                courseReview = review;
+                break;
+            }
+        }
+        return courseReview;
+    }
+
+    @Override
     public List<CourseReview> getCourseReviewsSequential() {
         return courseReviews;
     }

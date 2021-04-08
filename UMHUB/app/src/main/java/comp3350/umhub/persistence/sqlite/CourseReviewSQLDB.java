@@ -52,7 +52,7 @@ public class CourseReviewSQLDB implements ICourseReviewPersistence {
         contentValue.put(COURSEID, courseID);
         contentValue.put(USERID, userID);
         contentValue.put(REVIEW, review);
-        contentValue.put(SCORE,reviewScore);
+        contentValue.put(SCORE, reviewScore);
         database.insert(TABLE_NAME, null, contentValue);
     }
 
@@ -60,7 +60,7 @@ public class CourseReviewSQLDB implements ICourseReviewPersistence {
     public List<CourseReview> getCourseReviewsSequential() {
         final List<CourseReview> courseReviews = new ArrayList<>();
         try {
-            Cursor cursor = database.query(TABLE_NAME, ALL_COLUMNS,null,null,null,null,null);
+            Cursor cursor = database.query(TABLE_NAME, ALL_COLUMNS, null, null, null, null, null);
             if (cursor != null) {
                 cursor.moveToFirst();
                 do {
@@ -69,12 +69,12 @@ public class CourseReviewSQLDB implements ICourseReviewPersistence {
                     String userId = cursor.getString(cursor.getColumnIndex(USERID));
                     int score = cursor.getInt(cursor.getColumnIndex(SCORE));
                     String review = cursor.getString(cursor.getColumnIndex(REVIEW));
-                    courseReviews.add(new CourseReview(_id,courseId,userId,review,score));
+                    courseReviews.add(new CourseReview(_id, courseId, userId, review, score));
                 } while (cursor.moveToNext());
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }    finally {
+        } finally {
             return courseReviews;
         }
     }
@@ -83,7 +83,7 @@ public class CourseReviewSQLDB implements ICourseReviewPersistence {
     public List<CourseReview> getCourseReviewsSequential(String myCourseId) {
         final List<CourseReview> courseReviews = new ArrayList<>();
         try {
-            Cursor cursor = database.query(TABLE_NAME, ALL_COLUMNS,COURSEID + "= '" + myCourseId +"'",null,null,null,null);
+            Cursor cursor = database.query(TABLE_NAME, ALL_COLUMNS, COURSEID + "= '" + myCourseId + "'", null, null, null, null);
             if (cursor != null) {
                 cursor.moveToFirst();
                 do {
@@ -92,25 +92,46 @@ public class CourseReviewSQLDB implements ICourseReviewPersistence {
                     String userId = cursor.getString(cursor.getColumnIndex(USERID));
                     int score = cursor.getInt(cursor.getColumnIndex(SCORE));
                     String review = cursor.getString(cursor.getColumnIndex(REVIEW));
-                    courseReviews.add(new CourseReview(_id,courseId,userId,review,score));
+                    courseReviews.add(new CourseReview(_id, courseId, userId, review, score));
                 } while (cursor.moveToNext());
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }    finally {
+        } finally {
             return courseReviews;
         }
     }
 
-    private void testGetCourseReviewSequential(){
+    //
+    public CourseReview getCourseReview(int id) {
+        CourseReview courseReviews = null;
+        try {
+            Cursor cursor = database.query(TABLE_NAME, ALL_COLUMNS, _ID + "=" + id, null, null, null, null);
+            if (cursor != null) {
+                cursor.moveToFirst();
+                int _id = cursor.getInt(cursor.getColumnIndex(_ID));
+                String courseId = cursor.getString(cursor.getColumnIndex(COURSEID));
+                String userId = cursor.getString(cursor.getColumnIndex(USERID));
+                int score = cursor.getInt(cursor.getColumnIndex(SCORE));
+                String review = cursor.getString(cursor.getColumnIndex(REVIEW));
+                courseReviews = new CourseReview(_id, courseId, userId, review, score);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            return courseReviews;
+        }
+
+    }
+
+    private void testGetCourseReviewSequential() {
         List<CourseReview> courseReviews = getCourseReviewsSequential("COMP3350");
         if (courseReviews == null) System.out.println("courseReviews is null");
         else System.out.println(Utils.listToString(courseReviews));
     }
 
 
-
-    public Cursor fetchSingleCourse(String courseID){
+    public Cursor fetchSingleCourse(String courseID) {
         Cursor cursor = database.query(TABLE_NAME, ALL_COLUMNS, COURSEID + " = '" + courseID + "'", null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();

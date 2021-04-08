@@ -11,6 +11,7 @@
         android:theme="@style/Theme.UMHUB">
         <activity android:name=".presentation.CourseReviewsActivity" />
         <activity android:name=".presentation.WriteCourseReviewActivity" />
+        <activity android:name=".presentation.SeeCourseReviewActivity" />
         <activity android:name=".presentation.CoursesActivity" />
         <activity android:name=".presentation.ProgramsActivity" />
         <activity android:name=".presentation.MajorsActivity" />
