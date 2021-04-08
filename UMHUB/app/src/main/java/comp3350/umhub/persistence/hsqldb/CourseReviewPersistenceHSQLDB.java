@@ -14,7 +14,7 @@ import comp3350.umhub.objects.CourseReview;
 import comp3350.umhub.objects.User;
 import comp3350.umhub.persistence.ICourseReviewPersistence;
 
-public class CourseReviewPersistenceHSQLDB implements ICourseReviewPersistence {
+public class CourseReviewPersistenceHSQLDB {
 
     private final String dbPath;
 
@@ -26,7 +26,10 @@ public class CourseReviewPersistenceHSQLDB implements ICourseReviewPersistence {
         return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
     }
 
-    @Override
+    public CourseReview getCourseReview(int id) {
+        return null;
+    }
+
     public List<CourseReview> getCourseReviewsSequential() {
         final List<CourseReview> courseReviews = new ArrayList<>();
 
@@ -46,13 +49,12 @@ public class CourseReviewPersistenceHSQLDB implements ICourseReviewPersistence {
         }
     }
 
-    @Override
-    public List<CourseReview> getCourseReviewsSequential(Course course) {
+    public List<CourseReview> getCourseReviewsSequential(String courseId) {
         final List<CourseReview> courseReviews = new ArrayList<>();
 
         try (final Connection c = connection()) {
             final PreparedStatement st = c.prepareStatement("SELECT * FROM COURSEREVIEWS WHERE courseID=?");
-            st.setString(1, course.getId());
+            st.setString(1, courseId);
             final ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
@@ -68,19 +70,14 @@ public class CourseReviewPersistenceHSQLDB implements ICourseReviewPersistence {
         }
     }
 
-    @Override
-    public void insertCourseReview(CourseReview courseReview) {
-        final String courseID = courseReview.getCourse().getId();
-        final String username = courseReview.getUser().getUsername();
-        final String reviewString = courseReview.getReview();
-        final int score = courseReview.getScore();
+    public void insert(String courseID, String userID, String review, int reviewScore) {
         try (final Connection c = connection()) {
 
-            final PreparedStatement st = c.prepareStatement("INSERT INTO COURSEREVIEWS (COURSEID,USERNAME,SCORE,REVIEW) VALUES (?,?,?,?)");
+            final PreparedStatement st = c.prepareStatement("INSERT INTO COURSEREVIEWS (COURSEID,USERNAME,REVIEW,SCORE) VALUES (?,?,?,?)");
             st.setString(1, courseID);
-            st.setString(2, username);
-            st.setInt(3, score);
-            st.setString(4, reviewString);
+            st.setString(2, userID);
+            st.setString(4, review);
+            st.setInt(3, reviewScore);
 
             final ResultSet rs = st.executeQuery();
             rs.close();
@@ -94,10 +91,11 @@ public class CourseReviewPersistenceHSQLDB implements ICourseReviewPersistence {
     private CourseReview fromResultSet(final ResultSet rs) throws SQLException {
         final int id = rs.getInt("id");
         final String courseId = rs.getString("courseID");
-        final String username = rs.getString("username");
-        final String reviewString = rs.getString("review");
+        final String userId = rs.getString("username");
+        final String review = rs.getString("review");
         final int score = rs.getInt("score");
-        return new CourseReview(id,new User(username), new Course(courseId), score, reviewString);
+        //return new CourseReview(id,new User(username), new Course(courseId), score, reviewString); //This looks hideous
+        return new CourseReview(id,userId,courseId,review,score);
     }
 
 
