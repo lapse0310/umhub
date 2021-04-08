@@ -21,6 +21,7 @@ public class TutorPersistenceStub implements ITutorPersistence {
 
         tutors.add(new Tutor("Cool","cool@umanitoba.ca",course0,"Professor",4.5f));
         tutors.add(new Tutor("Tall","tall@umanitoba.ca",course0,"TA",2f));
+        tutors.add(new Tutor("Middle","middle@umanitoba.ca",course0,"TA",3f));
         tutors.add(new Tutor("Short","short@umanitoba.ca",course1,"Professor",3f));
         tutors.add(new Tutor("Grumpy","grumps@umanitoba.ca",course1,"Professor",2.5f));
         tutors.add(new Tutor("Awesome","awsm@umanitoba.ca",course2,"TA",3.5f));

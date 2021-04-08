@@ -17,6 +17,10 @@ public class Tutor {
         this.rating = rating;
     }
 
+    public Tutor(String name){
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
