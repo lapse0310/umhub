@@ -11,7 +11,6 @@ import comp3350.umhub.persistence.ICoursePersistence;
 
 public class AccessCourses implements IAccessCourses{
     private final List<Course> courses;
-    private ICoursePersistence coursePersistence;
 
 
     public AccessCourses(){
@@ -21,8 +20,7 @@ public class AccessCourses implements IAccessCourses{
     }
 
     public AccessCourses( final ICoursePersistence persistence) {
-        this();
-        coursePersistence = persistence;
+        courses = persistence.getCourseSequential();
     }
 
     @Override
@@ -33,7 +31,7 @@ public class AccessCourses implements IAccessCourses{
             boolean found = false;
             int count = 0;
             while(programList != null && !found && count < programList.size()){
-                if(Equals.isEqual(programSelected,programList.get(count))){
+                if(programSelected.equals(programList.get(count))){
                     coursesUnderProgram.add(courses.get(i));
                     found = true;
                 }
@@ -63,7 +61,7 @@ public class AccessCourses implements IAccessCourses{
     public List<Course> getCoursesByMajor(Major major) {
         List<Course> coursesUnderMajor = new ArrayList<>();
         for(int i=0; i<courses.size();i++){
-            if(Equals.isEqual(major,courses.get(i).getMajor())){
+            if(major.equals(courses.get(i).getMajor())){
                 coursesUnderMajor.add(courses.get(i));
             }
         }

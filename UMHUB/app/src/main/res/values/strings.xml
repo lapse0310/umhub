@@ -5,12 +5,19 @@
     <string name="logo">Logo</string>
     <string name="loginUserName">Enter your username:</string>
     <string name="loginPassword">Enter your password:</string>
-    <string name = "table1">Year 1</string>
-    <string name = "table2">Year 2</string>
-    <string name = "table3">Year 3</string>
-    <string name = "table4">Year 4</string>
-    <string name = "courses">Click here to view all courses under the major</string>
-    <string name = "programs">List of all the programs under the major</string>
-    <string name = "majors">List of all the majors available</string>
+    <string name="table1">Year 1</string>
+    <string name="table2">Year 2</string>
+    <string name="table3">Year 3</string>
+    <string name="table4">Year 4</string>
+    <string name="courses">Click here to view all courses under the major</string>
+    <string name="programs">List of all the programs under the major</string>
+    <string name="majors">List of all the majors available</string>
+    <string name="tutors">Tutors available for this course.</string>
+    <string name="rateProf">Rate this Tutor</string>
+    <string name="submit">Submit</string>
+    <string name="goback2">Back to Tutors</string>
+    <string name="goback1">Back to Courses</string>
+    <string name="empty_review_list_text">Be the first to write a review</string>
+
 
 </resources>

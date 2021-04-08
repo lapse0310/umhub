@@ -1,85 +1,112 @@
 package comp3350.umhub.presentation;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.List;
 
 import comp3350.umhub.R;
 import comp3350.umhub.application.Services;
-import comp3350.umhub.business.IAccessCourseReviews;
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.CourseReview;
+import comp3350.umhub.persistence.sqlite.CourseReviewSQLDB;
 
 public class CourseReviewsActivity extends AppCompatActivity {
-    private Course course;
-    private List<CourseReview> courseReviewList;
-
+    private Course courseSelected;
     private TextView courseName;
     private TextView courseDescription;
-    private ListView reviewListView;
+    private ListView listView;
+    private CourseReviewSQLDB courseReviewSQLDB;
+    private List<CourseReview> courseReviewList;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_coursereview_overview);
-        IAccessCourseReviews accessCourseReviews = Services.getAccessCourseReviews();
 
-        course = CoursesActivity.getCourseSelected();
+        courseSelected = CoursesActivity.getCourseSelected();
+        setTitle(courseSelected.getId());
 
-        System.out.println(course);
+        courseReviewSQLDB = Services.getCourseReviewSQLDB(this);
+        courseReviewList = courseReviewSQLDB.getCourseReviewsSequential(courseSelected.getId());
 
-        try{
-            courseReviewList = accessCourseReviews.getCourseReviews(course);
-/*            ArrayAdapter<CourseReview> courseReviewArrayAdapter = new ArrayAdapter<CourseReview>(this, android.R.layout.simple_selectable_list_item,android.R.id.text1,courseReviewList) {
+        courseName = (TextView) findViewById(R.id.courseName);
+        courseName.setText(courseSelected.getName());
 
-                public View getView(int position, View convertView, ViewGroup parent) {
-                    View view = super.getView(position, convertView, parent);
+        courseDescription = (TextView) findViewById(R.id.courseDescription);
+        courseDescription.setText(courseSelected.getDescription());
 
-                    TextView text1 = (TextView) view.findViewById(android.R.id.text1);
+        listView = (ListView) findViewById(R.id.reviewListView);
+        listView.setEmptyView(findViewById(R.id.empty));
 
-                    text1.setText(courseReviewList.get(position).getReview());
-                    return view;
-                }
-            };*/
+        ReviewAdapter adapter = new ReviewAdapter(this, courseReviewList);
+        adapter.notifyDataSetChanged();
+        listView.setAdapter(adapter);
 
-            ReviewAdapter courseReviewArrayAdapter = new ReviewAdapter(this,courseReviewList);
+        // OnCLickListiner For List Items
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
 
-            reviewListView = (ListView) findViewById(R.id.reviewListView);
-            reviewListView.setAdapter(courseReviewArrayAdapter);
+                //CourseReview c = courseReviewList.get(position);
+                CourseReview c = (CourseReview) adapter.getItem(position);
 
-
-            courseName = (TextView) findViewById(R.id.courseName);
-            courseName.setText(course.getName());
-
-            courseDescription = (TextView) findViewById(R.id.courseDescription);
-            courseDescription.setText(course.getDescription());
-
-        }
-        catch (final Exception e){
-            Messages.fatalError(this,e.getMessage());
-        }
-
-
+                Intent modify_intent = new Intent(getApplicationContext(), SeeCourseReviewActivity.class);
+                modify_intent.putExtra("id", c.getId());
+                startActivity(modify_intent);
+            }
+        });
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        if (id == R.id.add_record) {
+
+            Intent add_mem = new Intent(this, WriteCourseReviewActivity.class);
+            add_mem.putExtra("courseID", CoursesActivity.getCourseSelected().getId());
+            startActivity(add_mem);
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
     }
 
-    public void buttonWriteCourseReviewOnClick(View view){
+    public void buttonWriteCourseReviewOnClick(View view) {
         Intent WriteCourseReviewIntent = new Intent(CourseReviewsActivity.this, WriteCourseReviewActivity.class);
         CourseReviewsActivity.this.startActivity(WriteCourseReviewIntent);
     }
+
+    public void buttonViewTutors(View view) {
+        Intent viewTutors = new Intent(CourseReviewsActivity.this, TutorsActivity.class);
+        CourseReviewsActivity.this.startActivity(viewTutors);
+    }
 }
+

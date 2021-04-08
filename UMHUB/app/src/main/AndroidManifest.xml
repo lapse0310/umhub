@@ -9,12 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.UMHUB">
+        <activity android:name=".presentation.RateTutorsActivity" />
+        <activity android:name=".presentation.TutorsActivity" />
         <activity android:name=".presentation.CourseReviewsActivity" />
         <activity android:name=".presentation.WriteCourseReviewActivity" />
+        <activity android:name=".presentation.SeeCourseReviewActivity" />
         <activity android:name=".presentation.CoursesActivity" />
         <activity android:name=".presentation.ProgramsActivity" />
         <activity android:name=".presentation.MajorsActivity" />
-        <activity android:name=".presentation.HomeActivity"/>
+        <activity android:name=".presentation.HomeActivity" />
         <activity android:name=".presentation.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

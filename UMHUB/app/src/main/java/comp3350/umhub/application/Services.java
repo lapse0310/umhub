@@ -1,7 +1,13 @@
 //used to provide an implementation of the interfaces used.
 package comp3350.umhub.application;
 
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+
+import java.io.IOException;
+
 import comp3350.umhub.business.AccessCourseReviews;
+import comp3350.umhub.business.AccessTutors;
 import comp3350.umhub.business.IAccessCourseReviews;
 import comp3350.umhub.business.IAccessCourses;
 import comp3350.umhub.business.AccessCourses;
@@ -12,10 +18,14 @@ import comp3350.umhub.business.AccessMajors;
 import comp3350.umhub.business.IAccessPrograms;
 import comp3350.umhub.business.AccessPrograms;
 
+import comp3350.umhub.business.IAccessTutors;
 import comp3350.umhub.objects.User;
 import comp3350.umhub.persistence.ICourseReviewPersistence;
 import comp3350.umhub.persistence.ILoginPersistence;
+import comp3350.umhub.persistence.ITutorPersistence;
 import comp3350.umhub.persistence.hsqldb.CourseReviewPersistenceHSQLDB;
+import comp3350.umhub.persistence.sqlite.CourseReviewSQLDB;
+import comp3350.umhub.persistence.sqlite.DatabaseHelper;
 import comp3350.umhub.persistence.stubs.CourseReviewPersistenceStub;
 import comp3350.umhub.persistence.stubs.LoginPersistenceStub;
 
@@ -30,6 +40,8 @@ import comp3350.umhub.persistence.stubs.ProgramPersistenceStub;
 import comp3350.umhub.persistence.hsqldb.CoursePersistenceHSQLDB;
 import comp3350.umhub.persistence.hsqldb.MajorPersistenceHSQLDB;
 import comp3350.umhub.persistence.hsqldb.ProgramPersistenceHSQLDB;
+import comp3350.umhub.persistence.stubs.TutorPersistenceStub;
+import comp3350.umhub.presentation.WriteCourseReviewActivity;
 
 
 public class Services {
@@ -44,6 +56,8 @@ public class Services {
     private static ILoginPersistence loginPersistence = null;
     private static ICourseReviewPersistence courseReviewPersistence = null;
     private static AccessCourseReviews accessCourseReviews;
+    private static IAccessTutors accessTutors = null;
+    private static ITutorPersistence tutorPersistence = null;
 
     public static User getCurrentUser() {
         return currentUser;
@@ -56,7 +70,7 @@ public class Services {
     public static synchronized IMajorPersistence getMajorPersistence(){
         if(majorPersistence==null){
             majorPersistence = new MajorPersistenceStub();
-//            majorPersistence = new MajorPersistenceHSQLDB(Main.getDBPathName());
+           //majorPersistence = new MajorPersistenceHSQLDB(Main.getDBPathName());
 
         }
         return majorPersistence;
@@ -65,7 +79,7 @@ public class Services {
     public static synchronized IProgramPersistence getProgramPersistence(){
         if(programPersistence==null){
             programPersistence = new ProgramPersistenceStub();
-//            programPersistence = new ProgramPersistenceHSQLDB(Main.getDBPathName());
+           //programPersistence = new ProgramPersistenceHSQLDB(Main.getDBPathName());
         }
         return programPersistence;
     }
@@ -73,7 +87,7 @@ public class Services {
     public static synchronized ICoursePersistence getCoursePersistence(){
         if(coursePersistence==null){
             coursePersistence = new CoursePersistenceStub();
-//            coursePersistence = new CoursePersistenceHSQLDB(Main.getDBPathName());
+           //coursePersistence = new CoursePersistenceHSQLDB(Main.getDBPathName());
         }
         return coursePersistence;
     }
@@ -110,7 +124,7 @@ public class Services {
     public static ICourseReviewPersistence getCourseReviewPersistence() {
 
         if(courseReviewPersistence ==null){
-//            courseReviewPersistence = new CourseReviewPersistenceHSQLDB(Main.getDBPathName());
+           //courseReviewPersistence = new CourseReviewPersistenceHSQLDB(Main.getDBPathName());
             courseReviewPersistence = new CourseReviewPersistenceStub();
         }
         return courseReviewPersistence;
@@ -123,5 +137,41 @@ public class Services {
         }
         return accessCourseReviews;
 
+    }
+
+    public static synchronized ITutorPersistence getTutorPersistence(){
+        if(tutorPersistence==null){
+            tutorPersistence = new TutorPersistenceStub();
+
+
+        }
+        return tutorPersistence;
+    }
+
+    public static IAccessTutors getAccessTutors() {
+
+        if (accessTutors == null) {
+            accessTutors = new AccessTutors();
+        }
+        return accessTutors;
+    }
+
+    private static SQLiteDatabase database;
+
+    public static SQLiteDatabase getDatabase(Context context) {
+        if(database ==null){
+            try {
+                DatabaseHelper dbHelper = new DatabaseHelper(context);
+                database = dbHelper.getDataBase();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+        return database;
+    }
+
+    public static CourseReviewSQLDB getCourseReviewSQLDB(Context context) {
+        return new CourseReviewSQLDB(context);
     }
 }

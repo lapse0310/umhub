@@ -1,49 +1,65 @@
 package comp3350.umhub.objects;
 
-public class CourseReview extends Review{
-    Course course;
-    static int idCount = 0;
+public class CourseReview{
+    int _id;
+    String review;
+    String userId;
+    int score;
+    String courseId;
 
-    public CourseReview(User user, Course course, int score, String review){
-        this.id = setId();
-        this.user = user;
-        this.course = course;
+    public static int MAX_REVIEW_SCORE = 5;
+    public static int MIN_REVIEW_SCORE = 1;
+
+
+
+    public int getId() {
+        return _id;
+    }
+
+    public String getUser() {
+        return userId;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public String getReview() {
+        return review;
+    }
+
+    public CourseReview(String courseId , String userId, String review, int score){
+        this._id = 0;
+        this.userId = userId;
+        this.courseId = courseId;
         this.score = score;
         this.review = review;
 
     }
 
-    public CourseReview(int id, User user, Course course, int score, String review){
-        this.id = setId(id);
-        this.user = user;
-        this.course = course;
+    public CourseReview(int id, String courseId , String userId, String review, int score){
+        this._id = id;
+        this.userId = userId;
+        this.courseId = courseId;
         this.score = score;
         this.review = review;
     }
 
-    public Course getCourse() {
-        return course;
+    public String getCourseId() {
+        return courseId;
     }
 
-
-
-    public static int setId() {
-        idCount++;
-        return idCount;
-    }
-
-    public static int setId(int id) {
-        if (idCount < id) idCount = id;
-        return id;
+    public boolean equals(CourseReview other){
+        return this.getId() == other.getId();
     }
 
 
     @Override
     public String toString() {
         return "CourseReview{" +
-                "id=" + id +
-                ", course=" + course.getId() +
-                ", user=" + user.getUsername() +
+                "id=" + _id +
+                ", course=" + courseId +
+                ", user=" + userId +
                 ", score=" + score +
                 ", review='" + review + '\'' +
                 '}';

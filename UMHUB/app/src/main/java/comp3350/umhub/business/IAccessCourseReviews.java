@@ -7,8 +7,7 @@ import comp3350.umhub.objects.CourseReview;
 
 
 public interface IAccessCourseReviews {
-    List<CourseReview> getCourseReviews(Course course);
+    List<CourseReview> getCourseReviews(String courseId);
     List<CourseReview> getCourseReviews();
-    void addReview(CourseReview courseReview);
-
+    void addReview(String courseID, String userID, String review, int reviewScore);
 }

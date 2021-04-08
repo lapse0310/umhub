@@ -13,6 +13,10 @@ public class Major {
         return this.name;
     }
 
+    public boolean equals(Major other){
+        return this.name.equals(other.name);
+    }
+
     @Override
     public String toString() {
         return "Major{" +
