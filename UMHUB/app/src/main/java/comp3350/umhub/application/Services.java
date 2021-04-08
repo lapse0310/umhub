@@ -150,11 +150,11 @@ public class Services {
 
     public static IAccessTutors getAccessTutors() {
 
-        if(accessTutors ==null){
+        if (accessTutors == null) {
             accessTutors = new AccessTutors();
         }
         return accessTutors;
-
+    }
 
     private static SQLiteDatabase database;
 

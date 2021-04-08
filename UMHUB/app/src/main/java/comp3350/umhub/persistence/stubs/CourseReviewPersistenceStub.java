@@ -33,7 +33,7 @@ public class CourseReviewPersistenceStub implements ICourseReviewPersistence {
     public List<CourseReview> getCourseReviewsSequential(String courseId) {
         List<CourseReview>  courseReviews1= new ArrayList<>();
         for (CourseReview review : courseReviews) {
-            if (review.getCourse().equals(course)) courseReviews1.add(review);
+            if (review.getCourseId().equals(courseId)) courseReviews1.add(review);
         }
         return courseReviews1;
     }

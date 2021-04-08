@@ -53,7 +53,7 @@ public class CourseReviewsActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.reviewListView);
         listView.setEmptyView(findViewById(R.id.empty));
 
-        ReviewAdapter adapter = new ReviewAdapter(this,courseReviewList);
+        ReviewAdapter adapter = new ReviewAdapter(this, courseReviewList);
         adapter.notifyDataSetChanged();
         listView.setAdapter(adapter);
 
@@ -72,10 +72,6 @@ public class CourseReviewsActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -90,36 +86,27 @@ public class CourseReviewsActivity extends AppCompatActivity {
         if (id == R.id.add_record) {
 
             Intent add_mem = new Intent(this, WriteCourseReviewActivity.class);
-            add_mem.putExtra("courseID",CoursesActivity.getCourseSelected().getId());
+            add_mem.putExtra("courseID", CoursesActivity.getCourseSelected().getId());
             startActivity(add_mem);
 
         }
         return super.onOptionsItemSelected(item);
     }
 
-    public void buttonWriteCourseReviewOnClick(View view){
-        Intent WriteCourseReviewIntent = new Intent(CourseReviewsActivity.this, WriteCourseReviewActivity.class);
-        CourseReviewsActivity.this.startActivity(WriteCourseReviewIntent);
-    }
-
-
-
-
-   
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
     }
 
-    public void buttonWriteCourseReviewOnClick(View view){
+    public void buttonWriteCourseReviewOnClick(View view) {
         Intent WriteCourseReviewIntent = new Intent(CourseReviewsActivity.this, WriteCourseReviewActivity.class);
         CourseReviewsActivity.this.startActivity(WriteCourseReviewIntent);
     }
 
-    public void buttonViewTutors(View view){
+    public void buttonViewTutors(View view) {
         Intent viewTutors = new Intent(CourseReviewsActivity.this, TutorsActivity.class);
         CourseReviewsActivity.this.startActivity(viewTutors);
     }
-    }
 }
+
