@@ -38,8 +38,14 @@ public class CoursePersistenceStub implements ICoursePersistence {
 
 
     }
+
     @Override
-    public List<Course> getCourseSequential() {
+    public Course getCourse(String courseId) {
+        return null;
+    }
+
+    @Override
+    public List<Course> getCoursesSequential() {
         return courses;
     }
 }

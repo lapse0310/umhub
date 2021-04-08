@@ -8,7 +8,7 @@ import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.Major;
 import comp3350.umhub.persistence.ICoursePersistence;
 
-public class CoursePersistenceHSQLDB implements ICoursePersistence {
+public class CoursePersistenceHSQLDB {
 
     private final String dbPath;
 
@@ -31,8 +31,8 @@ public class CoursePersistenceHSQLDB implements ICoursePersistence {
     }
 
 
-    @Override
-    public synchronized List<Course> getCourseSequential() {
+
+    public synchronized List<Course> getCoursesSequential() {
         final List<Course> courses = new ArrayList<>();
 
         try (final Connection c = connection()) {

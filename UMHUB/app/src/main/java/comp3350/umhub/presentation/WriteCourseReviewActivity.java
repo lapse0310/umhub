@@ -60,7 +60,6 @@ public class WriteCourseReviewActivity extends AppCompatActivity {
         String courseID = courseSelected.getId();
         String userID = currentUser.getUsername();
         String review = reviewEditText.getText().toString();
-        //int score = Integer.parseInt(reviewScoreEditText.getText().toString());
         int score = getRadioButtonValue();
         courseReviewSQLDB.insert(courseID,userID,review,score);
         returnHome();
@@ -71,7 +70,6 @@ public class WriteCourseReviewActivity extends AppCompatActivity {
         int radioId = radioGroup.getCheckedRadioButtonId();
         radioButton = findViewById(radioId);
         int score = Integer.parseInt(radioButton.getText().toString());
-        System.out.println("Radio Button value is "+score);
         return score;
     }
 

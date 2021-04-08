@@ -5,5 +5,6 @@ import java.util.List;
 import comp3350.umhub.objects.Course;
 
 public interface ICoursePersistence {
-    List<Course> getCourseSequential();
+    Course getCourse(String courseId);
+    List<Course> getCoursesSequential();
 }

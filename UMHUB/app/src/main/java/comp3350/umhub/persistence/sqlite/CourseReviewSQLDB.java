@@ -33,7 +33,7 @@ public class CourseReviewSQLDB implements ICourseReviewPersistence {
         database = Services.getDatabase(context);
 
         // Debugging
-        testGetCourseReviewSequential();
+        //testGetCourseReviewSequential();
     }
 
 /*    public CourseReviewSQLDB open() throws SQLException {
@@ -130,23 +130,6 @@ public class CourseReviewSQLDB implements ICourseReviewPersistence {
         else System.out.println(Utils.listToString(courseReviews));
     }
 
-
-    public Cursor fetchSingleCourse(String courseID) {
-        Cursor cursor = database.query(TABLE_NAME, ALL_COLUMNS, COURSEID + " = '" + courseID + "'", null, null, null, null);
-        if (cursor != null) {
-            cursor.moveToFirst();
-        }
-        return cursor;
-    }
-
-    public Cursor fetch() {
-        //String[] columns = new String[] {_ID};
-        Cursor cursor = database.query(TABLE_NAME, ALL_COLUMNS, null, null, null, null, null);
-        if (cursor != null) {
-            cursor.moveToFirst();
-        }
-        return cursor;
-    }
 
     public int update(long _id, String courseID, String review) {
         ContentValues contentValues = new ContentValues();

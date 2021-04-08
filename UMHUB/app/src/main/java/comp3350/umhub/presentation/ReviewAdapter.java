@@ -49,6 +49,7 @@ public class ReviewAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.activity_view_record, parent, false);
             CourseReview courseReview = courseReviewList.get(position);
+            System.out.println("@"+position+": "+courseReview);
             TextView scoreTextView = (TextView) convertView.findViewById(R.id.review_score);
             TextView usernameTextView = (TextView) convertView.findViewById(R.id.username);
             TextView reviewTextView = (TextView) convertView.findViewById(R.id.review);
