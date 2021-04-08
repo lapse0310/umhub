@@ -7,12 +7,10 @@ import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.Program;
 
 public interface IAccessCourses {
-    List<Course> getCourses(Program program);
-
+    List<Course> getCourses();
+    List<Course> getCoursesByProgram(Program program);
     List<Course> getCoursesByYearProgram(Program programSelected, int year);
-
     List<Course> getCoursesByMajor(Major major);
-
     List<Course> getCoursesByYearMajor(Major major, int year);
 
 }

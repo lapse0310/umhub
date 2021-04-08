@@ -14,8 +14,8 @@ public class AccessCourses implements IAccessCourses{
     private ICoursePersistence coursePersistence;
 
 
-    public AccessCourses(){
-        ICoursePersistence coursePersistence = Services.getCoursePersistence();
+    public AccessCourses( ){
+        coursePersistence = Services.getCoursePersistence();
         courses = coursePersistence.getCoursesSequential();
 
     }
@@ -25,8 +25,8 @@ public class AccessCourses implements IAccessCourses{
         coursePersistence = persistence;
     }
 
-    @Override
-    public List<Course> getCourses(Program programSelected) {
+/*    @Override
+    public List<Course> getCoursesByProgram(Program programSelected) {
         List<Course> coursesUnderProgram = new ArrayList<>();
         for(int i=0; i<courses.size();i++) {
             List<Program> programList = courses.get(i).getPrograms();
@@ -46,7 +46,7 @@ public class AccessCourses implements IAccessCourses{
 
     @Override
     public List<Course> getCoursesByYearProgram(Program program, int year) {
-        List<Course> coursesUnderProgram = getCourses(program);
+        List<Course> coursesUnderProgram = getCoursesByProgram(program);
         List<Course> yearCourses = new ArrayList<>();
 
         for(int i=0; i<coursesUnderProgram.size();i++){
@@ -63,12 +63,13 @@ public class AccessCourses implements IAccessCourses{
     public List<Course> getCoursesByMajor(Major major) {
         List<Course> coursesUnderMajor = new ArrayList<>();
         for(int i=0; i<courses.size();i++){
-            if(Equals.isEqual(major,courses.get(i).getMajor())){
+            if (major.getName().equals(courses.get(i).getMajor())){
                 coursesUnderMajor.add(courses.get(i));
             }
         }
         return coursesUnderMajor;
     }
+
 
     @Override
     public List<Course> getCoursesByYearMajor(Major major, int year) {
@@ -83,6 +84,31 @@ public class AccessCourses implements IAccessCourses{
         }
 
         return yearCourses;
+    }*/
+
+    @Override
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    @Override
+    public List<Course> getCoursesByProgram(Program program) {
+        return coursePersistence.getCoursesByProgram(program.getName());
+    }
+
+    @Override
+    public List<Course> getCoursesByYearProgram(Program program, int year) {
+        return coursePersistence.getCoursesByYearProgram(program.getName(),year);
+    }
+
+    @Override
+    public List<Course> getCoursesByMajor(Major major) {
+        return coursePersistence.getCoursesByMajor(major.getName());
+    }
+
+    @Override
+    public List<Course> getCoursesByYearMajor(Major major, int year) {
+        return coursePersistence.getCoursesByYearMajor(major.getName(),year);
     }
 
 }

@@ -26,8 +26,9 @@ public class CoursePersistenceHSQLDB {
         final String desc = rs.getString("review");
         final String majorName = rs.getString("mNAme");
         final int year = rs.getInt("year");
-        Major newMajor = new Major(majorName);
-        return new Course(courseID, courseName,desc,year,newMajor);
+        //Major newMajor = new Major(majorName);
+        //return new Course(courseID, courseName,desc,year,newMajor);
+        return new Course(courseID, courseName,desc,year,majorName);
     }
 
 

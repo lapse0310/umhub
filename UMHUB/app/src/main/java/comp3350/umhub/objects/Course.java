@@ -7,29 +7,29 @@ public class Course {
     private String id;
     private String description;
     private int year;
-    private Major major;
+    private String major;
     private List<Program> programs;
 
     public Course(String id){
         this.id = id;
     }
 
-    public Course(String name, String id, String desc, int year){
+    public Course(String id, String name, String desc, int year){
         this.name = name;
         this.id = id;
         description = desc;
         this.year = year;
     }
 
-    public Course(String name, String id, String desc, int year, Major major){
-        this.name = name;
+    public Course(String id, String name, String desc, int year, String major){
         this.id = id;
-        description = desc;
+        this.name = name;
+        this.description = desc;
         this.year = year;
         this.major = major;
     }
 
-    public Course(String name, String id, String desc, int year, Major major, List<Program> programs){
+    public Course(String name, String id, String desc, int year, String major, List<Program> programs){
         this.name = name;
         this.id = id;
         description = desc;
@@ -57,7 +57,7 @@ public class Course {
         return year;
     }
 
-    public Major getMajor(){
+    public String getMajor(){
         return major;
     }
 

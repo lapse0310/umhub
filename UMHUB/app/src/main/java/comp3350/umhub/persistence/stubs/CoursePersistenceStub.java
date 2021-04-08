@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.umhub.objects.Course;
+import comp3350.umhub.objects.CourseReview;
 import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.Program;
 import comp3350.umhub.persistence.ICoursePersistence;
@@ -13,8 +14,9 @@ public class CoursePersistenceStub implements ICoursePersistence {
 
     public CoursePersistenceStub(){
         this.courses = new ArrayList<>();
-        Major major1 = new Major("Computer Science");
-        Major major2 = new Major("Mathematics");
+
+        String major1 = "Computer Science";
+        String major2 = "Mathematics";
         Program program1 = new Program("Computer Science Honors, Coop");
         Program program2 = new Program("Computer Science General");
         Program program3 = new Program("Math is fun program");
@@ -41,11 +43,46 @@ public class CoursePersistenceStub implements ICoursePersistence {
 
     @Override
     public Course getCourse(String courseId) {
-        return null;
+        Course  course = null;
+        for (Course c : courses) {
+            if (c.getId().equals(courseId)) {
+                course = c;
+                break;
+            }
+        }
+        return course;
     }
 
     @Override
     public List<Course> getCoursesSequential() {
         return courses;
+    }
+
+    @Override
+    public List<Course> getCoursesByMajor(String major) {
+        List<Course>  courses1 = new ArrayList<>();
+        for (Course c : courses) {
+            if (c.getMajor().equals(major)) courses1.add(c);
+        }
+        return courses1;
+    }
+
+    @Override
+    public List<Course> getCoursesByProgram(String name) {
+        return null;
+    }
+
+    @Override
+    public List<Course> getCoursesByYearProgram(String name, int year) {
+        return null;
+    }
+
+    @Override
+    public List<Course> getCoursesByYearMajor(String major, int year) {
+        List<Course>  courses1 = new ArrayList<>();
+        for (Course c : courses) {
+            if (c.getMajor().equals(major) && c.getYear() == year) courses1.add(c);
+        }
+        return courses1;
     }
 }
