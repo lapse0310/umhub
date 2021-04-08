@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import comp3350.umhub.objects.Users;
+import comp3350.umhub.objects.User;
 import comp3350.umhub.persistence.ILoginPersistence;
 
 public class LoginPersistenceDB implements ILoginPersistence {
@@ -39,7 +39,7 @@ public class LoginPersistenceDB implements ILoginPersistence {
     }
 
     @Override
-    public Users getUser(String username){
+    public User getUser(String username){
 
         try(final Connection c = connection()){
             final PreparedStatement st = c.prepareStatement(
@@ -50,7 +50,7 @@ public class LoginPersistenceDB implements ILoginPersistence {
             if (resultSet.next()){
                 String userName = resultSet.getString("username");
                 String password = resultSet.getString("password");
-                return new Users(userName,password);
+                return new User(userName,password);
             }
             st.close();
         }
@@ -61,8 +61,8 @@ public class LoginPersistenceDB implements ILoginPersistence {
         return null;
     }
 
-    public ArrayList<Users> getAllUsers(){
-        ArrayList<Users> users = new ArrayList<>();
+    public ArrayList<User> getAllUsers(){
+        ArrayList<User> users = new ArrayList<>();
         try(final Connection c = connection()){
             final PreparedStatement st = c.prepareStatement(
                     "select * from users"
@@ -71,7 +71,7 @@ public class LoginPersistenceDB implements ILoginPersistence {
             if (resultSet.next()){
                 String userName = resultSet.getString("username");
                 String password = resultSet.getString("password");
-                users.add(new Users(userName,password));
+                users.add(new User(userName,password));
             }
             st.close();
         }

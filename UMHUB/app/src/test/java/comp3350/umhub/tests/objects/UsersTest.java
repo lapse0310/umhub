@@ -2,8 +2,6 @@ package comp3350.umhub.tests.objects;
 
 import org.junit.Test;
 
-import comp3350.umhub.objects.Users;
-
 import static org.junit.Assert.*;
 
 public class UsersTest {

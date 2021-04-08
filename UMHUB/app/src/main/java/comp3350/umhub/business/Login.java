@@ -5,7 +5,7 @@ import javax.security.auth.login.LoginException;
 import comp3350.umhub.application.Services;
 import comp3350.umhub.application.SignUpException;
 import comp3350.umhub.application.UserException;
-import comp3350.umhub.objects.Users;
+import comp3350.umhub.objects.User;
 import comp3350.umhub.persistence.ILoginPersistence;
 
 public class Login implements ILogin{
@@ -43,7 +43,7 @@ public class Login implements ILogin{
     public void login(String[] info) throws LoginException {
 
         try {
-            Users userVerify = this.userPersistence.getUser(info[0]);
+            User userVerify = this.userPersistence.getUser(info[0]);
             if (userVerify == null) {
                 throw new LoginException("Invalid username or password");
             } else if (!userVerify.getPassword().equals(info[1])) {
