@@ -9,6 +9,8 @@ import comp3350.umhub.business.AccessPrograms;
 import comp3350.umhub.business.IAccessPrograms;
 import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.Program;
+import comp3350.umhub.persistence.IProgramPersistence;
+import comp3350.umhub.persistence.stubs.ProgramPersistenceStub;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -19,7 +21,8 @@ public class AccessProgramsTest {
 
     @Before
     public void setUp() {
-        accessPrograms = new AccessPrograms();
+        IProgramPersistence persistence = new ProgramPersistenceStub();
+        accessPrograms = new AccessPrograms(persistence);
     }
 
     @Test

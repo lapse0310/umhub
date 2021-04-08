@@ -11,7 +11,6 @@ import comp3350.umhub.persistence.IProgramPersistence;
 
 public class AccessPrograms implements IAccessPrograms {
     private final List<Program> programs;
-    private IProgramPersistence programPersistence;
 
 
     public AccessPrograms(){
@@ -22,15 +21,14 @@ public class AccessPrograms implements IAccessPrograms {
     }
 
     public AccessPrograms(final IProgramPersistence persistence){
-        this();
-        programPersistence = persistence;
+        programs = persistence.getProgramsSequential();
     }
 
     public List<Program> getPrograms(Major majorSelected){
 
         List<Program> programsUnderMajor = new ArrayList<>();
         for(int i=0; i<programs.size();i++){
-            if(Equals.isEqual(majorSelected,programs.get(i).getMajor())){
+            if(majorSelected.equals(programs.get(i).getMajor())){
                 programsUnderMajor.add(programs.get(i));
             }
         }

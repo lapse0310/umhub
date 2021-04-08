@@ -9,18 +9,17 @@ import comp3350.umhub.persistence.IMajorPersistence;
 
 public class AccessMajors implements IAccessMajors{
 
-    private List<Major> majors;
-    private IMajorPersistence majorPersistence;
+    private final List<Major> majors;
 
     public AccessMajors(){
-        majorPersistence = Services.getMajorPersistence();
+        IMajorPersistence majorPersistence = Services.getMajorPersistence();
         majors = majorPersistence.getMajorsSequential();
     }
 
     public AccessMajors(final IMajorPersistence persistence){
-        this();
-        majorPersistence = persistence;
+        majors = persistence.getMajorsSequential();
     }
+
 
     public List<Major> getMajors(){
         return majors;
