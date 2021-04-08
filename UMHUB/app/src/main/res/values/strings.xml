@@ -5,6 +5,8 @@
     <string name="logo">Logo</string>
     <string name="loginUserName">Enter your username:</string>
     <string name="loginPassword">Enter your password:</string>
+    <string name="header"> Lets sign up for UMHUB! </string>
+    <string name="header2">New to UMHUB?</string>
     <string name="table1">Year 1</string>
     <string name="table2">Year 2</string>
     <string name="table3">Year 3</string>
