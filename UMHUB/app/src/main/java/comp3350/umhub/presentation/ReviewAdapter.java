@@ -25,6 +25,11 @@ public class ReviewAdapter extends BaseAdapter {
 
 
     @Override
+    public void notifyDataSetChanged() {
+        super.notifyDataSetChanged();
+    }
+
+    @Override
     public int getCount() {
         return courseReviewList.size() ;
     }
@@ -44,15 +49,30 @@ public class ReviewAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.activity_view_record, parent, false);
             CourseReview courseReview = courseReviewList.get(position);
-            TextView reviewScore = (TextView) convertView.findViewById(R.id.review_score);
-            TextView username = (TextView) convertView.findViewById(R.id.username);
-            TextView review = (TextView) convertView.findViewById(R.id.review);
+            TextView scoreTextView = (TextView) convertView.findViewById(R.id.review_score);
+            TextView usernameTextView = (TextView) convertView.findViewById(R.id.username);
+            TextView reviewTextView = (TextView) convertView.findViewById(R.id.review);
 
-            username.setText(courseReview.getUser());
-            review.setText(courseReview.getReview());
-            reviewScore.setText(String.valueOf(courseReview.getScore()));
+            usernameTextView.setText(courseReview.getUser());
+            reviewTextView.setText(courseReview.getReview());
+            scoreTextView.setText(String.valueOf(courseReview.getScore()));
 
-            reviewScore.setTextColor(Color.RED);
+            scoreTextView.setTextSize(20);
+
+            switch (courseReview.getScore()){
+                case 1:
+                case 2:
+                    scoreTextView.setTextColor(Color.parseColor("#ff0000"));
+                    break;
+                case 3:
+                    scoreTextView.setTextColor(Color.parseColor("#ffc803"));
+                    break;
+                case 4:
+                case 5:
+                    scoreTextView.setTextColor(Color.parseColor("#279C03"));
+                    break;
+
+            }
         }
         return convertView;
     }

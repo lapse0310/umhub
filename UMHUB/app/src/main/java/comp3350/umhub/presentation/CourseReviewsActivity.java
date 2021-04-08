@@ -61,7 +61,9 @@ public class CourseReviewsActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
-                CourseReview c = courseReviewList.get(position);
+
+                //CourseReview c = courseReviewList.get(position);
+                CourseReview c = (CourseReview) adapter.getItem(position);
 
                 Intent modify_intent = new Intent(getApplicationContext(), SeeCourseReviewActivity.class);
                 modify_intent.putExtra("id", c.getId());

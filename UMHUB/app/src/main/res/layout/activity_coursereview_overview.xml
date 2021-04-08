@@ -71,8 +71,9 @@
     <ListView
         android:id="@+id/reviewListView"
         android:layout_width="565dp"
-        android:layout_height="438dp"
+        android:layout_height="0dp"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
@@ -88,9 +89,8 @@
 
     <Button
         android:id="@+id/writeReviewButton"
-        android:layout_width="560dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
         android:onClick="buttonWriteCourseReviewOnClick"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
