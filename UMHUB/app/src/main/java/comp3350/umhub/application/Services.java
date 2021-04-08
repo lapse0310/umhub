@@ -1,6 +1,11 @@
 //used to provide an implementation of the interfaces used.
 package comp3350.umhub.application;
 
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+
+import java.io.IOException;
+
 import comp3350.umhub.business.AccessCourseReviews;
 import comp3350.umhub.business.AccessTutors;
 import comp3350.umhub.business.IAccessCourseReviews;
@@ -19,6 +24,8 @@ import comp3350.umhub.persistence.ICourseReviewPersistence;
 import comp3350.umhub.persistence.ILoginPersistence;
 import comp3350.umhub.persistence.ITutorPersistence;
 import comp3350.umhub.persistence.hsqldb.CourseReviewPersistenceHSQLDB;
+import comp3350.umhub.persistence.sqlite.CourseReviewSQLDB;
+import comp3350.umhub.persistence.sqlite.DatabaseHelper;
 import comp3350.umhub.persistence.stubs.CourseReviewPersistenceStub;
 import comp3350.umhub.persistence.stubs.LoginPersistenceStub;
 
@@ -34,6 +41,7 @@ import comp3350.umhub.persistence.hsqldb.CoursePersistenceHSQLDB;
 import comp3350.umhub.persistence.hsqldb.MajorPersistenceHSQLDB;
 import comp3350.umhub.persistence.hsqldb.ProgramPersistenceHSQLDB;
 import comp3350.umhub.persistence.stubs.TutorPersistenceStub;
+import comp3350.umhub.presentation.WriteCourseReviewActivity;
 
 
 public class Services {
@@ -147,5 +155,23 @@ public class Services {
         }
         return accessTutors;
 
+
+    private static SQLiteDatabase database;
+
+    public static SQLiteDatabase getDatabase(Context context) {
+        if(database ==null){
+            try {
+                DatabaseHelper dbHelper = new DatabaseHelper(context);
+                database = dbHelper.getDataBase();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+        return database;
+    }
+
+    public static CourseReviewSQLDB getCourseReviewSQLDB(Context context) {
+        return new CourseReviewSQLDB(context);
     }
 }
