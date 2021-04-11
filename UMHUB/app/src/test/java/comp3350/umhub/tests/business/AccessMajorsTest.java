@@ -8,6 +8,8 @@ import java.util.List;
 import comp3350.umhub.business.AccessMajors;
 import comp3350.umhub.business.IAccessMajors;
 import comp3350.umhub.objects.Major;
+import comp3350.umhub.persistence.IMajorPersistence;
+import comp3350.umhub.persistence.stubs.MajorPersistenceStub;
 
 
 import static org.junit.Assert.assertEquals;
@@ -19,7 +21,9 @@ public class AccessMajorsTest {
 
     @Before
     public void setUp() {
-        accessMajors = new AccessMajors();
+        IMajorPersistence persistence = new MajorPersistenceStub();
+        accessMajors = new AccessMajors(persistence);
+
     }
 
 

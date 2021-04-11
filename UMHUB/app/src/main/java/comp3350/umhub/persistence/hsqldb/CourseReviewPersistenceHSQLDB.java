@@ -9,10 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.CourseReview;
-import comp3350.umhub.objects.User;
-import comp3350.umhub.persistence.ICourseReviewPersistence;
 
 public class CourseReviewPersistenceHSQLDB {
 

@@ -15,7 +15,7 @@ public class CourseTest {
 
     @Test
     public void testCourse1(){
-        Course course;
+        Course course, course1;
         Major major;
         Program program1, program2;
         List<Program> programList;
@@ -38,6 +38,10 @@ public class CourseTest {
         assertTrue(course.getPrograms().contains(program1));
         assertTrue(course.getPrograms().contains(program2));
 
+        course1 = new Course("Not Software Engineering","COMP1010","This course is not SE",1,major,programList);
+        assert(!course.equals(course1));
+        course1 = new Course("Software Engineering", "COMP 3350", "Course to get you trained in industry standards of coding projects",3, major,programList);
+        assert(course.equals(course1));
         System.out.println("Finished testCourse");
     }
 }

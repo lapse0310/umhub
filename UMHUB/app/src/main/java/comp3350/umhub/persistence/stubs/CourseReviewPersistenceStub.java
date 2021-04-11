@@ -3,7 +3,6 @@ package comp3350.umhub.persistence.stubs;
 import java.util.ArrayList;
 import java.util.List;
 
-import comp3350.umhub.business.Equals;
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.CourseReview;
 import comp3350.umhub.objects.User;
