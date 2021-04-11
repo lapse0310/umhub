@@ -11,6 +11,7 @@ import comp3350.umhub.persistence.ICoursePersistence;
 
 public class AccessCourses implements IAccessCourses{
     private final List<Course> courses;
+    private ICoursePersistence coursePersistence;
 
 
     public AccessCourses( ){
@@ -20,7 +21,8 @@ public class AccessCourses implements IAccessCourses{
     }
 
     public AccessCourses( final ICoursePersistence persistence) {
-        courses = persistence.getCourseSequential();
+        coursePersistence = persistence;
+        courses = coursePersistence.getCoursesSequential();
     }
 
 /*    @Override
