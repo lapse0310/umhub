@@ -23,7 +23,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Database Information
     private static final String DB_PATH = "/data/user/0/" + BuildConfig.APPLICATION_ID + "/databases/";
     static final String DB_NAME = "newdb.db";
-    static final String DB_SCRIPT = "db.script";
+    static final String DB_SCRIPT = "newdb.script";
 
     // database version
     static final int DB_VERSION = 1;
