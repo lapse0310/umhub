@@ -2,13 +2,9 @@ package comp3350.umhub.objects;
 
 public class Program {
     private final String name;
-    private Major major;
+    private String major;
 
-    public Program(String name){
-        this.name = name;
-    }
-
-    public Program(String name, Major major){
+    public Program(String name, String major){
         this.name = name;
         this.major = major;
     }
@@ -18,7 +14,7 @@ public class Program {
         return name;
     }
 
-    public Major getMajor(){
+    public String getMajor(){
         return major;
     }
 

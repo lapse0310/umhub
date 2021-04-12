@@ -5,12 +5,11 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-import comp3350.umhub.business.AccessMajors;
+import comp3350.umhub.business.old.AccessMajors;
 import comp3350.umhub.objects.Major;
-import comp3350.umhub.persistence.IMajorPersistence;
+import comp3350.umhub.persistence.old.IMajorPersistence;
 import comp3350.umhub.persistence.hsqldb.MajorPersistenceHSQLDB;
 import comp3350.umhub.tests.utils.TestUtils;
 

@@ -9,7 +9,7 @@ import comp3350.umhub.business.AccessTutors;
 import comp3350.umhub.business.IAccessTutors;
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.Tutor;
-import comp3350.umhub.persistence.ITutorPersistence;
+import comp3350.umhub.persistence.interfaces.ITutorPersistence;
 import comp3350.umhub.persistence.stubs.TutorPersistenceStub;
 
 import static org.junit.Assert.assertEquals;

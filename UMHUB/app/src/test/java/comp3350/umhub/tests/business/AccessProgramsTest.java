@@ -5,11 +5,11 @@ import org.junit.Test;
 
 import java.util.List;
 
-import comp3350.umhub.business.AccessPrograms;
-import comp3350.umhub.business.IAccessPrograms;
+import comp3350.umhub.business.old.AccessPrograms;
+import comp3350.umhub.business.old.IAccessPrograms;
 import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.Program;
-import comp3350.umhub.persistence.IProgramPersistence;
+import comp3350.umhub.persistence.old.IProgramPersistence;
 import comp3350.umhub.persistence.stubs.ProgramPersistenceStub;
 
 import static org.junit.Assert.assertNotNull;

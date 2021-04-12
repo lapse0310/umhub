@@ -17,13 +17,13 @@ import comp3350.umhub.BuildConfig;
 public class DatabaseHelper extends SQLiteOpenHelper {
     private Context mycontext;
     private SQLiteDatabase myDataBase;
-    private boolean DELETE_OLD_DB = true;
+    private boolean DELETE_OLD_DB = false;
 
 
     // Database Information
     private static final String DB_PATH = "/data/user/0/" + BuildConfig.APPLICATION_ID + "/databases/";
     static final String DB_NAME = "newdb.db";
-    static final String DB_SCRIPT = "db.script";
+    static final String DB_SCRIPT = "newdb.script";
 
     // database version
     static final int DB_VERSION = 1;
@@ -41,20 +41,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
     }
-
-    private void createDirectoryIfNotExists(String mypath) {
-        File dbfile = new File(mypath);
-        if (dbfile.exists()){
-            System.out.println("Directory "+mypath + " already existed!");
-        }
-        else{
-            dbfile.mkdirs();
-            if (dbfile.exists()) System.out.println("Successfully created directory "+dbfile.getAbsolutePath());
-            else System.out.println("Failed to create directory "+mypath);
-        }
-    }
-
-
 
     public void opendatabase() throws SQLException {
         //Open the database
@@ -86,9 +72,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     private boolean checkdatabase() {
+
         boolean checkdb = false;
         try {
-            createDirectoryIfNotExists(DB_PATH);
             String myPath = DB_PATH + DB_NAME;
             File dbfile = new File(myPath);
 
@@ -99,6 +85,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }
 
             checkdb = dbfile.exists();
+
+
 
         } catch (SQLiteException e) {
             System.out.println("Database doesn't exist");

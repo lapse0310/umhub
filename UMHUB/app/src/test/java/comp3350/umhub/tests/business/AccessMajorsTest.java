@@ -5,10 +5,10 @@ import org.junit.Test;
 
 import java.util.List;
 
-import comp3350.umhub.business.AccessMajors;
-import comp3350.umhub.business.IAccessMajors;
+import comp3350.umhub.business.old.AccessMajors;
+import comp3350.umhub.business.old.IAccessMajors;
 import comp3350.umhub.objects.Major;
-import comp3350.umhub.persistence.IMajorPersistence;
+import comp3350.umhub.persistence.old.IMajorPersistence;
 import comp3350.umhub.persistence.stubs.MajorPersistenceStub;
 
 

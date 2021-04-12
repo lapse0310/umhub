@@ -18,7 +18,6 @@ import comp3350.umhub.R;
 import comp3350.umhub.application.Services;
 import comp3350.umhub.business.IAccessCourses;
 import comp3350.umhub.objects.Course;
-import comp3350.umhub.objects.CourseReview;
 import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.Program;
 
@@ -34,7 +33,7 @@ public class CoursesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_courses);
 
-        IAccessCourses accessCourses = Services.getAccessCourses();
+        IAccessCourses accessCourses = Services.getAccessCourses(null);
 
         if(ProgramsActivity.getProgramSelected()==null){
             //button from programs

@@ -1,40 +1,47 @@
-//get the programs from the data layer
 package comp3350.umhub.business;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.umhub.application.Services;
+import comp3350.umhub.business.IAccessPrograms;
+import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.Program;
-import comp3350.umhub.persistence.IProgramPersistence;
+import comp3350.umhub.persistence.interfaces.IProgramPersistence;
 
 public class AccessPrograms implements IAccessPrograms {
-    private final List<Program> programs;
 
+    private final IProgramPersistence programPersistence;
 
-    public AccessPrograms(){
-        IProgramPersistence programPersistence = Services.getProgramPersistence();
-        programs = programPersistence.getProgramsSequential();
-
-
+    public AccessPrograms() {
+        programPersistence = Services.getProgramPersistence(null);
     }
 
-    public AccessPrograms(final IProgramPersistence persistence){
-        programs = persistence.getProgramsSequential();
+    public AccessPrograms(final IProgramPersistence persistence) {
+        programPersistence = persistence;
     }
 
-    public List<Program> getPrograms(Major majorSelected){
+    @Override
+    public List<Program> getAllPrograms() {
+        return programPersistence.getProgramsSequential();
+    }
 
-        List<Program> programsUnderMajor = new ArrayList<>();
-        for(int i=0; i<programs.size();i++){
-            if(majorSelected.equals(programs.get(i).getMajor())){
-                programsUnderMajor.add(programs.get(i));
-            }
-        }
-        return programsUnderMajor;
+    @Override
+    public Program getProgram(String pid) {
+        if (pid != null) return programPersistence.getProgram(pid);
+        return null;
     }
 
 
+    @Override
+    public List<Program> getProgramsByMajor(Major major) {
+        if (major != null) return programPersistence.getProgramsByMajor(major.getName());
+        return null;
+    }
 
+    @Override
+    public List<Program> getProgramsByCourse(Course course) {
+        if (course != null) return programPersistence.getProgramsByCourse(course.getId());
+        return null;
+    }
 }

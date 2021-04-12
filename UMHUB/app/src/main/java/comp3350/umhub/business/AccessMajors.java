@@ -1,28 +1,33 @@
-//get all the majors in the data layer
 package comp3350.umhub.business;
+
 
 import java.util.List;
 
 import comp3350.umhub.application.Services;
+import comp3350.umhub.business.IAccessMajors;
 import comp3350.umhub.objects.Major;
-import comp3350.umhub.persistence.IMajorPersistence;
+import comp3350.umhub.persistence.interfaces.IMajorPersistence;
 
-public class AccessMajors implements IAccessMajors{
+public class AccessMajors implements IAccessMajors {
 
-    private final List<Major> majors;
+    private final IMajorPersistence majorPersistence;
 
-    public AccessMajors(){
-        IMajorPersistence majorPersistence = Services.getMajorPersistence();
-        majors = majorPersistence.getMajorsSequential();
+    public AccessMajors() {
+        majorPersistence = Services.getMajorPersistence(null);
+    }
+    public AccessMajors(final IMajorPersistence persistence) {
+        majorPersistence = persistence;
     }
 
-    public AccessMajors(final IMajorPersistence persistence){
-        majors = persistence.getMajorsSequential();
+
+    @Override
+    public Major getMajor(String majorId) {
+        if (majorId != null) return majorPersistence.getMajor(majorId);
+        return null;
     }
 
-
-    public List<Major> getMajors(){
-        return majors;
+    @Override
+    public List<Major> getAllMajors() {
+        return majorPersistence.getMajorsSequential();
     }
-
 }

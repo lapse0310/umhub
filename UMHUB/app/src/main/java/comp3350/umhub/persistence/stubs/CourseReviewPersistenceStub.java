@@ -3,16 +3,13 @@ package comp3350.umhub.persistence.stubs;
 import java.util.ArrayList;
 import java.util.List;
 
-import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.CourseReview;
-import comp3350.umhub.objects.User;
-import comp3350.umhub.persistence.ICourseReviewPersistence;
+import comp3350.umhub.persistence.interfaces.ICourseReviewPersistence;
 
 public class CourseReviewPersistenceStub implements ICourseReviewPersistence {
     int id = 1;
     List<CourseReview> courseReviews;
 
-    @Override
     public CourseReview getCourseReview(int id) {
         CourseReview courseReview = null;
         for (CourseReview review : courseReviews) {

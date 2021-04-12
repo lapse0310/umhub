@@ -1,86 +1,60 @@
 package comp3350.umhub.business;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import comp3350.umhub.application.Services;
+import comp3350.umhub.business.IAccessCourses;
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.Program;
-import comp3350.umhub.persistence.ICoursePersistence;
+import comp3350.umhub.persistence.interfaces.ICoursePersistence;
 
-public class AccessCourses implements IAccessCourses{
-    private final List<Course> courses;
+public class AccessCourses implements IAccessCourses {
+    private ICoursePersistence coursePersistence;
 
 
-    public AccessCourses(){
-        ICoursePersistence coursePersistence = Services.getCoursePersistence();
-        courses = coursePersistence.getCourseSequential();
-
+    public AccessCourses( ){
+        coursePersistence = Services.getCoursePersistence(null);
     }
 
     public AccessCourses( final ICoursePersistence persistence) {
-        courses = persistence.getCourseSequential();
+        coursePersistence = persistence;
     }
 
     @Override
-    public List<Course> getCourses(Program programSelected) {
-        List<Course> coursesUnderProgram = new ArrayList<>();
-        for(int i=0; i<courses.size();i++) {
-            List<Program> programList = courses.get(i).getPrograms();
-            boolean found = false;
-            int count = 0;
-            while(programList != null && !found && count < programList.size()){
-                if(programSelected.equals(programList.get(count))){
-                    coursesUnderProgram.add(courses.get(i));
-                    found = true;
-                }
-                count++;
-            }
+    public Course getCourse(String courseId) {
+        if (courseId != null) return coursePersistence.getCourse(courseId);
+        return null;
+    }
 
-        }
-        return coursesUnderProgram;
+    @Override
+    public List<Course> getAllCourses() {
+        return coursePersistence.getCoursesSequential();
+    }
+
+    @Override
+    public List<Course> getCoursesByProgram(Program program) {
+        if (program != null)  return coursePersistence.getCoursesByProgram(program.getName());
+        return null;
     }
 
     @Override
     public List<Course> getCoursesByYearProgram(Program program, int year) {
-        List<Course> coursesUnderProgram = getCourses(program);
-        List<Course> yearCourses = new ArrayList<>();
-
-        for(int i=0; i<coursesUnderProgram.size();i++){
-            int courseYear = coursesUnderProgram.get(i).getYear();
-            if(courseYear == year){
-                yearCourses.add(coursesUnderProgram.get(i));
-            }
-        }
-
-        return yearCourses;
+        if (program != null) return coursePersistence.getCoursesByYearProgram(program.getName(),year);
+        return null;
     }
 
     @Override
     public List<Course> getCoursesByMajor(Major major) {
-        List<Course> coursesUnderMajor = new ArrayList<>();
-        for(int i=0; i<courses.size();i++){
-            if(major.equals(courses.get(i).getMajor())){
-                coursesUnderMajor.add(courses.get(i));
-            }
-        }
-        return coursesUnderMajor;
+        if (major != null) return coursePersistence.getCoursesByMajor(major.getName());
+        return null;
     }
 
     @Override
     public List<Course> getCoursesByYearMajor(Major major, int year) {
-        List<Course> coursesUnderMajor = getCoursesByMajor(major);
-        List<Course> yearCourses = new ArrayList<>();
-
-        for(int i=0; i<coursesUnderMajor.size();i++){
-            int courseYear = coursesUnderMajor.get(i).getYear();
-            if(courseYear == year){
-                yearCourses.add(coursesUnderMajor.get(i));
-            }
-        }
-
-        return yearCourses;
+        if (major != null) return coursePersistence.getCoursesByYearMajor(major.getName(),year);
+        return null;
     }
 
 }

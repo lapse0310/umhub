@@ -7,7 +7,7 @@ import java.util.List;
 import comp3350.umhub.application.Services;
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.Tutor;
-import comp3350.umhub.persistence.ITutorPersistence;
+import comp3350.umhub.persistence.interfaces.ITutorPersistence;
 
 public class AccessTutors implements IAccessTutors{
     private List<Tutor> tutors;
@@ -15,7 +15,6 @@ public class AccessTutors implements IAccessTutors{
     public AccessTutors(){
         ITutorPersistence tutorPersistence = Services.getTutorPersistence();
         tutors = tutorPersistence.getTutors();
-
 
     }
 

@@ -3,15 +3,12 @@ package comp3350.umhub.presentation;
 //import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -26,12 +23,13 @@ import javax.security.auth.login.LoginException;
 
 import comp3350.umhub.application.Main;
 import comp3350.umhub.application.Services;
-import comp3350.umhub.business.Login;
 
 import comp3350.umhub.R;
+import comp3350.umhub.business.ILogin;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
+    private ILogin iLogin;
     private EditText eName;                      /* A user interface for entering/modifying the text */
     private EditText ePassword;
     private Button eLogin;
@@ -43,6 +41,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
         copyDatabaseToDevice();
 
+        iLogin = Services.getILogin(this);
 
         eName = findViewById(R.id.etUserName);
         ePassword = findViewById(R.id.etPassword);
@@ -76,7 +75,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 String[] inputValues = getInputValues(this.eName,this.ePassword);
                 try
                 {
-                    Services.userLogin().login(inputValues);
+                    iLogin.login(inputValues);
                     startActivity(new Intent(this , HomeActivity.class));
                 }
                 catch(LoginException e)
