@@ -16,7 +16,7 @@ import comp3350.umhub.application.Services;
 import comp3350.umhub.business.IAccessCourseReviews;
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.User;
-import comp3350.umhub.persistence.old.ICourseReviewPersistence;
+import comp3350.umhub.persistence.interfaces.ICourseReviewPersistence;
 
 public class WriteCourseReviewActivity extends AppCompatActivity {
     User currentUser;

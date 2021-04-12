@@ -13,8 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import comp3350.umhub.R;
 import comp3350.umhub.application.Services;
 import comp3350.umhub.application.SignUpException;
+import comp3350.umhub.business.ILogin;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
+    private ILogin iLogin;
     private EditText eName;                      /* A user interface for entering/modifying the text */
     private EditText ePassword;
     private Button eSignUp;
@@ -23,6 +25,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+
+        iLogin = Services.getILogin(this);
 
         eName = findViewById(R.id.etUserName);
         ePassword = findViewById(R.id.etPassword);
@@ -48,7 +52,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 //setKeyboardVisibility(false);
                 String[] inputValues = getInputValues(this.eName, this.ePassword);
                 try {
-                    Services.userLogin().signUp(inputValues);
+                    iLogin.signUp(inputValues);
                     startActivity(new Intent(this, LoginActivity.class));
                 } catch (SignUpException e) {
                     Toast toast = Toast.makeText(getApplicationContext(),

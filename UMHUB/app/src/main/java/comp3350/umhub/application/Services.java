@@ -24,6 +24,7 @@ import comp3350.umhub.objects.User;
 import comp3350.umhub.persistence.sqlite.CourseReviewSQLDB;
 import comp3350.umhub.persistence.sqlite.CourseSQLDB;
 import comp3350.umhub.persistence.sqlite.DatabaseHelper;
+import comp3350.umhub.persistence.sqlite.LoginSQLDB;
 import comp3350.umhub.persistence.sqlite.MajorSQLDB;
 import comp3350.umhub.persistence.sqlite.ProgramSQLDB;
 import comp3350.umhub.persistence.stubs.CoursePersistenceStub;
@@ -133,7 +134,6 @@ public class Services {
 
 
     public static IAccessCourseReviews getAccessCourseReviews(Context context) {
-
         if (accessCourseReviews == null){
             accessCourseReviews = new AccessCourseReviews(Services.getCourseReviewPersistence(context));
         }
@@ -141,20 +141,22 @@ public class Services {
 
     }
 
-    public static synchronized ILoginPersistence getLoginPersistence(){
-        if(loginPersistence==null){
-            loginPersistence = new LoginPersistenceStub();
+    public static synchronized ILoginPersistence getLoginPersistence(Context context){
+        if (loginPersistence == null){
+            if (context == null)
+                loginPersistence = new LoginPersistenceStub();
+            else
+                loginPersistence = new LoginSQLDB(context);
         }
         return loginPersistence;
     }
 
-    public static synchronized ILogin userLogin(){
+    public static synchronized ILogin getILogin(Context context){
         if(userLogin == null){
-            userLogin = new Login();
+            userLogin = new Login(Services.getLoginPersistence(context));
         }
         return userLogin;
-        
-        }
+    }
         
     public static synchronized ITutorPersistence getTutorPersistence(){
         if(tutorPersistence==null){

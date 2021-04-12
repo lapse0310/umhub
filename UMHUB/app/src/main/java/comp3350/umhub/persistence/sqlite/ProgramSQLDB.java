@@ -25,7 +25,7 @@ public class ProgramSQLDB implements IProgramPersistence {
     public static String[] COLUMNS_COURSESPROGRAMS = {CP_COURSEID, CP_PROGRAMID};
 
 
-    private SQLiteDatabase database; // may later implement as singleton
+    private SQLiteDatabase database;
 
     public ProgramSQLDB(Context context) {
         database = Services.getDatabase(context);

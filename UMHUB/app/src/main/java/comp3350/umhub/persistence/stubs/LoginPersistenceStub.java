@@ -1,24 +1,25 @@
 package comp3350.umhub.persistence.stubs;
 import java.util.ArrayList;
+import java.util.List;
 
 import comp3350.umhub.objects.User;
 import comp3350.umhub.persistence.interfaces.ILoginPersistence;
 
 public class LoginPersistenceStub implements ILoginPersistence {
-    ArrayList<User> database;
+    List<User> users;
 
     public LoginPersistenceStub() {
-        database = new ArrayList<>();
-        database.add(new User("admin","123456"));
-        database.add(new User("admin1","123456"));
-        database.add(new User("admin2","123456"));
-        database.add(new User("admin3","123456"));
+        users = new ArrayList<>();
+        users.add(new User("admin","123456"));
+        users.add(new User("admin1","123456"));
+        users.add(new User("admin2","123456"));
+        users.add(new User("admin3","123456"));
 
     }
 
     @Override
     public void insertUser(String username, String password) {
-        database.add(new User(username, password));
+        users.add(new User(username, password));
     }
 
     /*@Override
@@ -33,16 +34,16 @@ public class LoginPersistenceStub implements ILoginPersistence {
 
     @Override
     public User getUser(String username) {
-        for (int i = 0; i < database.size(); i++) {
-            User temp = database.get(i);
+        for (int i = 0; i < users.size(); i++) {
+            User temp = users.get(i);
             if (temp.getUsername().equals(username))
                 return temp;
         }
         return null;
     }
 
-    public ArrayList<User> getAllUsers() {
-        return null;
+    public List<User> getAllUsers() {
+        return users;
     }
 
 }

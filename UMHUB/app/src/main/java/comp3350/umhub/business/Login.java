@@ -14,7 +14,7 @@ public class Login implements ILogin{
 
     public Login()
     {
-        userPersistence = Services.getLoginPersistence();
+        userPersistence = Services.getLoginPersistence(null);
     }
 
     public Login(final ILoginPersistence userPersistence)

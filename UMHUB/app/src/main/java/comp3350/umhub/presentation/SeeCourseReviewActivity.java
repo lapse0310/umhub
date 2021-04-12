@@ -11,7 +11,7 @@ import comp3350.umhub.R;
 import comp3350.umhub.application.Services;
 import comp3350.umhub.business.IAccessCourseReviews;
 import comp3350.umhub.objects.CourseReview;
-import comp3350.umhub.persistence.old.ICourseReviewPersistence;
+import comp3350.umhub.persistence.interfaces.ICourseReviewPersistence;
 
 public class SeeCourseReviewActivity extends AppCompatActivity {
 

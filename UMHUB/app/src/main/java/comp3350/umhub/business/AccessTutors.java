@@ -16,7 +16,6 @@ public class AccessTutors implements IAccessTutors{
         ITutorPersistence tutorPersistence = Services.getTutorPersistence();
         tutors = tutorPersistence.getTutors();
 
-
     }
 
     public AccessTutors(final ITutorPersistence persistence){
