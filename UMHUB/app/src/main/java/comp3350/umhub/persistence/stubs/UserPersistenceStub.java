@@ -3,12 +3,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.umhub.objects.User;
-import comp3350.umhub.persistence.interfaces.ILoginPersistence;
+import comp3350.umhub.persistence.interfaces.IUserPersistence;
 
-public class LoginPersistenceStub implements ILoginPersistence {
+public class UserPersistenceStub implements IUserPersistence {
     List<User> users;
 
-    public LoginPersistenceStub() {
+    public UserPersistenceStub() {
         users = new ArrayList<>();
         users.add(new User("admin","123456"));
         users.add(new User("admin1","123456"));

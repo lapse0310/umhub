@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        copyDatabaseToDevice();
+        //copyDatabaseToDevice();
 
         iLogin = Services.getILogin(this);
 
@@ -72,10 +72,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.btnLogin:
                 //login has been clicked
                 //setKeyboardVisibility(false);
-                String[] inputValues = getInputValues(this.eName,this.ePassword);
+                String username = eName.getText().toString();
+                String password = ePassword.getText().toString();
                 try
                 {
-                    iLogin.login(inputValues);
+                    iLogin.login(username,password);
                     startActivity(new Intent(this , HomeActivity.class));
                 }
                 catch(LoginException e)
@@ -92,20 +93,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    public String[] getInputValues(EditText email,EditText password){
-        String[] values = new String[2];
-
-        values[0] = email.getText().toString();
-        values[1] = password.getText().toString();
-
-        return values;
-    }
 
     protected void onDestroy(){
         super.onDestroy();
     }
 
-    private void copyDatabaseToDevice() {
+/*    private void copyDatabaseToDevice() {
         final String DB_PATH = "db";
 
         String[] assetNames;
@@ -155,5 +148,5 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 in.close();
             }
         }
-    }
+    }*/
 }

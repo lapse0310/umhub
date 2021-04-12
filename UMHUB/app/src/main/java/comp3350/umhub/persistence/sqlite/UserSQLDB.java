@@ -12,9 +12,9 @@ import java.util.List;
 import comp3350.umhub.application.Services;
 import comp3350.umhub.application.UserException;
 import comp3350.umhub.objects.User;
-import comp3350.umhub.persistence.interfaces.ILoginPersistence;
+import comp3350.umhub.persistence.interfaces.IUserPersistence;
 
-public class LoginSQLDB implements ILoginPersistence {
+public class UserSQLDB implements IUserPersistence {
     private SQLiteDatabase database;
 
     public static final String TABLE_USERS = "USERS";
@@ -22,7 +22,7 @@ public class LoginSQLDB implements ILoginPersistence {
     public static final String PASSWORD = "PASSWORD";
     public static final String[] COLUMNS = {_ID,PASSWORD};
 
-    public LoginSQLDB(Context context) {
+    public UserSQLDB(Context context) {
         database = Services.getDatabase(context);
 
     }

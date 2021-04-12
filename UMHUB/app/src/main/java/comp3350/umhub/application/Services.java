@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import comp3350.umhub.business.AccessCourseReviews;
 import comp3350.umhub.business.AccessTutors;
+import comp3350.umhub.business.AccessUsers;
 import comp3350.umhub.business.IAccessCourseReviews;
 import comp3350.umhub.business.IAccessCourses;
 import comp3350.umhub.business.AccessCourses;
@@ -16,6 +17,7 @@ import comp3350.umhub.business.AccessMajors;
 import comp3350.umhub.business.IAccessPrograms;
 import comp3350.umhub.business.AccessPrograms;
 
+import comp3350.umhub.business.IAccessUsers;
 import comp3350.umhub.business.ILogin;
 import comp3350.umhub.business.Login;
 import comp3350.umhub.business.IAccessTutors;
@@ -24,18 +26,18 @@ import comp3350.umhub.objects.User;
 import comp3350.umhub.persistence.sqlite.CourseReviewSQLDB;
 import comp3350.umhub.persistence.sqlite.CourseSQLDB;
 import comp3350.umhub.persistence.sqlite.DatabaseHelper;
-import comp3350.umhub.persistence.sqlite.LoginSQLDB;
+import comp3350.umhub.persistence.sqlite.UserSQLDB;
 import comp3350.umhub.persistence.sqlite.MajorSQLDB;
 import comp3350.umhub.persistence.sqlite.ProgramSQLDB;
 import comp3350.umhub.persistence.stubs.CoursePersistenceStub;
 import comp3350.umhub.persistence.stubs.CourseReviewPersistenceStub;
-import comp3350.umhub.persistence.stubs.LoginPersistenceStub;
+import comp3350.umhub.persistence.stubs.UserPersistenceStub;
 
 import comp3350.umhub.persistence.interfaces.IMajorPersistence;
 import comp3350.umhub.persistence.interfaces.ICoursePersistence;
 import comp3350.umhub.persistence.interfaces.IProgramPersistence;
 import comp3350.umhub.persistence.interfaces.ICourseReviewPersistence;
-import comp3350.umhub.persistence.interfaces.ILoginPersistence;
+import comp3350.umhub.persistence.interfaces.IUserPersistence;
 import comp3350.umhub.persistence.interfaces.ITutorPersistence;
 
 import comp3350.umhub.persistence.stubs.MajorPersistenceStub;
@@ -52,13 +54,14 @@ public class Services {
     private static IMajorPersistence majorPersistence = null;
     private static IProgramPersistence programPersistence = null;
     private static ICoursePersistence coursePersistence = null;
-    private static ILoginPersistence loginPersistence = null;
+    private static IUserPersistence loginPersistence = null;
     private static ICourseReviewPersistence courseReviewPersistence = null;
-    private static AccessCourseReviews accessCourseReviews;
+    private static IAccessCourseReviews accessCourseReviews;
     private static ILogin userLogin = null;
     private static IAccessTutors accessTutors = null;
     private static ITutorPersistence tutorPersistence = null;
     private static SQLiteDatabase database;
+    private static IAccessUsers accessUsers;
 
 
     public static User getCurrentUser() {
@@ -141,19 +144,19 @@ public class Services {
 
     }
 
-    public static synchronized ILoginPersistence getLoginPersistence(Context context){
+    public static synchronized IUserPersistence getUserPersistence(Context context){
         if (loginPersistence == null){
             if (context == null)
-                loginPersistence = new LoginPersistenceStub();
+                loginPersistence = new UserPersistenceStub();
             else
-                loginPersistence = new LoginSQLDB(context);
+                loginPersistence = new UserSQLDB(context);
         }
         return loginPersistence;
     }
 
     public static synchronized ILogin getILogin(Context context){
         if(userLogin == null){
-            userLogin = new Login(Services.getLoginPersistence(context));
+            userLogin = new Login(Services.getAccessUsers(context));
         }
         return userLogin;
     }
@@ -187,6 +190,15 @@ public class Services {
         }
         return database;
     }
+
+    public static IAccessUsers getAccessUsers(Context context) {
+        if(accessUsers == null){
+            accessUsers = new AccessUsers(Services.getUserPersistence(context));
+        }
+        return accessUsers;
+    }
+
+
 
 //    public static CourseReviewSQLDB getCourseReviewSQLDB(Context context) {
 //        return new CourseReviewSQLDB(context);

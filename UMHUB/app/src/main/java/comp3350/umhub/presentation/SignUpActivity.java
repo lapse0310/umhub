@@ -36,23 +36,15 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         eSignUp.setOnClickListener(this);
     }
 
-    public String[] getInputValues(EditText name, EditText password) {
-        String[] values = new String[2];
-
-        values[0] = name.getText().toString();
-        values[1] = password.getText().toString();
-
-        return values;
-    }
-
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnSignUp:
                 //login has been clicked
                 //setKeyboardVisibility(false);
-                String[] inputValues = getInputValues(this.eName, this.ePassword);
+                String username = eName.getText().toString();
+                String password = ePassword.getText().toString();
                 try {
-                    iLogin.signUp(inputValues);
+                    iLogin.signUp(username,password);
                     startActivity(new Intent(this, LoginActivity.class));
                 } catch (SignUpException e) {
                     Toast toast = Toast.makeText(getApplicationContext(),

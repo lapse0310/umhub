@@ -1,6 +1,7 @@
 package comp3350.umhub.presentation.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,6 +55,16 @@ public class CourseAdapter extends BaseAdapter {
         name.setText(course.getName());
         desc.setText(course.getDescription());
         id.setText(course.getId());
+
+        switch (course.getYear()){
+            case 3:
+            case 4:
+                row.setBackgroundColor(Color.parseColor("#facc4d"));
+                break;
+            default:
+                row.setBackgroundColor(Color.parseColor("#fff9e8"));
+        }
+
         return row;
     }
 }
