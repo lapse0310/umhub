@@ -9,7 +9,7 @@ import org.junit.Rule;
 import org.junit.runner.RunWith;
 
 import comp3350.umhub.application.Services;
-import comp3350.umhub.persistence.ICoursePersistence;
+import comp3350.umhub.persistence.old.ICoursePersistence;
 import comp3350.umhub.presentation.HomeActivity;
 
 @RunWith(AndroidJUnit4.class)

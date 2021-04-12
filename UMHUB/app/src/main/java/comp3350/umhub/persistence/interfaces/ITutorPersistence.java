@@ -1,4 +1,4 @@
-package comp3350.umhub.persistence;
+package comp3350.umhub.persistence.interfaces;
 
 import java.util.List;
 

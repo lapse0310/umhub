@@ -89,7 +89,7 @@ public class CourseReviewPersistenceHSQLDB {
         final int id = rs.getInt("id");
         final String courseId = rs.getString("courseID");
         final String userId = rs.getString("username");
-        final String review = rs.getString("review");
+        final String review = rs.getString("desc1");
         final int score = rs.getInt("score");
         //return new CourseReview(id,new User(username), new Course(courseId), score, reviewString); //This looks hideous
         return new CourseReview(id,userId,courseId,review,score);

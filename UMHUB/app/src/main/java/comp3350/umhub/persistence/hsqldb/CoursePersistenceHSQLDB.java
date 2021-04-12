@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.umhub.objects.Course;
-import comp3350.umhub.objects.Major;
-import comp3350.umhub.persistence.ICoursePersistence;
 
 public class CoursePersistenceHSQLDB {
 
@@ -23,7 +21,7 @@ public class CoursePersistenceHSQLDB {
     private synchronized Course fromResultSet(final ResultSet rs) throws SQLException {
         final String courseID = rs.getString("courseID");
         final String courseName = rs.getString("name");
-        final String desc = rs.getString("review");
+        final String desc = rs.getString("desc1");
         final String majorName = rs.getString("mNAme");
         final int year = rs.getInt("year");
         //Major newMajor = new Major(majorName);

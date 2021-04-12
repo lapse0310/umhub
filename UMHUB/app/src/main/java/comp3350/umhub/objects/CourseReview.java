@@ -61,7 +61,7 @@ public class CourseReview{
                 ", course=" + courseId +
                 ", user=" + userId +
                 ", score=" + score +
-                ", review='" + review + '\'' +
+                ", desc1='" + review + '\'' +
                 '}';
     }
 }

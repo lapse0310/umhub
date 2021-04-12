@@ -17,15 +17,46 @@ import java.util.List;
 import comp3350.umhub.R;
 import comp3350.umhub.application.Services;
 import comp3350.umhub.business.IAccessPrograms;
-import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.Program;
+import comp3350.umhub.presentation.adapters.ProgramAdapter;
 
 public class ProgramsActivity extends AppCompatActivity {
 
+    private IAccessPrograms accessPrograms;
+    private ListView listView;
     private List<Program> programList;
-    private static Program programSelected = null;
+    private static Program programSelected;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.fragment_emp_list);
+
+        accessPrograms = Services.getAccessPrograms(this);
+        Major major = MajorsActivity.getMajorSelected();
+        if (major== null) programList = accessPrograms.getAllPrograms();
+        else  programList = accessPrograms.getProgramsByMajor(major);
+
+        listView = (ListView) findViewById(R.id.list_view);
+        listView.setEmptyView(findViewById(R.id.empty));
+        ProgramAdapter adapter = new ProgramAdapter(this, programList);
+        adapter.notifyDataSetChanged();
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
+                programSelected = programList.get(position);
+                Intent modify_intent = new Intent(getApplicationContext(), CoursesActivity.class);
+                startActivity(modify_intent);
+
+            }
+        });
+    }
+
+/*
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +105,7 @@ public class ProgramsActivity extends AppCompatActivity {
         }
 
     }
+*/
 
     public void buttonCoursesOnClick(View view) {
         Intent majorsIntent = new Intent(ProgramsActivity.this, CoursesActivity.class);
@@ -83,6 +115,10 @@ public class ProgramsActivity extends AppCompatActivity {
     //DSO
     public static Program getProgramSelected(){
         return programSelected;
+    }
+
+    public static void setProgramSelected(Program programSelected) {
+        ProgramsActivity.programSelected = programSelected;
     }
 
 }

@@ -6,12 +6,12 @@ import org.junit.Test;
 
 import java.util.List;
 
-import comp3350.umhub.business.AccessCourses;
-import comp3350.umhub.business.IAccessCourses;
+import comp3350.umhub.business.old.AccessCourses;
+import comp3350.umhub.business.old.IAccessCourses;
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.Program;
-import comp3350.umhub.persistence.ICoursePersistence;
+import comp3350.umhub.persistence.old.ICoursePersistence;
 import comp3350.umhub.persistence.stubs.CoursePersistenceStub;
 
 import static org.junit.Assert.assertEquals;

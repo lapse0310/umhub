@@ -2,7 +2,6 @@ package comp3350.umhub.persistence.hsqldb;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -11,7 +10,7 @@ import java.util.List;
 
 import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.Program;
-import comp3350.umhub.persistence.IProgramPersistence;
+import comp3350.umhub.persistence.old.IProgramPersistence;
 
 public class ProgramPersistenceHSQLDB implements IProgramPersistence {
 
@@ -28,8 +27,7 @@ public class ProgramPersistenceHSQLDB implements IProgramPersistence {
     private synchronized Program fromResultSet(final ResultSet rs) throws SQLException {
         final String programName = rs.getString("name");
         final String majorName = rs.getString("mName");
-        Major newMajor = new Major(majorName);
-        return new Program(programName,newMajor);
+        return new Program(programName,majorName);
     }
 
     @Override

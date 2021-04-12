@@ -1,17 +1,12 @@
 package comp3350.umhub.presentation;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +15,7 @@ import java.util.List;
 
 import comp3350.umhub.R;
 import comp3350.umhub.application.Services;
+import comp3350.umhub.business.IAccessCourseReviews;
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.CourseReview;
 import comp3350.umhub.persistence.sqlite.CourseReviewSQLDB;
@@ -28,32 +24,60 @@ public class CourseReviewsActivity extends AppCompatActivity {
     private Course courseSelected;
     private TextView courseName;
     private TextView courseDescription;
+
     private ListView listView;
-    private CourseReviewSQLDB courseReviewSQLDB;
+    private IAccessCourseReviews accessCourseReviews;
     private List<CourseReview> courseReviewList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//
+//        setContentView(R.layout.activity_coursereview_overview);
+//
+//        courseSelected = CoursesActivity.getCourseSelected();
+//        setTitle(courseSelected.getId());
+//
+//        courseReviewSQLDB = Services.getCourseReviewPersistence(this);
+//        courseReviewList = courseReviewSQLDB.getCourseReviewsSequential(courseSelected.getId());
+//
+//        courseName = (TextView) findViewById(R.id.courseName);
+//        courseName.setText(courseSelected.getName());
+//
+//        courseDescription = (TextView) findViewById(R.id.courseDescription);
+//        courseDescription.setText(courseSelected.getDescription());
+//
+//        listView = (ListView) findViewById(R.id.reviewListView);
+//        listView.setEmptyView(findViewById(R.id.empty));
+//
+//        ReviewAdapter adapter = new ReviewAdapter(this, courseReviewList);
+//        adapter.notifyDataSetChanged();
+//        listView.setAdapter(adapter);
+//
+//        // OnCLickListiner For List Items
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
+//
+//                //CourseReview c = courseReviewList.get(position);
+//                CourseReview c = (CourseReview) adapter.getItem(position);
+//
+//                Intent modify_intent = new Intent(getApplicationContext(), SeeCourseReviewActivity.class);
+//                modify_intent.putExtra("id", c.getId());
+//                startActivity(modify_intent);
+//            }
+//        });
 
-        setContentView(R.layout.activity_coursereview_overview);
+        setContentView(R.layout.fragment_emp_list);
 
-        courseSelected = CoursesActivity.getCourseSelected();
-        setTitle(courseSelected.getId());
+        accessCourseReviews = Services.getAccessCourseReviews(this);
+        Course course = CoursesActivity.getCourseSelected();
+        if (course== null) courseReviewList = accessCourseReviews.getAllCourseReviews();
+        else courseReviewList = accessCourseReviews.getCourseReviewByCourse(course);
 
-        courseReviewSQLDB = Services.getCourseReviewSQLDB(this);
-        courseReviewList = courseReviewSQLDB.getCourseReviewsSequential(courseSelected.getId());
-
-        courseName = (TextView) findViewById(R.id.courseName);
-        courseName.setText(courseSelected.getName());
-
-        courseDescription = (TextView) findViewById(R.id.courseDescription);
-        courseDescription.setText(courseSelected.getDescription());
-
-        listView = (ListView) findViewById(R.id.reviewListView);
+        listView = (ListView) findViewById(R.id.list_view);
         listView.setEmptyView(findViewById(R.id.empty));
-
-        ReviewAdapter adapter = new ReviewAdapter(this, courseReviewList);
+        ReviewAdapter adapter = new ReviewAdapter(this,courseReviewList);
         adapter.notifyDataSetChanged();
         listView.setAdapter(adapter);
 
@@ -64,7 +88,6 @@ public class CourseReviewsActivity extends AppCompatActivity {
 
                 //CourseReview c = courseReviewList.get(position);
                 CourseReview c = (CourseReview) adapter.getItem(position);
-
                 Intent modify_intent = new Intent(getApplicationContext(), SeeCourseReviewActivity.class);
                 modify_intent.putExtra("id", c.getId());
                 startActivity(modify_intent);

@@ -1,4 +1,4 @@
-package comp3350.umhub.persistence;
+package comp3350.umhub.persistence.old;
 
 import java.util.List;
 
@@ -7,6 +7,5 @@ import comp3350.umhub.objects.Major;
 
 public interface IMajorPersistence {
     List<Major> getMajorsSequential();
-
 
 }

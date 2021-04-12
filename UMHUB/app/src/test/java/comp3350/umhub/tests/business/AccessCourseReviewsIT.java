@@ -1,17 +1,13 @@
 package comp3350.umhub.tests.business;
 
-import org.junit.Before;
 import org.junit.Test;
 import java.util.List;
 
-import comp3350.umhub.application.Services;
-import comp3350.umhub.business.AccessCourseReviews;
+import comp3350.umhub.business.old.AccessCourseReviews;
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.CourseReview;
-import comp3350.umhub.objects.User;
 import comp3350.umhub.objects.Utils;
 import comp3350.umhub.persistence.stubs.CourseReviewPersistenceStub;
-import comp3350.umhub.tests.utils.TestUtils;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -39,8 +35,8 @@ public class AccessCourseReviewsIT {
         List<CourseReview> courseReviewList1 = courseReviewPersistence.getCourseReviewsSequential(comp3350);
         assertNotNull("courseReviewList1 should not be null", courseReviewList1);
         assertTrue("courseReviewList should not be empty", courseReviewList1.size() > 0);
-        assertTrue("1st review id should be 1", courseReviewList1.get(0).getId() == 1);
-        assertTrue("1st review id should be COMP 3350", courseReviewList1.get(0).getCourseId().equals("COMP3350"));
+        assertTrue("1st desc1 id should be 1", courseReviewList1.get(0).getId() == 1);
+        assertTrue("1st desc1 id should be COMP 3350", courseReviewList1.get(0).getCourseId().equals("COMP3350"));
 
 
         accessCourseReviews = new AccessCourseReviews(courseReviewPersistence);
@@ -56,8 +52,8 @@ public class AccessCourseReviewsIT {
         List<CourseReview> courseReviewList2 = accessCourseReviews.getCourseReviews(comp3350);
         assertNotNull("courseReviewList2 should not be null", courseReviewList2);
         assertTrue("courseReviewList should not be empty", courseReviewList1.size() > 0);
-        assertTrue("1st review id should be 1", courseReviewList2.get(0).getId() == 1);
-        assertTrue("1st review id should be COMP 3350", courseReviewList2.get(0).getCourseId().equals("COMP3350"));
+        assertTrue("1st desc1 id should be 1", courseReviewList2.get(0).getId() == 1);
+        assertTrue("1st desc1 id should be COMP 3350", courseReviewList2.get(0).getCourseId().equals("COMP3350"));
 
         System.out.println("Finished AccessCourseReviewsIT integration test - getCourseReviewTest");
 //        System.out.println(Utils.listToString(courseReviewList2));

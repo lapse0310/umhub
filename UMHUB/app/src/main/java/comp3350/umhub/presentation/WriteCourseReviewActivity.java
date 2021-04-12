@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.SimpleCursorAdapter;
 
 
 import androidx.annotation.Nullable;
@@ -17,13 +16,13 @@ import comp3350.umhub.application.Services;
 import comp3350.umhub.business.IAccessCourseReviews;
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.User;
-import comp3350.umhub.persistence.ICourseReviewPersistence;
-import comp3350.umhub.persistence.sqlite.CourseReviewSQLDB;
+import comp3350.umhub.persistence.old.ICourseReviewPersistence;
 
 public class WriteCourseReviewActivity extends AppCompatActivity {
     User currentUser;
     Course courseSelected;
     ICourseReviewPersistence courseReviewSQLDB;
+    IAccessCourseReviews accessCourseReviews;
     EditText reviewEditText;
     EditText reviewScoreEditText;
     RadioGroup radioGroup;
@@ -35,7 +34,8 @@ public class WriteCourseReviewActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_coursereview_input);
 
-        courseReviewSQLDB = Services.getCourseReviewSQLDB(this);
+        accessCourseReviews = Services.getAccessCourseReviews(this);
+        //courseReviewSQLDB = Services.getCourseReviewSQLDB(this);
 
         try{
             reviewEditText = (EditText) findViewById(R.id.reviewEditText);
@@ -61,7 +61,9 @@ public class WriteCourseReviewActivity extends AppCompatActivity {
         String userID = currentUser.getUsername();
         String review = reviewEditText.getText().toString();
         int score = getRadioButtonValue();
-        courseReviewSQLDB.insert(courseID,userID,review,score);
+
+        accessCourseReviews.add(courseID,userID,review,score);
+        //courseReviewSQLDB.insert(courseID,userID,review,score);
         returnHome();
 
     }

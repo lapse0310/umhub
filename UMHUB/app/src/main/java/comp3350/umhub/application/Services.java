@@ -11,10 +11,8 @@ import comp3350.umhub.business.AccessTutors;
 import comp3350.umhub.business.IAccessCourseReviews;
 import comp3350.umhub.business.IAccessCourses;
 import comp3350.umhub.business.AccessCourses;
-
 import comp3350.umhub.business.IAccessMajors;
 import comp3350.umhub.business.AccessMajors;
-
 import comp3350.umhub.business.IAccessPrograms;
 import comp3350.umhub.business.AccessPrograms;
 
@@ -22,18 +20,22 @@ import comp3350.umhub.business.ILogin;
 import comp3350.umhub.business.Login;
 import comp3350.umhub.business.IAccessTutors;
 import comp3350.umhub.objects.User;
-import comp3350.umhub.persistence.ICourseReviewPersistence;
-import comp3350.umhub.persistence.ILoginPersistence;
-import comp3350.umhub.persistence.ITutorPersistence;
+
 import comp3350.umhub.persistence.sqlite.CourseReviewSQLDB;
+import comp3350.umhub.persistence.sqlite.CourseSQLDB;
 import comp3350.umhub.persistence.sqlite.DatabaseHelper;
+import comp3350.umhub.persistence.sqlite.MajorSQLDB;
+import comp3350.umhub.persistence.sqlite.ProgramSQLDB;
 import comp3350.umhub.persistence.stubs.CoursePersistenceStub;
 import comp3350.umhub.persistence.stubs.CourseReviewPersistenceStub;
 import comp3350.umhub.persistence.stubs.LoginPersistenceStub;
 
-import comp3350.umhub.persistence.IMajorPersistence;
-import comp3350.umhub.persistence.ICoursePersistence;
-import comp3350.umhub.persistence.IProgramPersistence;
+import comp3350.umhub.persistence.interfaces.IMajorPersistence;
+import comp3350.umhub.persistence.interfaces.ICoursePersistence;
+import comp3350.umhub.persistence.interfaces.IProgramPersistence;
+import comp3350.umhub.persistence.interfaces.ICourseReviewPersistence;
+import comp3350.umhub.persistence.interfaces.ILoginPersistence;
+import comp3350.umhub.persistence.interfaces.ITutorPersistence;
 
 import comp3350.umhub.persistence.stubs.MajorPersistenceStub;
 import comp3350.umhub.persistence.stubs.ProgramPersistenceStub;
@@ -55,6 +57,8 @@ public class Services {
     private static ILogin userLogin = null;
     private static IAccessTutors accessTutors = null;
     private static ITutorPersistence tutorPersistence = null;
+    private static SQLiteDatabase database;
+
 
     public static User getCurrentUser() {
         return currentUser;
@@ -64,51 +68,77 @@ public class Services {
         currentUser = user;
     }
 
-    public static synchronized IMajorPersistence getMajorPersistence(){
-        if(majorPersistence==null){
-            majorPersistence = new MajorPersistenceStub();
-           //majorPersistence = new MajorPersistenceHSQLDB(Main.getDBPathName());
+    public static synchronized IMajorPersistence getMajorPersistence(Context context){
+        if (majorPersistence == null){
+            if (context == null)
+                majorPersistence = new MajorPersistenceStub();
+            else
+                majorPersistence = new MajorSQLDB(context);
 
         }
         return majorPersistence;
     }
 
-    public static synchronized IProgramPersistence getProgramPersistence(){
-        if(programPersistence==null){
-            programPersistence = new ProgramPersistenceStub();
-           //programPersistence = new ProgramPersistenceHSQLDB(Main.getDBPathName());
+    public static synchronized IProgramPersistence getProgramPersistence(Context context){
+        if (programPersistence == null){
+            if (context == null)
+                programPersistence = new ProgramPersistenceStub();
+            else
+                programPersistence = new ProgramSQLDB(context);
         }
         return programPersistence;
     }
 
-    public static synchronized ICoursePersistence getCoursePersistence(){
-        if(coursePersistence==null){
-            coursePersistence = new CoursePersistenceStub();
-           //coursePersistence = new CoursePersistenceHSQLDB(Main.getDBPathName());
+    public static synchronized ICoursePersistence getCoursePersistence(Context context){
+        if (coursePersistence == null){
+            if (context == null)
+                coursePersistence = new CoursePersistenceStub();
+            else
+                coursePersistence = new CourseSQLDB(context);
         }
         return coursePersistence;
     }
 
-    public static synchronized IAccessMajors getAccessMajors(){
-        if(accessMajors==null){
-            accessMajors = new AccessMajors();
+    public static ICourseReviewPersistence getCourseReviewPersistence(Context context) {
+        if (courseReviewPersistence == null){
+            if (context == null)
+                courseReviewPersistence = new CourseReviewPersistenceStub();
+            else
+                courseReviewPersistence = new CourseReviewSQLDB(context);
+        }
+        return courseReviewPersistence;
+    }
+
+    public static synchronized IAccessMajors getAccessMajors(Context context){
+        if (accessMajors == null){
+            accessMajors = new AccessMajors(Services.getMajorPersistence(context));
         }
         return accessMajors;
     }
 
-    public static synchronized IAccessPrograms getAccessPrograms(){
-        if(accessPrograms==null){
-            accessPrograms = new AccessPrograms();
+    public static synchronized IAccessPrograms getAccessPrograms(Context context){
+        if (accessPrograms == null){
+            accessPrograms = new AccessPrograms(Services.getProgramPersistence(context));
         }
         return accessPrograms;
     }
 
 
-    public static synchronized IAccessCourses getAccessCourses(){
-        if(accessCourses==null){
-            accessCourses = new AccessCourses();
+    public static synchronized IAccessCourses getAccessCourses(Context context){
+        if (accessCourses == null){
+            accessCourses = new AccessCourses(Services.getCoursePersistence(context));
         }
         return accessCourses;
+    }
+
+
+    public static IAccessCourseReviews getAccessCourseReviews(Context context) {
+
+        if (accessCourseReviews == null){
+            accessCourseReviews = new AccessCourseReviews(Services.getCourseReviewPersistence(context));
+        }
+        return accessCourseReviews;
+
     }
 
     public static synchronized ILoginPersistence getLoginPersistence(){
@@ -116,24 +146,6 @@ public class Services {
             loginPersistence = new LoginPersistenceStub();
         }
         return loginPersistence;
-    }
-
-    public static ICourseReviewPersistence getCourseReviewPersistence() {
-
-        if(courseReviewPersistence ==null){
-           //courseReviewPersistence = new CourseReviewPersistenceHSQLDB(Main.getDBPathName());
-            courseReviewPersistence = new CourseReviewPersistenceStub();
-        }
-        return courseReviewPersistence;
-    }
-
-    public static IAccessCourseReviews getAccessCourseReviews() {
-
-        if(accessCourseReviews ==null){
-            accessCourseReviews = new AccessCourseReviews();
-        }
-        return accessCourseReviews;
-
     }
 
     public static synchronized ILogin userLogin(){
@@ -161,7 +173,6 @@ public class Services {
         return accessTutors;
     }
 
-    private static SQLiteDatabase database;
 
     public static SQLiteDatabase getDatabase(Context context) {
         if(database ==null){
@@ -171,12 +182,11 @@ public class Services {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
         return database;
     }
 
-    public static CourseReviewSQLDB getCourseReviewSQLDB(Context context) {
-        return new CourseReviewSQLDB(context);
-    }
+//    public static CourseReviewSQLDB getCourseReviewSQLDB(Context context) {
+//        return new CourseReviewSQLDB(context);
+//    }
 }

@@ -2,7 +2,7 @@ package comp3350.umhub.persistence.stubs;
 import java.util.ArrayList;
 
 import comp3350.umhub.objects.User;
-import comp3350.umhub.persistence.ILoginPersistence;
+import comp3350.umhub.persistence.interfaces.ILoginPersistence;
 
 public class LoginPersistenceStub implements ILoginPersistence {
     ArrayList<User> database;

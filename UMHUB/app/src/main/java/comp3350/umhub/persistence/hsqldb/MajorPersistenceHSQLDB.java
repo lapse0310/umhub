@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.umhub.objects.Major;
-import comp3350.umhub.persistence.IMajorPersistence;
+import comp3350.umhub.persistence.old.IMajorPersistence;
 
 public class MajorPersistenceHSQLDB implements IMajorPersistence {
 

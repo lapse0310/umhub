@@ -6,7 +6,7 @@ import comp3350.umhub.application.Services;
 import comp3350.umhub.application.SignUpException;
 import comp3350.umhub.application.UserException;
 import comp3350.umhub.objects.User;
-import comp3350.umhub.persistence.ILoginPersistence;
+import comp3350.umhub.persistence.interfaces.ILoginPersistence;
 
 public class Login implements ILogin{
     private ILoginPersistence userPersistence;

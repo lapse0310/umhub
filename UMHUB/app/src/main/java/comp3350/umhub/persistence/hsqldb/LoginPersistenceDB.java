@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import comp3350.umhub.objects.User;
-import comp3350.umhub.persistence.ILoginPersistence;
+import comp3350.umhub.persistence.interfaces.ILoginPersistence;
 
 public class LoginPersistenceDB implements ILoginPersistence {
     private final String dbPath;

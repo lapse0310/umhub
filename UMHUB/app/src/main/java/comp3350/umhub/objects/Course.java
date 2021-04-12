@@ -8,7 +8,6 @@ public class Course {
     private String description;
     private int year;
     private String major;
-    private List<Program> programs;
 
     public Course(String id){
         this.id = id;
@@ -29,18 +28,6 @@ public class Course {
         this.major = major;
     }
 
-    public Course(String name, String id, String desc, int year, String major, List<Program> programs){
-        this.name = name;
-        this.id = id;
-        description = desc;
-        this.year = year;
-        this.major = major;
-        this.programs = programs;
-    }
-
-
-
-
     public String getName() {
         return name;
     }
@@ -59,10 +46,6 @@ public class Course {
 
     public String getMajor(){
         return major;
-    }
-
-    public List<Program> getPrograms(){
-        return programs;
     }
 
     public boolean equals(Course other){

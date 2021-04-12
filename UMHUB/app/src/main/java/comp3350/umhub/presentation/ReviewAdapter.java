@@ -1,6 +1,5 @@
 package comp3350.umhub.presentation;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -50,9 +49,9 @@ public class ReviewAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.activity_view_record, parent, false);
             CourseReview courseReview = courseReviewList.get(position);
             System.out.println("@"+position+": "+courseReview);
-            TextView scoreTextView = (TextView) convertView.findViewById(R.id.review_score);
-            TextView usernameTextView = (TextView) convertView.findViewById(R.id.username);
-            TextView reviewTextView = (TextView) convertView.findViewById(R.id.review);
+            TextView scoreTextView = (TextView) convertView.findViewById(R.id.id1);
+            TextView usernameTextView = (TextView) convertView.findViewById(R.id.title1);
+            TextView reviewTextView = (TextView) convertView.findViewById(R.id.desc1);
 
             usernameTextView.setText(courseReview.getUser());
             reviewTextView.setText(courseReview.getReview());

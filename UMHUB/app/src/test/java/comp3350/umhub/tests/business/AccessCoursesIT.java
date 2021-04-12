@@ -8,15 +8,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import comp3350.umhub.business.AccessCourses;
-import comp3350.umhub.business.AccessPrograms;
+import comp3350.umhub.business.old.AccessCourses;
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.Major;
-import comp3350.umhub.objects.Program;
-import comp3350.umhub.persistence.ICoursePersistence;
-import comp3350.umhub.persistence.IProgramPersistence;
+import comp3350.umhub.persistence.old.ICoursePersistence;
 import comp3350.umhub.persistence.hsqldb.CoursePersistenceHSQLDB;
-import comp3350.umhub.persistence.hsqldb.ProgramPersistenceHSQLDB;
 import comp3350.umhub.tests.utils.TestUtils;
 
 import static org.junit.Assert.assertNotNull;
