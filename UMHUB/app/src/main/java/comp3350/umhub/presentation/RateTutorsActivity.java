@@ -36,9 +36,6 @@ public class RateTutorsActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                if (fromUser) {
-                    viewModel.actions().onRate(rating);
-                }
 
                 rateValue = ratingBar.getRating();
                 if(rateValue<=1){

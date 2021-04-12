@@ -30,20 +30,5 @@ public class LoginSystemTest {
         onView(withId(R.id.btnLogin)).perform(click());
         onView(withId(R.id.button)).perform(click());
 
-        /*
-
-        // add the new course
-        onView(withId(R.id.editCourseID)).perform(typeText("4050"));
-        onView(withId(R.id.editCourseName)).perform(typeText("Project Management"));
-        onView(withId(R.id.buttonCourseCreate)).perform(click());
-        closeSoftKeyboard();
-
-        // verify that it was added
-        pressBack();
-        onView(withId(R.id.buttonCourses)).perform(click());
-        onData(anything()).inAdapterView(withId(R.id.listCourses)).atPosition(0).perform(click());
-        onView(withId(R.id.editCourseName)).check(matches(withText("Project Management")));
-*/
-
     }
 }
