@@ -2,44 +2,53 @@ package comp3350.umhub.presentation;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.concurrent.ExecutionException;
+
+import javax.security.auth.login.LoginException;
+
 import comp3350.umhub.R;
 import comp3350.umhub.application.Services;
+import comp3350.umhub.application.SignUpException;
 import comp3350.umhub.business.IAccessCourseReviews;
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.User;
 import comp3350.umhub.persistence.interfaces.ICourseReviewPersistence;
 
-public class WriteCourseReviewActivity extends AppCompatActivity {
+public class WriteCourseReviewActivity extends AppCompatActivity implements View.OnClickListener {
     User currentUser;
     Course courseSelected;
-    ICourseReviewPersistence courseReviewSQLDB;
     IAccessCourseReviews accessCourseReviews;
     EditText reviewEditText;
     EditText reviewScoreEditText;
     RadioGroup radioGroup;
     RadioButton radioButton;
+    Button submitButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_coursereview_input);
 
         accessCourseReviews = Services.getAccessCourseReviews(this);
-        //courseReviewSQLDB = Services.getCourseReviewSQLDB(this);
 
         try{
             reviewEditText = (EditText) findViewById(R.id.reviewEditText);
             radioGroup = findViewById(R.id.radio_group);
+            submitButton = (Button) findViewById(R.id.button2);
+
+            submitButton.setOnClickListener(this);
         }
         catch (final Exception e){
             Messages.fatalError(this,e.getMessage());
@@ -52,6 +61,32 @@ public class WriteCourseReviewActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
     }
+
+    public void onClick(View view) {
+        currentUser = Services.getCurrentUser();
+        courseSelected = CoursesActivity.getCourseSelected();
+        switch ( view.getId() ){
+            case R.id.button2:
+                //login has been clicked
+                //setKeyboardVisibility(false);
+                try
+                {
+                    String courseID = courseSelected.getId();
+                    String userID = currentUser.getUsername();
+                    String review = reviewEditText.getText().toString();
+                    int score = getRadioButtonValue();
+
+                    accessCourseReviews.add(courseID,userID,review,score);
+                    returnHome();
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }
+                break;
+        }
+    }
+
 
     public void buttonSubmitCourseReviewOnClick(View view){
         currentUser = Services.getCurrentUser();

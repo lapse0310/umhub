@@ -52,22 +52,6 @@ public class Login implements ILogin{
     }
 
 
-/*    @Override
-    public void signUp(String[] info) throws SignUpException {
-        try {
-            if (this.userPersistence.getUser(info[0]) != null) {
-                throw new SignUpException("Username is already taken !");
-            }
-        }catch(UserException e){
-            throw new SignUpException("Error checking if username has been taken");
-        }
-
-        try {
-            this.userPersistence.insertUser(info[0],info[1]);
-        }catch(UserException e){
-            throw new SignUpException("Error adding user to signed-up users");
-        }
-    }*/
 }
 
 

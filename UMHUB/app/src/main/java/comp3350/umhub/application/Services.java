@@ -66,11 +66,8 @@ public class Services {
 
 
     public static User getCurrentUser() {
-        return currentUser;
-    }
-
-    public static void setCurrentUser(User user){
-        currentUser = user;
+        if (accessUsers != null) return accessUsers.getCurrentUser();
+        return null;
     }
 
     public static synchronized IMajorPersistence getMajorPersistence(Context context){
