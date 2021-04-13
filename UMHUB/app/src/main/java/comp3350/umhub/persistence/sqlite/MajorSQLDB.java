@@ -26,8 +26,8 @@ public class MajorSQLDB implements IMajorPersistence {
             e.printStackTrace();
         }
 
-        testGetMajor();
-        testGetMajorsSequential();
+//        testGetMajor();
+//        testGetMajorsSequential();
     }
 
     @Override

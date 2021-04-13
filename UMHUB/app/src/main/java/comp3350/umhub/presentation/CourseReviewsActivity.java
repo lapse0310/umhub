@@ -18,6 +18,7 @@ import comp3350.umhub.application.Services;
 import comp3350.umhub.business.IAccessCourseReviews;
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.CourseReview;
+import comp3350.umhub.presentation.adapters.ReviewAdapter;
 import comp3350.umhub.persistence.sqlite.CourseReviewSQLDB;
 
 public class CourseReviewsActivity extends AppCompatActivity {
@@ -32,41 +33,17 @@ public class CourseReviewsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//
+
+
 //        setContentView(R.layout.activity_coursereview_overview);
-//
 //        courseSelected = CoursesActivity.getCourseSelected();
 //        setTitle(courseSelected.getId());
-//
-//        courseReviewSQLDB = Services.getCourseReviewPersistence(this);
-//        courseReviewList = courseReviewSQLDB.getCourseReviewsSequential(courseSelected.getId());
 //
 //        courseName = (TextView) findViewById(R.id.courseName);
 //        courseName.setText(courseSelected.getName());
 //
 //        courseDescription = (TextView) findViewById(R.id.courseDescription);
 //        courseDescription.setText(courseSelected.getDescription());
-//
-//        listView = (ListView) findViewById(R.id.reviewListView);
-//        listView.setEmptyView(findViewById(R.id.empty));
-//
-//        ReviewAdapter adapter = new ReviewAdapter(this, courseReviewList);
-//        adapter.notifyDataSetChanged();
-//        listView.setAdapter(adapter);
-//
-//        // OnCLickListiner For List Items
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
-//
-//                //CourseReview c = courseReviewList.get(position);
-//                CourseReview c = (CourseReview) adapter.getItem(position);
-//
-//                Intent modify_intent = new Intent(getApplicationContext(), SeeCourseReviewActivity.class);
-//                modify_intent.putExtra("id", c.getId());
-//                startActivity(modify_intent);
-//            }
-//        });
 
         setContentView(R.layout.fragment_emp_list);
 

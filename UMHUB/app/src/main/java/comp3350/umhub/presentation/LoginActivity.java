@@ -3,9 +3,7 @@ package comp3350.umhub.presentation;
 //import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -13,11 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
 
 import javax.security.auth.login.LoginException;
 
@@ -94,9 +87,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.btnSignUp:
                 try {
                     iLogin.signUp(username,password);
-                    Toast toast = Toast.makeText(getApplicationContext(),
-                            "New user successfully created! Now you can log in using the credentials", Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
+                    Toast toast = Toast.makeText(getApplicationContext(),"New user successfully created! Now you can log in using the credentials", Toast.LENGTH_SHORT);
                     toast.show();
                 } catch (SignUpException e) {
                     Toast toast = Toast.makeText(getApplicationContext(),

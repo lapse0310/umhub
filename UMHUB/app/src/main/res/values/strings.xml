@@ -22,6 +22,8 @@
     <string name="empty_review_list_text">Be the first to write a review</string>
     <string name="login">Login</string>
     <string name="guest">Or continue as Guest</string>
+    <string name="admin">admin</string>
+    <string name="password">123456</string>
 
 
 </resources>

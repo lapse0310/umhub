@@ -47,8 +47,6 @@ import comp3350.umhub.persistence.stubs.TutorPersistenceStub;
 
 
 public class Services {
-
-    private static User currentUser;
     private static IAccessMajors accessMajors = null;
     private static IAccessPrograms accessPrograms = null;
     private static IAccessCourses accessCourses = null;
@@ -64,6 +62,9 @@ public class Services {
     private static SQLiteDatabase database;
     private static IAccessUsers accessUsers;
 
+    public static void logOut(){
+        if (accessUsers != null) accessUsers.setCurrentUser((User) null);
+    }
 
     public static User getCurrentUser() {
         if (accessUsers != null) return accessUsers.getCurrentUser();
