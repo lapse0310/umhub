@@ -11,6 +11,8 @@ public interface IUserPersistence {
     //public boolean userExist(String username, String Password );
     public User getUser(String username) throws UserException;
     public List<User> getAllUsers() throws UserException;
+
+    void delete(String username);
 }
 
 

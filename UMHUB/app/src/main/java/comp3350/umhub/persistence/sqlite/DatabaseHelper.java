@@ -74,6 +74,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         boolean checkdb = false;
         try {
+
+            File dbFolder = new File(DB_PATH);
+
+            if (!dbFolder.exists())
+                dbFolder.mkdirs();
+
             String myPath = DB_PATH + DB_NAME;
             File dbfile = new File(myPath);
             checkdb = dbfile.exists();

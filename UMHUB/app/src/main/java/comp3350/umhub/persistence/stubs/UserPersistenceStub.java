@@ -22,6 +22,15 @@ public class UserPersistenceStub implements IUserPersistence {
         users.add(new User(username, password));
     }
 
+    @Override
+    public void delete(String username) {
+        for (int i = 0; i < users.size(); i++) {
+            User temp = users.get(i);
+            if (temp.getUsername().equals(username))
+                users.remove(i);
+        }
+    }
+
     /*@Override
     public boolean userExist(String username, String password){
         for(int i = 0; i < database.size(); i++){

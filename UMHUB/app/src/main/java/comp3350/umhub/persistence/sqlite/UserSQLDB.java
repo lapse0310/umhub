@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.umhub.application.Services;
-import comp3350.umhub.application.UserException;
 import comp3350.umhub.objects.User;
 import comp3350.umhub.persistence.interfaces.IUserPersistence;
 
@@ -31,7 +30,7 @@ public class UserSQLDB implements IUserPersistence {
 
     }
 
-    public List<User> getAllUsers() throws UserException{
+    public List<User> getAllUsers(){
         final List<User> users = new ArrayList<>();
         try {
             Cursor cursor = database.query(TABLE_USERS, COLUMNS, null, null, null, null, null);
@@ -51,7 +50,7 @@ public class UserSQLDB implements IUserPersistence {
     }
 
     @Override
-    public void insertUser(String username, String password) throws UserException {
+    public void insertUser(String username, String password){
             ContentValues contentValue = new ContentValues();
             contentValue.put(_ID, username);
             contentValue.put(PASSWORD, password);
@@ -59,7 +58,7 @@ public class UserSQLDB implements IUserPersistence {
     }
 
     @Override
-    public User getUser(String username) throws UserException {
+    public User getUser(String username){
         User user = null;
         try {
             String WHERE_CLAUSE = String.format("%s = '%s'", _ID, username);
@@ -77,6 +76,9 @@ public class UserSQLDB implements IUserPersistence {
         }
     }
 
-
+    @Override
+    public void delete(String username) {
+        database.delete(TABLE_USERS, _ID + "=" + username, null);
+    }
 
 }

@@ -29,7 +29,7 @@ public class RatingSystemTest {
         onView(withId(R.id.etPassword)).perform(typeText("123456"));
         onView(withId(R.id.etPassword)).perform(closeSoftKeyboard());
         onView(withId(R.id.btnLogin)).perform(click());
-        onView(withId(R.id.button)).perform(click());
+        //onView(withId(R.id.button)).perform(click());
         onView(withText("Computer Science")).perform(click());
         onView(withText("Computer Science General")).perform(click());
         onView(withText("MATH1500")).perform(click());
