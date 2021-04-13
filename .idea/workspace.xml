@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c82d18a5-8fa9-4283-89f9-b88a9581e485" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/umhub-7.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/umhub-7.iml" afterDir="false" />
-    </list>
+    <list default="true" id="c82d18a5-8fa9-4283-89f9-b88a9581e485" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,7 +19,10 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/UMHUB" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RunManager">
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
@@ -95,13 +96,18 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="440" y="94" key="#Project_Structure" timestamp="1618331417482">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="440" y="94" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1618331417482" />
     <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1616180434491">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/-2736.-544.1368.892/0.0.1920.1040@0.0.1920.1040" timestamp="1616180434491" />
-    <state x="740" y="261" key="FileChooserDialogImpl" timestamp="1616180536258">
+    <state x="740" y="261" key="FileChooserDialogImpl" timestamp="1618331425719">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="261" key="FileChooserDialogImpl/-2736.-544.1368.892/0.0.1920.1040@0.0.1920.1040" timestamp="1616180536258" />
+    <state x="740" y="261" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1618331425719" />
   </component>
 </project>
