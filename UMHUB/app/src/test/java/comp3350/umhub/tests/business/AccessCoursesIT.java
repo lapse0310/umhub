@@ -8,11 +8,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import comp3350.umhub.business.old.AccessCourses;
+import comp3350.umhub.business.AccessCourses;
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.Major;
-import comp3350.umhub.persistence.old.ICoursePersistence;
-import comp3350.umhub.persistence.hsqldb.CoursePersistenceHSQLDB;
+import comp3350.umhub.persistence.interfaces.ICoursePersistence;
+import comp3350.umhub.persistence.sqlite.CourseSQLDB;
 import comp3350.umhub.tests.utils.TestUtils;
 
 import static org.junit.Assert.assertNotNull;
@@ -26,7 +26,7 @@ public class AccessCoursesIT {
     @Before
     public void setUp() throws IOException {
         this.tempDB = TestUtils.copyDB();
-        final ICoursePersistence persistence = new CoursePersistenceHSQLDB(this.tempDB.getAbsolutePath().replace(".script", ""));
+        final ICoursePersistence persistence = new CourseSQLDB(null);
         this.accessCourses = new AccessCourses(persistence);
     }
 

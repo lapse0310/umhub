@@ -7,10 +7,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import comp3350.umhub.business.old.AccessMajors;
+import comp3350.umhub.business.AccessMajors;
 import comp3350.umhub.objects.Major;
-import comp3350.umhub.persistence.old.IMajorPersistence;
-import comp3350.umhub.persistence.hsqldb.MajorPersistenceHSQLDB;
+import comp3350.umhub.persistence.interfaces.IMajorPersistence;
+import comp3350.umhub.persistence.sqlite.MajorSQLDB;
 import comp3350.umhub.tests.utils.TestUtils;
 
 import static org.junit.Assert.assertNotNull;
@@ -24,7 +24,7 @@ public class AccessMajorsIT {
     @Before
     public void setUp() throws IOException {
         this.tempDB = TestUtils.copyDB();
-        final IMajorPersistence persistence = new MajorPersistenceHSQLDB(this.tempDB.getAbsolutePath().replace(".script", ""));
+        final IMajorPersistence persistence = new MajorSQLDB(null);
         this.accessMajors = new AccessMajors(persistence);
     }
 
@@ -32,7 +32,7 @@ public class AccessMajorsIT {
     public void getMajorsTest(){
 
         System.out.println("\n Starting Access Majors integration test - getMajors");
-        List<Major> majors  =accessMajors.getMajors();
+        List<Major> majors  =accessMajors.getAllMajors();
 
         assertNotNull("Majors list should not be null", majors);
         assert(majors.size()!=0);

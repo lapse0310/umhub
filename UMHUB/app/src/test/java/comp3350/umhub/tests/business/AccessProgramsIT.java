@@ -8,11 +8,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import comp3350.umhub.business.old.AccessPrograms;
+import comp3350.umhub.business.AccessPrograms;
 import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.Program;
-import comp3350.umhub.persistence.old.IProgramPersistence;
-import comp3350.umhub.persistence.hsqldb.ProgramPersistenceHSQLDB;
+import comp3350.umhub.persistence.interfaces.IProgramPersistence;
+import comp3350.umhub.persistence.sqlite.ProgramSQLDB;
 import comp3350.umhub.tests.utils.TestUtils;
 
 import static org.junit.Assert.assertNotNull;
@@ -25,9 +25,8 @@ public class AccessProgramsIT {
     @Before
     public void setUp() throws IOException {
         this.tempDB = TestUtils.copyDB();
-        final IProgramPersistence persistence = new ProgramPersistenceHSQLDB(this.tempDB.getAbsolutePath().replace(".script", ""));
+        final IProgramPersistence persistence = new ProgramSQLDB(null);
         this.accessPrograms = new AccessPrograms(persistence);
-        //this.accessPrograms = (AccessPrograms) Services.getAccessPrograms();
     }
 
     @Test
@@ -35,7 +34,7 @@ public class AccessProgramsIT {
         Major majorSelected = new Major("Accounting");
         System.out.println("\nStarting Access Programs integration test - getPrograms");
         List<Program> programs = new ArrayList<>();
-        programs = accessPrograms.getPrograms(majorSelected);
+        programs = accessPrograms.getProgramsByMajor(majorSelected);
 
         assertNotNull("Majors list should not be null", programs);
         assert(programs.size()!=0);
