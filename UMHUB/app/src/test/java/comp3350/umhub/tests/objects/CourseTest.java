@@ -23,24 +23,24 @@ public class CourseTest {
         System.out.println("\nStarting testCourse");
         major = new Major("Computer Science");
         programList = new ArrayList<>();
-        program1 = new Program("Bachelor of Science - Computer Science",major);
-        program2 = new Program("Bachelor of Computer Science Honors",major);
+        program1 = new Program("Bachelor of Science - Computer Science","Computer Science");
+        program2 = new Program("Bachelor of Computer Science Honors","Computer Science");
         programList.add(program1);
         programList.add(program2);
 
-        course = new Course("Software Engineering", "COMP 3350", "Course to get you trained in industry standards of coding projects",3, major,programList);
+        course = new Course("COMP 3350", "Software Engineering", "Course to get you trained in industry standards of coding projects",3, "Computer Science");
         assertNotNull(course);
         assertTrue("Software Engineering".equals(course.getName()));
         assertTrue("COMP 3350".equals(course.getId()));
         assertTrue("Course to get you trained in industry standards of coding projects".equals(course.getDescription()));
         assertEquals(3,course.getYear());
-        assertTrue(programList.equals(course.getPrograms()));
-        assertTrue(course.getPrograms().contains(program1));
-        assertTrue(course.getPrograms().contains(program2));
+//        assertTrue(programList.equals(course.getPrograms()));
+//        assertTrue(course.getPrograms().contains(program1));
+//        assertTrue(course.getPrograms().contains(program2));
 
-        course1 = new Course("Not Software Engineering","COMP1010","This course is not SE",1,major,programList);
+        course1 = new Course("COMP1010","Not Software Engineering","This course is not SE",1,"Computer Science");
         assert(!course.equals(course1));
-        course1 = new Course("Software Engineering", "COMP 3350", "Course to get you trained in industry standards of coding projects",3, major,programList);
+        course1 = new Course("COMP 3350", "Software Engineering", "Course to get you trained in industry standards of coding projects",3, "Computer Science");
         assert(course.equals(course1));
         System.out.println("Finished testCourse");
     }

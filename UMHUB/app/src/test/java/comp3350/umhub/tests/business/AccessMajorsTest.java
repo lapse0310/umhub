@@ -5,16 +5,15 @@ import org.junit.Test;
 
 import java.util.List;
 
-import comp3350.umhub.business.old.AccessMajors;
-import comp3350.umhub.business.old.IAccessMajors;
+import comp3350.umhub.business.AccessMajors;
+import comp3350.umhub.business.IAccessMajors;
 import comp3350.umhub.objects.Major;
-import comp3350.umhub.persistence.old.IMajorPersistence;
+import comp3350.umhub.persistence.interfaces.IMajorPersistence;
 import comp3350.umhub.persistence.stubs.MajorPersistenceStub;
 
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 public class AccessMajorsTest {
     private IAccessMajors accessMajors;
@@ -32,7 +31,7 @@ public class AccessMajorsTest {
     {
         final Major major;
         System.out.println("\nStarting test AccessMajors");
-        List<Major> majors = accessMajors.getMajors();
+        List<Major> majors = accessMajors.getAllMajors();
         assertNotNull("list of major should not be null", majors);
         major = majors.get(0);
         assertNotNull("first sequential major should not be null", major);

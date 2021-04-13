@@ -25,18 +25,15 @@ public class AccessTutorsTest {
     }
 
 
-
-
-
     @Test
     public void AccessTutorsTest(){
         Course course;
         List<Tutor> tutorList;
 
         System.out.println("\nStarting AccessTutorsTest");
-        course = new Course("COMP 3350");
+        course = new Course("COMP3350");
         tutorList = accessTutors.getTutors(course);
-        assertNotNull("List of tutors for COMP 3350 should not be null",tutorList);
+        assertNotNull("List of tutors for COMP3350 should not be null",tutorList);
         assertEquals("Cool",tutorList.get(0).getName());
         assertEquals("Middle",tutorList.get(1).getName());
         assertEquals("Tall",tutorList.get(2).getName());

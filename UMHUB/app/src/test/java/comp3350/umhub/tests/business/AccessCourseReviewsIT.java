@@ -3,7 +3,8 @@ package comp3350.umhub.tests.business;
 import org.junit.Test;
 import java.util.List;
 
-import comp3350.umhub.business.old.AccessCourseReviews;
+
+import comp3350.umhub.business.AccessCourseReviews;
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.CourseReview;
 import comp3350.umhub.objects.Utils;
@@ -31,8 +32,7 @@ public class AccessCourseReviewsIT {
 
         assertTrue("1st item should have id 1" , allCourseReviews.get(0).getId() == 1);
 
-        Course comp3350 = new Course("COMP3350");
-        List<CourseReview> courseReviewList1 = courseReviewPersistence.getCourseReviewsSequential(comp3350);
+        List<CourseReview> courseReviewList1 = courseReviewPersistence.getCourseReviewsSequential("COMP3350");
         assertNotNull("courseReviewList1 should not be null", courseReviewList1);
         assertTrue("courseReviewList should not be empty", courseReviewList1.size() > 0);
         assertTrue("1st desc1 id should be 1", courseReviewList1.get(0).getId() == 1);
@@ -42,21 +42,22 @@ public class AccessCourseReviewsIT {
         accessCourseReviews = new AccessCourseReviews(courseReviewPersistence);
         assertNotNull("AccessCourseReviews should not be null",accessCourseReviews);
 
-        List<CourseReview> allCourseReviews2 = accessCourseReviews.getCourseReviews();
+        List<CourseReview> allCourseReviews2 = accessCourseReviews.getAllCourseReviews();
         assertNotNull("allCourseReviews2 should not be null", allCourseReviews2);
         assertTrue("allCourseReviews2.size should equal allCourseReviews.size", allCourseReviews.size() == allCourseReviews2.size());
         for (int i =0; i < allCourseReviews2.size(); i++){
             assertTrue("Item in allCourseReviews2 should match allCourseReviews",allCourseReviews2.get(i).getId() == allCourseReviews.get(i).getId());
         }
 
-        List<CourseReview> courseReviewList2 = accessCourseReviews.getCourseReviews(comp3350);
+
+        Course comp3350 = new Course("COMP3350");
+        List<CourseReview> courseReviewList2 = accessCourseReviews.getCourseReviewByCourse(comp3350);
         assertNotNull("courseReviewList2 should not be null", courseReviewList2);
         assertTrue("courseReviewList should not be empty", courseReviewList1.size() > 0);
         assertTrue("1st desc1 id should be 1", courseReviewList2.get(0).getId() == 1);
         assertTrue("1st desc1 id should be COMP 3350", courseReviewList2.get(0).getCourseId().equals("COMP3350"));
 
         System.out.println("Finished AccessCourseReviewsIT integration test - getCourseReviewTest");
-//        System.out.println(Utils.listToString(courseReviewList2));
 
 
     }
@@ -76,8 +77,7 @@ public class AccessCourseReviewsIT {
 
         String comp2160 = "COMP2160";
         String u1 = "u1";
-        CourseReview review = new CourseReview(allCourseReviews.size()+1, u1,comp2160,"New Review!",5);
-        courseReviewPersistence.insertCourseReview(review);
+        courseReviewPersistence.insert(comp2160,u1,"New Review!",5);
 
         List<CourseReview> allCourseReviews3 = courseReviewPersistence.getCourseReviewsSequential(comp2160);
         assertNotNull("allCourseReviews2 should not be null", allCourseReviews3);
@@ -111,22 +111,21 @@ public class AccessCourseReviewsIT {
         String comp2160 = "COMP2160";
         String u1 = "u1";
         int currId = allCourseReviews.size()+1;
-
-        CourseReview review1 = new CourseReview(currId++, null,comp2160,"This should not be in the list!",5);
-        courseReviewPersistence.insertCourseReview(review1);
+;
+        courseReviewPersistence.insert(comp2160,u1,"This should not in the list!",5);
         List<CourseReview> allCourseReviews2 = courseReviewPersistence.getCourseReviewsSequential();
         assertTrue(allCourseReviews2.size() == allCourseReviews.size());
         assertTrue(allCourseReviews2.get(allCourseReviews.size()-1).getId() == 12);
 
-        CourseReview review2 = new CourseReview(currId++, u1,null,"This should not be in the list!",5);
-        CourseReview review3 = new CourseReview(currId++, u1,comp2160, "This should not be in the list!",5);
-        CourseReview review4 = new CourseReview(currId++, u1,comp2160,"This should not be in the list!",10);
-        CourseReview review5 = new CourseReview(currId++, u1,comp2160,null,5);
+//        CourseReview review2 = new CourseReview(currId++, u1,null,"This should not be in the list!",5);
+//        CourseReview review3 = new CourseReview(currId++, u1,comp2160, "This should not be in the list!",5);
+//        CourseReview review4 = new CourseReview(currId++, u1,comp2160,"This should not be in the list!",10);
+//        CourseReview review5 = new CourseReview(currId++, u1,comp2160,null,5);
 
-        courseReviewPersistence.insertCourseReview(review2);
-        courseReviewPersistence.insertCourseReview(review3);
-        courseReviewPersistence.insertCourseReview(review4);
-        courseReviewPersistence.insertCourseReview(review5);
+        courseReviewPersistence.insert(comp2160,u1,"This should not be in the list!",5);
+        courseReviewPersistence.insert(comp2160,u1,"This should not be in the list!",5);
+        courseReviewPersistence.insert(comp2160,u1,"This should not be in the list!",5);
+        courseReviewPersistence.insert(comp2160,u1,"This should not be in the list!",10);
 
 
 
