@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 try
                 {
                     iLogin.login(username,password);
-                    startActivity(new Intent(this , HomeActivity.class));
+                    startActivity(new Intent(this , MajorsActivity.class));
                 }
                 catch(LoginException e)
                 {
