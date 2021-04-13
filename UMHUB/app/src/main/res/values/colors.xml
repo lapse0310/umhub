@@ -11,4 +11,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="um_dark_blue">#2675b2</color>
+    <color name="um_sky_blue">#6ec6ea</color>
+    <color name="um_orange">#f3ab04</color>
+    <color name="um_grey">#ddd7d3</color>
+    <color name="um_darkbrown">#542c1c</color>
+    <color name="um_lightbrown">#68483b</color>
 </resources>

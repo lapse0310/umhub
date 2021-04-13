@@ -13,6 +13,7 @@ import java.util.List;
 import comp3350.umhub.R;
 import comp3350.umhub.application.Services;
 import comp3350.umhub.business.IAccessPrograms;
+import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.Program;
 import comp3350.umhub.presentation.adapters.ProgramAdapter;
@@ -67,6 +68,13 @@ public class ProgramsActivity extends AppCompatActivity {
     public static void setProgramSelected(Program programSelected) {
         ProgramsActivity.programSelected = programSelected;
     }
+
+    @Override
+    public void onBackPressed() {
+        MajorsActivity.setMajorSelected(null);
+        super.onBackPressed();
+    }
+
 
 }
 
