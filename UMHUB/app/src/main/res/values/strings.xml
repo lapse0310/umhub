@@ -21,7 +21,7 @@
     <string name="goback1">Back to Courses</string>
     <string name="empty_review_list_text">Be the first to write a review</string>
     <string name="login">Login</string>
-    <string name="signup">Don\'t have an account? Sign up</string>
+    <string name="guest">Or continue as Guest</string>
 
 
 </resources>

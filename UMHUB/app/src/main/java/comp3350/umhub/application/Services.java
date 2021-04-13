@@ -26,6 +26,7 @@ import comp3350.umhub.objects.User;
 import comp3350.umhub.persistence.sqlite.CourseReviewSQLDB;
 import comp3350.umhub.persistence.sqlite.CourseSQLDB;
 import comp3350.umhub.persistence.sqlite.DatabaseHelper;
+import comp3350.umhub.persistence.sqlite.DatabaseNotCreatedException;
 import comp3350.umhub.persistence.sqlite.UserSQLDB;
 import comp3350.umhub.persistence.sqlite.MajorSQLDB;
 import comp3350.umhub.persistence.sqlite.ProgramSQLDB;
@@ -179,7 +180,7 @@ public class Services {
     }
 
 
-    public static SQLiteDatabase getDatabase(Context context) {
+    public static SQLiteDatabase getDatabase(Context context) throws DatabaseNotCreatedException {
         if(database ==null){
             try {
                 DatabaseHelper dbHelper = new DatabaseHelper(context);

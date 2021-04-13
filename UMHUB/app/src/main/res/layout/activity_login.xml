@@ -31,7 +31,7 @@
         app:layout_constraintBottom_toTopOf="@+id/etPassword"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.317" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/etPassword"
@@ -41,7 +41,7 @@
         android:layout_centerVertical="true"
         android:layout_marginStart="44dp"
         android:layout_marginLeft="44dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="92dp"
         android:ems="10"
         android:hint="@string/loginPassword"
         android:inputType="textPassword"
@@ -58,7 +58,7 @@
         android:layout_marginLeft="137dp"
         android:layout_marginEnd="69dp"
         android:layout_marginRight="69dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="92dp"
         android:background="@android:color/holo_orange_light"
         android:text="Login"
         app:backgroundTint="@android:color/holo_orange_light"
@@ -84,6 +84,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/etUserName"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.298" />
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

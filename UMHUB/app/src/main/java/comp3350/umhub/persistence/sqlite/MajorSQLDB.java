@@ -20,7 +20,11 @@ public class MajorSQLDB implements IMajorPersistence {
     private SQLiteDatabase database;
 
     public MajorSQLDB(Context context) {
-        database = Services.getDatabase(context);
+        try {
+            database = Services.getDatabase(context);
+        } catch (DatabaseNotCreatedException e) {
+            e.printStackTrace();
+        }
 
         testGetMajor();
         testGetMajorsSequential();

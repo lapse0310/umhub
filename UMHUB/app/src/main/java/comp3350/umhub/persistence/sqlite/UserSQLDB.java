@@ -23,7 +23,11 @@ public class UserSQLDB implements IUserPersistence {
     public static final String[] COLUMNS = {_ID,PASSWORD};
 
     public UserSQLDB(Context context) {
-        database = Services.getDatabase(context);
+        try {
+            database = Services.getDatabase(context);
+        } catch (DatabaseNotCreatedException e) {
+            e.printStackTrace();
+        }
 
     }
 

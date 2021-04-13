@@ -28,7 +28,11 @@ public class ProgramSQLDB implements IProgramPersistence {
     private SQLiteDatabase database;
 
     public ProgramSQLDB(Context context) {
-        database = Services.getDatabase(context);
+        try {
+            database = Services.getDatabase(context);
+        } catch (DatabaseNotCreatedException e) {
+            e.printStackTrace();
+        }
 
 //        testGetProgram();
 //        testGetProgramsSequential();

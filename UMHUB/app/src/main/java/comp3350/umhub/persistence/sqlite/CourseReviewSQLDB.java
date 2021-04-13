@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import comp3350.umhub.application.Services;
 import comp3350.umhub.objects.CourseReview;
 import comp3350.umhub.objects.Utils;
 import comp3350.umhub.persistence.interfaces.ICourseReviewPersistence;
@@ -27,22 +28,14 @@ public class CourseReviewSQLDB implements ICourseReviewPersistence {
     private SQLiteDatabase database;
 
     public CourseReviewSQLDB(Context context) {
-        database = getDatabase(context);
-
+        try {
+            database = Services.getDatabase(context);
+        } catch (DatabaseNotCreatedException e) {
+            e.printStackTrace();
+        }
         //testGetCourseReviewSequential();
     }
 
-    public SQLiteDatabase getDatabase(Context context) {
-        if(database ==null){
-            try {
-                DatabaseHelper dbHelper = new DatabaseHelper(context);
-                database = dbHelper.getDataBase();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return database;
-    }
 
     @Override
     public CourseReview getCourseReview(int id) {

@@ -28,16 +28,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // database version
     static final int DB_VERSION = 1;
 
-    public DatabaseHelper(Context context) throws IOException {
+    public DatabaseHelper(Context context) throws IOException, DatabaseNotCreatedException {
         super(context, DB_NAME, null, DB_VERSION);
         this.mycontext = context;
         boolean dbexist = checkdatabase();
         if (dbexist) {
-            System.out.println("Database exists");
             opendatabase();
         } else {
-            System.out.println("Database doesn't exist");
             createdatabase();
+            throw new DatabaseNotCreatedException("Database doesn't exist");
         }
 
     }
@@ -77,16 +76,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         try {
             String myPath = DB_PATH + DB_NAME;
             File dbfile = new File(myPath);
-
-            /*Allow for deletion*/
-            if (DELETE_OLD_DB) {
-                System.out.println("Delete old db enabled");
-                dbfile.delete();
-            }
-
             checkdb = dbfile.exists();
-
-
 
         } catch (SQLiteException e) {
             System.out.println("Database doesn't exist");

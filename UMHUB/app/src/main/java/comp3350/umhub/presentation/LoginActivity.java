@@ -25,6 +25,7 @@ import comp3350.umhub.application.Main;
 import comp3350.umhub.application.Services;
 
 import comp3350.umhub.R;
+import comp3350.umhub.application.SignUpException;
 import comp3350.umhub.business.ILogin;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
@@ -39,7 +40,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        //copyDatabaseToDevice();
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
 
         iLogin = Services.getILogin(this);
 
@@ -67,13 +71,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     //@RequiresApi(api = Build.VERSION_CODES.M)
     public void onClick(View view) {
-
+        String username = eName.getText().toString();
+        String password = ePassword.getText().toString();
         switch ( view.getId() ){
             case R.id.btnLogin:
                 //login has been clicked
                 //setKeyboardVisibility(false);
-                String username = eName.getText().toString();
-                String password = ePassword.getText().toString();
+
                 try
                 {
                     iLogin.login(username,password);
@@ -88,7 +92,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
                 break;
             case R.id.btnSignUp:
-                startActivity(new Intent(this, SignUpActivity.class));
+                try {
+                    iLogin.signUp(username,password);
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            "New user successfully created! Now you can log in using the credentials", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
+                    toast.show();
+                } catch (SignUpException e) {
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            e.getMessage(), Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
+                    toast.show();
+                }
                 break;
         }
     }

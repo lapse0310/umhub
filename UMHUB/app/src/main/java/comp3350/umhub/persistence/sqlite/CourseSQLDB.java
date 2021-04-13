@@ -33,7 +33,11 @@ public class CourseSQLDB implements ICoursePersistence {
 
     private SQLiteDatabase database; // may later implement as singleton
     public CourseSQLDB(Context context) {
-        database = Services.getDatabase(context);
+        try {
+            database = Services.getDatabase(context);
+        } catch (DatabaseNotCreatedException e) {
+            e.printStackTrace();
+        }
 
 //        testGetCourse();
 //        testGetCoursesByMajor();
