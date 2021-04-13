@@ -42,10 +42,11 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     <Button
+        android:id="@+id/backToTutors"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/goback2"
-        android:onClick="buttonGoBack"/>
+        android:onClick="buttonGoBack"
+        android:text="@string/goback2" />
 
 
 </LinearLayout>

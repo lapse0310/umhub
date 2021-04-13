@@ -1,7 +1,5 @@
 package comp3350.umhub.presentation;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import comp3350.umhub.R;
 import comp3350.umhub.objects.Tutor;
@@ -36,6 +36,7 @@ public class RateTutorsActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+
                 rateValue = ratingBar.getRating();
                 if(rateValue<=1){
                     rateCount.setText("Bad tutor"+rateValue+"/5");

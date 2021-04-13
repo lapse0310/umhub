@@ -39,6 +39,9 @@ dependencies {
     testImplementation group: 'com.google.guava', name: 'guava', version: '25.1-jre'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    //testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test:rules:1.1.0'
     testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.+'
     androidTestImplementation(group: 'com.android.support.test.espresso', name: 'espresso-core', version: '3.0.2') {
         exclude group: 'com.android.support', module: 'support-annotations'
