@@ -1,4 +1,4 @@
-package comp3350.umhub.objects;
+package comp3350.umhub.business;
 
 import java.util.List;
 

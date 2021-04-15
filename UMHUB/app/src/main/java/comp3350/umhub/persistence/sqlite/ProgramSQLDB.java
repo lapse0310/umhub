@@ -9,7 +9,7 @@ import java.util.List;
 
 import comp3350.umhub.application.Services;
 import comp3350.umhub.objects.Program;
-import comp3350.umhub.objects.Utils;
+import comp3350.umhub.business.Utils;
 import comp3350.umhub.persistence.interfaces.IProgramPersistence;
 
 public class ProgramSQLDB implements IProgramPersistence {

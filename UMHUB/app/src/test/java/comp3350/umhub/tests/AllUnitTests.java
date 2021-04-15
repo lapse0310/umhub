@@ -3,7 +3,6 @@ package comp3350.umhub.tests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
-import comp3350.umhub.business.AccessTutors;
 import comp3350.umhub.tests.objects.*;
 import comp3350.umhub.tests.business.*;
 
@@ -16,11 +15,11 @@ import comp3350.umhub.tests.business.*;
         AccessMajorsTest.class,
         AccessProgramsTest.class,
         UsersTest.class,
-        //LoginTest.class,
+        LoginTest.class,
         AccessCoursesTest.class,
         TutorTest.class,
         AccessTutorsTest.class
 })
 
-public class AllTests {
+public class AllUnitTests {
 }
