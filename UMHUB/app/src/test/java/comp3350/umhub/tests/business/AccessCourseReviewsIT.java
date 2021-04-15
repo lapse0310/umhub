@@ -7,7 +7,7 @@ import java.util.List;
 import comp3350.umhub.business.AccessCourseReviews;
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.CourseReview;
-import comp3350.umhub.objects.Utils;
+import comp3350.umhub.business.Utils;
 import comp3350.umhub.persistence.stubs.CourseReviewPersistenceStub;
 
 import static org.junit.Assert.assertNotNull;
