@@ -25,7 +25,7 @@ public class AccessProgramsIT {
     @Before
     public void setUp() throws IOException {
         this.tempDB = TestUtils.copyDB();
-        final IProgramPersistence persistence = new ProgramSQLDB(null);
+        final IProgramPersistence persistence = new ProgramSQLDB();
         this.accessPrograms = new AccessPrograms(persistence);
     }
 

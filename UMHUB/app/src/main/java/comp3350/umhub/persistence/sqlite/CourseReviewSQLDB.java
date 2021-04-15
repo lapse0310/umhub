@@ -1,7 +1,6 @@
 package comp3350.umhub.persistence.sqlite;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -26,13 +25,12 @@ public class CourseReviewSQLDB implements ICourseReviewPersistence {
 
     private SQLiteDatabase database;
 
-    public CourseReviewSQLDB(Context context) {
+    public CourseReviewSQLDB() {
         try {
-            database = Services.getDatabase(context);
+            database = Services.getDatabase();
         } catch (DatabaseNotCreatedException e) {
             e.printStackTrace();
         }
-        //testGetCourseReviewSequential();
     }
 
 

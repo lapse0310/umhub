@@ -31,7 +31,7 @@ public class ProgramsActivity extends AppCompatActivity {
 
         setContentView(R.layout.fragment_emp_list);
 
-        iAccessPrograms = Services.getAccessPrograms(this);
+        iAccessPrograms = Services.getAccessPrograms();
         Major major = MajorsActivity.getMajorSelected();
         if (major== null)
             programList = iAccessPrograms.getAllPrograms();

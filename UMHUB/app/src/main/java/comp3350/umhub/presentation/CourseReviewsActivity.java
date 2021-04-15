@@ -19,7 +19,6 @@ import comp3350.umhub.business.IAccessCourseReviews;
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.CourseReview;
 import comp3350.umhub.presentation.adapters.ReviewAdapter;
-import comp3350.umhub.persistence.sqlite.CourseReviewSQLDB;
 
 public class CourseReviewsActivity extends AppCompatActivity {
     private Course courseSelected;
@@ -47,7 +46,7 @@ public class CourseReviewsActivity extends AppCompatActivity {
 
         setContentView(R.layout.fragment_emp_list);
 
-        accessCourseReviews = Services.getAccessCourseReviews(this);
+        accessCourseReviews = Services.getAccessCourseReviews();
         Course course = CoursesActivity.getCourseSelected();
         if (course== null) courseReviewList = accessCourseReviews.getAllCourseReviews();
         else courseReviewList = accessCourseReviews.getCourseReviewByCourse(course);

@@ -27,7 +27,7 @@ public class SignupSystemTest {
 
     @Before
     public void setup(){
-        IUserPersistence userPersistence = Services.getUserPersistence(activityRule.getActivity());
+        IUserPersistence userPersistence = Services.getUserPersistence();
         try {
             if (userPersistence.getUser("sigupTest") != null) {
                 userPersistence.insertUser("helloworld","hello");

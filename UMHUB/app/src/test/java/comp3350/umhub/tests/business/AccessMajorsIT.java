@@ -21,8 +21,9 @@ public class AccessMajorsIT {
 
     @Before
     public void setUp() throws IOException {
-        //final IMajorPersistence persistence = new MajorSQLDB();
-        this.accessMajors = new AccessMajors();
+        this.tempDB = TestUtils.copyDB();
+        final IMajorPersistence persistence = new MajorSQLDB();
+        this.accessMajors = new AccessMajors(persistence);
     }
 
     @Test
