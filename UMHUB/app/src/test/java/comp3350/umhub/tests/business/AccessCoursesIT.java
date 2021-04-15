@@ -26,7 +26,7 @@ public class AccessCoursesIT {
     @Before
     public void setUp() throws IOException {
         this.tempDB = TestUtils.copyDB();
-        final ICoursePersistence persistence = new CourseSQLDB(null);
+        final ICoursePersistence persistence = new CourseSQLDB();
         this.accessCourses = new AccessCourses(persistence);
     }
 
