@@ -21,7 +21,7 @@ overview_description: First, the system will give the option to log in or contin
 show_team_card: true
 team_title: Team Members
 team1_description: The most hardworking and coolest team ever has to consist of the coolest people. We present you <b>JAMS</b>.
-team2_description: Skills -agile software development. Resolving technical debt. Unit, integration, and system testing. Designing activity layouts. HSQLDB and SQLite.
+team2_description: <b>Skills we developed -</b> <br> 
 
 show_sales_card: true
 sales_title: Sales Pitch
