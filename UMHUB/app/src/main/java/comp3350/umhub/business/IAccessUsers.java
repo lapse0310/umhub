@@ -8,7 +8,6 @@ public interface IAccessUsers {
     List<User> getAllUsers();
     User getUser(String uid);
     User getCurrentUser();
-    void setCurrentUser(User username);
 
     void setCurrentUser(String username);
 

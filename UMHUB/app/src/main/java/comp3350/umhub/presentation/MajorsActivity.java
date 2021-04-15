@@ -13,6 +13,7 @@ import java.util.List;
 
 import comp3350.umhub.R;
 import comp3350.umhub.application.Services;
+import comp3350.umhub.application.UserException;
 import comp3350.umhub.business.IAccessMajors;
 import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.User;
@@ -31,11 +32,13 @@ public class MajorsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_emp_list);
 
-        User user = Services.getCurrentUser();
-        if (user != null)
+        User user = null;
+        try {
+            user = Services.getCurrentUser();
             setTitle("Welcome " + user.getUsername());
-        else
+        } catch (UserException e) {
             setTitle("Welcome, Guest");
+        }
 
 
         try
@@ -81,13 +84,15 @@ public class MajorsActivity extends AppCompatActivity {
     }
 
     public void LogOut(){
-        Services.logOut();
-        String display = "Logged out successfully. See you again soon!";
-        if (Services.getCurrentUser() != null){
-            display = "Something went wrong.";
+        try {
+            Services.logOut();
+            Toast.makeText(getApplicationContext(),"Logged out successfully. See you again soon!",Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+        } catch (UserException e) {
+            Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
         }
-        System.out.println(display);
-        Toast.makeText(getApplicationContext(),display,Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+
+
     }
 }

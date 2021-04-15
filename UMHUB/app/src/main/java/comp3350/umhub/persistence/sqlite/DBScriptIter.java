@@ -5,8 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 
 // Simple Iterator to initialize the database the first time the app is run
-// Can be considered a Technical Debt. Still this helps reduce dependency on getAssets or getResources method,
-// which has to be associated a Context object, and thus can only be done in ui layer at run time
+// Can be considered a Technical Debt. Still this helps remove dependency on getAssets or getResources method,
+// which has to be associated a Context object, which can only be called in ui layer at run time and not in tests
 public class DBScriptIter implements Iterator<String> {
     List<String> list = new ArrayList<>();
     int counter = 0;
@@ -22,6 +22,11 @@ public class DBScriptIter implements Iterator<String> {
         return null;
 
     }
+
+    public DBScriptIter(List<String> list) {
+        this.list = list;
+    }
+
     public DBScriptIter() {
         list.add("CREATE TABLE IF NOT EXISTS MAJORS (_id TEXT NOT NULL PRIMARY KEY);");
         list.add("CREATE TABLE IF NOT EXISTS PROGRAMS (_id TEXT NOT NULL PRIMARY KEY, MAJOR TEXT REFERENCES MAJORS(_id));");

@@ -56,13 +56,23 @@ public class Services {
     private static SQLiteDatabase database;
     private static IAccessUsers accessUsers;
 
-    public static void logOut(){
-        if (accessUsers != null) accessUsers.setCurrentUser((User) null);
+    public static void logOut() throws UserException {
+        if (accessUsers != null && accessUsers.getCurrentUser() != null) {
+            accessUsers.setCurrentUser(null);
+            if (accessUsers.getCurrentUser() != null)
+                throw new UserException("Failed to Log out");
+        }
+//        else{
+//            throw new UserException("User was not logged in");
+//        }
     }
 
-    public static User getCurrentUser() {
-        if (accessUsers != null) return accessUsers.getCurrentUser();
-        return null;
+    public static User getCurrentUser() throws UserException {
+        if (accessUsers != null && accessUsers.getCurrentUser() != null)
+            return accessUsers.getCurrentUser();
+        else{
+            throw new UserException("User not Logged in");
+        }
     }
 
     public static synchronized IMajorPersistence getMajorPersistence(){
@@ -141,8 +151,6 @@ public class Services {
     public static synchronized ITutorPersistence getTutorPersistence(){
         if(tutorPersistence==null){
             tutorPersistence = new TutorPersistenceStub();
-
-
         }
         return tutorPersistence;
     }

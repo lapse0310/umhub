@@ -16,10 +16,8 @@ public class DatabaseHelper {
     private SQLiteDatabase myDataBase;
 
     // Database Information
-    private static final String DB_PATH = "/data/user/0/" + BuildConfig.APPLICATION_ID + "/databases/";
-    static final String DB_NAME = "newdb.db";
-    static final String DB_SCRIPT = "newdb.script";
-
+    private static final String DB_PATH = "/data/data/" + BuildConfig.APPLICATION_ID + "/databases/";
+    static final String DB_NAME = "db.db";
 
     public DatabaseHelper() throws IOException, DatabaseNotCreatedException {
         boolean dbexist = checkdatabase();
@@ -43,28 +41,9 @@ public class DatabaseHelper {
         myDataBase = SQLiteDatabase.openOrCreateDatabase(mypath, null);
 
         DBScriptIter scriptIter = new DBScriptIter();
-        String str = "";
-        while ((str = scriptIter.next()) != null) {
-            myDataBase.execSQL(str);
+        while (scriptIter.hasNext()) {
+            myDataBase.execSQL(scriptIter.next());
         }
-//        try {
-//            Scanner reader = new Scanner(DBScript.SCRIPT);
-//            if (reader != null) {
-//                while ((str = reader.nextLine()) != null) {
-//                    myDataBase.execSQL(str);
-//                }
-//            }
-//        }
-//        catch (Exception e){
-//            e.printStackTrace();
-//        }
-//
-//        finally {
-//            try {
-//                is.close();
-//            } catch (Throwable ignore) {
-//            }
-//        }
     }
 
 
@@ -91,7 +70,6 @@ public class DatabaseHelper {
         if (myDataBase != null) {
             myDataBase.close();
         }
-//        super.close();
     }
 
     public SQLiteDatabase getDataBase() {

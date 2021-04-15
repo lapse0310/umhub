@@ -26,11 +26,9 @@ public class SeeCourseReviewActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_see_review);
         accessCourseReviews = Services.getAccessCourseReviews();
-        //courseReviewSQLDB = Services.getCourseReviewSQLDB(this);
 
         Intent intent = getIntent();
         int id = intent.getIntExtra("id",0);
-
         CourseReview courseReview = accessCourseReviews.getCourseReview(id);
 
         try{

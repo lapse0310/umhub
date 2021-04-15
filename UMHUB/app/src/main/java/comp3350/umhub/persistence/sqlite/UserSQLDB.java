@@ -76,7 +76,8 @@ public class UserSQLDB implements IUserPersistence {
 
     @Override
     public void delete(String username) {
-        database.delete(TABLE_USERS, _ID + "=" + username, null);
+        String WHERE_CLAUSE = String.format("%s = '%s'", _ID, username);
+        database.delete(TABLE_USERS, WHERE_CLAUSE, null);
     }
 
 }

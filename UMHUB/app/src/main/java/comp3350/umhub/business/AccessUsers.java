@@ -21,10 +21,6 @@ public class AccessUsers implements IAccessUsers {
     }
 
     @Override
-    public void setCurrentUser(User user) {
-        currentUser = user;
-    }
-    @Override
     public void setCurrentUser(String username) {
         currentUser = getUser(username);
     }

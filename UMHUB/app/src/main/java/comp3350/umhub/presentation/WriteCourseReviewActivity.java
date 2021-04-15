@@ -2,11 +2,13 @@ package comp3350.umhub.presentation;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 
 import androidx.annotation.Nullable;
@@ -14,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import comp3350.umhub.R;
 import comp3350.umhub.application.Services;
+import comp3350.umhub.application.UserException;
 import comp3350.umhub.business.IAccessCourseReviews;
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.User;
@@ -55,14 +58,15 @@ public class WriteCourseReviewActivity extends AppCompatActivity implements View
     }
 
     public void onClick(View view) {
-        currentUser = Services.getCurrentUser();
-        courseSelected = CoursesActivity.getCourseSelected();
+
         switch ( view.getId() ){
             case R.id.button2:
                 //login has been clicked
                 //setKeyboardVisibility(false);
                 try
                 {
+                    currentUser = Services.getCurrentUser();
+                    courseSelected = CoursesActivity.getCourseSelected();
                     String courseID = courseSelected.getId();
                     String userID = currentUser.getUsername();
                     String review = reviewEditText.getText().toString();
@@ -71,29 +75,31 @@ public class WriteCourseReviewActivity extends AppCompatActivity implements View
                     accessCourseReviews.add(courseID,userID,review,score);
                     returnHome();
                 }
-                catch(Exception e)
+                catch(UserException e)
                 {
-                    e.printStackTrace();
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            "Please log in to leave a review",Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
+                    toast.show();
                 }
                 break;
         }
     }
 
 
-    public void buttonSubmitCourseReviewOnClick(View view){
-        currentUser = Services.getCurrentUser();
-        courseSelected = CoursesActivity.getCourseSelected();
-
-        String courseID = courseSelected.getId();
-        String userID = currentUser.getUsername();
-        String review = reviewEditText.getText().toString();
-        int score = getRadioButtonValue();
-
-        accessCourseReviews.add(courseID,userID,review,score);
-        //courseReviewSQLDB.insert(courseID,userID,review,score);
-        returnHome();
-
-    }
+//    public void buttonSubmitCourseReviewOnClick(View view){
+//        currentUser = Services.getCurrentUser();
+//        courseSelected = CoursesActivity.getCourseSelected();
+//
+//        String courseID = courseSelected.getId();
+//        String userID = currentUser.getUsername();
+//        String review = reviewEditText.getText().toString();
+//        int score = getRadioButtonValue();
+//
+//        accessCourseReviews.add(courseID,userID,review,score);
+//        returnHome();
+//
+//    }
 
     public int getRadioButtonValue(){
         int radioId = radioGroup.getCheckedRadioButtonId();
