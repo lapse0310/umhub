@@ -3,7 +3,6 @@ package comp3350.umhub.tests.business;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,18 +12,15 @@ import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.Program;
 import comp3350.umhub.persistence.interfaces.IProgramPersistence;
 import comp3350.umhub.persistence.sqlite.ProgramSQLDB;
-import comp3350.umhub.tests.utils.TestUtils;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class AccessProgramsIT {
     private AccessPrograms accessPrograms;
-    private File tempDB;
     
     @Before
-    public void setUp() throws IOException {
-        this.tempDB = TestUtils.copyDB();
+    public void setUp(){
         final IProgramPersistence persistence = new ProgramSQLDB();
         this.accessPrograms = new AccessPrograms(persistence);
     }

@@ -10,7 +10,6 @@ import java.util.List;
 
 import comp3350.umhub.application.Services;
 import comp3350.umhub.objects.CourseReview;
-import comp3350.umhub.business.Utils;
 import comp3350.umhub.persistence.interfaces.ICourseReviewPersistence;
 
 public class CourseReviewSQLDB implements ICourseReviewPersistence {
@@ -110,12 +109,6 @@ public class CourseReviewSQLDB implements ICourseReviewPersistence {
         contentValue.put(REVIEW, review);
         contentValue.put(SCORE,reviewScore);
         database.insert(TABLE_NAME, null, contentValue);
-    }
-
-    private void testGetCourseReviewSequential(){
-        List<CourseReview> courseReviews = getCourseReviewsSequential("COMP3350");
-        if (courseReviews == null) System.out.println("courseReviews is null");
-        else System.out.println(Utils.listToString(courseReviews));
     }
 
 

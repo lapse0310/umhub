@@ -1,6 +1,5 @@
 package comp3350.umhub.objects;
 
-import java.util.List;
 
 public class Course {
     private String name;

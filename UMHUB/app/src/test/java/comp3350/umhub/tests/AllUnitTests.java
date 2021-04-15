@@ -11,7 +11,6 @@ import comp3350.umhub.tests.business.*;
         CourseTest.class,
         MajorTest.class,
         ProgramTest.class,
-        StudentTest.class,
         AccessMajorsTest.class,
         AccessProgramsTest.class,
         UsersTest.class,

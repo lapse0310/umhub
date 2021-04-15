@@ -31,15 +31,6 @@ public class UserPersistenceStub implements IUserPersistence {
         }
     }
 
-    /*@Override
-    public boolean userExist(String username, String password){
-        for(int i = 0; i < database.size(); i++){
-            User temp = database.get(i);
-            if(temp.getUserName().equals(username) && temp.getPassword().equals(password))
-                return true;
-        }
-        return false;
-    } */
 
     @Override
     public User getUser(String username) {

@@ -47,7 +47,7 @@ public class Login implements ILogin{
                 iAccessUsers.setCurrentUser(username);
             }
         }catch(Exception e){
-            throw new LoginException("Invalid username or password"); //there really was just a problem logging in, but its bad for security for the user to know that
+            throw new LoginException("Invalid username or password");
         }
     }
 

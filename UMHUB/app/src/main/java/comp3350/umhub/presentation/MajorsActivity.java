@@ -32,7 +32,7 @@ public class MajorsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_emp_list);
 
-        User user = null;
+        User user;
         try {
             user = Services.getCurrentUser();
             setTitle("Welcome " + user.getUsername());

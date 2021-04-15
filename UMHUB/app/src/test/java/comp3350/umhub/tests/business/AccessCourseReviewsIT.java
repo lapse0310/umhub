@@ -20,7 +20,6 @@ public class AccessCourseReviewsIT {
 
     @Test
     public void getCourseReviewTest(){
-        /*Needs separating into multiple sub tests*/
         System.out.println("\nStarting AccessCourseReviewsIT integration test - getCourseReviewTest");
 
         courseReviewPersistence =  new CourseReviewPersistenceStub();
@@ -116,11 +115,6 @@ public class AccessCourseReviewsIT {
         List<CourseReview> allCourseReviews2 = courseReviewPersistence.getCourseReviewsSequential();
         assertTrue(allCourseReviews2.size() == allCourseReviews.size());
         assertTrue(allCourseReviews2.get(allCourseReviews.size()-1).getId() == 12);
-
-//        CourseReview review2 = new CourseReview(currId++, u1,null,"This should not be in the list!",5);
-//        CourseReview review3 = new CourseReview(currId++, u1,comp2160, "This should not be in the list!",5);
-//        CourseReview review4 = new CourseReview(currId++, u1,comp2160,"This should not be in the list!",10);
-//        CourseReview review5 = new CourseReview(currId++, u1,comp2160,null,5);
 
         courseReviewPersistence.insert(comp2160,u1,"This should not be in the list!",5);
         courseReviewPersistence.insert(comp2160,u1,"This should not be in the list!",5);

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.umhub.objects.Course;
-import comp3350.umhub.objects.Program;
 import comp3350.umhub.persistence.interfaces.ICoursePersistence;
 
 public class CoursePersistenceStub implements ICoursePersistence {

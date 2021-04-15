@@ -14,14 +14,9 @@ import comp3350.umhub.persistence.interfaces.IProgramPersistence;
 
 public class ProgramSQLDB implements IProgramPersistence {
     public static final String TABLE_PROGRAMS = "PROGRAMS";
-    public static final String TABLE_COURSESPROGRAMS = "COURSESPROGRAMS";
     public static final String _ID = "_id";
     public static final String MAJOR = "MAJOR";
     public static String[] COLUMNS_PROGRAMS = {_ID, MAJOR};
-
-    public static final String CP_COURSEID = "COURSEID";
-    public static final String CP_PROGRAMID = "PROGRAMID";
-    public static String[] COLUMNS_COURSESPROGRAMS = {CP_COURSEID, CP_PROGRAMID};
 
 
     private SQLiteDatabase database;
@@ -114,43 +109,6 @@ public class ProgramSQLDB implements IProgramPersistence {
         } finally {
             return programs;
         }
-    }
-
-
-
-
-    private void testGetProgramsSequential() {
-        System.out.println("---Test testGetProgramsSequential---");
-        List<Program> l = getProgramsSequential();
-        System.out.println(Utils.listToString(l));
-        assert (l.size()==49);
-    }
-
-    private void testGetProgram() {
-        System.out.println("---Test testGetProgram---");
-        Program c1 = getProgram("Statistics HONOURS");
-        Program c2 = getProgram("Economics SINGLE HONOURS - ECONOMICS AND SOCIETY STREAM");
-        Program c3 = getProgram("Computer Engineering Departmental Program");
-        assert (c1!=null);
-        assert (c2!=null);
-        assert (c3!=null);
-        System.out.println(c1);
-        System.out.println(c2);
-        System.out.println(c3);
-    }
-
-    private void testGetProgramsByMajor() {
-        System.out.println("---Test testGetProgramsByMajor---");
-        List<Program> l = getProgramsByMajor("Philosophy");
-        System.out.println(Utils.listToString(l));
-        assert (l.size()==8);
-    }
-
-    private void testGetProgramsByCourse() {
-        System.out.println("---Test testGetProgramsByCourse---");
-        List<Program> l = getProgramsByCourse("COMP1010");
-        System.out.println(Utils.listToString(l));
-        assert (l.size()==13);
     }
 
 

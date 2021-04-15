@@ -20,7 +20,6 @@ public class CourseAdapter extends BaseAdapter {
     public CourseAdapter(Context context, List<Course> courseReviews) {
         courseList = courseReviews;
         inflater = LayoutInflater.from(context);
-        //inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
 

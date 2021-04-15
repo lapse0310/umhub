@@ -65,25 +65,5 @@ public class MajorSQLDB implements IMajorPersistence {
     }
 
 
-    private void testGetMajorsSequential() {
-        System.out.println("---Test testGetMajorsSequential---");
-        List<Major> l = getMajorsSequential();
-        System.out.println(Utils.listToString(l));
-        assert (l.size()==14);
-    }
-
-    private void testGetMajor() {
-        System.out.println("---Test testGetMajor---");
-        Major c1 = getMajor("Statistics");
-        Major c2 = getMajor("Economics");
-        Major c3 = getMajor("Philosophy");
-        assert (c1!=null);
-        assert (c2!=null);
-        assert (c3!=null);
-        System.out.println(c1);
-        System.out.println(c2);
-        System.out.println(c3);
-    }
-
 
 }

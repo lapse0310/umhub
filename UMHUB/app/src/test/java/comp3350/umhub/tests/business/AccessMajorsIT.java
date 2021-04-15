@@ -8,11 +8,8 @@ import java.util.List;
 
 
 import comp3350.umhub.application.Services;
-import comp3350.umhub.business.AccessMajors;
 import comp3350.umhub.business.IAccessMajors;
 import comp3350.umhub.objects.Major;
-import comp3350.umhub.persistence.interfaces.IMajorPersistence;
-import comp3350.umhub.persistence.sqlite.MajorSQLDB;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;

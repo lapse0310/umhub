@@ -62,9 +62,6 @@ public class Services {
             if (accessUsers.getCurrentUser() != null)
                 throw new UserException("Failed to Log out");
         }
-//        else{
-//            throw new UserException("User was not logged in");
-//        }
     }
 
     public static User getCurrentUser() throws UserException {
