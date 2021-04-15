@@ -1,7 +1,6 @@
 package comp3350.umhub.persistence.sqlite;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -21,13 +20,12 @@ public class UserSQLDB implements IUserPersistence {
     public static final String PASSWORD = "PASSWORD";
     public static final String[] COLUMNS = {_ID,PASSWORD};
 
-    public UserSQLDB(Context context) {
+    public UserSQLDB() {
         try {
-            database = Services.getDatabase(context);
+            database = Services.getDatabase();
         } catch (DatabaseNotCreatedException e) {
             e.printStackTrace();
         }
-
     }
 
     public List<User> getAllUsers(){

@@ -2,29 +2,21 @@ package comp3350.umhub.presentation;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.concurrent.ExecutionException;
-
-import javax.security.auth.login.LoginException;
-
 import comp3350.umhub.R;
 import comp3350.umhub.application.Services;
-import comp3350.umhub.application.SignUpException;
 import comp3350.umhub.business.IAccessCourseReviews;
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.User;
-import comp3350.umhub.persistence.interfaces.ICourseReviewPersistence;
 
 public class WriteCourseReviewActivity extends AppCompatActivity implements View.OnClickListener {
     User currentUser;
@@ -41,7 +33,7 @@ public class WriteCourseReviewActivity extends AppCompatActivity implements View
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coursereview_input);
 
-        accessCourseReviews = Services.getAccessCourseReviews(this);
+        accessCourseReviews = Services.getAccessCourseReviews();
 
         try{
             reviewEditText = (EditText) findViewById(R.id.reviewEditText);

@@ -11,7 +11,7 @@ public class Login implements ILogin{
 
     public Login()
     {
-        iAccessUsers = Services.getAccessUsers(null);
+        iAccessUsers = Services.getAccessUsers();
     }
 
     public Login(final IAccessUsers accessUsers)

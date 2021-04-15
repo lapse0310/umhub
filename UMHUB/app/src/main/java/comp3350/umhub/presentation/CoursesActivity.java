@@ -32,7 +32,7 @@ public class CoursesActivity extends AppCompatActivity {
 
         setContentView(R.layout.fragment_emp_list);
 
-        accessCourses = Services.getAccessCourses(this);
+        accessCourses = Services.getAccessCourses();
         Program program = ProgramsActivity.getProgramSelected();
         if (program== null)
             courseList = accessCourses.getAllCourses();

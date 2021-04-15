@@ -2,7 +2,6 @@ package comp3350.umhub.business;
 import java.util.List;
 
 import comp3350.umhub.application.Services;
-import comp3350.umhub.business.IAccessCourseReviews;
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.CourseReview;
 import comp3350.umhub.persistence.interfaces.ICourseReviewPersistence;
@@ -11,7 +10,7 @@ public class AccessCourseReviews implements IAccessCourseReviews {
     private ICourseReviewPersistence courseReviewPersistence;
 
     public AccessCourseReviews(){
-        courseReviewPersistence = Services.getCourseReviewPersistence(null);
+        courseReviewPersistence = Services.getCourseReviewPersistence();
     }
 
     public AccessCourseReviews(final ICourseReviewPersistence persistence) {

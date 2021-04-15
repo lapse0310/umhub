@@ -1,6 +1,5 @@
 package comp3350.umhub.persistence.sqlite;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -19,15 +18,13 @@ public class MajorSQLDB implements IMajorPersistence {
     public static String[] COLUMNS = {_ID};
     private SQLiteDatabase database;
 
-    public MajorSQLDB(Context context) {
+    public MajorSQLDB() {
         try {
-            database = Services.getDatabase(context);
+            database = Services.getDatabase();
         } catch (DatabaseNotCreatedException e) {
             e.printStackTrace();
         }
 
-//        testGetMajor();
-//        testGetMajorsSequential();
     }
 
     @Override

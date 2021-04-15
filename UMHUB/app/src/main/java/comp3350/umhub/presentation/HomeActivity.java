@@ -7,17 +7,11 @@ import comp3350.umhub.persistence.sqlite.DatabaseNotCreatedException;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 
 public class HomeActivity extends Activity implements View.OnClickListener {
 
@@ -25,7 +19,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         try{
-            Services.getDatabase(this);
+            Services.getDatabase();
         } catch (DatabaseNotCreatedException e) {
             Toast toast = Toast.makeText(getApplicationContext(),
                     "Initializing database for the first time. Please be patient",Toast.LENGTH_LONG);

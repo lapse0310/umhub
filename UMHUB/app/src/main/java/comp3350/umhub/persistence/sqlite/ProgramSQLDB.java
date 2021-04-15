@@ -1,6 +1,5 @@
 package comp3350.umhub.persistence.sqlite;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -27,17 +26,12 @@ public class ProgramSQLDB implements IProgramPersistence {
 
     private SQLiteDatabase database;
 
-    public ProgramSQLDB(Context context) {
+    public ProgramSQLDB() {
         try {
-            database = Services.getDatabase(context);
+            database = Services.getDatabase();
         } catch (DatabaseNotCreatedException e) {
             e.printStackTrace();
         }
-
-//        testGetProgram();
-//        testGetProgramsSequential();
-//        testGetProgramsByMajor();
-//        testGetProgramsByCourse();
     }
 
 

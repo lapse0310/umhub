@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import javax.security.auth.login.LoginException;
 
-import comp3350.umhub.application.Main;
 import comp3350.umhub.application.Services;
 
 import comp3350.umhub.R;
@@ -38,7 +37,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             getSupportActionBar().hide();
         }
 
-        iLogin = Services.getILogin(this);
+        iLogin = Services.getILogin();
 
         eName = findViewById(R.id.etUserName);
         ePassword = findViewById(R.id.etPassword);

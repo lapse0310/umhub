@@ -33,7 +33,7 @@ public class CoursesActivityOld extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_courses);
 
-        IAccessCourses accessCourses = Services.getAccessCourses(null);
+        IAccessCourses accessCourses = Services.getAccessCourses();
 
         if(ProgramsActivity.getProgramSelected()==null){
             //button from programs

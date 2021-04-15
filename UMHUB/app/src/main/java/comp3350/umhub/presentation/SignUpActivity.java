@@ -26,7 +26,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        iLogin = Services.getILogin(this);
+        iLogin = Services.getILogin();
 
         eName = findViewById(R.id.etUserName);
         ePassword = findViewById(R.id.etPassword);

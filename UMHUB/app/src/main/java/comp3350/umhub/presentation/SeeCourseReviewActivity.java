@@ -25,7 +25,7 @@ public class SeeCourseReviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_see_review);
-        accessCourseReviews = Services.getAccessCourseReviews(this);
+        accessCourseReviews = Services.getAccessCourseReviews();
         //courseReviewSQLDB = Services.getCourseReviewSQLDB(this);
 
         Intent intent = getIntent();

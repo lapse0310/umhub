@@ -1,7 +1,6 @@
 //used to provide an implementation of the interfaces used.
 package comp3350.umhub.application;
 
-import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.io.IOException;
@@ -30,9 +29,6 @@ import comp3350.umhub.persistence.sqlite.DatabaseNotCreatedException;
 import comp3350.umhub.persistence.sqlite.UserSQLDB;
 import comp3350.umhub.persistence.sqlite.MajorSQLDB;
 import comp3350.umhub.persistence.sqlite.ProgramSQLDB;
-import comp3350.umhub.persistence.stubs.CoursePersistenceStub;
-import comp3350.umhub.persistence.stubs.CourseReviewPersistenceStub;
-import comp3350.umhub.persistence.stubs.UserPersistenceStub;
 
 import comp3350.umhub.persistence.interfaces.IMajorPersistence;
 import comp3350.umhub.persistence.interfaces.ICoursePersistence;
@@ -41,8 +37,6 @@ import comp3350.umhub.persistence.interfaces.ICourseReviewPersistence;
 import comp3350.umhub.persistence.interfaces.IUserPersistence;
 import comp3350.umhub.persistence.interfaces.ITutorPersistence;
 
-import comp3350.umhub.persistence.stubs.MajorPersistenceStub;
-import comp3350.umhub.persistence.stubs.ProgramPersistenceStub;
 import comp3350.umhub.persistence.stubs.TutorPersistenceStub;
 
 
@@ -71,91 +65,75 @@ public class Services {
         return null;
     }
 
-    public static synchronized IMajorPersistence getMajorPersistence(Context context){
+    public static synchronized IMajorPersistence getMajorPersistence(){
         if (majorPersistence == null){
-            if (context == null)
-                majorPersistence = new MajorPersistenceStub();
-            else
-                majorPersistence = new MajorSQLDB(context);
-
+                majorPersistence = new MajorSQLDB();
         }
         return majorPersistence;
     }
 
-    public static synchronized IProgramPersistence getProgramPersistence(Context context){
+    public static synchronized IProgramPersistence getProgramPersistence(){
         if (programPersistence == null){
-            if (context == null)
-                programPersistence = new ProgramPersistenceStub();
-            else
-                programPersistence = new ProgramSQLDB(context);
+                programPersistence = new ProgramSQLDB();
         }
         return programPersistence;
     }
 
-    public static synchronized ICoursePersistence getCoursePersistence(Context context){
+    public static synchronized ICoursePersistence getCoursePersistence(){
         if (coursePersistence == null){
-            if (context == null)
-                coursePersistence = new CoursePersistenceStub();
-            else
-                coursePersistence = new CourseSQLDB(context);
+                coursePersistence = new CourseSQLDB();
         }
         return coursePersistence;
     }
 
-    public static ICourseReviewPersistence getCourseReviewPersistence(Context context) {
+    public static ICourseReviewPersistence getCourseReviewPersistence() {
         if (courseReviewPersistence == null){
-            if (context == null)
-                courseReviewPersistence = new CourseReviewPersistenceStub();
-            else
-                courseReviewPersistence = new CourseReviewSQLDB(context);
+                courseReviewPersistence = new CourseReviewSQLDB();
         }
         return courseReviewPersistence;
     }
 
-    public static synchronized IAccessMajors getAccessMajors(Context context){
+    public static synchronized IAccessMajors getAccessMajors(){
         if (accessMajors == null){
-            accessMajors = new AccessMajors(Services.getMajorPersistence(context));
+            accessMajors = new AccessMajors(Services.getMajorPersistence());
         }
         return accessMajors;
     }
 
-    public static synchronized IAccessPrograms getAccessPrograms(Context context){
+    public static synchronized IAccessPrograms getAccessPrograms(){
         if (accessPrograms == null){
-            accessPrograms = new AccessPrograms(Services.getProgramPersistence(context));
+            accessPrograms = new AccessPrograms(Services.getProgramPersistence());
         }
         return accessPrograms;
     }
 
 
-    public static synchronized IAccessCourses getAccessCourses(Context context){
+    public static synchronized IAccessCourses getAccessCourses(){
         if (accessCourses == null){
-            accessCourses = new AccessCourses(Services.getCoursePersistence(context));
+            accessCourses = new AccessCourses(Services.getCoursePersistence());
         }
         return accessCourses;
     }
 
 
-    public static IAccessCourseReviews getAccessCourseReviews(Context context) {
+    public static IAccessCourseReviews getAccessCourseReviews() {
         if (accessCourseReviews == null){
-            accessCourseReviews = new AccessCourseReviews(Services.getCourseReviewPersistence(context));
+            accessCourseReviews = new AccessCourseReviews(Services.getCourseReviewPersistence());
         }
         return accessCourseReviews;
 
     }
 
-    public static synchronized IUserPersistence getUserPersistence(Context context){
+    public static synchronized IUserPersistence getUserPersistence(){
         if (loginPersistence == null){
-            if (context == null)
-                loginPersistence = new UserPersistenceStub();
-            else
-                loginPersistence = new UserSQLDB(context);
+                loginPersistence = new UserSQLDB();
         }
         return loginPersistence;
     }
 
-    public static synchronized ILogin getILogin(Context context){
+    public static synchronized ILogin getILogin(){
         if(userLogin == null){
-            userLogin = new Login(Services.getAccessUsers(context));
+            userLogin = new Login(Services.getAccessUsers());
         }
         return userLogin;
     }
@@ -178,10 +156,10 @@ public class Services {
     }
 
 
-    public static SQLiteDatabase getDatabase(Context context) throws DatabaseNotCreatedException {
+    public static SQLiteDatabase getDatabase() throws DatabaseNotCreatedException {
         if(database ==null){
             try {
-                DatabaseHelper dbHelper = new DatabaseHelper(context);
+                DatabaseHelper dbHelper = new DatabaseHelper();
                 database = dbHelper.getDataBase();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -190,16 +168,11 @@ public class Services {
         return database;
     }
 
-    public static IAccessUsers getAccessUsers(Context context) {
+    public static IAccessUsers getAccessUsers() {
         if(accessUsers == null){
-            accessUsers = new AccessUsers(Services.getUserPersistence(context));
+            accessUsers = new AccessUsers(Services.getUserPersistence());
         }
         return accessUsers;
     }
 
-
-
-//    public static CourseReviewSQLDB getCourseReviewSQLDB(Context context) {
-//        return new CourseReviewSQLDB(context);
-//    }
 }
