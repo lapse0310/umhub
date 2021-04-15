@@ -105,14 +105,14 @@ public class Services {
 
     public static synchronized IAccessMajors getAccessMajors(){
         if (accessMajors == null){
-            accessMajors = new AccessMajors(Services.getMajorPersistence());
+            accessMajors = new AccessMajors(getMajorPersistence());
         }
         return accessMajors;
     }
 
     public static synchronized IAccessPrograms getAccessPrograms(){
         if (accessPrograms == null){
-            accessPrograms = new AccessPrograms(Services.getProgramPersistence());
+            accessPrograms = new AccessPrograms(getProgramPersistence());
         }
         return accessPrograms;
     }
@@ -120,7 +120,7 @@ public class Services {
 
     public static synchronized IAccessCourses getAccessCourses(){
         if (accessCourses == null){
-            accessCourses = new AccessCourses(Services.getCoursePersistence());
+            accessCourses = new AccessCourses(getCoursePersistence());
         }
         return accessCourses;
     }
@@ -128,7 +128,7 @@ public class Services {
 
     public static IAccessCourseReviews getAccessCourseReviews() {
         if (accessCourseReviews == null){
-            accessCourseReviews = new AccessCourseReviews(Services.getCourseReviewPersistence());
+            accessCourseReviews = new AccessCourseReviews(getCourseReviewPersistence());
         }
         return accessCourseReviews;
 
@@ -143,7 +143,7 @@ public class Services {
 
     public static synchronized ILogin getILogin(){
         if(userLogin == null){
-            userLogin = new Login(Services.getAccessUsers());
+            userLogin = new Login(getAccessUsers());
         }
         return userLogin;
     }
@@ -158,7 +158,7 @@ public class Services {
     public static IAccessTutors getAccessTutors() {
 
         if (accessTutors == null) {
-            accessTutors = new AccessTutors();
+            accessTutors = new AccessTutors(getTutorPersistence());
         }
         return accessTutors;
     }

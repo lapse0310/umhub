@@ -60,7 +60,8 @@ public class RateTutorsActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     public void buttonUpdateRating(View view){
         tutor.setRating(rateValue);
-        showRating.setText("Tutor rating is now "+tutor.getRating());
+        Intent tutorIntent = new Intent(RateTutorsActivity.this,TutorsActivity.class);
+        RateTutorsActivity.this.startActivity(tutorIntent);
 
     }
 

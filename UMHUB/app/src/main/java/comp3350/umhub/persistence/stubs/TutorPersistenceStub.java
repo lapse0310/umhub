@@ -13,11 +13,11 @@ public class TutorPersistenceStub implements ITutorPersistence {
     public TutorPersistenceStub(){
         this.tutors = new ArrayList<>();
 
-        Course course0 = new Course("COMP3350");
-        Course course1 = new Course("COMP1010");
-        Course course2 = new Course("MATH1500");
-        Course course3 = new Course("MATH1700");
-        Course course4 = new Course("COMP3430");
+        Course course0 = new Course("COMP 3350");
+        Course course1 = new Course("COMP 1010");
+        Course course2 = new Course("MATH 1500");
+        Course course3 = new Course("MATH 1700");
+        Course course4 = new Course("COMP 3430");
 
         tutors.add(new Tutor("Cool","cool@umanitoba.ca",course0,"Professor",4.5f));
         tutors.add(new Tutor("Tall","tall@umanitoba.ca",course0,"TA",2f));
