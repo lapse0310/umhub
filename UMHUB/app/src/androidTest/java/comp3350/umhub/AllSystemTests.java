@@ -8,5 +8,6 @@ import org.junit.runners.Suite;
         LoginSystemTest.class,
         ReviewSystemTest.class,
         RatingSystemTest.class,
+        SignupSystemTest.class,
 })
 public class AllSystemTests { }
