@@ -1,5 +1,8 @@
 package comp3350.umhub;
 
+import android.content.Context;
+
+import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
@@ -26,15 +29,24 @@ public class SignupSystemTest {
     public ActivityTestRule<HomeActivity> activityRule = new ActivityTestRule<>(HomeActivity.class);
 
     @Before
-    public void setup(){
-        IUserPersistence userPersistence = Services.getUserPersistence(activityRule.getActivity());
+    public void setUp(){
+        Context context = ApplicationProvider.getApplicationContext();
+        IUserPersistence userPersistence = Services.getUserPersistence(context);
+
+        if(userPersistence == null)
+            System.out.println("NULLLLLLLLL");
+
         try {
-            if (userPersistence.getUser("sigupTest") != null) {
-                userPersistence.insertUser("helloworld","hello");
+            if (userPersistence.getUser("signupTest") != null) {
+                System.out.println("In the loop");
                 userPersistence.delete("signupTest");
+            }
+            else {
+                System.out.println("NPPPOPPPOPOPOP");
             }
         }catch (Exception e)
         {
+            System.out.println("HJKHKJEBJKHKJHKJKHHKJHKHKHKJH");
             e.printStackTrace();
         }
     }
