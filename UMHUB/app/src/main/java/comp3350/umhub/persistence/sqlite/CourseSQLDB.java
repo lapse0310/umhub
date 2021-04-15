@@ -11,7 +11,7 @@ import java.util.List;
 
 import comp3350.umhub.application.Services;
 import comp3350.umhub.objects.Course;
-import comp3350.umhub.objects.Utils;
+import comp3350.umhub.business.Utils;
 import comp3350.umhub.persistence.interfaces.ICoursePersistence;
 
 public class CourseSQLDB implements ICoursePersistence {

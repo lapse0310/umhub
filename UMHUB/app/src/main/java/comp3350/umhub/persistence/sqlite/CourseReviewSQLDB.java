@@ -6,13 +6,12 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.umhub.application.Services;
 import comp3350.umhub.objects.CourseReview;
-import comp3350.umhub.objects.Utils;
+import comp3350.umhub.business.Utils;
 import comp3350.umhub.persistence.interfaces.ICourseReviewPersistence;
 
 public class CourseReviewSQLDB implements ICourseReviewPersistence {
