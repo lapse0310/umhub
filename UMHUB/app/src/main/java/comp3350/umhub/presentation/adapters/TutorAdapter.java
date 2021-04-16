@@ -1,11 +1,15 @@
 package comp3350.umhub.presentation.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
 
 import java.util.List;
 
@@ -43,6 +47,8 @@ public class TutorAdapter extends BaseAdapter {
         return position;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    @SuppressLint({"DefaultLocale", "SetTextI18n"})
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View row = null;
@@ -56,9 +62,11 @@ public class TutorAdapter extends BaseAdapter {
         TextView tutorName = (TextView) row.findViewById(R.id.title1);
         TextView email = (TextView) row.findViewById(R.id.desc1);
 
-        tutorName.setText(tutorEntry.getName());
+        rating.setTextSize(20);
+        rating.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        tutorName.setText(tutorEntry.getName()+" - "+tutorEntry.getType());
         email.setText(tutorEntry.getEmail());
-        rating.setText(String.valueOf(tutorEntry.getAverageRating()));
+        rating.setText(String.format("%.1f",tutorEntry.getAverageRating()));
 
         return row;
     }

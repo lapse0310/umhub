@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -32,6 +34,16 @@ public class ProgramsActivity extends AppCompatActivity {
 
         iAccessPrograms = Services.getAccessPrograms();
         Major major = MajorsActivity.getMajorSelected();
+        try {
+            setTitle(String.format("Programs under %s", major.getName()));
+        } catch (NullPointerException e) {
+            setTitle("All Programs");
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "No major selected", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
+            toast.show();
+        }
+
         if (major== null)
             programList = iAccessPrograms.getAllPrograms();
         else
@@ -47,7 +59,7 @@ public class ProgramsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
                 programSelected = programList.get(position);
-                Intent modify_intent = new Intent(getApplicationContext(), CoursesActivity.class);
+                Intent modify_intent = new Intent(getApplicationContext(), CoursesActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(modify_intent);
 
             }
@@ -55,7 +67,7 @@ public class ProgramsActivity extends AppCompatActivity {
     }
     
     public void buttonCoursesOnClick(View view) {
-        Intent majorsIntent = new Intent(ProgramsActivity.this, CoursesActivity.class);
+        Intent majorsIntent = new Intent(ProgramsActivity.this, CoursesActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         ProgramsActivity.this.startActivity(majorsIntent);
     }
 

@@ -37,7 +37,7 @@ public class CourseReviewsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
-        setContentView(R.layout.overview_2);
+        setContentView(R.layout.activity_coursereview_overview);
         courseSelected = CoursesActivity.getCourseSelected();
         setTitle(courseSelected.getId());
 
@@ -50,8 +50,7 @@ public class CourseReviewsActivity extends AppCompatActivity {
         accessCourseReviews = Services.getAccessCourseReviews();
         courseReviewList = accessCourseReviews.getCourseReviewByCourse(courseSelected);
 
-
-        int itemLimit = 3;
+//        int itemLimit = 3;
 
         listView = (ListView) findViewById(R.id.reviewListView);
         listView.setEmptyView(findViewById(R.id.empty));
@@ -65,43 +64,12 @@ public class CourseReviewsActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
 
                 CourseReview c = (CourseReview) adapter.getItem(position);
-                Intent modify_intent = new Intent(getApplicationContext(), SeeCourseReviewActivity.class);
+                Intent modify_intent = new Intent(getApplicationContext(), SeeCourseReviewActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 modify_intent.putExtra("id", c.getId());
                 startActivity(modify_intent);
             }
         });
     }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-        if (id == R.id.add_record) {
-
-            try {
-                Services.getCurrentUser();
-                courseSelected = CoursesActivity.getCourseSelected();
-                Intent add_mem = new Intent(this, WriteCourseReviewActivity.class);
-                add_mem.putExtra("courseID", CoursesActivity.getCourseSelected().getId());
-                startActivity(add_mem);
-            } catch (UserException e) {
-                Toast toast = Toast.makeText(getApplicationContext(),
-                        "Please log in to leave a review",Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
-                toast.show();            }
-
-
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
 
     @Override
     protected void onDestroy() {
@@ -109,13 +77,26 @@ public class CourseReviewsActivity extends AppCompatActivity {
     }
 
     public void buttonWriteCourseReviewOnClick(View view) {
-        Intent WriteCourseReviewIntent = new Intent(CourseReviewsActivity.this, WriteCourseReviewActivity.class);
-        CourseReviewsActivity.this.startActivity(WriteCourseReviewIntent);
+        try {
+            Services.getCurrentUser();
+            courseSelected = CoursesActivity.getCourseSelected();
+            Intent add_mem = new Intent(this, WriteCourseReviewActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            add_mem.putExtra("courseID", CoursesActivity.getCourseSelected().getId());
+            startActivity(add_mem);
+        } catch (UserException e) {
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "Please log in to leave a review",Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
+            toast.show();
+        }
+
     }
 
     public void buttonViewTutors(View view) {
-        Intent viewTutors = new Intent(CourseReviewsActivity.this, TutorsActivity.class);
+        Intent viewTutors = new Intent(CourseReviewsActivity.this, TutorsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         CourseReviewsActivity.this.startActivity(viewTutors);
     }
+
+
 }
 

@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 try
                 {
                     iLogin.login(username,password);
-                    startActivity(new Intent(this , MajorsActivity.class));
+                    startActivity(new Intent(this , MajorsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                 }
                 catch(LoginException e)
                 {

@@ -40,7 +40,6 @@ public class MajorsActivity extends AppCompatActivity {
             setTitle("Welcome, Guest");
         }
 
-
         try
         {
             accessMajors = Services.getAccessMajors();
@@ -56,7 +55,7 @@ public class MajorsActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
                     majorSelected = majorList.get(position);
-                    Intent modify_intent = new Intent(getApplicationContext(), ProgramsActivity.class);
+                    Intent modify_intent = new Intent(getApplicationContext(), ProgramsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                     startActivity(modify_intent);
                 }
@@ -87,10 +86,10 @@ public class MajorsActivity extends AppCompatActivity {
         try {
             Services.logOut();
             Toast.makeText(getApplicationContext(),"Logged out successfully. See you again soon!",Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
         } catch (UserException e) {
             Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+        } finally {
+            startActivity(new Intent(getApplicationContext(), HomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
         }
 
 

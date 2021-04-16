@@ -2,9 +2,11 @@ package comp3350.umhub.presentation;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.List;
@@ -30,6 +32,16 @@ public class CoursesActivity extends AppCompatActivity {
 
         accessCourses = Services.getAccessCourses();
         Program program = ProgramsActivity.getProgramSelected();
+        try {
+            setTitle(String.format("Courses under %s", program.getName()));
+        } catch (NullPointerException e) {
+            setTitle("All Courses");
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "No program selected", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
+            toast.show();
+        }
+
         if (program== null)
             courseList = accessCourses.getAllCourses();
         else
@@ -45,7 +57,7 @@ public class CoursesActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
                 setCourseSelected(courseList.get(position));
-                Intent modify_intent = new Intent(getApplicationContext(), CourseReviewsActivity.class);
+                Intent modify_intent = new Intent(getApplicationContext(), CourseReviewsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(modify_intent);
             }
         });

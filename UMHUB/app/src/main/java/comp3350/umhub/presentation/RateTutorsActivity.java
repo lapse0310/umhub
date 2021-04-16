@@ -3,10 +3,12 @@ package comp3350.umhub.presentation;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,71 +31,91 @@ public class RateTutorsActivity extends AppCompatActivity {
     IAccessTutors iAccessTutors;
     TutorRating tutorRating;
     User currentUser;
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ratetutor);
-
+        textView = findViewById(R.id.textView);
         rateCount = findViewById(R.id.rateCount);
         ratingBar = findViewById(R.id.ratingBar);
         submit = findViewById(R.id.submitBtn);
         showRating = findViewById(R.id.showRating);
 
-        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+        setTitle("Rate Tutor");
+        try {
+            textView.setText(String.format("How would you rate %s as a %s", tutorEntry.getName(), tutorEntry.getType()));
 
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+            ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
 
-                rateValue = ratingBar.getRating();
-                if(rateValue<=1){
-                    rateCount.setText("Bad tutorEntry"+rateValue+"/5");
+                @SuppressLint({"SetTextI18n", "DefaultLocale"})
+                @Override
+                public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+
+                    rateValue = ratingBar.getRating();
+                    if (rateValue <= 1) {
+                        showRating.setText("Awful Tutor >: (");
+                    } else if (rateValue <= 2) {
+                        showRating.setText("Meh Tutor : |");
+
+                    } else if (rateValue <= 3) {
+                        showRating.setText("Decent Tutor : )");
+                    } else if (rateValue <= 4) {
+                        showRating.setText("Good Tutor ( ^.^ )");
+                    } else if (rateValue <= 5) {
+//                    rateCount.setText("Excellent tutorEntry "+rateValue+"/5");
+                        showRating.setText("Rob we know it's you in disguise (\\ ˚▽˚ /)");
+                    }
+                    rateCount.setText(String.format("%.1f/%.1f", rateValue, 5f));
+
                 }
-                else if(rateValue<=2){
-                    rateCount.setText("Okay tutorEntry "+rateValue+"/5");
-                }
-                else if(rateValue<=3){
-                    rateCount.setText("Average tutorEntry "+rateValue+"/5");
-                }
-                else if(rateValue<=4){
-                    rateCount.setText("Good tutorEntry "+rateValue+"/5");
-                }
-                else if(rateValue<=5){
-                    rateCount.setText("Excellent tutorEntry "+rateValue+"/5");
-                }
-            }
-        });
+            });
+        } catch (NullPointerException e) {
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "Something went wrong. Could not locate Tutor entry", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
+            toast.show();
+            onBackPressed();
+        }
     }
 
     @SuppressLint("SetTextI18n")
-    public void buttonUpdateRating(View view){
+    public void buttonUpdateRating(View view) {
 
-        try{
+        try {
             currentUser = Services.getCurrentUser();
             iAccessTutors = Services.getAccessTutors();
-            tutorRating = iAccessTutors.getTutorRatingsByUser(tutorEntry,currentUser);
-            if (tutorRating != null){
+            tutorRating = iAccessTutors.getTutorRatingsByUser(tutorEntry, currentUser);
+            if (tutorRating != null) {
                 tutorRating.setRating(rateValue);
                 iAccessTutors.updateTutorRating(tutorRating);
+            } else {
+                iAccessTutors.addTutorRating(tutorEntry, currentUser, rateValue);
             }
-            else{
-                iAccessTutors.addTutorRating(tutorEntry,currentUser,rateValue);
-            }
-//            tutorEntry.setRating(rateValue);
-            float avgRating = iAccessTutors.getAverageRating(tutorEntry);
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "Thank you for your feedback", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
+            toast.show();
+            onBackPressed();
+            Intent tutorIntent = new Intent(RateTutorsActivity.this, TutorsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            RateTutorsActivity.this.startActivity(tutorIntent);
 
-        Intent tutorIntent = new Intent(RateTutorsActivity.this,TutorsActivity.class);
-        RateTutorsActivity.this.startActivity(tutorIntent);
         } catch (UserException e) {
-            e.printStackTrace();
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "Please log in to leave a review", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
+            toast.show();
         }
-
-
     }
 
-    public void buttonGoBack(View view){
-        Intent tutorIntent = new Intent(RateTutorsActivity.this,TutorsActivity.class);
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    public void buttonGoBack(View view) {
+        Intent tutorIntent = new Intent(RateTutorsActivity.this, TutorsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         RateTutorsActivity.this.startActivity(tutorIntent);
     }
 }

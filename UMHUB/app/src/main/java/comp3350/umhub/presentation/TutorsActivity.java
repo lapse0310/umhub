@@ -31,16 +31,14 @@ public class TutorsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_tutors);
         setContentView(R.layout.fragment_emp_list);
+        setTitle("Available Tutors");
 
         IAccessTutors accessTutors = Services.getAccessTutors();
         try{
-   //         tutorList = accessTutors.getTutors(CoursesActivity.getCourseSelected());
-  //          System.out.println(tutorList.size());
-   //         ArrayAdapter<Tutor> tutorArrayAdapter = new ArrayAdapter<Tutor>(this,android.R.layout.simple_list_item_activated_2,android.R.id.text1,tutorList){
             tutorEntryList = accessTutors.getTutorEntriesByCourse(CoursesActivity.getCourseSelected());
 
             listView = (ListView) findViewById(R.id.list_view);
-//            listView.setEmptyView(findViewById(R.id.empty));
+            listView.setEmptyView(findViewById(R.id.empty));
             TutorAdapter adapter = new TutorAdapter(this, tutorEntryList);
             adapter.notifyDataSetChanged();
             listView.setAdapter(adapter);
@@ -49,12 +47,28 @@ public class TutorsActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
                     tutorEntrySelected = tutorEntryList.get(position);
-                    Intent modify_intent = new Intent(getApplicationContext(), RateTutorsActivity.class);
+                    Intent modify_intent = new Intent(getApplicationContext(), RateTutorsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(modify_intent);
 
                 }
             });
-//
+        }
+        catch (final NullPointerException e){
+            Messages.fatalError(this,e.getMessage());
+        }
+
+    }
+
+    public void buttonGoBack(View view){
+        Intent coursesIntent = new Intent(TutorsActivity.this, CoursesActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        TutorsActivity.this.startActivity(coursesIntent);
+    }
+
+    public static TutorEntry getTutorEntrySelected(){
+        return tutorEntrySelected;
+    }
+
+    //
 //            tutorEntryList = accessTutors.getTutorEntriesByCourse(CoursesActivity.getCourseSelected());
 //            ArrayAdapter<TutorEntry> tutorArrayAdapter = new ArrayAdapter<TutorEntry>(this,android.R.layout.simple_list_item_activated_2,android.R.id.text1, tutorEntryList){
 //                @Override
@@ -85,19 +99,5 @@ public class TutorsActivity extends AppCompatActivity {
 //                    startActivity(courseIntent);
 //                }
 //            });
-        }
-        catch (final NullPointerException e){
-            Messages.fatalError(this,e.getMessage());
-        }
 
-    }
-
-    public void buttonGoBack(View view){
-        Intent coursesIntent = new Intent(TutorsActivity.this, CoursesActivity.class);
-        TutorsActivity.this.startActivity(coursesIntent);
-    }
-
-    public static TutorEntry getTutorEntrySelected(){
-        return tutorEntrySelected;
-    }
 }
