@@ -41,5 +41,5 @@ This project follows the Gitflow branching strategy. Different features are work
 
 ## Retrospective 
 
-[Retrospective](RETROSPECTIVE.md)
+[Retrospective](Retrospective.md)
 
