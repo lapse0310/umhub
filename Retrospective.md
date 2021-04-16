@@ -5,3 +5,4 @@ For the next iteration(iteration 3), we decided to work on the database, refacto
 For this iteration, the team will be successful, if we are able to set up the database properly and also, remove all the existing smells and bugs. We will be successful if all the features implemented ran to completion and the app did not crash in between. The user should be able to properly login/signup and is able to view the courses/programs as expected. Also, we will focus on having more useful features/user stories implemented in the iteration 3 and push the ones to 'future' in case we decide to drop them.
 
 Velocity Charts for iteration 1 and 2 are as follows:
+![Velocity chart](VC12.PNG)
