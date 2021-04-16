@@ -27,6 +27,10 @@ show_sales_card: true
 sales_title: Sales Pitch
 sales_description: The system will be a significant improvement to the already existing designs. It will provide answers to all the frequently asked questions, particularly by the students. The long queues in front of the student advisors' offices and delayed responses can get frustrating. Therefore, the system aims to provide the students with all the necessary course information quickly and easily without any appointments. The system will provide adequate information for students to choose the right course at the right time. This will help reduce the number of withdrawals or excess courses, speeding up their degree completion. Besides, the system provides a platform to buy and sell used textbooks and avoid buying expensive new ones or struggle to find used books. Past students can provide details of their experiences working with different courses and tutors. The general discussion and social groups will help develop peer bonds, especially amongst the new undergraduate students. Additionally, the system intends to easy to use and reliable by all users equally.
 
+show_velocity_card: true
+velocity_title: Velocity Chart
+velocity_description: Why?
+
 show_postmortem_card: true
 postmortem_title: Postmortem
 
