@@ -80,8 +80,6 @@ public class RateTutorsActivity extends AppCompatActivity {
             else{
                 iAccessTutors.addTutorRating(tutorEntry,currentUser,rateValue);
             }
-//            tutorEntry.setRating(rateValue);
-            float avgRating = iAccessTutors.getAverageRating(tutorEntry);
 
         Intent tutorIntent = new Intent(RateTutorsActivity.this,TutorsActivity.class);
         RateTutorsActivity.this.startActivity(tutorIntent);

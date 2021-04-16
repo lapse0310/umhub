@@ -2,7 +2,6 @@ package comp3350.umhub.business;
 
 import java.util.Comparator;
 
-import comp3350.umhub.application.Services;
 import comp3350.umhub.objects.TutorEntry;
 
 public class ratingSorter implements Comparator<TutorEntry> {

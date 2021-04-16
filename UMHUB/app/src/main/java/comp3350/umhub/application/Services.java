@@ -38,8 +38,6 @@ import comp3350.umhub.persistence.interfaces.ICourseReviewPersistence;
 import comp3350.umhub.persistence.interfaces.IUserPersistence;
 import comp3350.umhub.persistence.interfaces.ITutorPersistence;
 
-import comp3350.umhub.persistence.stubs.TutorPersistenceStub;
-
 
 public class Services {
     private static IAccessMajors accessMajors = null;

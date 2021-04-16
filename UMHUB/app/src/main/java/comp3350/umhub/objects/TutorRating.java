@@ -42,7 +42,4 @@ public class TutorRating {
         this.rating = rating;
     }
 
-    //    public void setRating(float r){
-//        rating = (rating + r)/2.0f;
-//    }
 }
