@@ -34,8 +34,8 @@ public class RatingSystemTest {
         onView(withText("Computer Science")).perform(click());
         onView(withText("Computer Science Honours")).perform(click());
         onView(withText("MATH 1500")).perform(click());
-        onView(withId(R.id.viewTutors)).perform(scrollTo(),click());
-        onView(withText("TA Awesome")).perform(click());
+        onView(withId(R.id.viewTutors)).perform(click());
+        onView(withText("Aria")).perform(click());
         onView(withId(R.id.ratingBar)).perform(click());
         onView(withId(R.id.submitBtn)).perform(click());
     }

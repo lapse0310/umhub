@@ -1,6 +1,7 @@
 package comp3350.umhub.business;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import comp3350.umhub.application.Services;
@@ -24,7 +25,9 @@ public class AccessTutors implements IAccessTutors{
 
     @Override
     public List<TutorEntry> getAllTutorEntries() {
-        return tutorPersistence.getTutorEntriesSequential();
+        List<TutorEntry> list = tutorPersistence.getTutorEntriesSequential();
+        Collections.sort(list,new ratingSorter());
+        return list;
     }
 
     @Override
@@ -35,8 +38,12 @@ public class AccessTutors implements IAccessTutors{
 
     @Override
     public List<TutorEntry> getTutorEntriesByCourse(Course course) {
-        if (course != null) return tutorPersistence.getTutorEntriesByCourse(course.getId());
-        return new ArrayList<>();
+        List<TutorEntry> list = new ArrayList<>();
+        if (course != null) {
+           list = tutorPersistence.getTutorEntriesByCourse(course.getId());
+            Collections.sort(list, new ratingSorter());
+        }
+        return list;
     }
 
     @Override

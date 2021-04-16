@@ -48,19 +48,19 @@ public class RateTutorsActivity extends AppCompatActivity {
 
                 rateValue = ratingBar.getRating();
                 if(rateValue<=1){
-                    rateCount.setText("Bad tutorEntry"+rateValue+"/5");
+                    rateCount.setText("Bad tutor"+rateValue+"/5");
                 }
                 else if(rateValue<=2){
-                    rateCount.setText("Okay tutorEntry "+rateValue+"/5");
+                    rateCount.setText("Okay tutor "+rateValue+"/5");
                 }
                 else if(rateValue<=3){
-                    rateCount.setText("Average tutorEntry "+rateValue+"/5");
+                    rateCount.setText("Average tutor "+rateValue+"/5");
                 }
                 else if(rateValue<=4){
-                    rateCount.setText("Good tutorEntry "+rateValue+"/5");
+                    rateCount.setText("Good tutor "+rateValue+"/5");
                 }
                 else if(rateValue<=5){
-                    rateCount.setText("Excellent tutorEntry "+rateValue+"/5");
+                    rateCount.setText("Excellent tutor "+rateValue+"/5");
                 }
             }
         });

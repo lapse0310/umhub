@@ -156,7 +156,7 @@ public class Services {
     public static IAccessTutors getAccessTutors() {
 
         if (accessTutors == null) {
-            accessTutors = new AccessTutors(Services.getTutorPersistence());
+            accessTutors = new AccessTutors(getTutorPersistence());
         }
         return accessTutors;
     }
