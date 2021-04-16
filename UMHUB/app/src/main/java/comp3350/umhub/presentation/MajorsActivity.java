@@ -56,9 +56,14 @@ public class MajorsActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
                     majorSelected = majorList.get(position);
-                    Intent modify_intent = new Intent(getApplicationContext(), ProgramsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-                    startActivity(modify_intent);
+                    if (Services.getAccessPrograms().getProgramsByMajor(majorSelected).size()==0) {
+                        Intent modify_intent = new Intent(getApplicationContext(), CoursesActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(modify_intent);
+                    }
+                    else {
+                        Intent modify_intent = new Intent(getApplicationContext(), ProgramsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(modify_intent);
+                    }
                 }
             });
 

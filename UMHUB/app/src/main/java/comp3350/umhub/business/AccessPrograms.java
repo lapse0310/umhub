@@ -1,5 +1,6 @@
 package comp3350.umhub.business;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.umhub.application.Services;
@@ -35,12 +36,12 @@ public class AccessPrograms implements IAccessPrograms {
     @Override
     public List<Program> getProgramsByMajor(Major major) {
         if (major != null) return programPersistence.getProgramsByMajor(major.getName());
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
     public List<Program> getProgramsByCourse(Course course) {
         if (course != null) return programPersistence.getProgramsByCourse(course.getId());
-        return null;
+        return new ArrayList<>();
     }
 }
