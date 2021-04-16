@@ -20,6 +20,9 @@ UMHUB will be used to guide students to choose the correct program and courses u
 
 This project follows the Gitflow branching strategy. Different features are worked upon in different branches and then mergerd into the developer branch, discarding the feature branch, for testing the project together and then pushed onto the master once it is a stable release.
 
+## Project website
+[Website](http://umhub.github.io/)
+
 ## Vision Statement
 [Vision Statement](Vision.md)
 
