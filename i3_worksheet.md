@@ -16,7 +16,7 @@ We did not include the UI (did not create new buttons) for some features/user st
 ### Acceptance Test/end-to-end
 One of the tests that we wrote were about adding a professor rating. We tested that the user was able to add the professor rating after they login to the system. To make sure the test was not flaky, we set the input to a fixed value of 3. Also, we turned off some animation settings in developer mode on the emulator, because that too caused flakiness in the tests sometimes.
 
-[Links](https://code.cs.umanitoba.ca/3350-winter-2021-a01/umhub-7/-/commit/c4580f4157d3f06cf496a71d42def0d1c5be4823)
+[Links](b1e8caaf78b7316403dbc478e266038bdfd36326)
 
 ### Acceptance Test, untestable
 Some implementation changes such as placing the button on the bottom of the page (have to scroll down) caused previously working system tests to fail. 
