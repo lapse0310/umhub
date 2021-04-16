@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="@string/tutors"
+        android:text="@string/tutorEntries"
         android:textAlignment="center"
         android:textColor="#a52a2a"
         android:textSize="20sp"

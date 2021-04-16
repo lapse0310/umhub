@@ -22,6 +22,11 @@ public class ReviewAdapter extends BaseAdapter {
         inflater = LayoutInflater.from(context);
     }
 
+    public ReviewAdapter(Context context, List<CourseReview> courseReviews, int itemLimit) {
+        List<CourseReview> sublist = courseReviews.subList(0,Math.min(itemLimit,getCount()));
+        inflater = LayoutInflater.from(context);
+    }
+
 
     @Override
     public int getCount() {

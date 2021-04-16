@@ -112,12 +112,6 @@ public class CourseReviewSQLDB implements ICourseReviewPersistence {
         database.insert(TABLE_NAME, null, contentValue);
     }
 
-    private void testGetCourseReviewSequential(){
-        List<CourseReview> courseReviews = getCourseReviewsSequential("COMP3350");
-        if (courseReviews == null) System.out.println("courseReviews is null");
-        else System.out.println(Utils.listToString(courseReviews));
-    }
-
 
     public int update(long _id, String courseID, String review) {
         ContentValues contentValues = new ContentValues();

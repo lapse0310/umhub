@@ -17,7 +17,7 @@ import comp3350.umhub.tests.business.*;
         UsersTest.class,
         LoginTest.class,
         AccessCoursesTest.class,
-        TutorTest.class,
+        TutorEntryTest.class,
         AccessTutorsTest.class
 })
 

@@ -11,15 +11,24 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import comp3350.umhub.R;
-import comp3350.umhub.objects.Tutor;
+import comp3350.umhub.application.Services;
+import comp3350.umhub.application.UserException;
+import comp3350.umhub.business.IAccessTutors;
+import comp3350.umhub.objects.TutorEntry;
+import comp3350.umhub.objects.TutorRating;
+import comp3350.umhub.objects.User;
 
 public class RateTutorsActivity extends AppCompatActivity {
 
-    Tutor tutor = TutorsActivity.getTutorSelected(); //tutor currently being rated
+    TutorEntry tutorEntry = TutorsActivity.getTutorEntrySelected(); //tutorEntry currently being rated
     TextView rateCount, showRating;
     Button submit;
     RatingBar ratingBar;
     float rateValue;
+
+    IAccessTutors iAccessTutors;
+    TutorRating tutorRating;
+    User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,19 +48,19 @@ public class RateTutorsActivity extends AppCompatActivity {
 
                 rateValue = ratingBar.getRating();
                 if(rateValue<=1){
-                    rateCount.setText("Bad tutor"+rateValue+"/5");
+                    rateCount.setText("Bad tutorEntry"+rateValue+"/5");
                 }
                 else if(rateValue<=2){
-                    rateCount.setText("Okay tutor "+rateValue+"/5");
+                    rateCount.setText("Okay tutorEntry "+rateValue+"/5");
                 }
                 else if(rateValue<=3){
-                    rateCount.setText("Average tutor "+rateValue+"/5");
+                    rateCount.setText("Average tutorEntry "+rateValue+"/5");
                 }
                 else if(rateValue<=4){
-                    rateCount.setText("Good tutor "+rateValue+"/5");
+                    rateCount.setText("Good tutorEntry "+rateValue+"/5");
                 }
                 else if(rateValue<=5){
-                    rateCount.setText("Excellent tutor "+rateValue+"/5");
+                    rateCount.setText("Excellent tutorEntry "+rateValue+"/5");
                 }
             }
         });
@@ -59,8 +68,24 @@ public class RateTutorsActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     public void buttonUpdateRating(View view){
-        tutor.setRating(rateValue);
-        showRating.setText("Tutor rating is now "+tutor.getRating());
+        try{
+            currentUser = Services.getCurrentUser();
+            iAccessTutors = Services.getAccessTutors();
+            tutorRating = iAccessTutors.getTutorRatingsByUser(tutorEntry,currentUser);
+            if (tutorRating != null){
+                tutorRating.setRating(rateValue);
+                iAccessTutors.updateTutorRating(tutorRating);
+            }
+            else{
+                iAccessTutors.addTutorRating(tutorEntry,currentUser,rateValue);
+            }
+//            tutorEntry.setRating(rateValue);
+            float avgRating = iAccessTutors.getAverageRating(tutorEntry);
+            showRating.setText("TutorEntry rating is now "+ avgRating);
+        } catch (UserException e) {
+            e.printStackTrace();
+        }
+
 
     }
 

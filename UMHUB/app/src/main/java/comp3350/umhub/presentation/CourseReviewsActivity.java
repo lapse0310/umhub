@@ -55,6 +55,8 @@ public class CourseReviewsActivity extends AppCompatActivity {
 //        listView = (ListView) findViewById(R.id.list_view);
 //        listView.setEmptyView(findViewById(R.id.empty));
 
+        int itemLimit = 3;
+
         listView = (ListView) findViewById(R.id.reviewListView);
         listView.setEmptyView(findViewById(R.id.empty));
         ReviewAdapter adapter = new ReviewAdapter(this,courseReviewList);
