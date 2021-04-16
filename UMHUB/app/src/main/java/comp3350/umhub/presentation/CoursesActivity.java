@@ -37,13 +37,15 @@ public class CoursesActivity extends AppCompatActivity {
         } catch (NullPointerException e) {
             setTitle("All Courses");
             Toast toast = Toast.makeText(getApplicationContext(),
-                    "No program selected", Toast.LENGTH_SHORT);
+                    "Program information not available", Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
             toast.show();
         }
 
         if (program== null)
-            courseList = accessCourses.getAllCourses();
+            if (MajorsActivity.getMajorSelected() == null)
+                courseList = accessCourses.getAllCourses();
+            else courseList = accessCourses.getCoursesByMajor(MajorsActivity.getMajorSelected());
         else
             courseList = accessCourses.getCoursesByProgram(program);
 

@@ -7,6 +7,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -35,12 +36,8 @@ public class SignupSystemTest {
             if (userPersistence.getUser("signupTest") != null) {
                 userPersistence.delete("signupTest");
             }
-            else {
-                System.out.println("NPPPOPPPOPOPOP");
-            }
         }catch (Exception e)
         {
-            System.out.println("HJKHKJEBJKHKJHKJKHHKJHKHKHKJH");
             e.printStackTrace();
         }
     }
@@ -55,5 +52,11 @@ public class SignupSystemTest {
         onView(withId(R.id.btnLogin)).perform(click());
         onView(withId(R.id.btnSignUp)).perform(click());
         onView(withId(R.id.btnLogin)).perform(click());
+    }
+
+    @After
+    public void cleanUp(){
+        IUserPersistence userPersistence = Services.getUserPersistence();
+        userPersistence.delete("signupTest");
     }
 }

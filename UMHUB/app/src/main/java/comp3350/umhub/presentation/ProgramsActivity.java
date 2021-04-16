@@ -59,11 +59,20 @@ public class ProgramsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
                 programSelected = programList.get(position);
-                Intent modify_intent = new Intent(getApplicationContext(), CoursesActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(modify_intent);
+                if (!Services.getAccessCourses().getCoursesByProgram(programSelected).isEmpty()) {
+                    Intent modify_intent = new Intent(getApplicationContext(), CoursesActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(modify_intent);
+                }
+                else{
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            "Course information not available. Please try another option", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
+                    toast.show();
+                }
 
             }
         });
+
     }
     
     public void buttonCoursesOnClick(View view) {

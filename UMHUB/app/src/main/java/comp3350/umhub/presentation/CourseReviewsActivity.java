@@ -1,12 +1,14 @@
 package comp3350.umhub.presentation;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +33,7 @@ public class CourseReviewsActivity extends AppCompatActivity {
     private ListView listView;
     private IAccessCourseReviews accessCourseReviews;
     private List<CourseReview> courseReviewList;
+    private Button tutorsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +70,16 @@ public class CourseReviewsActivity extends AppCompatActivity {
                 startActivity(modify_intent);
             }
         });
+
+        tutorsButton = findViewById(R.id.viewTutors);
+        if (Services.getAccessTutors().getTutorEntriesByCourse(courseSelected).isEmpty()){
+            tutorsButton.setText("No Tutors Available for This Course");
+            tutorsButton.setBackgroundColor(Color.parseColor("#bfbfbf"));
+        }
+        else{
+            tutorsButton.setText("Tutors Are Available for This Course");
+
+        }
     }
 
     @Override
@@ -91,8 +104,11 @@ public class CourseReviewsActivity extends AppCompatActivity {
     }
 
     public void buttonViewTutors(View view) {
-        Intent viewTutors = new Intent(CourseReviewsActivity.this, TutorsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        CourseReviewsActivity.this.startActivity(viewTutors);
+        if (!Services.getAccessTutors().getTutorEntriesByCourse(courseSelected).isEmpty()){
+            Intent viewTutors = new Intent(CourseReviewsActivity.this, TutorsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            CourseReviewsActivity.this.startActivity(viewTutors);
+        }
+
     }
 
 

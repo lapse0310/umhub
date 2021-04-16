@@ -34,7 +34,7 @@ public class ReviewSystemTest {
         onView(withText("Computer Science")).perform(click());
         onView(withText("Computer Science Honours")).perform(click());
         onView(withText("MATH 1220")).perform(click());
-        onView(withId(R.id.add_record)).perform(click());
+        onView(withId(R.id.writeReviewButton)).perform(click());
         onView(withId(R.id.reviewEditText)).perform(typeText("Test review"));
         onView(withId(R.id.reviewEditText)).perform(closeSoftKeyboard());
         onView(withId(R.id.radioButton3)).perform(click());

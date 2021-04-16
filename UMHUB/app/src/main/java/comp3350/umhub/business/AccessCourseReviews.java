@@ -1,4 +1,5 @@
 package comp3350.umhub.business;
+import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.umhub.application.Services;
@@ -25,7 +26,8 @@ public class AccessCourseReviews implements IAccessCourseReviews {
     @Override
     public List<CourseReview> getCourseReviewByCourse(Course course) {
         if (course != null) return courseReviewPersistence.getCourseReviewsSequential(course.getId());
-        return null;
+        return new ArrayList<>();
+
     }
 
     @Override
