@@ -1,5 +1,4 @@
 package comp3350.umhub.objects;
-import java.text.DecimalFormat;
 
 import comp3350.umhub.application.Services;
 
@@ -40,7 +39,6 @@ public class TutorEntry {
         return type+" "+name;
     }
 
-//    public String displaySub(){return "Contact: "+email+"   Rating: "+getRating();}
 
     public String getCourse() {
         return course;

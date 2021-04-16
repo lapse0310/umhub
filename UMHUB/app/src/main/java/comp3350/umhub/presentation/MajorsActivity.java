@@ -1,13 +1,13 @@
 package comp3350.umhub.presentation;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.List;
 
@@ -61,9 +61,7 @@ public class MajorsActivity extends AppCompatActivity {
                 }
             });
 
-        }
-        catch (final NullPointerException e)
-        {
+        } catch (final NullPointerException e) {
             Messages.fatalError(this, e.getMessage());
         }
 
@@ -82,7 +80,7 @@ public class MajorsActivity extends AppCompatActivity {
         LogOut();
     }
 
-    public void LogOut(){
+    public void LogOut() {
         try {
             Services.logOut();
             Toast.makeText(getApplicationContext(),"Logged out successfully. See you again soon!",Toast.LENGTH_SHORT).show();

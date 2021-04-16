@@ -14,7 +14,6 @@ import androidx.annotation.RequiresApi;
 import java.util.List;
 
 import comp3350.umhub.R;
-import comp3350.umhub.application.Services;
 import comp3350.umhub.objects.TutorEntry;
 
 public class TutorAdapter extends BaseAdapter {

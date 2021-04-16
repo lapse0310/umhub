@@ -17,7 +17,6 @@ import comp3350.umhub.tests.business.*;
         LoginTest.class,
         AccessCoursesTest.class,
         TutorEntryTest.class,
-        AccessTutorsTest.class
 })
 
 public class AllUnitTests {

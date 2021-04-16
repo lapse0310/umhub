@@ -38,8 +38,6 @@ import comp3350.umhub.persistence.interfaces.ICourseReviewPersistence;
 import comp3350.umhub.persistence.interfaces.IUserPersistence;
 import comp3350.umhub.persistence.interfaces.ITutorPersistence;
 
-import comp3350.umhub.persistence.stubs.TutorPersistenceStub;
-
 
 public class Services {
     private static IAccessMajors accessMajors = null;
@@ -156,7 +154,7 @@ public class Services {
     public static IAccessTutors getAccessTutors() {
 
         if (accessTutors == null) {
-            accessTutors = new AccessTutors(Services.getTutorPersistence());
+            accessTutors = new AccessTutors(getTutorPersistence());
         }
         return accessTutors;
     }

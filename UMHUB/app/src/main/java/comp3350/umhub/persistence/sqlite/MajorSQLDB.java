@@ -9,7 +9,6 @@ import java.util.List;
 
 import comp3350.umhub.application.Services;
 import comp3350.umhub.objects.Major;
-import comp3350.umhub.business.Utils;
 import comp3350.umhub.persistence.interfaces.IMajorPersistence;
 
 public class MajorSQLDB implements IMajorPersistence {
