@@ -1,7 +1,6 @@
 package comp3350.umhub.persistence.sqlite;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -11,13 +10,11 @@ import java.util.List;
 
 import comp3350.umhub.application.Services;
 import comp3350.umhub.objects.Course;
-import comp3350.umhub.business.Utils;
 import comp3350.umhub.persistence.interfaces.ICoursePersistence;
 
 public class CourseSQLDB implements ICoursePersistence {
 
     public static final String TABLE_COURSES = "COURSES";
-    public static final String TABLE_COURSESPROGRAMS = "COURSESPROGRAMS";
     public static final String _ID = "_id";
     public static final String NAME = "NAME";
     public static final String DESCRIPTION = "DESCRIPTION";
@@ -28,7 +25,6 @@ public class CourseSQLDB implements ICoursePersistence {
 
     public static final String CP_COURSEID = "COURSEID";
     public static final String CP_PROGRAMID = "PROGRAMID";
-    public static String[] COLUMNS_COURSESPROGRAMS = {CP_COURSEID,CP_PROGRAMID};
 
 
     private SQLiteDatabase database; // may later implement as singleton
@@ -193,42 +189,6 @@ public class CourseSQLDB implements ICoursePersistence {
         contentValue.put(YEAR, year);
         contentValue.put(MAJOR, major);
         database.insert(TABLE_COURSES, null, contentValue);
-    }
-
-    private void testGetCoursesByYearProgram() {
-        System.out.println("---Test testGetCoursesByYearProgram---");
-        for (int i = 0; i < 8; i++) {
-            System.out.println(Utils.listToString(getCoursesByYearProgram("Statistics - Mathematics JOINT HONOURS",i)));
-        }
-    }
-
-    private void testGetCoursesByProgram() {
-        System.out.println("---Test testGetCoursesByProgram---");
-        List<Course> l = getCoursesByProgram("Statistics - Mathematics JOINT HONOURS");
-        System.out.println(Utils.listToString(l));
-    }
-
-    private void testGetCourse() {
-        System.out.println("---Test testGetCourse---");
-        List<Course> l = new ArrayList<>();
-        Course c1 = getCourse("MATH1240");
-        Course c2 = getCourse("ENG1440");
-        Course c3 = getCourse("STAT2000");
-        l.add(c1);l.add(c2);l.add(c3);
-        System.out.println(Utils.listToString(l));
-    }
-
-    private void testGetCoursesByMajor() {
-        System.out.println("---Test testGetCoursesByMajor---");
-        List<Course> l = getCoursesByMajor("Computer Science");
-        System.out.println(Utils.listToString(l));
-    }
-
-    private void testGetCoursesByYearMajor() {
-        System.out.println("---Test testGetCoursesByYearMajor---");
-        for (int i = 0; i < 8; i++) {
-            System.out.println(Utils.listToString(getCoursesByYearMajor("Statistics",i)));
-        }
     }
 
 }

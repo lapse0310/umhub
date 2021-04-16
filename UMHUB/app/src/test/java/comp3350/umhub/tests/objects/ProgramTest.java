@@ -2,7 +2,6 @@ package comp3350.umhub.tests.objects;
 
 import org.junit.Test;
 
-import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.Program;
 
 import static org.junit.Assert.*;

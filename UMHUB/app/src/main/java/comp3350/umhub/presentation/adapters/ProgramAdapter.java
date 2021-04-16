@@ -19,7 +19,6 @@ public class ProgramAdapter extends BaseAdapter {
     public ProgramAdapter(Context context, List<Program> programs) {
         programList = programs;
         inflater = LayoutInflater.from(context);
-        //inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
 
@@ -40,14 +39,13 @@ public class ProgramAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View row = null;
+        View row;
         if (convertView == null) {
             row = inflater.inflate(R.layout.activity_view_record, parent,false);
         } else {
             row = convertView;
         }
         Program program = programList.get(position);
-        //TextView id = (TextView) convertView.findViewById(R.id.id);
         TextView name = (TextView) row.findViewById(R.id.title1);
         TextView desc = (TextView) row.findViewById(R.id.desc1);
 

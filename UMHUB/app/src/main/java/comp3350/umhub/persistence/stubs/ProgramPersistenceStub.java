@@ -3,8 +3,6 @@ package comp3350.umhub.persistence.stubs;
 import java.util.ArrayList;
 import java.util.List;
 
-import comp3350.umhub.objects.CourseReview;
-import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.Program;
 import comp3350.umhub.persistence.interfaces.IProgramPersistence;
 

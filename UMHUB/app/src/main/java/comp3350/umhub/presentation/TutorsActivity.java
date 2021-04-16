@@ -34,6 +34,9 @@ public class TutorsActivity extends AppCompatActivity {
 
         IAccessTutors accessTutors = Services.getAccessTutors();
         try{
+   //         tutorList = accessTutors.getTutors(CoursesActivity.getCourseSelected());
+  //          System.out.println(tutorList.size());
+   //         ArrayAdapter<Tutor> tutorArrayAdapter = new ArrayAdapter<Tutor>(this,android.R.layout.simple_list_item_activated_2,android.R.id.text1,tutorList){
             tutorEntryList = accessTutors.getTutorEntriesByCourse(CoursesActivity.getCourseSelected());
 
             listView = (ListView) findViewById(R.id.list_view);

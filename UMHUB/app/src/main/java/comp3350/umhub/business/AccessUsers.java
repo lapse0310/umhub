@@ -36,10 +36,6 @@ public class AccessUsers implements IAccessUsers {
         }
     }
 
-/*    @Override
-    public void removeUser(String username) {
-
-    }*/
 
     @Override
     public List<User> getAllUsers() {

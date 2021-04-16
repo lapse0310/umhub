@@ -20,7 +20,6 @@ public class CourseAdapter extends BaseAdapter {
     public CourseAdapter(Context context, List<Course> courseReviews) {
         courseList = courseReviews;
         inflater = LayoutInflater.from(context);
-        //inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
 
@@ -57,7 +56,7 @@ public class CourseAdapter extends BaseAdapter {
         id.setText(course.getId());
 
         switch (course.getYear()){
-            case 3:
+            case 2:
             case 4:
                 row.setBackgroundColor(Color.parseColor("#facc4d"));
                 break;

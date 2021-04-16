@@ -34,9 +34,6 @@ public class CourseTest {
         assertTrue("COMP 3350".equals(course.getId()));
         assertTrue("Course to get you trained in industry standards of coding projects".equals(course.getDescription()));
         assertEquals(3,course.getYear());
-//        assertTrue(programList.equals(course.getPrograms()));
-//        assertTrue(course.getPrograms().contains(program1));
-//        assertTrue(course.getPrograms().contains(program2));
 
         course1 = new Course("COMP1010","Not Software Engineering","This course is not SE",1,"Computer Science");
         assert(!course.equals(course1));

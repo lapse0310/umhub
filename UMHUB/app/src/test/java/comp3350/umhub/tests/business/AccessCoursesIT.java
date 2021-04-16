@@ -3,31 +3,20 @@ package comp3350.umhub.tests.business;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.umhub.business.AccessCourses;
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.Major;
-import comp3350.umhub.persistence.interfaces.ICoursePersistence;
-import comp3350.umhub.persistence.sqlite.CourseSQLDB;
-import comp3350.umhub.tests.utils.TestUtils;
-
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 public class AccessCoursesIT {
 
     private AccessCourses accessCourses;
-    private File tempDB;
-
     @Before
-    public void setUp() throws IOException {
-        this.tempDB = TestUtils.copyDB();
-        final ICoursePersistence persistence = new CourseSQLDB(null);
-        this.accessCourses = new AccessCourses(persistence);
+    public void setUp(){
+        this.accessCourses = new AccessCourses();
     }
 
 
@@ -37,13 +26,12 @@ public class AccessCoursesIT {
 
         Major major = new Major("Computer Science");
 
-        List<Course> courses = new ArrayList<>();
-        courses = accessCourses.getCoursesByMajor(major);
+        List<Course> courses = accessCourses.getCoursesByMajor(major);
 
         assertNotNull("Courses list should not be null", courses);
         assert(courses.size()!=0);
 
-        assertTrue("COMP1010".equals(courses.get(0).getName()));
+        assertEquals("COMP1010", courses.get(0).getName());
 
         System.out.println("Finished Access Course integration test - getCoursesByMajorTest");
 

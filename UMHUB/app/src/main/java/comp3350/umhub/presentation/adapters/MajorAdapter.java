@@ -20,7 +20,6 @@ public class MajorAdapter extends BaseAdapter {
     public MajorAdapter(Context context, List<Major> majors) {
         majorList = majors;
         inflater = LayoutInflater.from(context);
-        //inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
 

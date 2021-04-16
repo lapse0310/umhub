@@ -13,6 +13,7 @@ import comp3350.umhub.presentation.LoginActivity;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
@@ -26,17 +27,16 @@ public class RatingSystemTest {
     @Test
     public void reviewRating() {
         onView(withId(R.id.etUserName)).perform(typeText("admin"));
+        onView(withId(R.id.etUserName)).perform(closeSoftKeyboard());
         onView(withId(R.id.etPassword)).perform(typeText("123456"));
         onView(withId(R.id.etPassword)).perform(closeSoftKeyboard());
         onView(withId(R.id.btnLogin)).perform(click());
-        //onView(withId(R.id.button)).perform(click());
         onView(withText("Computer Science")).perform(click());
-        onView(withText("Computer Science General")).perform(click());
-        onView(withText("MATH1500")).perform(click());
-        onView(withId(R.id.viewTutors)).perform(click());
+        onView(withText("Computer Science Honours")).perform(click());
+        onView(withText("MATH 1500")).perform(click());
+        onView(withId(R.id.viewTutors)).perform(scrollTo(),click());
         onView(withText("TA Awesome")).perform(click());
         onView(withId(R.id.ratingBar)).perform(click());
         onView(withId(R.id.submitBtn)).perform(click());
-        onView(withId(R.id.backToTutors)).perform(click());
     }
 }

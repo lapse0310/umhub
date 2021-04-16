@@ -47,13 +47,9 @@ public class CourseReviewsActivity extends AppCompatActivity {
         courseDescription = (TextView) findViewById(R.id.courseDescription);
         courseDescription.setText(courseSelected.getDescription());
 
-//        setContentView(R.layout.fragment_emp_list);
-
         accessCourseReviews = Services.getAccessCourseReviews();
         courseReviewList = accessCourseReviews.getCourseReviewByCourse(courseSelected);
 
-//        listView = (ListView) findViewById(R.id.list_view);
-//        listView.setEmptyView(findViewById(R.id.empty));
 
         int itemLimit = 3;
 
@@ -68,7 +64,6 @@ public class CourseReviewsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
 
-                //CourseReview c = courseReviewList.get(position);
                 CourseReview c = (CourseReview) adapter.getItem(position);
                 Intent modify_intent = new Intent(getApplicationContext(), SeeCourseReviewActivity.class);
                 modify_intent.putExtra("id", c.getId());

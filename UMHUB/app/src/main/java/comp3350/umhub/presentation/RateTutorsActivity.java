@@ -68,6 +68,7 @@ public class RateTutorsActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     public void buttonUpdateRating(View view){
+
         try{
             currentUser = Services.getCurrentUser();
             iAccessTutors = Services.getAccessTutors();
@@ -81,7 +82,9 @@ public class RateTutorsActivity extends AppCompatActivity {
             }
 //            tutorEntry.setRating(rateValue);
             float avgRating = iAccessTutors.getAverageRating(tutorEntry);
-            showRating.setText("TutorEntry rating is now "+ avgRating);
+
+        Intent tutorIntent = new Intent(RateTutorsActivity.this,TutorsActivity.class);
+        RateTutorsActivity.this.startActivity(tutorIntent);
         } catch (UserException e) {
             e.printStackTrace();
         }

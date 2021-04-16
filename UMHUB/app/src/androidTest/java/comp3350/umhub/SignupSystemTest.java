@@ -29,8 +29,7 @@ public class SignupSystemTest {
     public void setup(){
         IUserPersistence userPersistence = Services.getUserPersistence();
         try {
-            if (userPersistence.getUser("sigupTest") != null) {
-                userPersistence.insertUser("helloworld","hello");
+            if (userPersistence.getUser("signupTest") != null) {
                 userPersistence.delete("signupTest");
             }
         }catch (Exception e)

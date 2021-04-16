@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.umhub.objects.Major;
-import comp3350.umhub.objects.Program;
 import comp3350.umhub.persistence.interfaces.IMajorPersistence;
 
 public class MajorPersistenceStub implements IMajorPersistence {

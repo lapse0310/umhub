@@ -3,27 +3,24 @@ package comp3350.umhub.tests.business;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.IOException;
 import java.util.List;
 
 
-import comp3350.umhub.business.AccessMajors;
+import comp3350.umhub.application.Services;
+import comp3350.umhub.business.IAccessMajors;
 import comp3350.umhub.objects.Major;
-import comp3350.umhub.persistence.interfaces.IMajorPersistence;
 import comp3350.umhub.persistence.sqlite.MajorSQLDB;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class AccessMajorsIT {
-    private AccessMajors accessMajors;
+    private IAccessMajors accessMajors;
 
 
     @Before
-    public void setUp() throws IOException {
-        this.tempDB = TestUtils.copyDB();
-        final IMajorPersistence persistence = new MajorSQLDB();
-        this.accessMajors = new AccessMajors(persistence);
+    public void setUp(){
+        this.accessMajors = Services.getAccessMajors();
     }
 
     @Test

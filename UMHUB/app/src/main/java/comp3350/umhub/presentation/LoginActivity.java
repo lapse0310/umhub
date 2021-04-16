@@ -1,6 +1,5 @@
 package comp3350.umhub.presentation;
 
-//import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -51,24 +50,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
 
-    //@RequiresApi(api = Build.VERSION_CODES.M)
-    /*public void setKeyboardVisibility(boolean show) {
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        if(show){
-            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
-        }else{
-            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),0);
-        }
-    }*/
 
-    //@RequiresApi(api = Build.VERSION_CODES.M)
     public void onClick(View view) {
         String username = eName.getText().toString();
         String password = ePassword.getText().toString();
         switch ( view.getId() ){
             case R.id.btnLogin:
-                //login has been clicked
-                //setKeyboardVisibility(false);
 
                 try
                 {
