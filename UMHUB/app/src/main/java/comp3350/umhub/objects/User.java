@@ -32,4 +32,11 @@ public class User {
     public boolean equals(User other){
         return this.username.equals(other.username);
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                '}';
+    }
 }

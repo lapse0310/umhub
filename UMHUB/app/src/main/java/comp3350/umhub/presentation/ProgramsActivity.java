@@ -3,80 +3,80 @@ package comp3350.umhub.presentation;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 import comp3350.umhub.R;
 import comp3350.umhub.application.Services;
 import comp3350.umhub.business.IAccessPrograms;
-import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.Program;
+import comp3350.umhub.presentation.adapters.ProgramAdapter;
 
 public class ProgramsActivity extends AppCompatActivity {
 
+    private IAccessPrograms iAccessPrograms;
+    private ListView listView;
     private List<Program> programList;
-    private static Program programSelected = null;
+    private static Program programSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_programs);
 
-        IAccessPrograms accessProgram = Services.getAccessPrograms();
+        setContentView(R.layout.fragment_emp_list);
 
-        try
-        {
-            Major majorSelected = MajorsActivity.getMajorSelected();
-            programList = accessProgram.getPrograms(majorSelected);
-            ArrayAdapter<Program> programArrayAdapter = new ArrayAdapter<Program>(this, android.R.layout.simple_list_item_activated_2, android.R.id.text1, programList) {
-
-                @Override
-                public View getView(int position, View convertView, ViewGroup parent) {
-
-                    View view = super.getView(position, convertView, parent);
-
-                    TextView text1 = (TextView) view.findViewById(android.R.id.text1);
-
-                    text1.setText(programList.get(position).getName());
-                    text1.setTextColor(Color.BLACK);
-
-                    return view;
-
-                }
-            };
-
-            final ListView listView = (ListView)findViewById(R.id.listPrograms);
-            listView.setAdapter(programArrayAdapter);
-
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    programSelected = programList.get(position);
-                    Intent courseIntent = new Intent(ProgramsActivity.this, CoursesActivity.class);
-                    startActivity(courseIntent);
-                }
-            });
-
-
+        iAccessPrograms = Services.getAccessPrograms();
+        Major major = MajorsActivity.getMajorSelected();
+        try {
+            setTitle(String.format("Programs under %s", major.getName()));
+        } catch (NullPointerException e) {
+            setTitle("All Programs");
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "No major selected", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
+            toast.show();
         }
-        catch (final NullPointerException e)
-        {
-            Messages.fatalError(this, e.getMessage());
-        }
+
+        if (major== null)
+            programList = iAccessPrograms.getAllPrograms();
+        else
+            programList = iAccessPrograms.getProgramsByMajor(major);
+
+        listView = (ListView) findViewById(R.id.list_view);
+        listView.setEmptyView(findViewById(R.id.empty));
+        ProgramAdapter adapter = new ProgramAdapter(this, programList);
+        adapter.notifyDataSetChanged();
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
+                programSelected = programList.get(position);
+                if (!Services.getAccessCourses().getCoursesByProgram(programSelected).isEmpty()) {
+                    Intent modify_intent = new Intent(getApplicationContext(), CoursesActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(modify_intent);
+                }
+                else{
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            "Course information not available. Please try another option", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
+                    toast.show();
+                }
+
+            }
+        });
 
     }
-
+    
     public void buttonCoursesOnClick(View view) {
-        Intent majorsIntent = new Intent(ProgramsActivity.this, CoursesActivity.class);
+        Intent majorsIntent = new Intent(ProgramsActivity.this, CoursesActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         ProgramsActivity.this.startActivity(majorsIntent);
     }
 
@@ -84,6 +84,17 @@ public class ProgramsActivity extends AppCompatActivity {
     public static Program getProgramSelected(){
         return programSelected;
     }
+
+    public static void setProgramSelected(Program programSelected) {
+        ProgramsActivity.programSelected = programSelected;
+    }
+
+    @Override
+    public void onBackPressed() {
+        MajorsActivity.setMajorSelected(null);
+        super.onBackPressed();
+    }
+
 
 }
 

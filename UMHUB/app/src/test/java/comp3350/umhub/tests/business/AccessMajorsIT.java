@@ -3,37 +3,31 @@ package comp3350.umhub.tests.business;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-import comp3350.umhub.business.AccessMajors;
+
+import comp3350.umhub.application.Services;
+import comp3350.umhub.business.IAccessMajors;
 import comp3350.umhub.objects.Major;
-import comp3350.umhub.persistence.IMajorPersistence;
-import comp3350.umhub.persistence.hsqldb.MajorPersistenceHSQLDB;
-import comp3350.umhub.tests.utils.TestUtils;
+import comp3350.umhub.persistence.sqlite.MajorSQLDB;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class AccessMajorsIT {
-    private AccessMajors accessMajors;
-    private File tempDB;
+    private IAccessMajors accessMajors;
 
 
     @Before
-    public void setUp() throws IOException {
-        this.tempDB = TestUtils.copyDB();
-        final IMajorPersistence persistence = new MajorPersistenceHSQLDB(this.tempDB.getAbsolutePath().replace(".script", ""));
-        this.accessMajors = new AccessMajors(persistence);
+    public void setUp(){
+        this.accessMajors = Services.getAccessMajors();
     }
 
     @Test
     public void getMajorsTest(){
 
         System.out.println("\n Starting Access Majors integration test - getMajors");
-        List<Major> majors  =accessMajors.getMajors();
+        List<Major> majors  =accessMajors.getAllMajors();
 
         assertNotNull("Majors list should not be null", majors);
         assert(majors.size()!=0);

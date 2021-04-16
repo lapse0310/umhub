@@ -2,47 +2,48 @@ package comp3350.umhub.presentation;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.SimpleCursorAdapter;
-
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import comp3350.umhub.R;
 import comp3350.umhub.application.Services;
+import comp3350.umhub.application.UserException;
 import comp3350.umhub.business.IAccessCourseReviews;
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.User;
-import comp3350.umhub.persistence.ICourseReviewPersistence;
-import comp3350.umhub.persistence.sqlite.CourseReviewSQLDB;
 
-public class WriteCourseReviewActivity extends AppCompatActivity {
+public class WriteCourseReviewActivity extends AppCompatActivity implements View.OnClickListener {
     User currentUser;
     Course courseSelected;
-    ICourseReviewPersistence courseReviewSQLDB;
+    IAccessCourseReviews accessCourseReviews;
     EditText reviewEditText;
-    EditText reviewScoreEditText;
     RadioGroup radioGroup;
     RadioButton radioButton;
+    Button submitButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_coursereview_input);
+        setTitle("Write Course Review");
+        accessCourseReviews = Services.getAccessCourseReviews();
 
-        courseReviewSQLDB = Services.getCourseReviewSQLDB(this);
-
-        try{
+        try {
             reviewEditText = (EditText) findViewById(R.id.reviewEditText);
             radioGroup = findViewById(R.id.radio_group);
-        }
-        catch (final Exception e){
-            Messages.fatalError(this,e.getMessage());
+            submitButton = (Button) findViewById(R.id.button2);
+
+            submitButton.setOnClickListener(this);
+        } catch (final Exception e) {
+            Messages.fatalError(this, e.getMessage());
         }
 
 
@@ -53,25 +54,35 @@ public class WriteCourseReviewActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    public void buttonSubmitCourseReviewOnClick(View view){
-        currentUser = Services.getCurrentUser();
-        courseSelected = CoursesActivity.getCourseSelected();
+    public void onClick(View view) {
 
-        String courseID = courseSelected.getId();
-        String userID = currentUser.getUsername();
-        String review = reviewEditText.getText().toString();
-        //int score = Integer.parseInt(reviewScoreEditText.getText().toString());
-        int score = getRadioButtonValue();
-        courseReviewSQLDB.insert(courseID,userID,review,score);
-        returnHome();
+        switch (view.getId()) {
+            case R.id.button2:
+                try {
+                    currentUser = Services.getCurrentUser();
+                    courseSelected = CoursesActivity.getCourseSelected();
+                    String courseID = courseSelected.getId();
+                    String userID = currentUser.getUsername();
+                    String review = reviewEditText.getText().toString();
+                    int score = getRadioButtonValue();
 
+                    accessCourseReviews.add(courseID, userID, review, score);
+                    returnHome();
+                } catch (UserException e) {
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            "Please log in to leave a review", Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
+                    toast.show();
+                }
+                break;
+        }
     }
 
-    public int getRadioButtonValue(){
+
+    public int getRadioButtonValue() {
         int radioId = radioGroup.getCheckedRadioButtonId();
         radioButton = findViewById(radioId);
         int score = Integer.parseInt(radioButton.getText().toString());
-        System.out.println("Radio Button value is "+score);
         return score;
     }
 

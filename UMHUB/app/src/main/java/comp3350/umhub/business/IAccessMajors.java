@@ -4,7 +4,7 @@ import java.util.List;
 
 import comp3350.umhub.objects.Major;
 
-//get list of majors available
 public interface IAccessMajors {
-    List<Major> getMajors();
+    Major getMajor(String majorId);
+    List<Major> getAllMajors();
 }

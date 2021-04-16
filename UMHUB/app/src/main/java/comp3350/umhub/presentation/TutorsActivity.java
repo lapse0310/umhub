@@ -4,57 +4,47 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.List;
 
 import comp3350.umhub.R;
 import comp3350.umhub.application.Services;
 import comp3350.umhub.business.IAccessTutors;
-import comp3350.umhub.objects.Tutor;
+import comp3350.umhub.objects.TutorEntry;
+import comp3350.umhub.presentation.adapters.TutorAdapter;
 
 public class TutorsActivity extends AppCompatActivity {
-    private List<Tutor> tutorList;
-    private static Tutor tutorSelected = null;
+    private List<TutorEntry> tutorEntryList;
+    private static TutorEntry tutorEntrySelected = null;
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tutors);
+        setContentView(R.layout.fragment_emp_list);
+        setTitle("Available Tutors");
 
         IAccessTutors accessTutors = Services.getAccessTutors();
         try{
-            tutorList = accessTutors.getTutors(CoursesActivity.getCourseSelected());
-            ArrayAdapter<Tutor> tutorArrayAdapter = new ArrayAdapter<Tutor>(this,android.R.layout.simple_list_item_activated_2,android.R.id.text1,tutorList){
+            tutorEntryList = accessTutors.getTutorEntriesByCourse(CoursesActivity.getCourseSelected());
 
-                @Override
-                public View getView(int position, View convertView, ViewGroup parent) {
-                    View view = super.getView(position, convertView, parent);
-
-                    TextView text1 = (TextView) view.findViewById(android.R.id.text1);
-                    TextView text2 = (TextView) view.findViewById(android.R.id.text2);
-                    text1.setText(tutorList.get(position).displayName());
-                    text2.setText(tutorList.get(position).displaySub());
-
-                    return view;
-                }
-            };
-            final ListView listView = (ListView)findViewById(R.id.listTutors);
-            listView.setAdapter(tutorArrayAdapter);
+            listView = (ListView) findViewById(R.id.list_view);
+            listView.setEmptyView(findViewById(R.id.empty));
+            TutorAdapter adapter = new TutorAdapter(this, tutorEntryList);
+            adapter.notifyDataSetChanged();
+            listView.setAdapter(adapter);
 
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    tutorSelected = tutorList.get(position);
-                    Intent courseIntent = new Intent(TutorsActivity.this, RateTutorsActivity.class);
-                    startActivity(courseIntent);
+                public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
+                    tutorEntrySelected = tutorEntryList.get(position);
+                    Intent modify_intent = new Intent(getApplicationContext(), RateTutorsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(modify_intent);
+
                 }
             });
         }
@@ -65,11 +55,14 @@ public class TutorsActivity extends AppCompatActivity {
     }
 
     public void buttonGoBack(View view){
-        Intent coursesIntent = new Intent(TutorsActivity.this, CoursesActivity.class);
+        Intent coursesIntent = new Intent(TutorsActivity.this, CoursesActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         TutorsActivity.this.startActivity(coursesIntent);
     }
 
-    public static Tutor getTutorSelected(){
-        return tutorSelected;
+    public static TutorEntry getTutorEntrySelected(){
+        return tutorEntrySelected;
     }
+
+
+
 }

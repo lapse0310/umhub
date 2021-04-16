@@ -3,16 +3,13 @@ package comp3350.umhub.persistence.stubs;
 import java.util.ArrayList;
 import java.util.List;
 
-import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.CourseReview;
-import comp3350.umhub.objects.User;
-import comp3350.umhub.persistence.ICourseReviewPersistence;
+import comp3350.umhub.persistence.interfaces.ICourseReviewPersistence;
 
 public class CourseReviewPersistenceStub implements ICourseReviewPersistence {
     int id = 1;
     List<CourseReview> courseReviews;
 
-    @Override
     public CourseReview getCourseReview(int id) {
         CourseReview courseReview = null;
         for (CourseReview review : courseReviews) {
@@ -55,18 +52,18 @@ public class CourseReviewPersistenceStub implements ICourseReviewPersistence {
         String u2 = "u2";
         String u3 = "u3";
         String u4 = "u4";
-        insert(u1,comp3350,"Awesome",5);
-        insert(u1,comp3170,"Nice",5);
-        insert(u1,comp3010,"Awesome",5);
-        insert(u2,comp3430,"Awesome",5);
-        insert(u2,comp3170,"Great",5);
-        insert(u2,comp3350,"Awesome",5);
-        insert(u3,comp3350,"Excellent",5);
-        insert(u3,comp3010,"Loved it",5);
-        insert(u3,comp3430,"Awesome",5);
-        insert(u4,comp3010,"Awesome",5);
-        insert(u4,comp3170,"Ugh",2);
-        insert(u4,comp3350,"Awesome",5);
+        insert(comp3350,u1,"Awesome",5);
+        insert(comp3170,u1,"Nice",5);
+        insert(comp3010,u1,"Awesome",5);
+        insert(comp3430,u2,"Awesome",5);
+        insert(comp3170,u2,"Great",5);
+        insert(comp3350,u2,"Awesome",5);
+        insert(comp3350,u3,"Excellent",5);
+        insert(comp3010,u3,"Loved it",5);
+        insert(comp3430,u3,"Awesome",5);
+        insert(comp3010,u4,"Awesome",5);
+        insert(comp3170,u4,"Ugh",2);
+        insert(comp3350,u4,"Awesome",5);
 
     }
 

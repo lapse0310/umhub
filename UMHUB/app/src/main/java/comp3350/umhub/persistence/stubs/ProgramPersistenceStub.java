@@ -3,19 +3,18 @@ package comp3350.umhub.persistence.stubs;
 import java.util.ArrayList;
 import java.util.List;
 
-import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.Program;
-import comp3350.umhub.persistence.IProgramPersistence;
+import comp3350.umhub.persistence.interfaces.IProgramPersistence;
 
 public class ProgramPersistenceStub implements IProgramPersistence {
     List<Program> programs;
 
     public ProgramPersistenceStub(){
         this.programs = new ArrayList<>();
-        Major major1 = new Major("Computer Science");
-        Major major2 = new Major("Engineering");
-        Major major3 = new Major("Mathematics");
-        Major major4 = new Major ("Accounting");
+        String major1 = "Computer Science";
+        String major2 = "Engineering";
+        String major3 = "Mathematics";
+        String major4 = "Accounting";
         programs.add(new Program("Computer Science General",major1));
         programs.add(new Program("Computer Science - Math Joint Honors",major1));
         programs.add(new Program("Computer Science - Physics Joint Honors",major1));
@@ -37,5 +36,33 @@ public class ProgramPersistenceStub implements IProgramPersistence {
     @Override
     public List<Program> getProgramsSequential() {
         return programs;
+    }
+
+    @Override
+    public Program getProgram(String pid) {
+        Program program = null;
+        for (Program p : programs) {
+            if (p.getName() == pid){
+                program = p;
+                break;
+            }
+        }
+        return program;
+    }
+
+    @Override
+    public List<Program> getProgramsByMajor(String myMajor) {
+        List<Program> programList = new ArrayList<>();
+        for (Program p : programs) {
+            if (p.getMajor() == myMajor){
+                programList.add(p);
+            }
+        }
+        return programList;
+    }
+
+    @Override
+    public List<Program> getProgramsByCourse(String course) {
+        return new ArrayList<>();
     }
 }

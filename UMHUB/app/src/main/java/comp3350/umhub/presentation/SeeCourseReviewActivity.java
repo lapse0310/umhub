@@ -2,7 +2,6 @@ package comp3350.umhub.presentation;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -10,12 +9,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import comp3350.umhub.R;
 import comp3350.umhub.application.Services;
+import comp3350.umhub.business.IAccessCourseReviews;
 import comp3350.umhub.objects.CourseReview;
-import comp3350.umhub.persistence.ICourseReviewPersistence;
+import comp3350.umhub.persistence.interfaces.ICourseReviewPersistence;
 
 public class SeeCourseReviewActivity extends AppCompatActivity {
 
     ICourseReviewPersistence courseReviewSQLDB;
+    IAccessCourseReviews accessCourseReviews;
     TextView reviewTextView;
     TextView usernameTextView;
     TextView scoreTextView;
@@ -24,12 +25,11 @@ public class SeeCourseReviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_see_review);
-        courseReviewSQLDB = Services.getCourseReviewSQLDB(this);
+        accessCourseReviews = Services.getAccessCourseReviews();
 
         Intent intent = getIntent();
         int id = intent.getIntExtra("id",0);
-
-        CourseReview courseReview = courseReviewSQLDB.getCourseReview(id);
+        CourseReview courseReview = accessCourseReviews.getCourseReview(id);
 
         try{
             usernameTextView = (TextView) findViewById(R.id.username_3);

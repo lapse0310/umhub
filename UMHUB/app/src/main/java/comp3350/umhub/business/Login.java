@@ -1,35 +1,57 @@
 package comp3350.umhub.business;
 
+import javax.security.auth.login.LoginException;
+
 import comp3350.umhub.application.Services;
+import comp3350.umhub.application.SignUpException;
 import comp3350.umhub.objects.User;
 
-public class Login {
+public class Login implements ILogin{
+    private IAccessUsers iAccessUsers;
 
-    public Login(String[] info) throws LoginException {
-        if(info[0].isEmpty() || info[1].isEmpty())
-        {
-            throw new LoginException("Please enter valid credentials!");
-        }
-
-
-        if(!Services.getLoginPersistence().userExist(info[0],info[1])){
-            Services.getLoginPersistence().insertUser(info[0],info[1]);
-        }
-
-        User user = new User(info[0],info[1]);
-        Services.setCurrentUser(user);
+    public Login()
+    {
+        iAccessUsers = Services.getAccessUsers();
     }
 
-    public class LoginException extends Exception{
+    public Login(final IAccessUsers accessUsers)
+    {
+        this.iAccessUsers = accessUsers;
+    }
 
-        public LoginException(){
-            super();
+    @Override
+    public void signUp(String username, String password) throws SignUpException {
+        try {
+            User user = iAccessUsers.getUser(username);
+            if (user != null) {
+                throw new SignUpException("Username is already taken !");
+            }
+        }catch(Exception e){
+            throw new SignUpException("Error checking if username has been taken");
         }
-
-        public LoginException(String message){
-            super(message);
+        try {
+            iAccessUsers.addUser(username,password);
+        }catch(Exception e){
+            throw new SignUpException("Error adding user to signed-up users");
         }
     }
+
+
+    @Override
+    public void login(String username, String password) throws LoginException {
+        try {
+            User user = iAccessUsers.getUser(username);
+            if (user == null || !user.getPassword().equals(password)) {
+                throw new LoginException("Invalid username or password");
+            } else {
+                iAccessUsers.setCurrentUser(username);
+            }
+        }catch(Exception e){
+            throw new LoginException("Invalid username or password");
+        }
+    }
+
 
 }
+
 
