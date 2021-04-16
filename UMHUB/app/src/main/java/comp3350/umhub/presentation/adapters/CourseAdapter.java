@@ -2,11 +2,14 @@ package comp3350.umhub.presentation.adapters;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
 
 import java.util.List;
 
@@ -38,6 +41,7 @@ public class CourseAdapter extends BaseAdapter {
         return position;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View row = null;
@@ -53,7 +57,10 @@ public class CourseAdapter extends BaseAdapter {
 
         name.setText(course.getName());
         desc.setText(course.getDescription());
+        desc.setTextSize(16);
         id.setText(course.getId());
+        id.setTextSize(16);
+        id.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 
         switch (course.getYear()){
             case 2:

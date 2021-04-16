@@ -50,8 +50,6 @@ public class CourseReviewsActivity extends AppCompatActivity {
         accessCourseReviews = Services.getAccessCourseReviews();
         courseReviewList = accessCourseReviews.getCourseReviewByCourse(courseSelected);
 
-//        int itemLimit = 3;
-
         listView = (ListView) findViewById(R.id.reviewListView);
         listView.setEmptyView(findViewById(R.id.empty));
         ReviewAdapter adapter = new ReviewAdapter(this,courseReviewList);

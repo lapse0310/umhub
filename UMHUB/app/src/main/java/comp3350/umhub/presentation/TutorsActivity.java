@@ -55,7 +55,6 @@ public class TutorsActivity extends AppCompatActivity {
     }
 
     public void buttonGoBack(View view){
-        Intent coursesIntent = new Intent(TutorsActivity.this, CoursesActivity.class);
         Intent coursesIntent = new Intent(TutorsActivity.this, CoursesActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         TutorsActivity.this.startActivity(coursesIntent);
     }

@@ -35,10 +35,11 @@ public class MajorsActivity extends AppCompatActivity {
         User user;
         try {
             user = Services.getCurrentUser();
-            setTitle("Welcome " + user.getUsername());
+            Toast.makeText(getApplicationContext(),"Welcome back, "+user.getUsername(),Toast.LENGTH_LONG).show();
         } catch (UserException e) {
-            setTitle("Welcome, Guest");
+            Toast.makeText(getApplicationContext(),"Welcome, Guest User",Toast.LENGTH_LONG).show();
         }
+        setTitle("Available Courses");
 
         try
         {

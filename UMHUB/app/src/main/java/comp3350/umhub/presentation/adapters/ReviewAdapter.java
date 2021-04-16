@@ -1,11 +1,14 @@
 package comp3350.umhub.presentation.adapters;
 
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
 
 import java.util.List;
 
@@ -43,6 +46,7 @@ public class ReviewAdapter extends BaseAdapter {
         return position;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View row = null;
@@ -59,7 +63,8 @@ public class ReviewAdapter extends BaseAdapter {
         username.setText(courseReview.getUser());
         review.setText(courseReview.getReview());
         reviewScore.setText(String.valueOf(courseReview.getScore()));
-
+        reviewScore.setTextSize(20);
+        reviewScore.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         return row;
     }
 }
