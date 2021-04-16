@@ -57,6 +57,11 @@
         {% include section-sales.html %}
       </section>
     {% endif %}
+    {%if site.show_velocity_card %}
+      <section class="card neumorphism-card-big">
+        {% include section-velocity.html %}
+      </section>
+    {% endif %}
     {%if site.show_postmortem_card %}
       <section class="card neumorphism-card-big">
         {% include section-postmortem.html %}
