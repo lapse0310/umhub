@@ -1,5 +1,8 @@
 package comp3350.umhub;
 
+import android.content.Context;
+
+import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
@@ -32,8 +35,12 @@ public class SignupSystemTest {
             if (userPersistence.getUser("signupTest") != null) {
                 userPersistence.delete("signupTest");
             }
+            else {
+                System.out.println("NPPPOPPPOPOPOP");
+            }
         }catch (Exception e)
         {
+            System.out.println("HJKHKJEBJKHKJHKJKHHKJHKHKHKJH");
             e.printStackTrace();
         }
     }
