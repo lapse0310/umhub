@@ -3,10 +3,12 @@ package comp3350.umhub.presentation.adapters;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
@@ -52,21 +54,32 @@ public class TutorAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View row = null;
         if (convertView == null) {
-            row = inflater.inflate(R.layout.activity_view_record, parent, false);
+            row = inflater.inflate(R.layout.fragment_list_item_img3, parent,false);
         } else {
             row = convertView;
         }
         TutorEntry tutorEntry = tutorEntryList.get(position);
-        TextView rating = (TextView) row.findViewById(R.id.id1);
-        TextView tutorName = (TextView) row.findViewById(R.id.title1);
-        TextView email = (TextView) row.findViewById(R.id.desc1);
+        TextView score = (TextView) row.findViewById(R.id.score_4);
+        TextView name = (TextView) row.findViewById(R.id.name_4);
+        TextView desc = (TextView) row.findViewById(R.id.desc_4);
+        ImageView img = (ImageView) row.findViewById(R.id.image_4) ;
 
-        rating.setTextSize(20);
-        rating.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        tutorName.setText(tutorEntry.getName()+" - "+tutorEntry.getType());
-        email.setText(tutorEntry.getEmail());
-        rating.setText(String.format("%.1f",tutorEntry.getAverageRating()));
+        name.setText(tutorEntry.getName());
+        desc.setText(String.format("%s \n%s",tutorEntry.getEmail(),tutorEntry.getType()));
+        score.setText(String.format("%.1f",tutorEntry.getAverageRating()));
+
+        img.setImageResource(R.drawable.ic_asset_student);
+        img.setScaleX(.75f);
+        img.setScaleY(.75f);
+
+        name.setTextSize(16);
+        desc.setTextSize(16);
+
+        name.setGravity(Gravity.CENTER_VERTICAL);
+
 
         return row;
     }
+
+
 }
