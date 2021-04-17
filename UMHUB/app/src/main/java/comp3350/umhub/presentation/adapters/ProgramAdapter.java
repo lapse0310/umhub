@@ -52,11 +52,12 @@ public class ProgramAdapter extends BaseAdapter {
         TextView desc = (TextView) row.findViewById(R.id.desc1);
 
         name.setText(program.getName());
-        desc.setText(program.getMajor());
-
+        desc.setText(String.format("Courses: %d",program.getCourseCount()));
+//
         if (Services.getAccessCourses().getCoursesByProgram(program).isEmpty()){
             name.setTextColor(Color.parseColor("#9e9e9e"));
             desc.setTextColor(Color.parseColor("#9e9e9e"));
+            row.setEnabled(false);
         }
         return row;
 

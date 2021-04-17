@@ -1,6 +1,7 @@
 package comp3350.umhub.business;
 
 
+import java.util.Collections;
 import java.util.List;
 
 import comp3350.umhub.application.Services;
@@ -27,6 +28,8 @@ public class AccessMajors implements IAccessMajors {
 
     @Override
     public List<Major> getAllMajors() {
-        return majorPersistence.getMajorsSequential();
+        List<Major> majors = majorPersistence.getMajorsSequential();
+        Collections.sort(majors,new majorSorter());
+        return majors;
     }
 }

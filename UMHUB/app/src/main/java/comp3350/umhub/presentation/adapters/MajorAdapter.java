@@ -48,6 +48,8 @@ public class MajorAdapter extends BaseAdapter {
         }
         Major major = majorList.get(position);
         TextView name = (TextView) row.findViewById(R.id.title1);
+        TextView desc = (TextView) row.findViewById(R.id.desc1);
+        desc.setText(String.format("Courses: %d \nPrograms: %d",major.getCourseCount(),major.getProgramCount()));
         name.setText(major.getName());
         return row;
     }

@@ -1,6 +1,7 @@
 package comp3350.umhub.business;
 
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import comp3350.umhub.persistence.interfaces.ICoursePersistence;
 
 public class AccessCourses implements IAccessCourses {
     private ICoursePersistence coursePersistence;
-    private List<Course> courses;
+//    private List<Course> courses;
 
 
     public AccessCourses( ){
@@ -31,23 +32,24 @@ public class AccessCourses implements IAccessCourses {
 
     @Override
     public List<Course> getAllCourses() {
-        courses = coursePersistence.getCoursesSequential();
+        List<Course> courses = coursePersistence.getCoursesSequential();
         Collections.sort(courses,new courseSorter());
         return courses;
     }
 
     @Override
     public List<Course> getCoursesByProgram(Program program) {
+        List<Course> courses = new ArrayList<>();
         if (program != null){
             courses = coursePersistence.getCoursesByProgram(program.getName());
             Collections.sort(courses,new courseSorter());
         }
-
         return courses;
     }
 
     @Override
     public List<Course> getCoursesByYearProgram(Program program, int year) {
+        List<Course> courses = new ArrayList<>();
         if (program != null){
             courses = coursePersistence.getCoursesByYearProgram(program.getName(),year);
             Collections.sort(courses, new courseSorter());
@@ -57,6 +59,7 @@ public class AccessCourses implements IAccessCourses {
 
     @Override
     public List<Course> getCoursesByMajor(Major major) {
+        List<Course> courses = new ArrayList<>();
         if (major != null){
             courses = coursePersistence.getCoursesByMajor(major.getName());
             Collections.sort(courses,new courseSorter());
@@ -67,7 +70,7 @@ public class AccessCourses implements IAccessCourses {
     @Override
     public List<Course> getCoursesByYearMajor(Major major, int year) {
         if (major != null) return coursePersistence.getCoursesByYearMajor(major.getName(),year);
-        return null;
+        return new ArrayList<>();
     }
 
 }

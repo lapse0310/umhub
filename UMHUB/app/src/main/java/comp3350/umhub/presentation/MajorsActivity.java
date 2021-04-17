@@ -1,5 +1,6 @@
 package comp3350.umhub.presentation;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,12 +10,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Collections;
 import java.util.List;
 
 import comp3350.umhub.R;
 import comp3350.umhub.application.Services;
 import comp3350.umhub.application.UserException;
 import comp3350.umhub.business.IAccessMajors;
+import comp3350.umhub.business.majorSorter;
 import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.User;
 import comp3350.umhub.presentation.adapters.MajorAdapter;
@@ -27,6 +30,7 @@ public class MajorsActivity extends AppCompatActivity {
     private IAccessMajors accessMajors;
 
 
+    @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +49,7 @@ public class MajorsActivity extends AppCompatActivity {
         {
             accessMajors = Services.getAccessMajors();
             majorList = accessMajors.getAllMajors();
+            Collections.sort(majorList,new majorSorter(majorSorter.BY_COURSE).reversed());
 
             listView = (ListView) findViewById(R.id.list_view);
             listView.setEmptyView(findViewById(R.id.empty));

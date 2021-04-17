@@ -1,8 +1,11 @@
 package comp3350.umhub.presentation;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -10,11 +13,13 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.Collections;
 import java.util.List;
 
 import comp3350.umhub.R;
 import comp3350.umhub.application.Services;
 import comp3350.umhub.business.IAccessPrograms;
+import comp3350.umhub.business.programSorter;
 import comp3350.umhub.objects.Major;
 import comp3350.umhub.objects.Program;
 import comp3350.umhub.presentation.adapters.ProgramAdapter;
@@ -26,6 +31,8 @@ public class ProgramsActivity extends AppCompatActivity {
     private List<Program> programList;
     private static Program programSelected;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,10 +51,9 @@ public class ProgramsActivity extends AppCompatActivity {
             toast.show();
         }
 
-        if (major== null)
-            programList = iAccessPrograms.getAllPrograms();
-        else
-            programList = iAccessPrograms.getProgramsByMajor(major);
+        if (major== null) programList = iAccessPrograms.getAllPrograms();
+        else              programList = iAccessPrograms.getProgramsByMajor(major);
+        Collections.sort(programList,new programSorter().reversed());
 
         listView = (ListView) findViewById(R.id.list_view);
         listView.setEmptyView(findViewById(R.id.empty));

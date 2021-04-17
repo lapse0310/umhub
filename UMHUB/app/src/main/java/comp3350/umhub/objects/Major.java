@@ -1,6 +1,8 @@
 package comp3350.umhub.objects;
 
 
+import comp3350.umhub.application.Services;
+
 public class Major {
     private final String name;
 
@@ -22,5 +24,13 @@ public class Major {
         return "Major{" +
                 "name='" + name + '\'' +
                 '}';
+    }
+
+    public int getCourseCount() {
+        return Services.getAccessCourses().getCoursesByMajor(this).size();
+    }
+
+    public int getProgramCount() {
+        return Services.getAccessPrograms().getProgramsByMajor(this).size();
     }
 }

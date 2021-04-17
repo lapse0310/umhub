@@ -73,12 +73,23 @@ public class CourseReviewsActivity extends AppCompatActivity {
 
         tutorsButton = findViewById(R.id.viewTutors);
         if (Services.getAccessTutors().getTutorEntriesByCourse(courseSelected).isEmpty()){
+            tutorsButton.setEnabled(false);
             tutorsButton.setText("No Tutors Available for This Course");
-            tutorsButton.setBackgroundColor(Color.parseColor("#bfbfbf"));
+//            tutorsButton.setBackgroundColor(Color.parseColor("#bfbfbf"));
         }
         else{
+            tutorsButton.setEnabled(true);
             tutorsButton.setText("Tutors Are Available for This Course");
+        }
 
+        Button writeReviewButton = findViewById(R.id.writeReviewButton);
+        try{
+            Services.getCurrentUser();
+            writeReviewButton.setEnabled(true);
+            writeReviewButton.setText("Write A Review");
+        }catch (UserException e){
+            writeReviewButton.setEnabled(false);
+            writeReviewButton.setText("Log In To Write A Review");
         }
     }
 
@@ -92,7 +103,7 @@ public class CourseReviewsActivity extends AppCompatActivity {
             Services.getCurrentUser();
             courseSelected = CoursesActivity.getCourseSelected();
             Intent add_mem = new Intent(this, WriteCourseReviewActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            add_mem.putExtra("courseID", CoursesActivity.getCourseSelected().getId());
+//            add_mem.putExtra("courseID", CoursesActivity.getCourseSelected().getId());
             startActivity(add_mem);
         } catch (UserException e) {
             Toast toast = Toast.makeText(getApplicationContext(),
@@ -104,10 +115,10 @@ public class CourseReviewsActivity extends AppCompatActivity {
     }
 
     public void buttonViewTutors(View view) {
-        if (!Services.getAccessTutors().getTutorEntriesByCourse(courseSelected).isEmpty()){
+//        if (!Services.getAccessTutors().getTutorEntriesByCourse(courseSelected).isEmpty()){
             Intent viewTutors = new Intent(CourseReviewsActivity.this, TutorsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             CourseReviewsActivity.this.startActivity(viewTutors);
-        }
+//        }
 
     }
 
