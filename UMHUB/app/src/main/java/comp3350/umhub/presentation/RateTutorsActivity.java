@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,7 +24,8 @@ import comp3350.umhub.objects.User;
 public class RateTutorsActivity extends AppCompatActivity {
 
     TutorEntry tutorEntry = TutorsActivity.getTutorEntrySelected(); //tutorEntry currently being rated
-    TextView rateCount, showRating;
+    TextView rateCount;
+    EditText showRating;
     Button submit;
     RatingBar ratingBar;
     float rateValue;
@@ -36,17 +38,18 @@ public class RateTutorsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ratetutor);
+        setContentView(R.layout.activity_ratecourse);
         textView = findViewById(R.id.textView);
         rateCount = findViewById(R.id.rateCount);
         ratingBar = findViewById(R.id.ratingBar);
         submit = findViewById(R.id.submitBtn);
-        showRating = findViewById(R.id.showRating);
+        showRating = findViewById(R.id.reviewEditText2);
 
         setTitle("Rate Tutor");
         try {
             textView.setText(String.format("How would you rate %s as a %s", tutorEntry.getName(), tutorEntry.getType()));
 
+//            ratingBar.setClickable(false);
             ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
 
                 @SuppressLint({"SetTextI18n", "DefaultLocale"})
@@ -58,7 +61,6 @@ public class RateTutorsActivity extends AppCompatActivity {
                         showRating.setText("Awful Tutor >: (");
                     } else if (rateValue <= 2) {
                         showRating.setText("Meh Tutor : |");
-
                     } else if (rateValue <= 3) {
                         showRating.setText("Decent Tutor : )");
                     } else if (rateValue <= 4) {

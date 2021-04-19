@@ -2,6 +2,7 @@ package comp3350.umhub.presentation;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -56,11 +57,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String password = ePassword.getText().toString();
         switch ( view.getId() ){
             case R.id.btnLogin:
-
                 try
                 {
                     iLogin.login(username,password);
-                    startActivity(new Intent(this , MajorsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                    String previous = getIntent().getStringExtra("previous");
+                    if (previous != null){
+                        if (previous.equals(CourseReviewsActivity.class.toString()))
+                            startActivity(new Intent(this, CourseReviewsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                    }
+                    else
+                        startActivity(new Intent(this, MajorsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+
                 }
                 catch(LoginException e)
                 {

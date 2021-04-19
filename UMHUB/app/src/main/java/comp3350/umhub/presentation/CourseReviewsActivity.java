@@ -23,6 +23,7 @@ import comp3350.umhub.application.UserException;
 import comp3350.umhub.business.IAccessCourseReviews;
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.CourseReview;
+import comp3350.umhub.objects.User;
 import comp3350.umhub.presentation.adapters.ReviewAdapter;
 
 public class CourseReviewsActivity extends AppCompatActivity {
@@ -34,6 +35,9 @@ public class CourseReviewsActivity extends AppCompatActivity {
     private IAccessCourseReviews accessCourseReviews;
     private List<CourseReview> courseReviewList;
     private Button tutorsButton;
+    private Button writeReviewButton;
+    private User currentUser;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,21 +79,34 @@ public class CourseReviewsActivity extends AppCompatActivity {
         if (Services.getAccessTutors().getTutorEntriesByCourse(courseSelected).isEmpty()){
             tutorsButton.setEnabled(false);
             tutorsButton.setText("No Tutors Available for This Course");
-//            tutorsButton.setBackgroundColor(Color.parseColor("#bfbfbf"));
         }
         else{
             tutorsButton.setEnabled(true);
             tutorsButton.setText("Tutors Are Available for This Course");
         }
 
-        Button writeReviewButton = findViewById(R.id.writeReviewButton);
+        writeReviewButton = findViewById(R.id.writeReviewButton);
         try{
-            Services.getCurrentUser();
-            writeReviewButton.setEnabled(true);
+            currentUser = Services.getCurrentUser();
             writeReviewButton.setText("Write A Review");
+            writeReviewButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent add_mem = new Intent(CourseReviewsActivity.this, WriteCourseReviewActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    add_mem.putExtra("previous",CourseReviewsActivity.class.toString());
+                    startActivity(add_mem);
+                }
+            });
         }catch (UserException e){
-            writeReviewButton.setEnabled(false);
             writeReviewButton.setText("Log In To Write A Review");
+            writeReviewButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent add_mem = new Intent(CourseReviewsActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    add_mem.putExtra("previous",CourseReviewsActivity.class.toString());
+                    startActivity(add_mem);
+                }
+            });
         }
     }
 
@@ -98,21 +115,7 @@ public class CourseReviewsActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    public void buttonWriteCourseReviewOnClick(View view) {
-        try {
-            Services.getCurrentUser();
-            courseSelected = CoursesActivity.getCourseSelected();
-            Intent add_mem = new Intent(this, WriteCourseReviewActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//            add_mem.putExtra("courseID", CoursesActivity.getCourseSelected().getId());
-            startActivity(add_mem);
-        } catch (UserException e) {
-            Toast toast = Toast.makeText(getApplicationContext(),
-                    "Please log in to leave a review",Toast.LENGTH_LONG);
-            toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
-            toast.show();
-        }
 
-    }
 
     public void buttonViewTutors(View view) {
 //        if (!Services.getAccessTutors().getTutorEntriesByCourse(courseSelected).isEmpty()){
