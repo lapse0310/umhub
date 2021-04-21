@@ -1,10 +1,14 @@
 package comp3350.umhub.presentation.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import android.text.Layout;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,6 +62,8 @@ public class ReviewItemFragment extends Fragment {
         }
     }
 
+    @SuppressLint("WrongConstant")
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -73,23 +79,37 @@ public class ReviewItemFragment extends Fragment {
             name.setText(String.format("%s", courseReview.getUser()));
             score.setText(String.format("%.1f", (float) courseReview.getScore()));
 
-            name.setTextSize(16);
-            desc.setTextSize(16);
+            float textSize = 18f;
+            score.setTextSize(textSize);
+            name.setTextSize(textSize);
+            desc.setTextSize(textSize);
+            desc.setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD);
 
             name.setGravity(Gravity.BOTTOM);
             score.setGravity(Gravity.CENTER);
 
             img.setImageResource(R.drawable.ic_asset_student);
-            img.setScaleX(.75f);
-            img.setScaleY(.75f);
+            float imgeScale = .75f;
+            img.setScaleX(imgeScale);
+            img.setScaleY(imgeScale);
 
             container.setClickable(true);
             container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), SeeCourseReviewActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    intent.putExtra("id", courseReview.getId());
-                    startActivity(intent);
+//                    Intent intent = new Intent(v.getContext(), SeeCourseReviewActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                    intent.putExtra("id", courseReview.getId());
+//                    startActivity(intent);
+                    final int NUM_LINES_UNEXP = 3;
+                    final int NUM_LINES_EXP = desc.getLineCount();
+                    switch (desc.getMaxLines()){
+                        case NUM_LINES_UNEXP:
+                            desc.setMaxLines(NUM_LINES_EXP);
+                            break;
+                        default:
+                            desc.setMaxLines(NUM_LINES_UNEXP);
+                            break;
+                    }
                 }
             });
         }
