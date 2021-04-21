@@ -3,16 +3,13 @@ package comp3350.umhub.presentation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.umhub.R;
@@ -23,15 +20,14 @@ import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.CourseReview;
 import comp3350.umhub.objects.TutorEntry;
 import comp3350.umhub.objects.User;
-import comp3350.umhub.presentation.adapters.ReviewAdapter;
 import comp3350.umhub.presentation.fragments.ReviewItemFragment;
 import comp3350.umhub.presentation.fragments.TutorItemFragment;
 
-public class CourseReviewsActivity extends AppCompatActivity {
+public class CourseActivity extends AppCompatActivity {
     private Course courseSelected;
     private TextView courseName;
     private TextView courseDescription;
-
+    private List<TutorEntry> tutors;
     private ListView listView;
     private IAccessCourseReviews accessCourseReviews;
     private List<CourseReview> courseReviewList;
@@ -45,7 +41,7 @@ public class CourseReviewsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
-        setContentView(R.layout.activity_coursereview_overview);
+        setContentView(R.layout.activity_course_overview);
         courseSelected = CoursesActivity.getCourseSelected();
         setTitle(courseSelected.getId());
 
@@ -58,25 +54,26 @@ public class CourseReviewsActivity extends AppCompatActivity {
         accessCourseReviews = Services.getAccessCourseReviews();
         courseReviewList = accessCourseReviews.getCourseReviewByCourse(courseSelected);
 
-/*        listView = (ListView) findViewById(R.id.reviewListView);
-        listView.setEmptyView(findViewById(R.id.empty));
-        ReviewAdapter adapter = new ReviewAdapter(this,courseReviewList);
-        adapter.notifyDataSetChanged();
-        listView.setAdapter(adapter);
-
-        // OnCLickListiner For List Items
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
-
-                CourseReview c = (CourseReview) adapter.getItem(position);
-                Intent modify_intent = new Intent(getApplicationContext(), SeeCourseReviewActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                modify_intent.putExtra("id", c.getId());
-                startActivity(modify_intent);
-            }
-        });*/
-        List<TutorEntry> tutors = Services.getAccessTutors().getTutorEntriesByCourse(courseSelected);
+        tutors = Services.getAccessTutors().getTutorEntriesByCourse(courseSelected);
         courseReviewList = accessCourseReviews.getCourseReviewByCourse(courseSelected);
+
+        TextView seeReviews = findViewById(R.id.userReviewsText);
+        TextView seeTutors = findViewById(R.id.tutorsText);
+        seeReviews.setText(String.format("User Reviews (%d)",courseReviewList.size()));
+        seeTutors.setText(String.format("Tutors (%d)",tutors.size()));
+        seeReviews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),AllCourseReviewsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            }
+        });
+        seeTutors.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),AllTutorsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+
+            }
+        });
 
         int review_frags[] = {R.id.review_item1,R.id.review_item2,R.id.review_item3};
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -111,8 +108,8 @@ public class CourseReviewsActivity extends AppCompatActivity {
             writeReviewButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent add_mem = new Intent(CourseReviewsActivity.this, WriteCourseReviewActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    add_mem.putExtra("previous",CourseReviewsActivity.class.toString());
+                    Intent add_mem = new Intent(CourseActivity.this, WriteCourseReviewActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    add_mem.putExtra("previous", CourseActivity.class.toString());
                     startActivity(add_mem);
                 }
             });
@@ -121,8 +118,8 @@ public class CourseReviewsActivity extends AppCompatActivity {
             writeReviewButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent add_mem = new Intent(CourseReviewsActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    add_mem.putExtra("previous",CourseReviewsActivity.class.toString());
+                    Intent add_mem = new Intent(CourseActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    add_mem.putExtra("previous", CourseActivity.class.toString());
                     startActivity(add_mem);
                 }
             });
@@ -139,11 +136,29 @@ public class CourseReviewsActivity extends AppCompatActivity {
 
     public void buttonViewTutors(View view) {
 //        if (!Services.getAccessTutors().getTutorEntriesByCourse(courseSelected).isEmpty()){
-            Intent viewTutors = new Intent(CourseReviewsActivity.this, TutorsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            CourseReviewsActivity.this.startActivity(viewTutors);
+            Intent viewTutors = new Intent(CourseActivity.this, AllTutorsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            CourseActivity.this.startActivity(viewTutors);
 //        }
 
     }
+
+    /*        listView = (ListView) findViewById(R.id.reviewListView);
+        listView.setEmptyView(findViewById(R.id.empty));
+        ReviewAdapter adapter = new ReviewAdapter(this,courseReviewList);
+        adapter.notifyDataSetChanged();
+        listView.setAdapter(adapter);
+
+        // OnCLickListiner For List Items
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
+
+                CourseReview c = (CourseReview) adapter.getItem(position);
+                Intent modify_intent = new Intent(getApplicationContext(), SeeCourseReviewActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                modify_intent.putExtra("id", c.getId());
+                startActivity(modify_intent);
+            }
+        });*/
 
 
 }

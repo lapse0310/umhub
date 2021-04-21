@@ -89,9 +89,9 @@ public class ReviewItemFragment extends Fragment {
             score.setGravity(Gravity.CENTER);
 
             img.setImageResource(R.drawable.ic_asset_student);
-            float imgeScale = .75f;
-            img.setScaleX(imgeScale);
-            img.setScaleY(imgeScale);
+            float imgScale = .75f;
+            img.setScaleX(imgScale);
+            img.setScaleY(imgScale);
 
             container.setClickable(true);
             container.setOnClickListener(new View.OnClickListener() {

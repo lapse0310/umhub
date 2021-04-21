@@ -1,6 +1,5 @@
 package comp3350.umhub.presentation;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -14,16 +13,11 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.text.BreakIterator;
-
 import comp3350.umhub.R;
 import comp3350.umhub.application.Services;
 import comp3350.umhub.business.IAccessCourseReviews;
-import comp3350.umhub.business.IAccessTutors;
 import comp3350.umhub.objects.CourseReview;
-import comp3350.umhub.objects.TutorRating;
 import comp3350.umhub.objects.User;
-import comp3350.umhub.persistence.interfaces.ICourseReviewPersistence;
 
 public class SeeCourseReviewActivity extends AppCompatActivity {
 
@@ -40,7 +34,7 @@ public class SeeCourseReviewActivity extends AppCompatActivity {
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ratecourse);
+        setContentView(R.layout.activity_rateitem);
         accessCourseReviews = Services.getAccessCourseReviews();
 
         Intent intent = getIntent();

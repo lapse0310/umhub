@@ -23,7 +23,7 @@ import comp3350.umhub.objects.User;
 
 public class RateTutorsActivity extends AppCompatActivity {
 
-    TutorEntry tutorEntry = TutorsActivity.getTutorEntrySelected(); //tutorEntry currently being rated
+    TutorEntry tutorEntry = AllTutorsActivity.getTutorEntrySelected(); //tutorEntry currently being rated
     TextView rateCount;
     EditText showRating;
     Button submit;
@@ -38,7 +38,7 @@ public class RateTutorsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ratecourse);
+        setContentView(R.layout.activity_rateitem);
         textView = findViewById(R.id.textView);
         rateCount = findViewById(R.id.rateCount);
         ratingBar = findViewById(R.id.ratingBar);
@@ -100,7 +100,7 @@ public class RateTutorsActivity extends AppCompatActivity {
             toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
             toast.show();
             onBackPressed();
-            Intent tutorIntent = new Intent(RateTutorsActivity.this, TutorsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            Intent tutorIntent = new Intent(RateTutorsActivity.this, AllTutorsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             RateTutorsActivity.this.startActivity(tutorIntent);
 
         } catch (UserException e) {
@@ -117,7 +117,7 @@ public class RateTutorsActivity extends AppCompatActivity {
     }
 
     public void buttonGoBack(View view) {
-        Intent tutorIntent = new Intent(RateTutorsActivity.this, TutorsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        Intent tutorIntent = new Intent(RateTutorsActivity.this, AllTutorsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         RateTutorsActivity.this.startActivity(tutorIntent);
     }
 }

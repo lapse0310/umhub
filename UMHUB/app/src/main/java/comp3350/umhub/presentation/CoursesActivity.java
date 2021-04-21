@@ -59,7 +59,7 @@ public class CoursesActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
                 setCourseSelected(courseList.get(position));
-                Intent modify_intent = new Intent(getApplicationContext(), CourseReviewsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Intent modify_intent = new Intent(getApplicationContext(), CourseActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(modify_intent);
             }
         });

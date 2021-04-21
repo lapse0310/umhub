@@ -17,7 +17,7 @@ import comp3350.umhub.business.IAccessTutors;
 import comp3350.umhub.objects.TutorEntry;
 import comp3350.umhub.presentation.adapters.TutorAdapter;
 
-public class TutorsActivity extends AppCompatActivity {
+public class AllTutorsActivity extends AppCompatActivity {
     private List<TutorEntry> tutorEntryList;
     private static TutorEntry tutorEntrySelected = null;
     private ListView listView;
@@ -55,8 +55,8 @@ public class TutorsActivity extends AppCompatActivity {
     }
 
     public void buttonGoBack(View view){
-        Intent coursesIntent = new Intent(TutorsActivity.this, CoursesActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        TutorsActivity.this.startActivity(coursesIntent);
+        Intent coursesIntent = new Intent(AllTutorsActivity.this, CoursesActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        AllTutorsActivity.this.startActivity(coursesIntent);
     }
 
     public static TutorEntry getTutorEntrySelected(){

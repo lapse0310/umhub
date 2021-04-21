@@ -12,10 +12,8 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import comp3350.umhub.R;
-import comp3350.umhub.objects.CourseReview;
 import comp3350.umhub.objects.TutorEntry;
-import comp3350.umhub.presentation.SeeCourseReviewActivity;
-import comp3350.umhub.presentation.TutorsActivity;
+import comp3350.umhub.presentation.AllTutorsActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -87,7 +85,7 @@ public class TutorItemFragment extends Fragment {
             container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), TutorsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    Intent intent = new Intent(v.getContext(), AllTutorsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
             });
