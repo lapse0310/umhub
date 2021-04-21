@@ -65,7 +65,7 @@ public class TutorAdapter extends BaseAdapter {
         ImageView img = (ImageView) row.findViewById(R.id.image_4) ;
 
         name.setText(tutorEntry.getName());
-        desc.setText(String.format("%s \n%s",tutorEntry.getEmail(),tutorEntry.getType()));
+        desc.setText(tutorEntry.getDescription());
         score.setText(String.format("%.1f",tutorEntry.getAverageRating()));
 
         img.setImageResource(R.drawable.ic_asset_student);

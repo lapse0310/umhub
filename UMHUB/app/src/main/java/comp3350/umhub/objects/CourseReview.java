@@ -1,6 +1,8 @@
 package comp3350.umhub.objects;
 
-public class CourseReview{
+import java.io.Serializable;
+
+public class CourseReview implements Serializable {
     int _id;
     String review;
     String userId;

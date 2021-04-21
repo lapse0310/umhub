@@ -1,20 +1,18 @@
 package comp3350.umhub.presentation;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.umhub.R;
@@ -23,8 +21,11 @@ import comp3350.umhub.application.UserException;
 import comp3350.umhub.business.IAccessCourseReviews;
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.CourseReview;
+import comp3350.umhub.objects.TutorEntry;
 import comp3350.umhub.objects.User;
 import comp3350.umhub.presentation.adapters.ReviewAdapter;
+import comp3350.umhub.presentation.fragments.ReviewItemFragment;
+import comp3350.umhub.presentation.fragments.TutorItemFragment;
 
 public class CourseReviewsActivity extends AppCompatActivity {
     private Course courseSelected;
@@ -57,7 +58,7 @@ public class CourseReviewsActivity extends AppCompatActivity {
         accessCourseReviews = Services.getAccessCourseReviews();
         courseReviewList = accessCourseReviews.getCourseReviewByCourse(courseSelected);
 
-        listView = (ListView) findViewById(R.id.reviewListView);
+/*        listView = (ListView) findViewById(R.id.reviewListView);
         listView.setEmptyView(findViewById(R.id.empty));
         ReviewAdapter adapter = new ReviewAdapter(this,courseReviewList);
         adapter.notifyDataSetChanged();
@@ -73,9 +74,27 @@ public class CourseReviewsActivity extends AppCompatActivity {
                 modify_intent.putExtra("id", c.getId());
                 startActivity(modify_intent);
             }
-        });
+        });*/
+        List<TutorEntry> tutors = Services.getAccessTutors().getTutorEntriesByCourse(courseSelected);
+        courseReviewList = accessCourseReviews.getCourseReviewByCourse(courseSelected);
 
-        tutorsButton = findViewById(R.id.viewTutors);
+        int review_frags[] = {R.id.review_item1,R.id.review_item2,R.id.review_item3};
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        for (int i = 0; i < courseReviewList.size() && i < review_frags.length ; i++) {
+            ReviewItemFragment reviewItem = ReviewItemFragment.newInstance(courseReviewList.get(i));
+            transaction.replace(review_frags[i],reviewItem);
+        }
+        transaction.commit();
+
+        int tutor_frags[] = {R.id.tutor_item1,R.id.tutor_item2,R.id.tutor_item3};
+        FragmentTransaction transaction1 = getSupportFragmentManager().beginTransaction();
+        for (int i = 0; i < tutors.size() && i < tutor_frags.length ; i++) {
+            TutorItemFragment tutorItem = TutorItemFragment.newInstance(tutors.get(i));
+            transaction1.replace(tutor_frags[i],tutorItem);
+        }
+        transaction1.commit();
+
+        tutorsButton = findViewById(R.id.view_tutors);
         if (Services.getAccessTutors().getTutorEntriesByCourse(courseSelected).isEmpty()){
             tutorsButton.setEnabled(false);
             tutorsButton.setText("No Tutors Available for This Course");
@@ -108,6 +127,7 @@ public class CourseReviewsActivity extends AppCompatActivity {
                 }
             });
         }
+
     }
 
     @Override

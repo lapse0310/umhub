@@ -25,7 +25,7 @@
                 android:paddingTop="@dimen/activity_vertical_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingBottom="@dimen/activity_vertical_margin"
-                android:text="COURSENAME"
+                android:text="Course Name"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
@@ -49,12 +49,12 @@
                 android:paddingTop="@dimen/activity_vertical_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingBottom="@dimen/activity_vertical_margin"
-                android:text="Course Review overview here"
+                android:text="Insert Course Description  here"
                 android:textSize="18sp" />
 
 
             <TextView
-                android:id="@+id/allUserReviews"
+                android:id="@+id/userReviewsText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -65,42 +65,98 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <ListView
-                android:id="@+id/reviewListView"
+            <LinearLayout
+                android:id="@+id/ll_review_fragment"
                 android:layout_width="match_parent"
-                android:layout_height="366dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:id="@+id/review_item1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/review_item2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/review_item3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </FrameLayout>
+
+                <Button
+                    android:id="@+id/writeReviewButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:text="WRITE A REVIEW" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tutorsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingBottom="@dimen/activity_vertical_margin">
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:text="Tutors"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-
-            </ListView>
-
-            <Button
-                android:id="@+id/writeReviewButton"
+            <LinearLayout
+                android:id="@+id/ll_tutors_ragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="0dp"
-                android:text="WRITE A REVIEW" />
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/viewTutors"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
-                android:onClick="buttonViewTutors"
-                android:text="TUTORS FOR THIS COURSE" />
+                <FrameLayout
+                    android:id="@+id/tutor_item1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/tutor_item2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/tutor_item3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </FrameLayout>
+
+                <Button
+                    android:id="@+id/view_tutors"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginBottom="16dp"
+                    android:onClick="buttonViewTutors"
+                    android:text="View All Tutors" />
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

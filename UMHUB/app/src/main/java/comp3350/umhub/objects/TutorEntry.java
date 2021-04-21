@@ -1,8 +1,10 @@
 package comp3350.umhub.objects;
 
+import java.io.Serializable;
+
 import comp3350.umhub.application.Services;
 
-public class TutorEntry {
+public class TutorEntry implements Serializable {
     private String name;
     private String email;
     private String course;
@@ -39,9 +41,12 @@ public class TutorEntry {
         return type+" "+name;
     }
 
-
     public String getCourse() {
         return course;
+    }
+
+    public String getDescription(){
+        return String.format("%s\n%s",getEmail(),getType());
     }
 
 
