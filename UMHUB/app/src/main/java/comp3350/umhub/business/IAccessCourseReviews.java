@@ -11,4 +11,6 @@ public interface IAccessCourseReviews {
     List<CourseReview> getCourseReviewByCourse(Course course);
     CourseReview getCourseReview(int id);
     void add(String courseID, String userID, String review, int score);
+
+    float getAverageRating(Course course);
 }

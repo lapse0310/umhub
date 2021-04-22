@@ -5,6 +5,8 @@ import java.util.List;
 import comp3350.umhub.application.Services;
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.CourseReview;
+import comp3350.umhub.objects.TutorEntry;
+import comp3350.umhub.objects.TutorRating;
 import comp3350.umhub.persistence.interfaces.ICourseReviewPersistence;
 
 public class AccessCourseReviews implements IAccessCourseReviews {
@@ -40,4 +42,16 @@ public class AccessCourseReviews implements IAccessCourseReviews {
         if (courseID != null && userID != null)
             courseReviewPersistence.insert(courseID,userID,review,score);
     }
+
+    @Override
+    public float getAverageRating(Course course){
+        List<CourseReview> ratings = getCourseReviewByCourse(course);
+        float sum = 0, avg = 0;
+        for (CourseReview rating: ratings) {
+            sum += rating.getScore();
+        }
+        avg = sum/ratings.size();
+        return avg;
+    }
+
 }

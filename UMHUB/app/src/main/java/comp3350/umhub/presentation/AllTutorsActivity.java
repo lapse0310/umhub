@@ -42,8 +42,8 @@ public class AllTutorsActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
                     tutorEntrySelected = tutorEntryList.get(position);
-                    Intent modify_intent = new Intent(getApplicationContext(), RateTutorsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(modify_intent);
+                    Intent intent = new Intent(getApplicationContext(), RateTutorsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
 
                 }
             });

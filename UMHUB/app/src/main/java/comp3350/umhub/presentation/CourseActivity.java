@@ -1,12 +1,8 @@
 package comp3350.umhub.presentation;
 
-import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -33,9 +29,8 @@ public class CourseActivity extends AppCompatActivity {
     private TextView courseName;
     private TextView courseDescription;
     private List<TutorEntry> tutors;
-    private ListView listView;
-    private IAccessCourseReviews accessCourseReviews;
-    private List<CourseReview> courseReviewList;
+    private List<CourseReview> courseReviews;
+    float avgRating;
     private Button tutorsButton;
     private Button writeReviewButton;
     private User currentUser;
@@ -56,15 +51,16 @@ public class CourseActivity extends AppCompatActivity {
         courseDescription = (TextView) findViewById(R.id.courseDescription);
         courseDescription.setText(courseSelected.getDescription());
 
-        accessCourseReviews = Services.getAccessCourseReviews();
-        courseReviewList = accessCourseReviews.getCourseReviewByCourse(courseSelected);
+        avgRating = Services.getAccessCourseReviews().getAverageRating(courseSelected);
+        TextView avgRatingText = findViewById(R.id.averageRating);
+        avgRatingText.setText(String.format("%1.1f",avgRating));
 
+        courseReviews = Services.getAccessCourseReviews().getCourseReviewByCourse(courseSelected);
         tutors = Services.getAccessTutors().getTutorEntriesByCourse(courseSelected);
-        courseReviewList = accessCourseReviews.getCourseReviewByCourse(courseSelected);
 
         TextView seeReviews = findViewById(R.id.userReviewsText);
         TextView seeTutors = findViewById(R.id.tutorsText);
-        seeReviews.setText(String.format("User Reviews (%d)",courseReviewList.size()));
+        seeReviews.setText(String.format("User Reviews (%d)", courseReviews.size()));
         seeTutors.setText(String.format("Tutors (%d)",tutors.size()));
         seeReviews.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,8 +78,8 @@ public class CourseActivity extends AppCompatActivity {
 
         int review_frags[] = {R.id.review_item1,R.id.review_item2,R.id.review_item3};
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        for (int i = 0; i < courseReviewList.size() && i < review_frags.length ; i++) {
-            ReviewItemFragment reviewItem = ReviewItemFragment.newInstance(courseReviewList.get(i));
+        for (int i = 0; i < courseReviews.size() && i < review_frags.length ; i++) {
+            ReviewItemFragment reviewItem = ReviewItemFragment.newInstance(courseReviews.get(i));
             transaction.replace(review_frags[i],reviewItem);
         }
         transaction.commit();
