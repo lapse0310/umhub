@@ -1,8 +1,12 @@
 package comp3350.umhub.presentation;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -20,6 +24,7 @@ import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.CourseReview;
 import comp3350.umhub.objects.TutorEntry;
 import comp3350.umhub.objects.User;
+import comp3350.umhub.presentation.fragments.LoginFragment;
 import comp3350.umhub.presentation.fragments.ReviewItemFragment;
 import comp3350.umhub.presentation.fragments.TutorItemFragment;
 
@@ -102,28 +107,21 @@ public class CourseActivity extends AppCompatActivity {
         }
 
         writeReviewButton = findViewById(R.id.writeReviewButton);
-        try{
-            currentUser = Services.getCurrentUser();
-            writeReviewButton.setText("Write A Review");
-            writeReviewButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+        writeReviewButton.setText("Write A Review");
+        writeReviewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try{
+                    currentUser = Services.getCurrentUser();
                     Intent add_mem = new Intent(CourseActivity.this, WriteCourseReviewActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     add_mem.putExtra("previous", CourseActivity.class.toString());
                     startActivity(add_mem);
+                } catch (UserException e) {
+                    LoginFragment loginFragment = new LoginFragment();
+                    loginFragment.show(getSupportFragmentManager(),"LoginFragment");
                 }
-            });
-        }catch (UserException e){
-            writeReviewButton.setText("Log In To Write A Review");
-            writeReviewButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent add_mem = new Intent(CourseActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    add_mem.putExtra("previous", CourseActivity.class.toString());
-                    startActivity(add_mem);
-                }
-            });
-        }
+            }
+        });
 
     }
 
@@ -160,6 +158,10 @@ public class CourseActivity extends AppCompatActivity {
             }
         });*/
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+    }
 }
 
