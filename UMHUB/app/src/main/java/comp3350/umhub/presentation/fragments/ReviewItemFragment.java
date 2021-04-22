@@ -77,19 +77,13 @@ public class ReviewItemFragment extends Fragment {
             name.setText(String.format("%s", courseReview.getUser()));
             score.setText(String.format("%.1f", (float) courseReview.getScore()));
 
-            float textSize = 18f;
-            score.setTextSize(textSize);
-            name.setTextSize(textSize);
-            desc.setTextSize(textSize);
             desc.setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD);
 
             name.setGravity(Gravity.BOTTOM);
             score.setGravity(Gravity.CENTER);
 
             img.setImageResource(R.drawable.ic_asset_student);
-            float imgScale = .75f;
-            img.setScaleX(imgScale);
-            img.setScaleY(imgScale);
+
 
             container.setClickable(true);
             container.setOnClickListener(new View.OnClickListener() {

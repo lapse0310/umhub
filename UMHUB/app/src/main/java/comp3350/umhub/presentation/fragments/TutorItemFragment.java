@@ -73,11 +73,11 @@ public class TutorItemFragment extends Fragment {
             score.setText(String.format("%.1f",tutorEntry.getAverageRating()));
 
             img.setImageResource(R.drawable.ic_asset_student);
-            img.setScaleX(.75f);
-            img.setScaleY(.75f);
-
-            name.setTextSize(16);
-            desc.setTextSize(16);
+//            img.setScaleX(.75f);
+//            img.setScaleY(.75f);
+//
+//            name.setTextSize(16);
+//            desc.setTextSize(16);
 
             name.setGravity(Gravity.CENTER_VERTICAL);
 

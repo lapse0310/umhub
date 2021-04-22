@@ -27,7 +27,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             toast.show();
         }
         Button loginBtn = findViewById(R.id.login1);
-        TextView signUp = findViewById(R.id.signup1);
+        TextView signUp = findViewById(R.id.guest_mode);
         loginBtn.setOnClickListener(this);
         signUp.setOnClickListener(this);
     }
@@ -43,7 +43,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             case R.id.login1:
                 startActivity(new Intent(HomeActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                 break;
-            case R.id.signup1:
+            case R.id.guest_mode:
                 startActivity(new Intent(HomeActivity.this, MajorsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                 break;
         }

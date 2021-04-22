@@ -19,7 +19,7 @@ import comp3350.umhub.R;
 import comp3350.umhub.application.SignUpException;
 import comp3350.umhub.business.ILogin;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+public class LoginActivity extends AppCompatActivity {
 
     private ILogin iLogin;
     private EditText eName;                      /* A user interface for entering/modifying the text */
@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.fragment_login);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
@@ -44,28 +44,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         eSignUp = findViewById(R.id.btnSignUp);
 
         /* Handle the click on login button */
-        eLogin.setOnClickListener(this);
-        eSignUp.setOnClickListener(this);
-    }
-
-
-
-
-    public void onClick(View view) {
-        String username = eName.getText().toString();
-        String password = ePassword.getText().toString();
-        switch ( view.getId() ){
-            case R.id.btnLogin:
+        eLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 try
                 {
+                    String username = eName.getText().toString();
+                    String password = ePassword.getText().toString();
                     iLogin.login(username,password);
                     String previous = getIntent().getStringExtra("previous");
                     if (previous != null){
                         if (previous.equals(CourseActivity.class.toString()))
-                            startActivity(new Intent(this, CourseActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                            startActivity(new Intent(getApplicationContext(), CourseActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                     }
                     else
-                        startActivity(new Intent(this, MajorsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                        startActivity(new Intent(getApplicationContext(), MajorsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
                 }
                 catch(LoginException e)
@@ -75,9 +68,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
                     toast.show();
                 }
-                break;
-            case R.id.btnSignUp:
+            }
+        });
+        eSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 try {
+                    String username = eName.getText().toString();
+                    String password = ePassword.getText().toString();
                     iLogin.signUp(username,password);
                     Toast toast = Toast.makeText(getApplicationContext(),"New user successfully created! Now you can log in using the credentials", Toast.LENGTH_SHORT);
                     toast.show();
@@ -87,10 +85,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
                     toast.show();
                 }
-                break;
-        }
+            }
+        });
     }
-
 
     protected void onDestroy(){
         super.onDestroy();

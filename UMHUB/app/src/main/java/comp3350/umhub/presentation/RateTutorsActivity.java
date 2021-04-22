@@ -2,7 +2,10 @@ package comp3350.umhub.presentation;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.text.LineBreaker;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +14,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import comp3350.umhub.R;
@@ -36,6 +40,9 @@ public class RateTutorsActivity extends AppCompatActivity {
     User currentUser;
     private TextView textView;
 
+
+    @SuppressLint("WrongConstant")
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +52,7 @@ public class RateTutorsActivity extends AppCompatActivity {
         ratingBar = findViewById(R.id.ratingBar);
         submit = findViewById(R.id.submitBtn1);
         showRating = findViewById(R.id.reviewEditText2);
-
+        textView.setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD);
         setTitle("Rate Tutor");
         try {
             textView.setText(String.format("How would you rate %s as a %s", tutorEntry.getName(), tutorEntry.getType()));

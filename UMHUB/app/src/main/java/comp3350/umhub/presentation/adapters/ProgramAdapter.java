@@ -1,7 +1,10 @@
 package comp3350.umhub.presentation.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
+import android.text.Layout;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
 
 import java.util.List;
 
@@ -41,6 +46,8 @@ public class ProgramAdapter extends BaseAdapter {
         return position;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @SuppressLint("WrongConstant")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View row;
@@ -58,11 +65,7 @@ public class ProgramAdapter extends BaseAdapter {
         desc.setText(String.format("%d Courses",program.getCourseCount()));
 
         img.setImageResource(R.drawable.ic_asset_diploma);
-        img.setScaleX(.75f);
-        img.setScaleY(.75f);
-
-        name.setTextSize(16);
-        desc.setTextSize(16);
+        desc.setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD);
         name.setGravity(Gravity.CENTER_VERTICAL);
 
         if (Services.getAccessCourses().getCoursesByProgram(program).isEmpty()){

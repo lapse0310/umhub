@@ -1,8 +1,10 @@
 package comp3350.umhub.presentation.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
+import android.text.Layout;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,7 +45,8 @@ public class CourseAdapter extends BaseAdapter {
         return position;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    @SuppressLint("WrongConstant")
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View row = null;
@@ -60,16 +63,13 @@ public class CourseAdapter extends BaseAdapter {
 
 
         name.setText(course.getName());
-        name.setTextSize(16);
         name.setGravity(Gravity.CENTER_VERTICAL);
         desc.setText(course.getDescription());
-        desc.setTextSize(16);
-        desc.setGravity(Gravity.CENTER_VERTICAL);
+        desc.setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD);
         id.setText(course.getId());
-        id.setTextSize(16);
         id.setGravity(Gravity.CENTER);
-        img.setImageResource(R.drawable.ic_asset_book);
 
+        img.setImageResource(R.drawable.ic_asset_book);
 
         switch (course.getYear()){
             case 2:
