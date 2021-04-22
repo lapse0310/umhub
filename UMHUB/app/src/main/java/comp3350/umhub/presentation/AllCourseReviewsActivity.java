@@ -42,7 +42,7 @@ public class AllCourseReviewsActivity extends AppCompatActivity implements Revie
                 public void onClick(View v) {
                     try{
                         Services.getCurrentUser();
-                        startActivity(new Intent(getApplicationContext(),WriteCourseReviewActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                        startActivity(new Intent(getApplicationContext(),RateCourseActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                     } catch (UserException e) {
                         LoginFragment loginFragment = new LoginFragment();
                         loginFragment.show(getSupportFragmentManager(),"LoginFragment");
@@ -65,7 +65,7 @@ public class AllCourseReviewsActivity extends AppCompatActivity implements Revie
     @Override
     public void onItemClick(int position) {
         courseReview = courseReviewList.get(position);
-        Intent intent = new Intent(getApplicationContext(), SeeCourseReviewActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        Intent intent = new Intent(getApplicationContext(), CourseRatingActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("id", courseReview.getId());
         startActivity(intent);
     }
@@ -77,5 +77,10 @@ public class AllCourseReviewsActivity extends AppCompatActivity implements Revie
         reviewAdapter.notifyDataSetChanged();
         recyclerView.setAdapter(reviewAdapter);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(getApplicationContext(),CourseActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
     }
 }

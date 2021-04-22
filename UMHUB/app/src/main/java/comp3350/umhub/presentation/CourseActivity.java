@@ -123,7 +123,7 @@ public class CourseActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
 
                 CourseReview c = (CourseReview) adapter.getItem(position);
-                Intent modify_intent = new Intent(getApplicationContext(), SeeCourseReviewActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Intent modify_intent = new Intent(getApplicationContext(), CourseRatingActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 modify_intent.putExtra("id", c.getId());
                 startActivity(modify_intent);
             }

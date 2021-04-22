@@ -1,7 +1,6 @@
 package comp3350.umhub.presentation.fragments;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -18,7 +17,6 @@ import android.widget.TextView;
 
 import comp3350.umhub.R;
 import comp3350.umhub.objects.CourseReview;
-import comp3350.umhub.presentation.SeeCourseReviewActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -97,7 +95,7 @@ public class ReviewItemFragment extends Fragment {
             container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    Intent intent = new Intent(v.getContext(), SeeCourseReviewActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                    Intent intent = new Intent(v.getContext(), CourseRatingActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //                    intent.putExtra("id", courseReview.getId());
 //                    startActivity(intent);
                     final int NUM_LINES_UNEXP = 3;

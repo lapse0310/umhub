@@ -20,6 +20,7 @@ import comp3350.umhub.business.IAccessTutors;
 import comp3350.umhub.objects.TutorEntry;
 import comp3350.umhub.objects.TutorRating;
 import comp3350.umhub.objects.User;
+import comp3350.umhub.presentation.fragments.LoginFragment;
 
 public class RateTutorsActivity extends AppCompatActivity {
 
@@ -42,7 +43,7 @@ public class RateTutorsActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView);
         rateCount = findViewById(R.id.rateCount);
         ratingBar = findViewById(R.id.ratingBar);
-        submit = findViewById(R.id.submitBtn);
+        submit = findViewById(R.id.submitBtn1);
         showRating = findViewById(R.id.reviewEditText2);
 
         setTitle("Rate Tutor");
@@ -80,35 +81,37 @@ public class RateTutorsActivity extends AppCompatActivity {
             toast.show();
             onBackPressed();
         }
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    currentUser = Services.getCurrentUser();
+                    iAccessTutors = Services.getAccessTutors();
+                    tutorRating = iAccessTutors.getTutorRatingsByUser(tutorEntry, currentUser);
+                    if (tutorRating != null) {
+                        tutorRating.setRating(rateValue);
+                        iAccessTutors.updateTutorRating(tutorRating);
+                    } else {
+                        iAccessTutors.addTutorRating(tutorEntry, currentUser, rateValue);
+                    }
+                    Toast toast = Toast.makeText(getApplicationContext(),"Thank you for your feedback", Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
+                    toast.show();
+                    startActivity(new Intent(RateTutorsActivity.this, AllTutorsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+
+                } catch (UserException e) {
+                    LoginFragment loginFragment = new LoginFragment();
+                    loginFragment.show(getSupportFragmentManager(),"LoginFragment");
+                }
+            }
+        });
     }
 
     @SuppressLint("SetTextI18n")
     public void buttonUpdateRating(View view) {
 
-        try {
-            currentUser = Services.getCurrentUser();
-            iAccessTutors = Services.getAccessTutors();
-            tutorRating = iAccessTutors.getTutorRatingsByUser(tutorEntry, currentUser);
-            if (tutorRating != null) {
-                tutorRating.setRating(rateValue);
-                iAccessTutors.updateTutorRating(tutorRating);
-            } else {
-                iAccessTutors.addTutorRating(tutorEntry, currentUser, rateValue);
-            }
-            Toast toast = Toast.makeText(getApplicationContext(),
-                    "Thank you for your feedback", Toast.LENGTH_LONG);
-            toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
-            toast.show();
-            onBackPressed();
-            Intent tutorIntent = new Intent(RateTutorsActivity.this, AllTutorsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            RateTutorsActivity.this.startActivity(tutorIntent);
 
-        } catch (UserException e) {
-            Toast toast = Toast.makeText(getApplicationContext(),
-                    "Please log in to leave a review", Toast.LENGTH_LONG);
-            toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
-            toast.show();
-        }
     }
 
     @Override
@@ -120,4 +123,6 @@ public class RateTutorsActivity extends AppCompatActivity {
         Intent tutorIntent = new Intent(RateTutorsActivity.this, AllTutorsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         RateTutorsActivity.this.startActivity(tutorIntent);
     }
+
+
 }
