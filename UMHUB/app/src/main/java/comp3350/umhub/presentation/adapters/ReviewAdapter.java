@@ -10,29 +10,95 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 import comp3350.umhub.R;
 import comp3350.umhub.objects.CourseReview;
 
+import static androidx.recyclerview.widget.RecyclerView.*;
 
-public class ReviewAdapter extends BaseAdapter {
+
+public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder> {
     List<CourseReview> courseReviewList;
-    LayoutInflater inflater;
+    OnItemListener onItemListener;
 
-    public ReviewAdapter(Context context, List<CourseReview> courseReviews) {
-        courseReviewList = courseReviews;
-        inflater = LayoutInflater.from(context);
+    public ReviewAdapter(Context context, List<CourseReview> courseReviews, OnItemListener onItemListener) {
+        this.onItemListener = onItemListener;
+        this.courseReviewList = courseReviews;
     }
 
-    public ReviewAdapter(Context context, List<CourseReview> courseReviews, int itemLimit) {
-        List<CourseReview> sublist = courseReviews.subList(0, Math.min(itemLimit, getCount()));
-        inflater = LayoutInflater.from(context);
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view  = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_list_item_img3, parent, false);
+        return new ViewHolder(view, onItemListener);
     }
 
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        CourseReview courseReview = courseReviewList.get(position);
 
+        holder.desc.setText(String.format("%s", courseReview.getReview()));
+        holder.name.setText(String.format("%s", courseReview.getUser()));
+        holder.score.setText(String.format("%.1f", (float) courseReview.getScore()));
+
+        holder.name.setTextSize(16);
+        holder.desc.setTextSize(16);
+
+        holder.name.setGravity(Gravity.BOTTOM);
+        holder.score.setGravity(Gravity.CENTER);
+
+        holder.img.setImageResource(R.drawable.ic_asset_student);
+        holder.img.setScaleX(.75f);
+        holder.img.setScaleY(.75f);
+
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemCount() {
+        return courseReviewList.size();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        TextView score,name,desc;
+        ImageView img;
+        OnItemListener onItemListener;
+
+        public ViewHolder(@NonNull View itemView, OnItemListener onItemListener)  {
+            super(itemView);
+            score = (TextView) itemView.findViewById(R.id.score_4);
+            name = (TextView) itemView.findViewById(R.id.name_4);
+            desc = (TextView) itemView.findViewById(R.id.desc_4);
+            img = (ImageView) itemView.findViewById(R.id.image_4);
+            this.onItemListener = onItemListener;
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            onItemListener.onItemClick(getAdapterPosition());
+        }
+    }
+
+    public interface OnItemListener{
+        void onItemClick(int position);
+    }
+
+//    public ReviewAdapter(Context context, List<CourseReview> courseReviews, int itemLimit) {
+//        List<CourseReview> sublist = courseReviews.subList(0, Math.min(itemLimit, getCount()));
+//        inflater = LayoutInflater.from(context);
+//    }
+
+/*
     @Override
     public int getCount() {
         return courseReviewList.size();
@@ -41,11 +107,6 @@ public class ReviewAdapter extends BaseAdapter {
     @Override
     public Object getItem(int position) {
         return courseReviewList.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -80,6 +141,7 @@ public class ReviewAdapter extends BaseAdapter {
         img.setScaleY(.75f);
 
         return row;
-    }
+    }*/
+
 }
 

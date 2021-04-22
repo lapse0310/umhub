@@ -32,7 +32,7 @@ public class AllTutorsActivity extends AppCompatActivity {
         try{
             tutorEntryList = accessTutors.getTutorEntriesByCourse(CoursesActivity.getCourseSelected());
 
-            listView = (ListView) findViewById(R.id.list_view);
+            listView = (ListView) findViewById(R.id.recycler_view);
             listView.setEmptyView(findViewById(R.id.empty));
             TutorAdapter adapter = new TutorAdapter(this, tutorEntryList);
             adapter.notifyDataSetChanged();

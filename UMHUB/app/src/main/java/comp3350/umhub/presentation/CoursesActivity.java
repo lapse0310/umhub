@@ -49,7 +49,7 @@ public class CoursesActivity extends AppCompatActivity {
         else
             courseList = accessCourses.getCoursesByProgram(program);
 
-        listView = (ListView) findViewById(R.id.list_view);
+        listView = (ListView) findViewById(R.id.recycler_view);
         listView.setEmptyView(findViewById(R.id.empty));
         CourseAdapter adapter = new CourseAdapter(this, courseList);
         adapter.notifyDataSetChanged();

@@ -55,7 +55,7 @@ public class ProgramsActivity extends AppCompatActivity {
         else              programList = iAccessPrograms.getProgramsByMajor(major);
         Collections.sort(programList,new programSorter().reversed());
 
-        listView = (ListView) findViewById(R.id.list_view);
+        listView = (ListView) findViewById(R.id.recycler_view);
         listView.setEmptyView(findViewById(R.id.empty));
         ProgramAdapter adapter = new ProgramAdapter(this, programList);
         adapter.notifyDataSetChanged();

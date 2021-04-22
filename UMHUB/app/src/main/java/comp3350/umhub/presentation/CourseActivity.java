@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +14,6 @@ import java.util.List;
 import comp3350.umhub.R;
 import comp3350.umhub.application.Services;
 import comp3350.umhub.application.UserException;
-import comp3350.umhub.business.IAccessCourseReviews;
 import comp3350.umhub.objects.Course;
 import comp3350.umhub.objects.CourseReview;
 import comp3350.umhub.objects.TutorEntry;
@@ -62,19 +60,6 @@ public class CourseActivity extends AppCompatActivity {
         TextView seeTutors = findViewById(R.id.tutorsText);
         seeReviews.setText(String.format("User Reviews (%d)", courseReviews.size()));
         seeTutors.setText(String.format("Tutors (%d)",tutors.size()));
-        seeReviews.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),AllCourseReviewsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-            }
-        });
-        seeTutors.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),AllTutorsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-
-            }
-        });
 
         int review_frags[] = {R.id.review_item1,R.id.review_item2,R.id.review_item3};
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -92,30 +77,20 @@ public class CourseActivity extends AppCompatActivity {
         }
         transaction1.commit();
 
-        tutorsButton = findViewById(R.id.view_tutors);
-        if (Services.getAccessTutors().getTutorEntriesByCourse(courseSelected).isEmpty()){
-            tutorsButton.setEnabled(false);
-            tutorsButton.setText("No Tutors Available for This Course");
-        }
-        else{
-            tutorsButton.setEnabled(true);
-            tutorsButton.setText("Tutors Are Available for This Course");
-        }
+        tutorsButton = findViewById(R.id.all_tutors);
+        tutorsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),AllTutorsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            }
+        });
 
-        writeReviewButton = findViewById(R.id.writeReviewButton);
-        writeReviewButton.setText("Write A Review");
+
+        writeReviewButton = findViewById(R.id.all_reviews);
         writeReviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try{
-                    currentUser = Services.getCurrentUser();
-                    Intent add_mem = new Intent(CourseActivity.this, WriteCourseReviewActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    add_mem.putExtra("previous", CourseActivity.class.toString());
-                    startActivity(add_mem);
-                } catch (UserException e) {
-                    LoginFragment loginFragment = new LoginFragment();
-                    loginFragment.show(getSupportFragmentManager(),"LoginFragment");
-                }
+                startActivity(new Intent(getApplicationContext(),AllCourseReviewsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             }
         });
 
@@ -154,10 +129,18 @@ public class CourseActivity extends AppCompatActivity {
             }
         });*/
 
+    //        if (Services.getAccessTutors().getTutorEntriesByCourse(courseSelected).isEmpty()){
+//            tutorsButton.setEnabled(false);
+//            tutorsButton.setText("No Tutors Available for This Course");
+//        }
+//        else{
+//            tutorsButton.setEnabled(true);
+//            tutorsButton.setText("Tutors Are Available for This Course");
+//        }
+
     @Override
     protected void onResume() {
         super.onResume();
-
     }
 }
 

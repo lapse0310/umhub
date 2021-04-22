@@ -51,7 +51,7 @@ public class MajorsActivity extends AppCompatActivity {
             majorList = accessMajors.getAllMajors();
             Collections.sort(majorList,new majorSorter(majorSorter.BY_COURSE).reversed());
 
-            listView = (ListView) findViewById(R.id.list_view);
+            listView = (ListView) findViewById(R.id.recycler_view);
             listView.setEmptyView(findViewById(R.id.empty));
             MajorAdapter adapter = new MajorAdapter(this, majorList);
             adapter.notifyDataSetChanged();
