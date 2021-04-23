@@ -44,7 +44,6 @@ public class RateCourseActivity extends AppCompatActivity{
 
         setTitle("Course Review");
         textView3.setText(String.format("User Review"));
-        editText.setTextSize(22);
         textView.setText(String.format("How would you rate this course"));
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
 

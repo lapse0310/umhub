@@ -65,6 +65,8 @@ public class ProgramAdapter extends BaseAdapter {
         desc.setText(String.format("%d Courses",program.getCourseCount()));
 
         img.setImageResource(R.drawable.ic_asset_diploma);
+        img.setScaleY(.7f);
+        img.setScaleX(.7f);
         desc.setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD);
         name.setGravity(Gravity.CENTER_VERTICAL);
 

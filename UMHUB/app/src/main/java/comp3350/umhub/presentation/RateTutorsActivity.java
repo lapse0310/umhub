@@ -52,7 +52,7 @@ public class RateTutorsActivity extends AppCompatActivity {
         ratingBar = findViewById(R.id.ratingBar);
         submit = findViewById(R.id.submitBtn1);
         showRating = findViewById(R.id.reviewEditText2);
-        textView.setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD);
+        textView.setJustificationMode(View.TEXT_ALIGNMENT_CENTER);
         setTitle("Rate Tutor");
         try {
             textView.setText(String.format("How would you rate %s as a %s", tutorEntry.getName(), tutorEntry.getType()));

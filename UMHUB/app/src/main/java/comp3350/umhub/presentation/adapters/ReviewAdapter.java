@@ -46,15 +46,11 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
         holder.name.setText(String.format("%s", courseReview.getUser()));
         holder.score.setText(String.format("%.1f", (float) courseReview.getScore()));
 
-        holder.name.setTextSize(16);
-        holder.desc.setTextSize(16);
-
         holder.name.setGravity(Gravity.BOTTOM);
         holder.score.setGravity(Gravity.CENTER);
 
         holder.img.setImageResource(R.drawable.ic_asset_student);
-        holder.img.setScaleX(.75f);
-        holder.img.setScaleY(.75f);
+
 
     }
 

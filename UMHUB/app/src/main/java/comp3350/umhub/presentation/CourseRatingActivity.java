@@ -52,7 +52,6 @@ public class CourseRatingActivity extends AppCompatActivity {
         ratingBar.setIsIndicator(true);
         textView3.setText(String.format("User Review"));
         rateCount.setText(String.format("%1.1f/%1.1f", (float)courseReview.getScore(), 5f));
-        showRating.setTextSize(22);
         showRating.setText(courseReview.getReview());
         showRating.setFocusable(false);
         submit.setVisibility(View.GONE);

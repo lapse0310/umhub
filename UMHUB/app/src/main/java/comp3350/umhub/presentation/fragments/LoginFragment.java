@@ -2,6 +2,7 @@ package comp3350.umhub.presentation.fragments;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -37,6 +38,9 @@ public class LoginFragment extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_login, container, false);
+        view.setMinimumHeight(getHeightByPercentage(100));
+        view.setMinimumWidth(getWidthByPercentage(100));
+
         iLogin = Services.getILogin();
         eName = view.findViewById(R.id.etUserName);
         ePassword = view.findViewById(R.id.etPassword);
@@ -76,6 +80,22 @@ public class LoginFragment extends DialogFragment {
         });
         System.out.println("--OnCreateView");
         return view;
+    }
+
+    public int getWidthByPercentage(int percentage){
+        float percent = percentage / 100;
+        float heightPixels = Resources.getSystem().getDisplayMetrics().heightPixels;
+        float widthPixels = Resources.getSystem().getDisplayMetrics().widthPixels;
+        return (int) (widthPixels * percent);
+
+    }
+
+    public int getHeightByPercentage(int percentage){
+        float percent = percentage / 100;
+        float heightPixels = Resources.getSystem().getDisplayMetrics().heightPixels;
+        float widthPixels = Resources.getSystem().getDisplayMetrics().widthPixels;
+        return (int) (heightPixels * percent);
+
     }
 
 }
